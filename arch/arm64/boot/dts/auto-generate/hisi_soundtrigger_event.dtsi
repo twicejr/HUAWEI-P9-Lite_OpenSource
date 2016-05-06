@@ -1,0 +1,6 @@
+/ {
+        hw_soundtrigger_event: hw_soundtrigger_event{
+                compatible = "hisilicon,hw-soundtrigger-event";
+                status = "disabled";
+        };
+};

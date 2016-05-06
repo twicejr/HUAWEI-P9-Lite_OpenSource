@@ -1,0 +1,10 @@
+#
+# get ip base addr
+#
+comment "get ip base addr"
+
+config HW_IP_BASE_ADDR
+	tristate "hw ip adaption"
+	default n
+	help
+	  ipc adaption for v7r1

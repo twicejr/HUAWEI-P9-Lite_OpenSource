@@ -1,0 +1,15 @@
+#
+# EFUSE infrastructure and drivers
+#
+
+config EFUSE_BALONG
+	tristate "Hisi Balong EFUSE Read/Write support"
+	default n
+	help
+	  Support for the Hisi Balong SoC read or write.
+
+config EFUSE_BALONG_AGENT
+	tristate "Hisi Balong EFUSE Read/Write Agent"
+	default n
+	help
+	  Support for the Hisi Balong SoC read or write Agent.

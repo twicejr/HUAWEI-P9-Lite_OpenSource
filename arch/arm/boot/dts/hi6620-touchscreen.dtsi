@@ -1,0 +1,24 @@
+/ {
+	touchscreen {
+		compatible = "huawei,touchscreen";
+		bus_type = "i2c";
+		bus_id = <2>;
+		product = "hi6620_udp";
+		support_chip_name = "synaptics";
+		synaptics: touchscreen@70 {
+			compatible = "synaptics";
+			slave_address = <0x70>;
+			clocks = <&clk_ts>;
+			clock-names = "clk_ts";
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&GPIO_18_7_pmx_func &GPIO_18_7_cfg_func>;
+			pinctrl-1 = <&GPIO_18_7_pmx_idle &GPIO_18_7_cfg_idle>;
+			synaptics-vdd-supply = <&ldo2>;
+			synaptics-io-supply = <&lvs2>;
+			reset_gpio = <&gpio18 7 0>;
+			attn_gpio = <&gpio3 6 0>;
+			irq_config = <0>;
+			algo_id = <1>;
+		};
+	};
+};

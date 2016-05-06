@@ -1,0 +1,136 @@
+comment "Huawei Sensor"
+
+source "drivers/media/huawei/camera/sensor/vcm/Kconfig"
+source "drivers/media/huawei/camera/sensor/flash/Kconfig"
+source "drivers/media/huawei/camera/sensor/ois/Kconfig"
+
+config HUAWEI_CAMERA_USE_FAKE_SENSOR
+	bool "fake sensor for emulator"
+    default n
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX135
+	bool "imx135"
+    default n
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX214
+	bool "imx214"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX278
+	bool "imx278"
+    default y
+	depends on HUAWEI_CAMERA
+	
+config HUAWEI_CAMERA_USE_IMX278_DAVINCE
+	bool "imx278_davince"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX278_CARRERA
+	bool "imx278_carrera"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX179
+	bool "imx179"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX179_CARRERA
+	bool "imx179_carrera"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OV8865
+	bool "ov8865"
+    default y
+	depends on HUAWEI_CAMERA
+	
+config HUAWEI_CAMERA_USE_OV8865_CARRERA
+	bool "ov8865_carrera"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX214_SUNNY
+	bool "imx214_sunny"
+    default y
+	depends on HUAWEI_CAMERA
+
+
+config HUAWEI_CAMERA_USE_OV5648
+	bool "ov5648"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OV5648_X1S
+	bool "ov5648_x1s"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX179_REAR
+	bool "imx179_rear"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX179_FRONT
+	bool "imx179_front"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OV8865_REAR
+	bool "ov8865_rear"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX328
+	bool "imx328"
+    default y
+	depends on HUAWEI_CAMERA
+	
+config HUAWEI_CAMERA_USE_OV13850
+	bool "ov13850"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_S5K4E1GA
+	bool "s5k4e1ga"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OV2680
+	bool "ov2680"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_MT9D015
+	bool "mt9d015"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX219
+	bool "imx219"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OV8858
+	bool "ov8858"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HISI_CAMERA_FLASH
+	tristate "hisi_flash"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX179_PLK
+	bool "imx179_plk"
+    default y
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_IMX230_PLK
+	bool "imx230_plk"
+    default y
+	depends on HUAWEI_CAMERA

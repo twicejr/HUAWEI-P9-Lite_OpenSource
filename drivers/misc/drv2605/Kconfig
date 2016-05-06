@@ -1,0 +1,5 @@
+config DRV2605
+    tristate "DRV2605 Driver"
+	default y
+	help
+		Say Y to enable DRV2605

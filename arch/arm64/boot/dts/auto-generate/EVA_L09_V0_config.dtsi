@@ -1,0 +1,171 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+
+/include/ "EVA_TUCL_V0_config.dtsi"
+
+/{
+	hisi,modem_id = <0x3C010C00>;
+	hisi,boardid = <3 5 8 0>;
+	hisi,boardname = "EVA_L09_V0";
+	viacbp82d_power:viacbp82d_power {
+		status = "disabled";
+	};
+	viacbp82d_cbp_spi:viacbp82d_cbp_spi {
+		status = "disabled";
+	};
+	devcheck: devcheck{
+		nfc = <1>;
+	};
+
+	panel_mipi_fake{
+		gpio_nums = <52 136 53 20 21 19 29>;
+		gpios = <&gpio6 4 0>, <&gpio17 0 0>,  <&gpio6 5 0>, <&gpio2 4 0>, <&gpio2 3 0>, <&gpio3 5 0>;
+	};
+
+	panel_lcd_lg_R69006_5P5{
+		pinctrl-1 = <&gpio021_pmx_idle &gpio021_cfg_idle &gpio029_cfg_idle &gpio019_cfg_idle &gpio020_cfg_idle &gpio136_cfg_idle &gpio052_cfg_idle &gpio053_cfg_idle>;
+		pinctrl-0 = <&gpio021_pmx_func &gpio021_cfg_func &gpio029_cfg_func &gpio019_cfg_idle &gpio020_cfg_func &gpio136_cfg_func &gpio052_cfg_func &gpio053_cfg_func>;
+		gpio_nums = <52 136 53 20 21 19 29>;
+		gpios = <&gpio6 4 0>, <&gpio17 0 0>,  <&gpio6 5 0>, <&gpio2 4 0>, <&gpio2 3 0>, <&gpio3 5 0>;
+	};
+
+	panel_lcd_sharp_NT35695_5P5{
+		pinctrl-1 = <&gpio021_pmx_idle &gpio021_cfg_idle &gpio029_cfg_idle &gpio067_cfg_idle &gpio020_cfg_idle &gpio136_cfg_idle &gpio052_cfg_idle &gpio053_cfg_idle>;
+		pinctrl-0 = <&gpio021_pmx_func &gpio021_cfg_func &gpio029_cfg_func &gpio067_cfg_idle &gpio020_cfg_func &gpio136_cfg_func &gpio052_cfg_func &gpio053_cfg_func>;
+		gpio_nums = <52 136 53 20 21 19 29>;
+		gpios = <&gpio6 4 0>, <&gpio17 0 0>,  <&gpio6 5 0>, <&gpio2 4 0>, <&gpio2 3 0>, <&gpio3 5 0>;
+	};
+
+	panel_lcd_jdi_R63452_5P5{
+		pinctrl-1 = <&gpio021_pmx_idle &gpio021_cfg_idle &gpio029_cfg_idle &gpio067_cfg_idle &gpio020_cfg_idle &gpio136_cfg_idle &gpio052_cfg_idle &gpio053_cfg_idle>;
+		pinctrl-0 = <&gpio021_pmx_func &gpio021_cfg_func &gpio029_cfg_func &gpio067_cfg_idle &gpio020_cfg_func &gpio136_cfg_func &gpio052_cfg_func &gpio053_cfg_func>;
+		gpio_nums = <52 136 53 20 21 19 29>;
+		gpios = <&gpio6 4 0>, <&gpio17 0 0>,  <&gpio6 5 0>, <&gpio2 4 0>, <&gpio2 3 0>, <&gpio3 5 0>;
+	};
+	huawei,lcd_panel{
+		gpio_cfg_addr = <0xE896C84C 0xE896C874>;
+		gpio_id = <19 29>;
+	};
+	amba{
+		i2c4: i2c@FDF0D000{
+			pn547_nfc: nfc@28{
+				status = "ok";
+			};
+		};
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				depth_isp,reset_gpio = <32>;
+				pinctrl-0 = <
+					&gpio032_pmx_func
+					&gpio051_pmx_func
+					&gpio056_pmx_func
+					&gpio032_cfg_func
+					&gpio051_cfg_func
+					&gpio056_cfg_func>;
+				pinctrl-1 = <
+					&gpio032_pmx_idle
+					&gpio051_pmx_idle
+					&gpio056_pmx_idle
+					&gpio032_cfg_idle
+					&gpio051_cfg_idle
+					&gpio056_cfg_idle>;
+			};
+		};
+	};
+	huawei,hisi_isp100{
+		pinctrl-1 = <
+			&gpio017_pmx_idle
+			&gpio018_pmx_idle
+			&gpio022_pmx_idle
+			&gpio023_pmx_idle
+			&gpio024_pmx_idle
+			&gpio025_pmx_idle
+			&gpio026_pmx_idle
+			&gpio027_pmx_idle
+			&gpio028_pmx_idle
+			&gpio003_hi6402_pinctrl_idle
+			&gpio122_pmx_idle
+			&gpio207_pmx_idle
+			&gpio030_pmx_idle
+			&gpio217_pmx_idle
+
+			&gpio017_cfg_idle
+			&gpio018_cfg_idle
+			&gpio022_cfg_idle
+			&gpio023_cfg_idle
+			&gpio024_cfg_idle
+			&gpio025_cfg_idle
+			&gpio026_cfg_idle
+			&gpio027_cfg_idle
+			&gpio028_cfg_idle
+			&gpio122_cfg_idle
+			&gpio207_cfg_idle
+			&gpio030_cfg_idle
+			&gpio217_cfg_idle>;
+		pinctrl-0 = <
+			&gpio017_pmx_func
+			&gpio018_pmx_func
+			&gpio022_pmx_func
+			&gpio023_pmx_func
+			&gpio024_pmx_func
+			&gpio025_pmx_func
+			&gpio026_pmx_func
+			&gpio027_pmx_func
+			&gpio028_pmx_func
+			&gpio003_hi6402_pinctrl_func
+			&gpio122_pmx_func
+			&gpio207_pmx_func
+			&gpio030_pmx_func
+			&gpio217_pmx_func
+
+			&gpio017_cfg_func
+			&gpio018_cfg_func
+			&gpio022_cfg_func
+			&gpio023_cfg_func
+			&gpio024_cfg_func
+			&gpio025_cfg_func
+			&gpio026_cfg_func
+			&gpio027_cfg_func
+			&gpio028_cfg_func
+			&gpio122_cfg_func
+			&gpio207_cfg_func
+			&gpio030_cfg_func
+			&gpio217_cfg_func>;
+	};
+	huawei,imx214dual{
+		gpios = <&gpio2 2 0 &gpio2 1 0 &gpio3 6 0 &gpio27 1 0 &gpio15 2 0 &gpio25 7 0>;
+	};
+	huawei,imx286dual{
+		gpios = <&gpio2 2 0 &gpio2 1 0 &gpio3 6 0 &gpio27 1 0 &gpio15 2 0 &gpio25 7 0>;
+	};
+	sensorhub{
+		mag_sensor: compass{
+			mag1{
+				negate_x =<0>;
+				negate_y =<1>;
+				negate_z =<1>;
+				axis_map_x =<0>;
+				axis_map_y =<1>;
+				axis_map_z =<2>;
+				softiron_parameter = <16 39 0 0 0 0 0 0 16 39 0 0 0 0 0 0 16 39 0 0 0 0 0 0 0 0 0>;
+			};
+		};
+	};
+
+	nfc_exist{
+		nfc_exist_flag = "1";
+		nfc_ese_spi_det = "0";
+	};
+	pmic: pmic@FFF34000{
+		status = "ok";
+		buck_boost_alwayson = <1>;
+		compatible = "hisilicon,hisi-pmic";
+	};
+
+	bcm_wifi{
+		wifi_nvram_name = "/vendor/firmware/nvram43455_hw_eva_ULG.txt";
+	};
+};

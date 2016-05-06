@@ -1,0 +1,3 @@
+source "drivers/huawei_platform/usb/switch/Kconfig" 
+source "drivers/huawei_platform/usb/otg_gpio_switch/Kconfig"
+source "drivers/huawei_platform/usb/typec/Kconfig"

@@ -1,0 +1,13 @@
+
+config HISI_COUL
+        bool "hisi coul"
+        default n
+config HISI_COUL_HI6421V500
+        bool "hisi hi6421v500 coul"
+        default n
+config HISI_COUL_HI6555V100
+        bool "hisi hi6555v100 coul"
+        default n
+config HISI_COUL_TEST
+        bool "hisi coul test"
+        default n

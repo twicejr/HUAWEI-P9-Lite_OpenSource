@@ -1,0 +1,94 @@
+#####################################################################
+# Copyright (C) 2011 Huawei Tech. Co., Ltd.
+# obuild product define file
+#
+#####################################################################
+
+#####################################################################
+# PHY COMMON FEATURE CONFIG                                         #
+#####################################################################
+# GUPHY 芯片平台定义::
+#0  HI6920ES
+#1  HI6756CS
+#2  HI6920CS
+#3  HI6758CS
+#4  HI6620CS
+#5  HI6930CS
+#6  HI3630CS
+#7  HI6921_V711CS
+#8  HI3650CS
+#9  HI6950CS
+#10 HI6250CS
+#11 HI6932CS
+#12 HI3660CS
+CFG_ZSP_DSP_CHIP_BB_TYPE		=12
+
+# GUPHY 产品形态定义: 0 Stick, 1 E5, 2 Phone, 3 E353, 4 UDP
+CFG_ZSP_DSP_PRODUCT_FORM		=4
+
+# GUPHY 平台定义, FPGA/ASIC/SFT
+CFG_BOARD                               = FPGA
+
+# 低功耗分区上下电临时开关
+CFG_FEATURE_TEMP_DSP_CORE_POWER_DOWN    = FEATURE_OFF
+
+# 是否支持tuner
+CFG_FEATURE_TUNER				        = FEATURE_ON
+CFG_FEATURE_TEMP_MULTI_MODE_LP          = FEATURE_ON
+
+
+# V9R1性能提升，代码段放入SRAM控制宏
+CFG_FEATURE_SRAM_400K                   = FEATURE_OFF
+
+CFG_FEATURE_EXTERNAL_32K_CLK		    = FEATURE_ON
+
+CFG_FEATURE_SOCP_ON_DEMAND			    = FEATURE_OFF
+
+CFG_FEATURE_GU_DSP_SPLIT                = FEATURE_ON
+
+#####################################################################
+# WPHY FEATURE CONFIG                                               #
+#####################################################################
+
+CFG_FEATURE_DC_DPA			            = FEATURE_ON
+
+#harq 外移
+CFG_FEATURE_HARQ_OUT                    = FEATURE_OFF
+
+#V7R2GUL联调成果上库
+CFG_FEATURE_MULTI_RFIC_MEAS			    = FEATURE_ON
+
+CFG_FEATURE_RFIC_RESET_GPIO_ON		    = FEATURE_OFF
+
+CFG_FEATURE_UPHY_SIO_WPLL_ELUSION_ON    = FEATURE_OFF
+
+#####################################################################
+# GPHY FEATURE CONFIG                                               #
+#####################################################################
+
+#CMCC虚拟频段
+CFG_FEATURE_VIRTUAL_BAND			    = FEATURE_OFF
+
+#L分集和G副卡共天线
+CFG_FEATURE_ANT_SHARE				    = FEATURE_OFF
+
+#####################################################################
+# CPHY FEATURE CONFIG                                               #
+#####################################################################
+
+# CBBE16
+CFG_CPHY_PUB_DTCM_BASE	    =0x49400000
+CFG_CPHY_PUB_ITCM_BASE	    =0x49500000
+CFG_CPHY_PRV_DTCM_BASE	    =0x49480000
+CFG_CPHY_PRV_ITCM_BASE	    =0x49580000
+CFG_CPHY_PUB_DTCM_SIZE		=0x80000
+CFG_CPHY_PUB_ITCM_SIZE		=0x80000
+CFG_CPHY_PRV_DTCM_SIZE		=0x80000
+CFG_CPHY_PRV_ITCM_SIZE		=0x80000
+
+CFG_CPHY_PUB_DTCM_GLB_MINUS_LOCAL	    = 0x0
+
+# X模软核版本定义
+CFG_XTENSA_CORE_X_CACHE             =p532_bbe16_cache
+CFG_LD_MAP_PATH             =hi3660-cphy-fpga-bbe16-lsp_hrpd_p532
+

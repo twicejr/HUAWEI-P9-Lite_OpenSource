@@ -1,0 +1,1 @@
+obj-y	+= exmbist_test.o exmbist_wrap_top.o exmbist_io.o exmbist_api_util.o exmbist_api_drv.o exmbist_api_algo.o exmbist_api.o

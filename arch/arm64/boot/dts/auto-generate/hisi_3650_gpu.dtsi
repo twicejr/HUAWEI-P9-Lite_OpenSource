@@ -1,0 +1,23 @@
+/{
+    gpu: mali@E8970000 {
+        compatible = "arm,malit6xx", "arm,mali-midgard";
+        #cooling-cells = <2>; /* min followed by max */
+        gpu_outstanding = <0x0>;
+        reg = <0x0 0xE8970000 0x0 0x4000>;
+        interrupts = <0 258 4 0 259 4 0 260 4>;
+	interrupt-names = "JOB", "MMU", "GPU";
+	clocks = <&clk_g3d>;
+	gpu-supply = <&g3d>;
+	operating-points = <
+		/* <frequency> <voltage>*/
+		120000  725000
+		/* 180000  800000 */
+		240000  725000
+		360000  725000
+		480000  775000
+		650000  846000
+		800000  972000
+		900000 1105000
+	>;
+    };
+};

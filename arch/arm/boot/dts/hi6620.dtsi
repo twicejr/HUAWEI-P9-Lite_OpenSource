@@ -1,0 +1,227 @@
+/*
+ * Hisilicon Ltd. Hi6620 SoC
+ *
+ * Copyright (C) 2014 Hisilicon Ltd.
+ * Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/include/ "skeleton.dtsi"
+/include/ "hi6620_gpio.dtsi"
+
+/ {
+	aliases {
+		serial0 = &uart0;
+		/*
+		serial1 = &uart1;
+		serial2 = &uart2;
+		serial3 = &uart3;
+		serial4 = &uart4;
+		serial5 = &uart5;
+		serial6 = &uart6;
+		*/
+		mshc0 = &dwmmc_0;
+	};
+
+
+	l2: l2-cache@f6c00000 {
+		compatible = "arm,pl310-cache";
+		reg = <0xf6c00000 0x100000>;
+		interrupts = <0 83 4>;
+		cache-unified;
+		cache-level = <2>;
+	};
+
+
+	gic: interrupt-controller@f6800000 {
+		compatible = "arm,cortex-a9-gic";
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+		interrupt-controller;
+		/* gic dist base, gic cpu base */
+		reg = <0xf6801000 0x1000>, <0xf6800100 0x100>;
+	};
+
+	amba {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "arm,amba-bus";
+		interrupt-parent = <&gic>;
+		ranges;
+
+		dual_timer0: timer@f7405000 {
+			compatible = "arm,sp804", "arm,primecell";
+			reg = <0xf7405000 0x1000>;
+			/* timer00 & timer01 */
+			interrupts = <0 14 4>, <0 15 4>;
+			clocks = <&clk_ref &clkin_sys>;
+			clock-names = "timer1", "apb_pclk";
+			status = "disabled";
+		};
+
+		/*Balong HI6620 UART basic info*/
+		uart0: uart@f7110000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xf7110000 0x1000>;
+			interrupts = <0 36 4>;
+			clocks = <&clk_ref>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+		/*The end of Hi6620 uart basic info*/
+
+		/*i2c basic infor*/
+		i2c0: i2c@f7100000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7100000 0x1000>;
+			interrupts = <0 44 4>;
+			clocks = <&clk_i2c0 &pclk_i2c0>;
+			clock-names = "clk_i2c0", "apb_pclk";
+			delay-reg = <0x0f8 0>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 9>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&I2C0_SCL_pmx_func &I2C0_SDA_pmx_func &I2C0_SCL_cfg_func &I2C0_SDA_cfg_func>;
+			pinctrl-1 = <&I2C0_SCL_pmx_idle &I2C0_SDA_pmx_idle &I2C0_SCL_cfg_idle &I2C0_SDA_cfg_idle>;
+			status = "disabled";
+		};
+		i2c1: i2c@f7101000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7101000 0x1000>;
+			interrupts = <0 45 4>;
+			clocks = <&clk_i2c1 &pclk_i2c1>;
+			clock-names = "clk_i2c1", "apb_pclk";
+			delay-reg = <0x0f8 2>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 10>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&I2C1_SCL_pmx_func &I2C1_SDA_pmx_func &I2C1_SCL_cfg_func &I2C1_SDA_cfg_func>;
+			pinctrl-1 = <&I2C1_SCL_pmx_idle &I2C1_SDA_pmx_idle &I2C1_SCL_cfg_idle &I2C1_SDA_cfg_idle>;
+			status = "disabled";
+		};
+		i2c2: i2c@f7102000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7102000 0x1000>;
+			interrupts = <0 46 4>;
+			clocks = <&clk_i2c2 &pclk_i2c2>;
+			clock-names = "clk_i2c2", "apb_pclk";
+			delay-reg = <0x0f8 4>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 11>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&I2C2_SCL_pmx_func &I2C2_SDA_pmx_func &I2C2_SCL_cfg_func &I2C2_SDA_cfg_func>;
+			pinctrl-1 = <&I2C2_SCL_pmx_idle &I2C2_SDA_pmx_idle &I2C2_SCL_cfg_idle &I2C2_SDA_cfg_idle>;
+			status = "disabled";
+		};
+		i2c3: i2c@f7103000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7103000 0x1000>;
+			interrupts = <0 47 4>;
+			clocks = <&clk_i2c3 &pclk_i2c3>;
+			clock-names = "clk_i2c3", "apb_pclk";
+			delay-reg = <0x0f8 6>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 12>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&I2C3_SCL_pmx_func &I2C3_SDA_pmx_func &I2C3_SCL_cfg_func &I2C3_SDA_cfg_func>;
+			pinctrl-1 = <&I2C3_SCL_pmx_idle &I2C3_SDA_pmx_idle &I2C3_SCL_cfg_idle &I2C3_SDA_cfg_idle>;
+			status = "disabled";
+		};
+		i2c4: i2c@f7104000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7104000 0x1000>;
+			interrupts = <0 48 4>;
+			clocks = <&clk_i2c4 &pclk_i2c4>;
+			clock-names = "clk_i2c4", "apb_pclk";
+			delay-off = <300>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 13>;
+			status = "disabled";
+		};
+		i2c5: i2c@f7105000 {
+			compatible = "hisilicon,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xf7105000 0x1000>;
+			interrupts = <0 49 4>;
+			clocks = <&clk_i2c5 &pclk_i2c5>;
+			clock-names = "clk_i2c5", "apb_pclk";
+			delay-off = <300>;
+			reset-controller-reg = <0x6cc 0x6d0 0x6d4 14>;
+			status = "disabled";
+		};
+
+		/*pinctrl-single start*/
+		pmx0: pinmux@f7010000 {
+			compatible = "pinctrl-single";
+			reg = <0xF7010000 0x2f4>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			#gpio-range-cells = <3>;
+			ranges;
+
+			pinctrl-single,register-width = <32>;
+			pinctrl-single,function-mask = <7>;
+			/* pin base, nr pins & gpio function */
+			pinctrl-single,gpio-range = <&range 0   7  1 &range 7   1  0
+						     &range 8   6  2 &range 18  8  2
+						     &range 30  7  2 &range 38  5  1
+						     &range 46  3  2 &range 52  1  2
+						     &range 55  4  2 &range 59  12 4
+						     &range 73  6  4 &range 89  1  4
+						     &range 90  6  2 &range 96  48 0
+						     &range 144 2  4 &range 147 1  4
+						     &range 149 1  4 &range 151 3  4
+						     &range 156 2  4 &range 178 11 2>;
+
+			range: gpio-range {
+				#pinctrl-single,gpio-range-cells = <3>;
+			};
+		
+		};
+
+		pmx1: pinmux@f7010800 {
+			compatible = "pinconf-single";
+			reg = <0xF7010800 0x300>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+
+			pinctrl-single,register-width = <32>;
+		};
+		/*pinctrl-single end*/
+	};
+	usb_otg: usb_otg@f4840000 {
+		compatible = "hisilicon,hi6620-usb-otg";
+		reg = <0xf4840000 0x44000>;
+		interrupts = <0 77 0x4>;
+		clocks = <&clk_usbotg_off &hclk_usbotg_off &hclk_usbotg_on &clk_picophy>;
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <&GPIO_6_2_pmx_func
+			&GPIO_5_3_pmx_func
+			&GPIO_6_2_cfg_func
+			&GPIO_5_3_cfg_func>;
+		pinctrl-1 = <&GPIO_6_2_pmx_idle
+			&GPIO_5_3_pmx_idle
+			&GPIO_6_2_cfg_idle
+			&GPIO_5_3_cfg_idle>;
+		huawei,use_switch_driver;
+		huawei,id_no_bypass;
+		huawei,otg_without_mhl;
+		huawei,otg_int_gpio;
+		huawei,switch_pin1 = <43>;
+		huawei,switch_pin2 = <50>;
+		huawei,switch_id_pin = <63>;
+		huawei,cdma_usb_enable = <108>;
+		huawei,eye_pattern = <0x709334ff>;
+		
+	};
+};

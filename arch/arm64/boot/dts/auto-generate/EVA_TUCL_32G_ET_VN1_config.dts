@@ -1,0 +1,39 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_TUCL_32G_ET_V4_config.dtsi"
+/include/ "EVA_TUCL_32G_ET_VN1_pin.dtsi"
+/include/ "EVA_TUCL_32G_ET_VN1_modem_pin.dtsi"
+/include/ "EVA_TUCL_32G_ET_VN1_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C013000>;
+	hisi,boardid = <3 5 7 5>;
+	hisi,boardname = "EVA_TUCL_32G_ET_VN1";
+
+	amba{
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <4>;
+			};
+		};
+	};
+
+	panel_lcd_lg_R69006_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_sharp_NT35695_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_jdi_R63452_5P5{
+		new_lcd_supported = <1>;
+	};
+};

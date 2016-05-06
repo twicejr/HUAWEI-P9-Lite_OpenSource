@@ -1,0 +1,4 @@
+obj-y += touchscreen/
+obj-y += sensor/
+obj-y += usb/
+obj-y += camera_legacy/

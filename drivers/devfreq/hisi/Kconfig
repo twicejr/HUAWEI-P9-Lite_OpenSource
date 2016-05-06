@@ -1,0 +1,24 @@
+config DEVFREQ_GOV_MALI_ONDEMAND
+	tristate "Mali Ondemand"
+	help
+	  Base on simple ondemand governor.
+
+config DEVFREQ_GOV_PM_QOS
+	bool "PM QOS"
+	help
+	  Sets the frequency based on pm_qos throughput constraints.
+
+config HISI_DDR_DEVFREQ_DEBUGFS
+	bool "Hisilicon ddr devfreq debugfs"
+	depends on HI3650_DDR_DEVFREQ && DEBUG_FS
+	default n
+	help
+	  This is a testing driver for HISI ddr devfreq function.
+
+config HISI_DDR_DEVFREQ
+	bool "Hisilicon ddr devfreq support"
+	depends on PM_DEVFREQ && PM_OPP
+	select DEVFREQ_GOV_PM_QOS
+	default n
+	help
+	  Scale ddr freqency down threshold for HI3650 platform.

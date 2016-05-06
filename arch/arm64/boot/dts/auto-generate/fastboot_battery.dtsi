@@ -1,0 +1,8 @@
+/ {
+	fastboot_battery: fastboot_battery{
+		compatible = "fastboot,battery";
+		iin_limit_ac = <1200>;
+		ichrg_limit_ac = <700>;
+		status = "disabled";
+	};
+};

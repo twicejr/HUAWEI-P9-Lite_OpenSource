@@ -1,0 +1,23 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    gps_power:gps_power{
+		compatible = "huawei,gps_power";
+		huawei,gps_cal_req = <12>;
+		huawei,gps_en = <&gpio2 6 0>;
+		huawei,gps_hostwake = <&gpio26 2 0>;
+		clocks = <&clk_pmu32kc>, <&clk_gate_gps_m>;
+		clock-names = "gps_32k", "clk_gps";
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+		huawei,gps_refclk = <97>;
+		status = "disabled";
+    };
+};

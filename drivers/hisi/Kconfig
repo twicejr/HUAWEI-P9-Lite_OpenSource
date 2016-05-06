@@ -1,0 +1,54 @@
+menuconfig HISILICON_PLATFORM
+	bool "Hisilicon platform support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform
+
+
+if HISILICON_PLATFORM
+
+source "drivers/hisi/adc/Kconfig"
+source "drivers/hisi/ddrc/Kconfig"
+source "drivers/hisi/hifidsp/Kconfig"
+source "drivers/hisi/soundtrigger/Kconfig"
+source "drivers/hisi/hi6xxx/Kconfig"
+source "drivers/hisi/efuse/Kconfig"
+source "drivers/hisi/mntn/Kconfig"
+source "drivers/hisi/modem/Kconfig"
+source "drivers/hisi/hifi_mailbox/Kconfig"
+source "drivers/hisi/mailbox/Kconfig"
+source "drivers/hisi/mutex_service/Kconfig"
+source "drivers/hisi/noc/Kconfig"
+source "drivers/hisi/socp/Kconfig"
+source "drivers/hisi/tele_mntn/Kconfig"
+source "drivers/hisi/mcushell/Kconfig"
+source "drivers/hisi/hi3xxx/Kconfig"
+source "drivers/hisi/axi/Kconfig"
+source "drivers/hisi/hi6421_spk/Kconfig"
+source "drivers/hisi/perf_stat/Kconfig"
+source "drivers/hisi/hi64xx/Kconfig"
+source "drivers/hisi/hi6402dsp/Kconfig"
+source "drivers/hisi/slimbus/Kconfig"
+source "drivers/hisi/pm_common/Kconfig"
+source "drivers/hisi/watchpoint/Kconfig"
+source "drivers/hisi/misc/Kconfig"
+source "drivers/hisi/hmpthresholds/Kconfig"
+source "drivers/hisi/memory_dump/Kconfig"
+source "drivers/hisi/exmbist/Kconfig"
+source "drivers/hisi/ivp/Kconfig"
+source "drivers/hisi/hiperfdump/Kconfig"
+source "drivers/hisi/flp/Kconfig"
+source "drivers/hisi/fpga_touchscreen/Kconfig"
+source "drivers/hisi/load_image/Kconfig"
+source "drivers/hisi/perfhub/Kconfig"
+source "drivers/hisi/freqdump/Kconfig"
+endif #HISILICON_PLATFORM
+
+if HISI_BALONG_MODEM_HI3XXX
+source "drivers/hisi/efuse/Kconfig"
+endif
+
+source "drivers/hisi/hilog/Kconfig"
+
+source "drivers/hisi/tzdriver/Kconfig"
+source "drivers/hisi/cci_extra/Kconfig"

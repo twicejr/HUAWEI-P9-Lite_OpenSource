@@ -1,0 +1,5 @@
+config HW_ANTENNA_BOARD_MATCH
+     bool "antenna_board_match support"
+	 default n
+
+source "drivers/huawei_platform/antenna_board_match/antenna_board_adc_match/Kconfig"

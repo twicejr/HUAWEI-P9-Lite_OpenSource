@@ -1,0 +1,9 @@
+#
+# Balong psam configuration
+#
+
+config PSAM_SUPPORT
+	tristate "psam support"
+	default n
+	help
+	  balong psam driver

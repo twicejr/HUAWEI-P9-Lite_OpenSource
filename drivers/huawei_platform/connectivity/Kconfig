@@ -1,0 +1,3 @@
+source "drivers/huawei_platform/connectivity/bcm/Kconfig"
+source "drivers/huawei_platform/connectivity/hw_connectivity/Kconfig"
+source "drivers/huawei_platform/connectivity/hw_gps/Kconfig"

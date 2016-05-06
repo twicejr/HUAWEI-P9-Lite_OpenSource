@@ -1,0 +1,35 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	modem_etb:modem_etb {
+		compatible = "coresight,modem-etb";
+		reg = <0xEC083000 0x1000>;
+	};
+	
+   	 modem_etm:modem_etm {
+		compatible = "coresight,modem-etm";
+		reg = <0xEC0BC000 0x1000>;
+	};
+	modem_sysctrl:modem_sysctrl {
+		compatible = "ap_modem,sysctrl_cfg";
+		reg = <0xE0200000 0x1000>;
+		clk = <0x2c 5 3>;
+		reset =<0x68 15 6>;
+		mtcmos =<0xE04 1>;
+	};
+   	perctrl2:perctrl2reg{
+		compatible = "coresight,extern_dep";
+        	reg = <0xfff35000 0x1000>;
+		offset = <0x128>;
+		pclkdbg_clkoff_sys = <1>;           
+        	atclkoff_sys= <7>;                 
+        	pclkdbg_to_modem_clk_off_sys = <17>; 
+        	atclk_to_modem_clkoff_sys = <16>;    
+        	modem_cssys_rst_req = <18>;          
+
+	};
+};

@@ -1,0 +1,4 @@
+source "drivers/videocom/mntn/Kconfig"
+source "drivers/videocom/videoharden/Kconfig"
+source "drivers/videocom/videoconfig/Kconfig"
+

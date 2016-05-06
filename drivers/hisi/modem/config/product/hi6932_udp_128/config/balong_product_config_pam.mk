@@ -1,0 +1,16 @@
+# MD5: 7df4a887dbfe412bba93d3aafd214b46
+CFG_FEATURE_BBP_MASTER                          := FEATURE_ON
+CFG_BBP_MASTER_INT_MODE                         := FEATURE_ON
+CFG_FEATURE_BBP_MASTER_CHAN_EXTEND              := FEATURE_OFF
+CFG_FEATURE_BBP_MASTER_CHAN_U2              	:= FEATURE_OFF
+CFG_FEATURE_GUC_BBP_TRIG                        := FEATURE_OFF
+CFG_FEATURE_MULTI_FS_PARTITION                  := FEATURE_OFF
+CFG_FEATURE_POWER_TIMER                         := FEATURE_OFF
+CFG_FEATURE_UE_UICC_MULTI_APP_SUPPORT           := FEATURE_ON
+CFG_FEATURE_VSIM                                := FEATURE_ON
+CFG_FEATURE_GUC_BBP_TRIG                        := FEATURE_OFF
+CFG_FEATURE_GUBBP_HANDSHAKE                     := FEATURE_ON
+CFG_FEATURE_GUDRX_NEWVERSION                    := FEATURE_OFF
+CFG_FEATURE_VOS_REDUCE_MEM_CFG                  := FEATURE_ON
+CFG_FEATURE_OM_BBPLOG                           := FEATURE_OFF
+CFG_FEATURE_RTC_TIMER_DBG                       := FEATURE_ON

@@ -1,0 +1,25 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    bluetooth_power:bluetooth_power{
+        compatible = "huawei,bluetooth_power";
+        huawei,bt_en = <111>;
+        clocks = <&clk_pmu32kb>;
+        clock-names = "apb_pclk";
+        status = "disabled";
+    };
+
+    bluetooth_sleep:bluetooth_sleep{
+        compatible = "huawei,bluetooth_sleep";
+        huawei,bt_wake_host = <213>;
+        huawei,host_wake_bt = <72>;
+        /*sleep_handle_name = <&bluetooth_power>;*/
+        status = "disabled";
+    };
+};

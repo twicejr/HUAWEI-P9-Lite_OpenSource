@@ -1,0 +1,1 @@
+obj-$(CONFIG_HISILICON_PLATFORM_RSVMAP_CHECK) += rsvmap_check.o

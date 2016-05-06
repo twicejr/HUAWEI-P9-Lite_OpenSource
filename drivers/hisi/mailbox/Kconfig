@@ -1,0 +1,7 @@
+config HISILICON_PLATFORM_MAILBOX
+	bool "HISILICON PLATFORM MAILBOX"
+	default n
+
+if HISILICON_PLATFORM_MAILBOX
+source "drivers/hisi/mailbox/hisi_mailbox/Kconfig"
+endif

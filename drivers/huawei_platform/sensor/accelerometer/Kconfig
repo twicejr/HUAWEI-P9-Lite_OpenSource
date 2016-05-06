@@ -1,0 +1,38 @@
+#
+# accelerometer driver configuration
+#
+
+menuconfig INPUT_ACCELEROMETER
+	bool "Accelerometer"
+	depends on !SENSORHUB_FEATURE_SUPPORT
+	select HUAWEI_SENSORS_INPUT_INFO
+	default n
+	help
+		Say Y here, and a list of supported ACCELEROMETERs will be displayed.
+		This option doesn't affect the kernel.
+
+
+
+if INPUT_ACCELEROMETER
+
+config HUAWEI_FEATURE_SENSORS_ACCELEROMETER_ST_LIS3XH
+	tristate "ST LIS3DH and LIS331DLH accelerometer"
+	select SERIO
+	default n
+	help
+		Say Y here if you have the ST LIS3DH and LIS331DLH accelerometer.
+config HUAWEI_FEATURE_SENSORS_ACCELEROMETER_ROHM_KX023
+	tristate "ROHM KX023 accelerometer"
+	select SERIO
+	default n
+	help
+		Say Y here if you have the ROHM KX023 accelerometer.
+config GSENSOR_DEBUG
+	bool "gsensor debugging messages"
+	default n
+	help
+		Say Y here if you want the gsensor to produce a bunch of debug
+		messages to the system log.  Select this if you are having a
+		problem with gsensor and want to see more of what is going on.
+
+endif

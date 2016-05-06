@@ -1,0 +1,234 @@
+--/*********************************************************************************/
+--/* FileName:      csdr1xcprocdspcm.asn                                           */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2015.5.25 10:26:0                                              */
+--/* Create Option: H2ASN csdr1xcprocdspcm.h csdr1xcprocdspcm.asn                  */
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Csdr1xcprocdspcm-definitions.Csdr1xcprocdspcm-MSG                                              
+--PROTOCOL: Csdr1xcprocdspcm                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Csdr1xcprocdspcm-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-INT32  ::= <V,V|LEN-32>INTEGER(-2147483648..2147483647) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+PHY-UINT32  ::= <V,V|LEN-32>VOS-UINT32 
+
+PHY-UINT16  ::= <V,V|LEN-16>VOS-UINT16 
+
+PHY-ACTION-TIME-CHIP-32  ::= <V,V|LEN-32>PHY-UINT32 
+
+CSDR-1X-WORK-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-1X-WORK-MODE-SLAVE(0), 
+    cSDR-1X-WORK-MODE-MASTER(1), 
+    cSDR-1X-WORK-MODE-BUTT(2) 
+} 
+
+CSDR-1X-ANTENNA-IND-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-1X-ANTENNA-IND-MAIN(0), 
+    cSDR-1X-ANTENNA-IND-DIVERSITY(1), 
+    cSDR-1X-ANTENNA-IND-MAIN-AND-DIVERSITY(2), 
+    cSDR-1X-ANTENNA-IND-BUTT(3) 
+} 
+
+CSDR-1X-SUCCESS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-1X-SUCCESS(0), 
+    cSDR-1X-FAILURE(1), 
+    cSDR-1X-SUCCESS-BUTT(2) 
+} 
+
+CSDR-1X-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-1X-FALSE(0), 
+    cSDR-1X-TRUE(1), 
+    cSDR-1X-BOOL-BUTT(2) 
+} 
+
+CSDR-1X-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwBandClass    PHY-UINT16, 
+ 
+    --/**< 0..31 BAND-CLASS */ 
+    uhwFreq    PHY-UINT16 
+    --/**< 0..2047, CDMA-FREQ */ 
+} 
+
+CSDR1XCPROCDSPCM-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CPROC-CSDR-1X-RXOFF-REQ(256),    --/* -H2ASN-MsgChoice CPROC-CSDR-1X-RXOFF-REQ-STRU */ 
+    iD-CSDR-CPROC-1X-RXOFF-CNF(257),    --/* -H2ASN-MsgChoice CSDR-CPROC-1X-RXOFF-CNF-STRU */ 
+    iD-CPROC-CSDR-1X-RXON-REQ(258),    --/* -H2ASN-MsgChoice CPROC-CSDR-1X-RXON-REQ-STRU */ 
+    iD-CSDR-CPROC-1X-RXON-CNF(259),    --/* -H2ASN-MsgChoice CSDR-CPROC-1X-RXON-CNF-STRU */ 
+    iD-CPROC-CSDR-1X-SLEEP-REQ(260),    --/* -H2ASN-MsgChoice CPROC-CSDR-1X-SLEEP-REQ-STRU */ 
+    iD-CPROC-CSDR-1X-WAKEUP-REQ(261),    --/* -H2ASN-MsgChoice CPROC-CSDR-1X-WAKEUP-REQ-STRU */ 
+    iD-CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-BUTT(65535) 
+} 
+
+CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCPROC-CSDR-1X-RXOFF-REQ-STRU   CPROC-CSDR-1X-RXOFF-REQ-STRU   WHEN(usChoice1.v==256), 
+   struCSDR-CPROC-1X-RXOFF-CNF-STRU   CSDR-CPROC-1X-RXOFF-CNF-STRU   WHEN(usChoice1.v==257), 
+   struCPROC-CSDR-1X-RXON-REQ-STRU   CPROC-CSDR-1X-RXON-REQ-STRU   WHEN(usChoice1.v==258), 
+   struCSDR-CPROC-1X-RXON-CNF-STRU   CSDR-CPROC-1X-RXON-CNF-STRU   WHEN(usChoice1.v==259), 
+   struCPROC-CSDR-1X-SLEEP-REQ-STRU   CPROC-CSDR-1X-SLEEP-REQ-STRU   WHEN(usChoice1.v==260), 
+   struCPROC-CSDR-1X-WAKEUP-REQ-STRU   CPROC-CSDR-1X-WAKEUP-REQ-STRU   WHEN(usChoice1.v==261) 
+} 
+
+CSDR-1X-RXON-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-1X-RXON-TYPE-SF(0), 
+    cSDR-1X-RXON-TYPE-SF-TO-CF(1), 
+    cSDR-1X-RXON-TYPE-CF-TO-SF(2), 
+    cSDR-1X-RXON-TYPE-SF-SLOTTED-WAKEUP(3), 
+    cSDR-1X-RXON-TYPE-BUTT(4) 
+} 
+
+CPROC-CSDR-1X-RXOFF-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwRxOffTime    PHY-ACTION-TIME-CHIP-32 
+    --/**< 0..98304. Time in chip in one 80ms frame, or CSDR-1X-ACTION-TIME-NOW-32=0xFFFFFFFF */ 
+} 
+
+CSDR-CPROC-1X-RXOFF-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-1X-RXON-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwRxOnTime    PHY-ACTION-TIME-CHIP-32, 
+ 
+    --/**< 0..98304. Time in chip in one 80ms frame, or CSDR-1X-ACTION-TIME-NOW-32=0xFFFFFFFF */ 
+    enUseAntenna    CSDR-1X-ANTENNA-IND-ENUM, 
+ 
+    --/**< In TCH Main and diversity antenna may be used. in other states Main antenna only */ 
+    enRxOnType    CSDR-1X-RXON-TYPE-ENUM , 
+ 
+    stFreqInfo    CSDR-1X-FREQ-INFO-STRU 
+    --/**< Frequency and Band Class */ 
+} 
+
+CSDR-CPROC-1X-RXON-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-1X-SLEEP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enSleepMode    CSDR-1X-SLEEP-MODE-ENUM , 
+ 
+    uhwReserved    PHY-UINT16 , 
+ 
+     
+    auwWakeUpTime    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32 
+    --/**< System time when the wake up shall take place in BBP format. */ 
+} 
+
+CPROC-CSDR-1X-WAKEUP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+Csdr1xcprocdspcm-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CSDR1XCPROCDSPCM-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 */ 
+    --aucMsgBlock    VOS-UINT8 
+ 
+    struMsgChoice    CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CSDR1XCPROCDSPCM-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Csdr1xcprocdspcm-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Csdr1xcprocdspcm-msg-data  
+} 
+
+Csdr1xcprocdspcm-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

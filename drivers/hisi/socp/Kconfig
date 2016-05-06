@@ -1,0 +1,27 @@
+#
+# socp driver layer
+#
+
+comment "socp driver layer"
+
+config HISI_SOCP
+	tristate "support socp"
+	default n
+	help
+	  socp driver
+
+comment "socp test"
+config HISI_SOCP_TEST
+	tristate "Turn off socp test module by default"
+	depends on HISI_SOCP
+	default n
+	help
+	  socp test unit test module
+
+comment "socp adapt layer"
+config HISI_SOCP_ADP
+	tristate "Turn off socp adapt layer by default"
+	depends on HISI_SOCP
+	default n
+	help
+	  socp test unit test module

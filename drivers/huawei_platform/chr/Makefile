@@ -1,0 +1,1 @@
+obj-y += chr_netlink.o

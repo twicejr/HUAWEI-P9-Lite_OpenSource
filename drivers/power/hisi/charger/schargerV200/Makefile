@@ -1,0 +1,1 @@
+obj-y += hisi_scharger_v200.o

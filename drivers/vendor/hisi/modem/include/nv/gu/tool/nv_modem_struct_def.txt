@@ -1,0 +1,2 @@
+#include "nv_gu_struct_def.txt"
+#include "nv_tl_struct_def.txt"

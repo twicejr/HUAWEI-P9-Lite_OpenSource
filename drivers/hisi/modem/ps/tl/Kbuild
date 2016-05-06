@@ -1,0 +1,77 @@
+PSDIR = ..
+MODEM_DIR := $(srctree)/$(src)/../..
+
+ifeq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -Iarch/arm64/include/asm
+else
+EXTRA_CFLAGS += -Iarch/arm/include/asm
+endif
+EXTRA_CFLAGS += -Iinclude/linux
+EXTRA_CFLAGS += -Iinclude/generated
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/med
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/codec
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/osa
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/nvim
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/log
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/si
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/usimm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/errno
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/socp
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/nvim
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/acore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/ccore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/common
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/acore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/ccore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/common
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/acore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/ccore
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/common
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/ttf
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/oam
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/nas
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/was
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/nas
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/osa
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/nvim/include/gu
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/inc/gu
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/as/gu/ttf/TTFComm/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/LINK/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/LINK/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/DICC/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/DIPC/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/FLOWCTRL/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/FLOWCTRL/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/IMM/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/MUX/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/NFEXT/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/NDIS/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/ND/IPCOMM/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/ND/NDSERVER/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/PPP/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/acore/PPP/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/STL/Inc
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/acore/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/comm/om
+
+EXTRA_CFLAGS +=  -DVOS_LINUX=4 -DOSA_CPU_ACPU=1 -DVOS_OS_VER=VOS_LINUX -DVOS_OSA_CPU=OSA_CPU_ACPU -D__LOG_RELEASE__ -DBSP_CORE_APP -DGU_MODE -DMSP_SUPPORT_USB_VCOM1 -DMSP_SUPPORT_USB_VCOM2 -DVOS_DOPRA_VER=2 -DNDIS_RELEASE -DBALONG_PHY_V200=2 -DBALONG_PHY_V300=3 -DBALONG_PHY_VER=BALONG_PHY_V300 -DBALONG_CHIP_V200=2 -DBALONG_CHIP_V300=3 -DBALONG_CHIP_V500=4 -DBALONG_CHIP_VER=BALONG_CHIP_V500 -DMSP_GUNAS_AT_UNITE
+ifneq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm
+endif
+
+EXTRA_CFLAGS += -fsigned-char 
+
+tlps-objs := $(PSDIR)/comm/comm/common/STL/Src/LUPQueue.o
+tlps-objs += $(PSDIR)/comm/comm/acore/NDIS/Src/PsNdis.o
+tlps-objs += $(PSDIR)/comm/comm/acore/NDIS/Src/Ipv4DhcpServer.o
+tlps-objs += $(PSDIR)/comm/comm/common/ND/IPCOMM/Src/IpComm.o
+tlps-objs += $(PSDIR)/comm/comm/acore/ND/NDSERVER/Src/IpNdServer.o  
+
+obj-y  := tlps.o
+
+
+

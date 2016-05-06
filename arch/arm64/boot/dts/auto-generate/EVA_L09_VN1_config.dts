@@ -1,0 +1,48 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_L09_V4_config.dtsi"
+/include/ "EVA_L09_VN1_pin.dtsi"
+/include/ "EVA_L09_VN1_modem_pin.dtsi"
+/include/ "EVA_L09_VN1_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C013800>;
+	hisi,boardid = <3 5 7 7>;
+	hisi,boardname = "EVA_L09_VN1";
+
+	amba{
+		i2c4: i2c@FDF0D000{
+			anc_max14744: anc_max14744@15{
+				gpio_int = <&gpio26 4 0>;
+				pinctrl-names = "default", "idle";
+				pinctrl-0 = <&gpio010_hi6402_pinctrl_func>;
+				pinctrl-1 = <&gpio010_hi6402_pinctrl_idle>;
+				status = "ok";
+			};
+		};
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <4>;
+			};
+		};
+	};
+
+	panel_lcd_lg_R69006_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_sharp_NT35695_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_jdi_R63452_5P5{
+		new_lcd_supported = <1>;
+	};
+};

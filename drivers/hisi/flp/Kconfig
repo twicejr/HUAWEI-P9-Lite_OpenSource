@@ -1,0 +1,13 @@
+#
+# FLP driver configuration
+#
+
+menu "HISI FLP configuration"
+
+config HISI_FLP
+	bool "HISI FLP support"
+	default n
+	---help---
+	  Enable support for FLP driver
+
+endmenu

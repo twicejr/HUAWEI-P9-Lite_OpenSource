@@ -1,0 +1,23 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+
+/include/ "EVA_TUCL_64G_ET_NEW_V4_config.dtsi"
+
+/{
+	hisi,modem_id = <0x3C012800>;
+	hisi,boardid = <3 5 6 7>;
+	hisi,boardname = "EVA_TUCL_64G_ET_NEW_ISP_V4";
+	hisi,config_profile = "high";
+
+	amba{
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <4>;
+			};
+		};
+	};
+};

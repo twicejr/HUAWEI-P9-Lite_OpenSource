@@ -1,0 +1,166 @@
+menuconfig VIDEO_HI6210_CAMERA_SENSOR
+    tristate "Support HI6210 Camera Sensor&Flash Drivers"
+    default n
+    ---help---
+      This is the camera sensor&flash driver based on hi6210.
+
+if VIDEO_HI6210_CAMERA_SENSOR
+
+config HI6210_CAMERA_FLASH
+	tristate "Hisilicon K3 flash"
+	depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+	default n
+	---help---
+	Hisilicon K3 flash driver
+	
+
+config HI6210_CAMERA_FLASH_LM3642
+	tristate "lm3642 flash"
+	depends on VIDEO_HIK3_ISP_CAMERA && HI6210_CAMERA_FLASH
+	default n
+	---help---
+	Hisilicon K3 flash driver
+	
+
+config HI6210_CAMERA_FLASH_TPS61310
+	tristate "tps61310 flash"
+	depends on VIDEO_HIK3_ISP_CAMERA && HI6210_CAMERA_FLASH
+	default n
+	---help---
+	Hisilicon K3 flash driver
+
+config HI6210_CAMERA_FLASH_SCHARGER
+	tristate "scharger flash"
+	depends on VIDEO_HIK3_ISP_CAMERA && HI6210_CAMERA_FLASH
+	default n
+	---help---
+	Hisilicon K3 flash driver
+	
+config HI6210_CAMERA_OV5642
+    tristate "OV5642 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiOV5642 camera driver
+
+config HI6210_CAMERA_OV8830
+    tristate "OV8830 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiOV8830 camera driver
+
+config HI6210_CAMERA_OV8850
+    tristate "OV8850 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiOV8850 camera driver
+
+config HI6210_CAMERA_OV5648_SUNNY
+    tristate "OV5648_SUNNY camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV5648_SUNNY camera driver
+
+config HI6210_CAMERA_OV5648_FOXCONN
+    tristate "OV5648_foxconn camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV5648_FOXCONN camera driver
+
+config HI6210_CAMERA_SONYIMX134
+    tristate "SONYIMX134 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiSONYIMX134 camera driver
+
+config HI6210_CAMERA_SONYIMX135
+    tristate "SONYIMX135 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiSONYIMX135 camera driver
+
+config HI6210_CAMERA_SONYIMX179
+    tristate "SONYIMX179 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiSONYIMX179 camera driver
+
+config HI6210_CAMERA_SONYIMX214
+    tristate "SONYIMX214 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HiSONYIMX214 camera driver
+
+config HI6210_CAMERA_S5K4E1GA_FOXCONN
+    tristate "S5K4E1GA_FOXCONN camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        S5K4E1GA_FOXCONN camera driver
+	
+config HI6210_CAMERA_S5K4E1GX_FOXCONN
+    tristate "S5K4E1GX_FOXCONN camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        S5K4E1GX_FOXCONN camera driver
+
+config HI6210_CAMERA_S5K4E1GA_SUNNY
+    tristate "S5K4E1GA_SUNNY camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        S5K4E1GA_SUNNY camera driver
+
+config HI6210_CAMERA_OV13850
+    tristate "OV13850 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV13850 camera driver
+        
+config HI6210_CAMERA_OV13850_LITEON_171
+    tristate "OV13850_LITEON_171 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV13850_LITEON_171 camera driver        
+
+config HI6210_CAMERA_SONYIMX328
+    tristate "SONYIMX328 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        SONYIMX328 camera driver
+
+config HI6210_CAMERA_SONYIMX328_171
+    tristate "SONYIMX328_171 camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        SONYIMX328_171 camera driver
+
+config HI6210_CAMERA_OV5648_OFILM
+    tristate "OV5648_OFILM camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV5648_OFILM camera driver
+
+config HI6210_CAMERA_OV13850_OFILM
+    tristate "OV13850_OFILM camera"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        OV13850_OFILM camera driver
+
+endif
+

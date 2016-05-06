@@ -1,0 +1,5 @@
+config SOUND_TRIGGER
+	tristate "Support for sound trigger"
+	default n
+	---help---
+	 Say Y here if you want to support sound trigger

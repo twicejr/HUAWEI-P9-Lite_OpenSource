@@ -1,0 +1,17 @@
+#
+# mem driver
+#
+comment "mem driver"
+
+config MEM_BALONG
+	bool "mem balong"
+	default n
+	help
+	  mem blaong
+
+config MEM_BALONG_TEST
+	bool "mem blaong test"
+	depends on MEM_BALONG
+	default y
+	help
+	  mem blaong test

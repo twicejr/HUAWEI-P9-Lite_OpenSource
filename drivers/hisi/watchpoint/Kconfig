@@ -1,0 +1,6 @@
+config HISI_WATCHPOINT_CB
+	bool "Hisilicon watchpoint callback support"
+	depends on HAVE_HW_BREAKPOINT
+	default n
+	help
+	  Say yes here to support the hisilicon watchpoint callback module 

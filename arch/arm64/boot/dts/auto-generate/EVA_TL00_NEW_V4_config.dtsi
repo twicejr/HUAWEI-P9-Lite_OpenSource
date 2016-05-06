@@ -1,0 +1,34 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+
+/include/ "EVA_TUGL_V1_config.dtsi"
+
+/{
+	hisi,modem_id = <0x3C012000>;
+	hisi,boardid = <3 5 6 6>;
+	hisi,boardname = "EVA_TL00_NEW_V4";
+	huawei,imx286dual{
+		compatible = "huawei,imx286dual";
+		huawei,sensor_name = "IMX286DUAL";
+	};
+	amba{
+		i2c4: i2c@FDF0D000{
+			anc_max14744: anc_max14744@15{
+				gpio_int = <&gpio26 4 0>;
+				pinctrl-names = "default", "idle";
+				pinctrl-0 = <&gpio010_hi6402_pinctrl_func>;
+				pinctrl-1 = <&gpio010_hi6402_pinctrl_idle>;
+				status = "ok";
+			};
+		};
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <1>;
+			};
+		};
+	};
+};

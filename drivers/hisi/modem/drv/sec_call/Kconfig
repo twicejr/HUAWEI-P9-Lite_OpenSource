@@ -1,0 +1,12 @@
+#
+# linux kernel call secure func
+#
+
+comment "linux kernel call secure func"
+
+config SEC_CALL
+	tristate "support sec_call"
+	default n
+	help
+	  sec_call interface
+	

@@ -1,0 +1,105 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2014- Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+ /{
+	hisi_isp_ipc: ipc@e8582000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,HiIPCV230";
+		reg = <0x0 0xe8582000 0x0 0x1000>;
+		interrupts = <0 271 4>, <0 271 4>;
+
+		/*
+		 * "remote processor type"
+		 * <remote_processor_type: meaning>
+		 * <0: A53>;
+		 * <1: ISP_A7>;
+		 * <2: LPM3>;
+		 *
+		 * "remote processor"
+		 * <remote_processor, remote_processor_type>
+		 * <"HI3650_ISP_IPC_GIC",	0>;
+		 * <"HI3650_ISP_IPC_ISP_MBX0",	1>;
+		 * <"HI3650_ISP_IPC_ISP_MBX1",	1>;
+		 * <"HI3650_ISP_IPC_ISP_MBX2",	1>;
+		 * <"HI3650_ISP_IPC_ISP_MBX3",	1>;
+		 */
+		remote_processor_num = <5>;
+		remote_processor = "HI3650_ISP_IPC_GIC",
+				"HI3650_ISP_IPC_ISP_MBX0",
+				"HI3650_ISP_IPC_ISP_MBX1",
+				"HI3650_ISP_IPC_ISP_MBX2",
+				"HI3650_ISP_IPC_ISP_MBX3";
+		remote_processor_type = <0 1 1 1 1>;
+		unlock_key = <0x1ACCE551>;
+		capability = <8>;
+		status = "ok";
+
+		/*
+		 * "func"
+		 * <mbox_type, is_src_mbox, is_des_mbox>;
+		 */
+		mailboxes = <4>;/*don't forget to increase the number when add a mailbox channel or decrease when delete one*/
+		isp-mailbox-0 {
+			compatible = "HiIPCV230,isp-rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 269 4>;
+			src_remote_processor = "HI3650_ISP_IPC_ISP_MBX0";
+			des_remote_processor = "HI3650_ISP_IPC_GIC";
+			src_bit = <1>;
+			des_bit = <0>;
+			index = <0>;
+		};
+
+		isp-mailbox-1 {
+			compatible = "HiIPCV230,isp-rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 270 4>;
+			src_remote_processor = "HI3650_ISP_IPC_ISP_MBX1";
+			des_remote_processor = "HI3650_ISP_IPC_GIC";
+			src_bit = <1>;
+			des_bit = <0>;
+			index = <1>;
+		};
+
+		isp-mailbox-2 {
+			compatible = "HiIPCV230,isp-tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_ISP_IPC_GIC";
+			des_remote_processor = "HI3650_ISP_IPC_ISP_MBX2";
+			src_bit = <0>;
+			des_bit = <1>;
+			index = <2>;
+		};
+
+		isp-mailbox-3 {
+			compatible = "HiIPCV230,isp-tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_ISP_IPC_GIC";
+			des_remote_processor = "HI3650_ISP_IPC_ISP_MBX3";
+			src_bit = <0>;
+			des_bit = <1>;
+			index = <3>;
+		};
+		/*this mailbox is virtual for software process*/
+/*******************maybe used in the future		
+		isp-mailbox-x {
+			compatible = "HiIPCV230,mailbox-comm-isp";
+			func = <0 1 1>;
+			src_remote_processor = "HI3650_ISP_IPC_ISP_MBXX";
+			des_remote_processor = "HI3650_ISP_IPC_ISP_MBXX";
+			src_bit = <8>;
+			des_bit = <8>;
+			index = <255>;
+		};
+********************/		
+
+	};
+ };

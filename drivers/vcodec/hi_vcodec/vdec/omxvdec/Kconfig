@@ -1,0 +1,5 @@
+config OMXVDEC
+    tristate "hisilicon omx video decoder support"
+    default n
+    ---help---
+        This is the omxvdec driver

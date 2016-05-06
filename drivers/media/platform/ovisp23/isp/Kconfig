@@ -1,0 +1,8 @@
+if HISI_CAMERA_OVISP23
+
+menu "Hisilicon Camera ISP Driver support"
+
+
+endmenu
+
+endif

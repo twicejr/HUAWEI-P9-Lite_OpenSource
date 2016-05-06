@@ -1,0 +1,16 @@
+#
+# Flash Thermal protect configuration
+#
+
+config FLASH_THERMAL_PROTECT
+	bool "hi6210 flash thermal protect"
+	default n
+	help
+	  close flash when the temperature is too high one time.
+
+config FLASH_THERMAL_PROTECT_CONTINUE
+	bool "hi6210 flash thermal protect continuely"
+	depends on FLASH_THERMAL_PROTECT
+	help
+	  close flash when the temperature is too high continuely.
+

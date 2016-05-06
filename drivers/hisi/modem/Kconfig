@@ -1,0 +1,10 @@
+menu "Hisi Modem"
+
+config BALONG_OAM_PS
+        tristate "support tlmsp tlps gumsp gups taf"
+        default n
+        help
+         tlmsp tlps gumsp gups taf acore image
+
+source "drivers/hisi/modem/drv/Kconfig"
+endmenu

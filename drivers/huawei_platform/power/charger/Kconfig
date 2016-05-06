@@ -1,0 +1,15 @@
+config HUAWEI_CHARGER
+	bool "huawei charger"
+	default n
+config BQ2419X_CHARGER
+	bool "bq2419x charger"
+	default n
+config BQ2429X_CHARGER
+	bool "bq2429x charger"
+	default n
+config BQ25892_CHARGER
+	bool "bq25892 charger"
+	default n
+config DUAL_CHARGER
+	bool "dual charger"
+	default n

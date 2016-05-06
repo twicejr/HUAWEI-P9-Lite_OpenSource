@@ -1,0 +1,13 @@
+#ifndef __MACH_K3V2_CORTEX_A9_H
+#define __MACH_K3V2_CORTEX_A9_H
+
+#include <mach/platform.h>
+
+/*cortex A9 regs base*/
+#define REG_CPU_A9GIC_BASE          	(REG_BASE_A9PRI + 0x2000)
+#define REG_CPU_A9GLBTIMER_BASE	(REG_BASE_A9PRI + 0x200)
+#define REG_CPU_A9PRVTIMER_BASE	(REG_BASE_A9PRI + 0x600)
+#define REG_CPU_A9PRVWDOG_BASE	(REG_BASE_A9PRI + 0x600)
+#define REG_CPU_A9GICDIST_BASE	(REG_BASE_A9PRI + 0x1000)
+
+#endif /* _HISI_CORTEX_A9_H_ */

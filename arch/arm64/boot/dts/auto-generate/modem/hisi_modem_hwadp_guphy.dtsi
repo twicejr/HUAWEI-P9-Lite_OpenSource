@@ -1,0 +1,11 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	hwadp {
+
+	};
+};

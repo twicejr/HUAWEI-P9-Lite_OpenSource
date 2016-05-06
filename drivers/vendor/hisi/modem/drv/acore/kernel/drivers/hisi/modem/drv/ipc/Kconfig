@@ -1,0 +1,18 @@
+#
+# ipc driver
+#
+comment "ipc driver"
+
+config IPC_DRIVER
+	tristate "ipc driver"
+	default n
+	help
+	  ipc interface
+
+config IPC_TEST
+	tristate "ipc test"
+	default n
+	help
+	  ipc test
+	  
+		

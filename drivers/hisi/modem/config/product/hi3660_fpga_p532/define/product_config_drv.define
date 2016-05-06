@@ -1,0 +1,590 @@
+
+# enable Mcore build vars，工程组
+CFG_ENABLE_BUILD_VARS = YES
+
+#AT 升级命令 TAF
+CFG_FEATURE_UPGRADE_TL = YES
+
+# [base_info]: name, version, build_type
+#####################################################################
+# NAME
+CFG_PRODUCT_NAME                      ="hi3660_fpga_p532"
+CFG_PRODUCT_CFG_CHIP_SOLUTION_NAME    ="Balong"
+# VERSION
+CFG_BUILD_TYPE                        =RELEASE
+CFG_PRODUCT_VERSION                   =V100R001C00B010
+CFG_PRODUCT_VERSION_STR               ="V100R001C00B010"
+#修改以下版本号前8个字符需知会工具组同事(lixin 00105438)，B版本号由版本经理修改，宏暂时放在底软
+CFG_PRODUCT_FULL_VERSION_STR          ="Chicago V100R001C00B010"
+CFG_PRODUCT_FILE_VERSION_STR          ="2.1.6.8"
+CFG_PRODUCT_DLOAD_SOFTWARE_VER		  ="21.120.00.00.090"
+
+# [chipset_info]:
+#####################################################################
+# PLATFORM,下面两个宏要归一
+CFG_PLATFORM = hi3660_p532
+CFG_PLATFORM_HISI_BALONG =hi3660_p532
+
+# [os_info]
+####################################################################
+#Linux内核使用的ARCH类型
+CFG_ARCH_TYPE	=3339
+#单编底软时可以打开为true
+#OBB_SEPARATE=false
+CFG_OS_LINUX_PRODUCT_NAME=p532_defconfig
+CFG_TARGET_BALONG_PRODUCT=p532
+
+#####################################################################
+
+
+# [bsp.comm_feature_info]:
+#####################################################################
+CFG_BSP_CONFIG_EDA = NO
+CFG_BSP_CONFIG_EMU = NO
+CFG_BSP_CONFIG_NOT_DDR_BYPASSPLL = NO
+CFG_BSP_CONFIG_P532_ASIC = YES
+CFG_BSP_CONFIG_P532_FPGA = YES
+
+# [bsp.module_info]:
+#####################################################################
+CFG_CONFIG_SMART_SYSTEM_MODEM = NO
+# fastboot 仿真器调试版本
+CFG_CONFIG_FASTBOOT_DEBUG = NO
+
+############################## BSP 1组 start#######################################
+
+#控制是否编译NV
+CFG_CONFIG_NVIM = YES
+#控制NV文件操作存储
+CFG_FEATURE_NV_FLASH_ON = YES
+CFG_FEATURE_NV_EMMC_ON = NO
+CFG_FEATURE_NV_LFILE_ON = NO
+CFG_FEATURE_NV_RFILE_ON = NO
+
+# arm<->tlphy mailbox
+CFG_FEATURE_TLPHY_MAILBOX =YES
+
+# mailbox type
+CFG_CONFIG_MAILBOX_TYPE = YES
+CFG_CONFIG_HIFI_MAILBOX=NO
+
+# arm<->cphy mailbox
+CFG_FEATURE_CPHY_MAILBOX     = YES
+
+#区分dallas bbit平台tl mailbox 邮箱ipc核号
+CFG_FEATURE_CONFIG_P532_DALLAS = YES
+
+#bsp OM build
+CFG_ENABLE_BUILD_OM = YES
+#OM type config(MBB/PHONE)
+CFG_FEATURE_OM_PHONE = NO
+#bsp OM system view build
+CFG_ENABLE_BUILD_SYSVIEW = YES
+#bsp OM CPU view build
+CFG_ENABLE_BUILD_CPUVIEW = YES
+#bsp OM memory view build
+CFG_ENABLE_BUILD_MEMVIEW = YES
+#bsp OM AXI Monitor build
+CFG_ENABLE_BUILD_AMON = YES
+#bsp OM usb trace build
+CFG_ENABLE_BUILD_UTRACE = NO
+#bsp SOCP build
+CFG_ENABLE_BUILD_SOCP = YES
+# socp 解码超时寄存器
+CFG_FEATURE_SOCP_DECODE_INT_TIMEOUT     = FEATURE_ON
+
+#SAMPLE OF LTE FOR V8&V9
+CFG_FEATURE_SAMPLE_LTE_CHAN 			= FEATURE_OFF
+
+#sim inout
+CFG_FEATURE_SIM_NOTIFY = NO
+
+#控制是否编译SC
+CFG_CONFIG_SC = NO
+# DSP
+CFG_CONFIG_DSP = YES
+
+#　CBBE16
+CFG_CONFIG_CBBE   = YES
+
+############################## BSP 1组 end#########################################
+
+############################## BSP 2组 start#######################################
+# [bsp.versin_info]:
+#define hw version stub
+CFG_CONFIG_VERSION_STUB             =NO
+CFG_HW_VERSION_STUB                 =0XFF000300
+CFG_PXXX_BOARD_TYPE_BBIT			=YES
+#use CFG_BBIT_VERSION to indicate different bbit,say V7R5 and V8R5 BBIT
+CFG_BBIT_VERSION                	=0X3
+
+# gpio 驱动选择
+CFG_CONFIG_GPIO_SYNOPSYS = YES
+CFG_CONFIG_GPIO_PL061 = NO
+CFG_CONFIG_GPIO_EXPANDER = NO
+
+# pinctrl 
+CFG_CONFIG_PINCTRL_BALONG = NO
+
+CFG_CONFIG_ONOFF = YES
+# 压缩C核镜像
+CFG_CONFIG_COMPRESS_CCORE_IMAGE = YES
+
+CFG_BSP_HAS_SEC_FEATURE     = NO
+# Sec Boot
+CFG_CONFIG_SEC_BOOT_BALONG = NO
+# RSA
+CFG_CONFIG_RSA = NO
+# usb merge tools
+CFG_USE_USBLOADER_MERGE 			=YES
+CFG_BSP_ENBALE_PACK_IMAGE			=YES
+CFG_BSP_USB_BURN					=YES
+
+# C核启动在init.rc中控制
+CFG_FEATURE_DELAY_MODEM_INIT                    = FEATURE_OFF
+
+CFG_CONFIG_HIFI = NO
+
+# build
+CFG_BUILD_PTABLE=YES
+#pmu使用HI6551
+CFG_CONFIG_PMIC_HI6551 = YES
+#pmu使用fpga平台的
+CFG_CONFIG_PMIC_FPGA = YES
+#编译库仑计
+CFG_CONFIG_COUL = NO
+
+CFG_CONFIG_HKADC = YES
+
+# temperature protect
+CFG_CONFIG_TEMPERATURE_PROTECT = NO
+
+
+# mipi
+CFG_CONFIG_MIPI = NO
+CFG_CONFIG_CROSS_MIPI = NO
+
+
+CFG_CONFIG_ABB = YES
+
+#编译BBP
+CFG_CONFIG_BBP = YES
+
+# leds core
+CFG_CONFIG_LEDS_CCORE = NO
+
+# lcd
+CFG_CONFIG_FB_SPI_BALONG = NO
+CFG_CONFIG_FB_EMI_BALONG = NO
+CFG_CONFIG_FB_1_4_5_INCH_BALONG=NO
+CFG_CONFIG_FB_2_4_INCH_BALONG=NO
+
+CFG_CONFIG_PCIE_CFG = YES
+
+#编译SFLASH
+CFG_CONFIG_SFLASH = NO
+
+# ----------------------------------
+# slic 编译选项如下：
+# 1）m：编译为.ko，/system/bin目录下；
+# 2）n：为不编译（默认）。
+# ----------------------------------
+CFG_CONFIG_SLIC = n
+
+# ----------------------------------
+# audio 编译选项如下：
+# 1）m：编译为.ko，/system/bin目录下；
+# 2）n：为不编译（默认）。
+# ----------------------------------
+CFG_CONFIG_AUDIO = n
+
+# antenna plug or not
+CFG_CONFIG_ANTEN = NO
+
+# efuse
+CFG_CONFIG_EFUSE = NO
+
+# 注意:宏打开会导致烧写EFUSE，不熟悉这个功能请不要动这个宏!
+CFG_CONFIG_BURN_EFUSE_NANDC = NO
+
+# ddm启动打点
+CFG_CONFIG_DDM = YES
+
+# designware i2c
+CFG_CONFIG_DESIGNWARE_I2C = YES
+
+#E5 FEATURE
+CFG_FEATURE_E5_ONOFF = NO
+############################## BSP 2组 end#########################################
+
+############################## BSP 3组 start#######################################
+# fastboot 串口号分配
+CFG_CONFIG_FASTBOOT_UART_NUM = 1
+
+# 编译vic
+CFG_CONFIG_MODULE_VIC = YES
+
+CFG_CONFIG_AT_UART = NO
+CFG_CONFIG_CSHELL = NO
+CFG_CONFIG_ICC = YES
+CFG_CONFIG_OF = YES
+dts=true
+
+CFG_CONFIG_CPUFREQ = NO
+CFG_CONFIG_CCORE_REGULATOR = YES
+CFG_CONFIG_CCORE_WDT = YES
+CFG_CONFIG_ACORE_WDT = YES
+
+#clk
+CFG_CONFIG_BALONG_CCLK = NO
+
+#cpuidle
+CFG_CONFIG_CCORE_CPU_IDLE = YES
+#ipc timer dpm sync
+CFG_CONFIG_CCORE_PM = NO
+CFG_CONFIG_MODULE_IPC = YES
+CFG_CONFIG_IPCM_USE_FPGA_VIC = YES
+CFG_CONFIG_MODULE_TIMER = YES
+CFG_CONFIG_MODULE_SYNC = YES
+
+#wakelock
+CFG_CONFIG_HAS_CCORE_WAKELOCK = NO
+# core pm
+CFG_CONFIG_CCORE_BALONG_PM = NO
+#edma
+CFG_CONFIG_BALONG_EDMA = YES
+CFG_CONFIG_BALONG_EDMA_TEST = YES
+
+#lowpower mntn
+CFG_CONFIG_PWC_MNTN_CCORE = NO
+
+#HWADP
+CFG_CONFIG_HWADP = YES
+
+#hpm temperature
+CFG_CONFIG_BALONG_HPM_TEMP = NO
+
+CFG_CONFIG_MEM = YES
+#tcxo
+CFG_CONFIG_TCXO_BALONG = NO
+
+#VFP
+#CFG_CONFIG_VFP = YES
+#a core dpm ：控制A核侵入内核修改内容
+CFG_CONFIG_BALONG_DPM = NO
+
+CFG_CONFIG_USE_TIMER_STAMP=YES
+
+CFG_CONFIG_MODULE_BUSSTRESS = NO
+
+############################## BSP 3组 end#########################################
+
+############################## BSP 4组 start#######################################
+CFG_CONFIG_IPF    = YES
+CFG_CONFIG_PSAM   = NO
+CFG_CONFIG_CIPHER = YES
+
+# ipf_test
+CFG_CONFIG_IPF_VESION  = 2
+CFG_CONFIG_IPF_ADQ_LEN = 3
+# k3 should =NO
+CFG_CONFIG_IPF_PROPERTY_MBB = YES
+
+# usb
+CFG_CONFIG_USB_DWC3_VBUS_DISCONNECT=YES
+CFG_USB3_SYNOPSYS_PHY=YES
+CFG_CONFIG_USB_FORCE_HIGHSPEED=NO
+
+############################## BSP 4组 end#########################################
+
+############################## BSP 5组 start#######################################
+CFG_ENABLE_TEST_CODE = NO
+############################## BSP 5组 end#########################################
+
+
+# [bsp.flash_info]
+####################################################################
+# CFG_PRODUCT_CFG_PTABLE_VER_NAME 字符串长度必须小于等于15
+CFG_PRODUCT_CFG_PTABLE_VER_NAME          = "p532"
+CFG_PRODUCT_CFG_PTABLE_VER_ID			 = "ptable 1.00"
+
+# m3boot size: 256K
+CFG_PRODUCT_CFG_FLASH_M3BOOT_LEN     	 = 0x40000
+
+# Fastboot SIZE: 512K
+CFG_PRODUCT_CFG_FLASH_FASTBOOT_LEN       = 0xC0000
+
+# NV LTE SIZE: 4M
+CFG_PRODUCT_CFG_FLASH_NV_LTE_LEN         = 0x400000
+
+# NV IMG SIZE: 4M
+CFG_PRODUCT_CFG_FLASH_NV_IMG_LEN         = 0x400000
+
+# NV DLOAD SIZE: 3M
+CFG_PRODUCT_CFG_FLASH_NV_DLD_LEN      	 = 0x300000
+
+# SEC STORAGE SIZE: 0M
+CFG_PRODUCT_CFG_FLASH_SEC_STORAGE_LEN    = 0
+
+# NV DEFAULT SIZE: 3M
+CFG_PRODUCT_CFG_FLASH_NV_FACTORY_LEN   	 = 0x300000
+
+# OEM SIZE: 2M
+CFG_PRODUCT_CFG_FLASH_OEMINFO_LEN        = 0x200000
+
+# YAFFS USER DATA SIZE: 6M
+CFG_PRODUCT_CFG_FLASH_YAFFS_USERDATA_LEN = 0x600000
+
+# YAFFS ONLINE SIZE:
+CFG_PRODUCT_CFG_FLASH_YAFFS_ONLINE_LEN   = 0x5A00000
+
+# Android Bootimage SIZE: 6M
+CFG_PRODUCT_CFG_FLASH_BOOTIMG_LEN	 = 0x600000
+
+# Android Bootimage BAK SIZE: 6M
+CFG_PRODUCT_CFG_FLASH_BOOTIMGBAK_LEN	 = 0
+
+# LOGO SIZE: 2M
+CFG_PRODUCT_CFG_FLASH_LOGO_LEN          = 0x200000
+
+# HIFI SIZE: 3M
+CFG_PRODUCT_CFG_FLASH_HIFI_LEN  	 = 0x300000
+
+
+# Misc SIZE: 1M
+CFG_PRODUCT_CFG_FLASH_MISC_LEN           = 0x100000
+
+# M3 IMAGE
+CFG_PRODUCT_CFG_FLASH_M3IMAGE_LEN 	 = 0x100000
+
+# RESERVE1 SIZE 0
+CFG_PRODUCT_CFG_FLASH_RESERVE1_LEN  =   0
+
+# RESERVE2 SIZE 0
+CFG_PRODUCT_CFG_FLASH_RESERVE2_LEN  =   0
+
+# RESERVE3 SIZE 0
+CFG_PRODUCT_CFG_FLASH_RESERVE3_LEN  =   0
+
+# OM data 12M
+CFG_PRODUCT_CFG_FLASH_OM_LEN             = 0xC00000
+
+# YAFFS app.img SIZE: 16M
+CFG_PRODUCT_CFG_FLASH_YAFFS_APP_LEN      = 0x1000000
+
+# YAFFS WEBUI SIZE: 4M
+CFG_PRODUCT_CFG_FLASH_YAFFS_WEBUI_LEN 	 = 0x0
+
+# YAFFS system.img SIZE: 28M
+CFG_PRODUCT_CFG_FLASH_SYSIMG_LEN         = 0x4000000
+
+# dt.img SIZE: 8M
+CFG_PRODUCT_CFG_FLASH_DTIMG_LEN          = 0x00800000
+
+# ISO SIZE: 40M
+CFG_PRODUCT_CFG_FLASH_ISO_LEN            = 0x1000000
+
+# Cache SIZE: 4M
+CFG_PRODUCT_CFG_FLASH_CACHE_LEN   	 = 0x400000
+
+# Recovery SIZE: 4M
+CFG_PRODUCT_CFG_FLASH_RECOVERY_LEN       = 0x400000
+
+# MultiCarrier SIZE: 0M
+CFG_PRODUCT_CFG_FLASH_MULTI_CARRIER_LEN       = 0x00000
+
+# offset from start of m3boot partition, compatible for 2K/4K NAND (0x20000-0x800)
+CFG_FLASH_PTABLE_OFFSET						 = 0x1F800
+
+# MODEM_FW SIZE: 20M
+CFG_PRODUCT_CFG_FLASH_MODEM_FW_LEN         = 0x02000000
+
+# [bsp.memory_info.entry]
+####################################################################
+CFG_MCORE_TEXT_START_ADDR               = 0x50400000
+# CFG_FASTBOOT_ENTRY = HI_SRAM_MEM_ADDR
+CFG_FASTBOOT_ENTRY                      = 0x4fe00000
+#CFG_FASTBOOT_DDR_ENTRY = DDR_MEM_ADDR + DDR_MEM_SIZE - 0x300000
+CFG_FASTBOOT_DDR_ENTRY                  = 0x5FD00000
+
+#CFG_PRODUCT_CFG_KERNEL_ENTRY = DDR_ACORE_ADDR + 0x8000
+CFG_PRODUCT_CFG_KERNEL_ENTRY 		= 0x59008000
+#CFG_PRODUCT_KERNEL_PARAMS_PHYS = DDR_ACORE_ADDR + 0x100
+CFG_PRODUCT_KERNEL_PARAMS_PHYS		= 0x59000100
+# onchip fastboot ddr addr
+# CFG_ONCHIP_FASTBOOT_ADDR = DDR_MEM_ADDR +
+# DDR_MEM_SIZE - PRODUCT_CFG_FLASH_RECOVERY_LEN -0x300000
+CFG_ONCHIP_FASTBOOT_ADDR                = 0x5F900000
+
+#mcore code entry addr
+CFG_RTX_KERNEL_ENTRY                    = 0x10000000
+
+# [bsp.memory_info.sram]
+####################################################################
+# sram start addr
+CFG_HI_SRAM_MEM_ADDR                    = 0x4fe00000
+CFG_HI_SRAM_SIZE                		= 0x100000
+CFG_DRV_SRAM_ADDR               		= (HI_SRAM_MEM_ADDR)
+CFG_DRV_SRAM_SIZE						= 0x10000
+CFG_CPHY_SRAM_ADDR              = ((DRV_SRAM_ADDR) + (DRV_SRAM_SIZE))
+CFG_CPHY_SRAM_SIZE              = 0xA0
+CFG_CPHY_LPC_SRAM_ADDR          = ( CPHY_SRAM_ADDR )
+CFG_CPHY_LPC_SRAM_SIZE          = 0x20
+CFG_CPHY_1X_DATA_MBX_SRAM_ADDR  = ( (CPHY_LPC_SRAM_ADDR) + (CPHY_LPC_SRAM_SIZE) )
+CFG_CPHY_1X_DATA_MBX_SRAM_SIZE  = 0x20
+CFG_CPHY_HRPD_DATA_MBX_SRAM_ADDR= ( (CPHY_1X_DATA_MBX_SRAM_ADDR) + (CPHY_1X_DATA_MBX_SRAM_SIZE) )
+CFG_CPHY_HRPD_DATA_MBX_SRAM_SIZE= 0x3C
+
+
+# [bsp.memory_info.board]
+####################################################################
+# 单板内存使用分配 : 从顶往下分配，以下地址和大小不可改变
+CFG_DDR_MEM_ADDR       		= 0x50000000
+CFG_DDR_MEM_SIZE       		= 0x10000000
+
+# ACORE ACP                     SIZE: 0
+CFG_DDR_APP_ACP_ADDR            = (DDR_MEM_ADDR)
+CFG_DDR_APP_ACP_SIZE            = 0x000000
+
+# GU+数传                       SIZE: 0.75M
+CFG_DDR_GU_ADDR                 = ((DDR_APP_ACP_ADDR) + (DDR_APP_ACP_SIZE))
+CFG_DDR_GU_SIZE                 = 0x00C0000
+    # =============GU+数传1M大小划分=================== #
+CFG_DDR_UPA_ADDR                = DDR_GU_ADDR
+CFG_DDR_UPA_SIZE                = 0x00024000
+CFG_DDR_CQI_ADDR                = ((DDR_UPA_ADDR) + (DDR_UPA_SIZE))
+CFG_DDR_CQI_SIZE                = 0x00003400
+CFG_DDR_APT_ADDR                = ((DDR_CQI_ADDR) + (DDR_CQI_SIZE))
+CFG_DDR_APT_SIZE                = 0x00008400
+CFG_DDR_ET_ADDR                 = ((DDR_APT_ADDR) + (DDR_APT_SIZE))
+CFG_DDR_ET_SIZE                 = 0x00004800
+CFG_DDR_NV_ADDR                 = ((DDR_ET_ADDR) + (DDR_ET_SIZE))
+CFG_DDR_NV_SIZE                 = 0x00000000
+CFG_DDR_ZSP_UP_ADDR             = ((DDR_NV_ADDR) + (DDR_NV_SIZE))
+CFG_DDR_ZSP_UP_SIZE             = 0x00008000
+CFG_DDR_ECS_TEE_ADDR            = ((DDR_ZSP_UP_ADDR) + (DDR_ZSP_UP_SIZE))
+CFG_DDR_ECS_TEE_SIZE            = 0x00001800
+CFG_DDR_EVDO_ADDR               = ((DDR_ECS_TEE_ADDR) + (DDR_ECS_TEE_SIZE))
+CFG_DDR_EVDO_SIZE               = 0x00003C00
+CFG_DDR_1X_ADDR                 = ((DDR_EVDO_ADDR) + (DDR_EVDO_SIZE))
+CFG_DDR_1X_SIZE                 = 0x00012C00
+CFG_DDR_RESERVE_ADDR            = ((DDR_1X_ADDR) + (DDR_1X_SIZE))
+CFG_DDR_RESERVE_SIZE            = 0x0006C000
+
+# DSP镜像3.25M                  SIZE:  3.25M
+CFG_DDR_TLPHY_IMAGE_ADDR     	= ((DDR_RESERVE_ADDR) + (DDR_RESERVE_SIZE))
+CFG_DDR_TLPHY_IMAGE_SIZE     	= 0x340000
+
+# MDM CORE使用内存            	SIZE: 127M
+CFG_DDR_MCORE_ADDR              = (( DDR_TLPHY_IMAGE_ADDR ) + (DDR_TLPHY_IMAGE_SIZE))
+CFG_DDR_MCORE_SIZE              = 0x7F00000
+
+# CCORE DTS使用内存             SIZE: 1M
+CFG_DDR_MCORE_DTS_ADDR          = ((DDR_MCORE_ADDR) + (DDR_MCORE_SIZE))
+CFG_DDR_MCORE_DTS_SIZE          = 0x0100000
+
+# 共享内存                    	SIZE: 4M
+CFG_DDR_SHARED_MEM_ADDR         = ((DDR_MCORE_DTS_ADDR) + (DDR_MCORE_DTS_SIZE))
+CFG_DDR_SHARED_MEM_SIZE         = 0x400000
+
+# 可维可测                       SIZE: 1M
+CFG_DDR_MNTN_ADDR               = ((DDR_SHARED_MEM_ADDR) + (DDR_SHARED_MEM_SIZE))
+CFG_DDR_MNTN_SIZE               = 0x100000
+
+# TL DSP 使用                   SIZE:  2.5M = CS 2M + EMU 256K + TDS 256K
+CFG_DDR_LPHY_SDR_ADDR           = ((DDR_MNTN_ADDR) + (DDR_MNTN_SIZE))
+CFG_DDR_LPHY_SDR_SIZE           = 0x280000
+
+
+# LCS                           SIZE: 2.5M
+CFG_DDR_LCS_ADDR                = ((DDR_LPHY_SDR_ADDR) + (DDR_LPHY_SDR_SIZE))
+CFG_DDR_LCS_SIZE                = 0x280000
+
+# HIFI                          SIZE: 2M
+CFG_DDR_HIFI_ADDR               = ((DDR_LCS_ADDR) + (DDR_LCS_SIZE))
+CFG_DDR_HIFI_SIZE               = 0x200000
+
+# APP　CORE使用内存             SIZE: 46M
+CFG_DDR_ACORE_ADDR              = ((DDR_HIFI_ADDR) + (DDR_HIFI_SIZE))
+CFG_DDR_ACORE_SIZE              = 0x2E00000
+
+# ACORE DTS使用内存             SIZE: 1M
+CFG_DDR_ACORE_DTS_ADDR          = ((DDR_ACORE_ADDR) + (DDR_ACORE_SIZE))
+CFG_DDR_ACORE_DTS_SIZE          = 0x0100000
+
+# CBBE16                         SIZE: 1M
+CFG_DDR_CBBE_IMAGE_ADDR         = ((DDR_ACORE_DTS_ADDR) + (DDR_ACORE_DTS_SIZE))
+CFG_DDR_CBBE_IMAGE_SIZE         = 0x100000
+
+# SOCP采数 至少1M ,8字节对齐                 	SIZE:  64M
+CFG_DDR_SOCP_ADDR               = ((DDR_CBBE_IMAGE_ADDR) + (DDR_CBBE_IMAGE_SIZE))
+CFG_DDR_SOCP_SIZE               = 0x4000000
+
+# MODEM ACP                     SIZE: 0
+CFG_DDR_MDM_ACP_ADDR            = ((DDR_SOCP_ADDR) + (DDR_SOCP_SIZE))
+CFG_DDR_MDM_ACP_SIZE            = 0x0
+
+
+# 共享内存分配  start
+
+# 大小定义:CFG_SHM_SIZE_XXXX ，在 bsp_shared_ddr.h中使用
+# 新增不满足KB对齐请在bsp_shared_ddr.h中 从 SHM_OFFSET_SLICE_MEM 添加
+
+# HIFI邮箱，内存需要固定在共享内存起始地址处，大小0x9800
+CFG_DDR_HIFI_MBX_ADDR               = (DDR_SHARED_MEM_ADDR)
+CFG_DDR_HIFI_MBX_SIZE               = (0X9800)
+# NV使用内存大小定义
+CFG_NV_DDR_SIZE                     = 0x200000
+
+#### CFG_SHM ####
+CFG_SHM_SIZE_HIFI_MBX               =(DDR_HIFI_MBX_SIZE)
+CFG_SHM_SIZE_HIFI                   =(10*1024)
+CFG_SHM_SIZE_TLPHY                  =(12*1024)
+CFG_SHM_SIZE_TEMPERATURE            =(3*1024)
+CFG_SHM_SIZE_DDM_LOAD               =(1*1024)
+#### CFG_SHM #### v7r2 a9_boot_addr 对齐方式可配置，需要64/32/16KB/8KB对齐  64K全占满 
+CFG_SHM_SIZE_MEM_APPA9_PM_BOOT      =(0x10000)
+CFG_SHM_SIZE_MEM_MDMA9_PM_BOOT      =(0x2000)
+#### CFG_SHM #### CT BT
+CFG_SHM_SIZE_TENCILICA_MULT_BAND    =(0x8000)
+#### CFG_SHM #### 总大小为236KB, 其中, GU通道192KB, L通道40KB, icc控制结构体为页对齐取为4KB
+CFG_SHM_SIZE_ICC                    =(0x61800)
+#### CFG_SHM #### 总大小为64KB, 其中, 用于从AXI(SRAM)移过来的IPF描述符和IPF低功耗的寄存器保存恢复, 首地址要求8字节对齐 
+CFG_SHM_SIZE_IPF                    =(0x10000)
+#### CFG_SHM #### 如果定义了 CONFIG_PSAM 4K， 否则 0
+CFG_SHM_SIZE_PSAM                   =(0)
+CFG_SHM_SIZE_WAN                    =(0x8000)
+CFG_SHM_SIZE_NV                     =(NV_DDR_SIZE)
+CFG_SHM_SIZE_M3_MNTN                =(0x20000)
+CFG_SHM_SIZE_TIMESTAMP              =(1*1024)
+CFG_SHM_SIZE_IOS                    =(6*1024)
+CFG_SHM_SIZE_RESTORE_AXI            =(96*1024)
+#### CFG_SHM #### 电压源属性控制表，大小有预留，实际使用为0x85c
+CFG_SHM_SIZE_PMU                    =(3*1024)
+#### CFG_SHM #### 分区表
+CFG_SHM_SIZE_PTABLE                 =(2*1024)
+#### CFG_SHM #### modem 单独复位标记
+CFG_SHM_SIZE_CCORE_RESET            =(0x400)
+#### CFG_SHM #### pm om log区
+CFG_SHM_SIZE_PM_OM                  =(256*1024)
+CFG_SHM_SIZE_M3PM                   =(0x1000)
+#### CFG_SHM #### 用于分配不满足KB对齐的分配
+CFG_SHM_SIZE_SLICE_MEM              =(0x1000)
+CFG_SHM_SIZE_OSA_LOG                =(1024)
+CFG_SHM_SIZE_WAS_LOG                =(1024)
+CFG_SHM_SIZE_SRAM_BAK               =(HI_SRAM_SIZE)
+#### CFG_SHM #### 如果定义了 CONFIG_SRAM_SECURE，否则为0
+CFG_SHM_SIZE_SRAM_TO_DDR            =(0)
+#### CFG_SHM #### 如果定义了 CONFIG_RSR_ACC，否则为0
+CFG_SHM_SIZE_M3RSRACC_BD            =(0)
+# 共享内存分配  end
+
+
+# NV分区是否复用 
+CFG_FEATURE_NV_PARTRION_MULTIPLEX               = FEATURE_ON
+
+#底软删除后，请于阳思聪->翁建宏->zhangyizhan->李欣 确认，若全删除后，则可以删除该宏，否则依次放入对应组件的define文件中
+CFG_RAT_GU=0
+CFG_RAT_GUL=1
+CFG_RAT_MODE =RAT_GUL
+

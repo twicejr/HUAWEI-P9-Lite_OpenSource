@@ -1,0 +1,11 @@
+on fs
+	chown radio radio sys/devices/platform/balong_power/state
+
+on post-fs-data
+	start pmom
+service pmom /system/bin/pmom_cat -i /dev/pmom -e s -r 10240 -z 3 -n 1 -f /data/android_logs/pmom-log
+	class late_start
+	user root
+	group system
+	disabled
+	seclabel u:r:hisilogcat:s0

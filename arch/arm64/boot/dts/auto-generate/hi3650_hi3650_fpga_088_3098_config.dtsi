@@ -1,0 +1,15 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "hi3650_hi3650_fpga_080_3080_config.dtsi"
+
+/ {
+	hisi,boardid = <3 0 9 8>;
+	hisi,boardname = "hi3650_hi3650_fpga_088_3098";
+};

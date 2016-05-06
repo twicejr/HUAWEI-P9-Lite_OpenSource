@@ -1,0 +1,9 @@
+#
+# via cbp 8.2 driver configuration
+#
+config MISC_VIA
+	bool "misc via Support"
+	default y
+	help
+	  This allows misc via.
+	  If unsure, say n.

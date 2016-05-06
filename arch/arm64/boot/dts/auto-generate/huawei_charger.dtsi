@@ -1,0 +1,109 @@
+/ {
+	huawei_charger: huawei_charger{
+		compatible = "huawei,charger";
+		status = "disabled";
+	};
+	huawei_dual_charger: huawei_dual_charger{
+		compatible = "huawei,dual_charger";
+		is_dual_charger = <0>;
+		ichg_need_aux_charger = <2100>;
+		iin_max_each_charger = <1000>;
+		status = "disabled";
+	};
+	charging_core:charging_core{
+		compatible = "huawei,charging_core";
+		iin_ac = <2000>;
+		ichg_ac = <1900>;
+		otg_curr = <1200>;
+		iin_usb = <500>;
+		ichg_usb = <500>;
+		iin_nonstd = <1200>;
+		ichg_nonstd = <1000>;
+		iin_bc_usb = <1500>;
+		ichg_bc_usb = <1400>;
+		iin_typech = <2000>;
+		ichg_typech = <2100>;
+		typec_support = <0>;
+		iterm = <100>;
+		ichrg_pre_limit = <128>;
+		segment_type = <0>;
+		vdpm_para =
+			"-32767", "90", "4520", "0",
+			"90", "32767", "4600", "0";
+		inductance_para =
+			"-32767", "15", "1600", "0",
+			"15", "32767", "1700", "0";
+		status = "disabled";
+	};
+	amba {
+		i2c3: i2c@FDF0C000{
+			bq25892_charger_aux: bq25892_charger_aux@6B{
+				compatible = "huawei,bq25892_charger_aux";
+				reg = <0x6B>;
+				gpio_cd = <&gpio0 7 0>;
+				gpio_int = <&gpio22 6 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <220>;
+				fcp_support = <0>;
+				status = "disabled";
+			};
+		};
+		i2c4: i2c@FDF0D000 {
+			bq2419x_charger: charger@6B{
+				compatible = "huawei,bq2419x_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				rilim = <220>;
+				adc_channel_iin = <5>;
+				status = "disabled";
+			};
+
+			bq2429x_charger: bq2429x_charger@6B{
+				compatible = "huawei,bq2429x_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				status = "disabled";
+			};
+			bq25892_charger: bq25892_charger@6B{
+				compatible = "huawei,bq25892_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <124>;
+				adc_channel_iin = <5>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				status = "disabled";
+			};
+			bq25892_charger_main: bq25892_charger_main@6B{
+				compatible = "huawei,bq25892_charger_main";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <150>;
+				adc_channel_iin = <5>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				status = "disabled";
+			};
+			hi6523_charger: hi6523_charger@6B{
+                          compatible = "huawei,hi6523_charger";
+                          reg = <0x6B>;
+                          gpio_int = <&gpio22 4 0>;
+                          bat_comp = <60>;
+                          vclamp = <192>;
+                          adc_channel_vbat_sys = <14>;
+                          fcp_support = <0>;
+                          status = "disabled";
+                   };
+
+		};
+	};
+};

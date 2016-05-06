@@ -1,0 +1,4 @@
+source "drivers/hisi_pilot/touchscreen/synaptics_dsx/Kconfig"
+source "drivers/hisi_pilot/sensor/Kconfig"
+source "drivers/hisi_pilot/usb/Kconfig"
+source "drivers/hisi_pilot/camera_legacy/Kconfig"

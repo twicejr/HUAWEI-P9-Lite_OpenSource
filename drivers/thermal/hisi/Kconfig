@@ -1,0 +1,22 @@
+config HISI_IPA_THERMAL
+	tristate "Temperature sensor on ARM SoC based on HISI_THERMAL_TSENSOR interface"
+	depends on HISI_THERMAL_TSENSOR
+	depends on CPU_FREQ
+	depends on OF
+	select THERMAL_POWER_ACTOR_CPU
+	help
+	  Support for the HISI thermal sensor driver in the Linux thermal
+	  framework.
+config HISI_THERMAL_TSENSOR
+	tristate "Hisi thermal sensor driver"
+	default n
+	help
+	  Enable this to plug the thermal sensor driver into the Linux
+	  thermal framework
+
+config HISI_THERMAL_PERIPHERAL
+	tristate "Hisi peripheral thermal driver"
+	default n
+	help
+	  Enable this to plug the peripheral thermal sensor driver into the Linux
+	  thermal framework

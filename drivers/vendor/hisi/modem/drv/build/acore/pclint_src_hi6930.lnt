@@ -1,0 +1,283 @@
+//这个文件放要进行检查的*.c文件，pclint检查的结果放在编译log相同的文件夹下，名称为pclint_bsp_(相应核).txt
+//shell命令为：./obuild.py product=product_name separate=true maction maction=pclint
+//添加头文件路径方法
+-esym(123,min,max)
+//-header(BALONG_TOPDIR/../../kernel/include/linux/delay.h)
+-IBALONG_TOPDIR/../../kernel/include/linux/
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/hardtimer_balong.c
+
+/*******************************************bsp1 begin*******************************************/
+/* hifimailbox */
+-IBALONG_TOPDIR/modem/drv/common/include
+-IBALONG_TOPDIR/include/drv
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox_debug.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox_gut.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox_msg.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox_port_linux.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mbxhifi/drv_mailbox_table.c 
+/*RTC*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/rtc/rtc_balong/rtc_balong.c
+/*BALONG_TOPDIR/modem/drv/acore/kernel/drivers/rtc/adp_rtc_balong.c*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/rtc/rtc_hi6551/rtc_hi6551.c
+
+/*log*/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/common
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/oms
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/log
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/dump
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/usbtrace
+
+/*sys_view*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view/bsp_cpu_view.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view/bsp_mem_view.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view/bsp_om_sysview.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view/bsp_task_view.c
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/dump/bsp_dump.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/usbtrace/utrace_balong.c
+/* socp */
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/socp/
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/socp/socp_balong.c
+
+/*******************************************bsp1 end*******************************************/
+
+/*******************************************bsp2 begin*******************************************/
+//bsp2-liuwenhui begin
+// gpio
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/gpio/gpio_balong.c
+// key 
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/keyboard/key_balong.c
+// temperature 
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/temperature/temperature_balong.c
+// ios 
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/ios/ios_balong.c
+// efuse 
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/efuse/efuse_balong.c
+//bsp2-liuwenhui end
+
+//bsp2-lusuo begin
+// nand 
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nand_ids.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_balong_test.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_cfg.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_ctrl.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_data.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_host.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_mtd.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_nand.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_native.c
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_v400.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nandc/nandc_v600.c
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/nand_base.c
+
+// ptable
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/ptable/ptable_common.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/ptable/ptable_fastboot.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/ptable/ptable_native.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mtd/nand/ptable/ptable_product.c
+
+// led
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/leds/ledtrig_breath.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/leds/leds_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/leds/leds_tled.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/leds/balong_led_test.c
+
+// efuse_nandc
+-IBALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/include/
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/efuse_nandc.c
+//bsp2-lusuo end
+
+//bsp2-zuofenghua begin
+//i2c
+-header(BALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/include/asm/irq.h)
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/i2c/busses
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/i2c/busses/i2c_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/i2c/busses/i2c_balong_test.c
+//bsp2-zuofenghua end
+
+//bsp2-zhangjingyuan begin
+// loadm
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/loadm/loadm.c
+// DSP
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/dsp/bsp_dsp.c
+// hkadc
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/hkadc/bsp_hkadc.c
+-IBALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/include/
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/bsp_hkadc.c
+//onoff
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/power_exchange.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/power_off.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/power_on.c
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/preboot.c
+//bsp2-zhangjingyuan end
+
+//bsp2-xuwenfang begin
+//pmic
+-IBALONG_TOPDIR/platform/hi6930_v7r2/soc
+-IBALONG_TOPDIR/include/nv/tl/drv
+-IBALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930/include
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/pmu_hi6551.c
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/pmu_hi6551_test.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/dr_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/common_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/exc_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/irq_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/debug_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/hi6551/coul_hi6551.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/pmu_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/pmu_debug.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/pmic/pmu_test.c
+//emi
+-IBALONG_TOPDIR/modem/drv/acore/kernel/include/linux/emi
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/emi/emi_balong.c
+//lcd
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/include
+-IBALONG_TOPDIR/modem/drv/acore/kernel/include/linux/video
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/video/lcdfb_balong_emi.c
+//spi
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/spi/spi_balong.c
+//bsp2-xuwenfang end
+
+//bsp2-haoran begin
+//bsp2-haoran end
+/*******************************************bsp2 end*******************************************/
+
+/*******************************************bsp3 begin*******************************************/
+// bsp3-lixiaojie begin
+//ipc
+//timer
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/hardtimer_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/hardtimer_k3.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/hardtimer_balong_test.c
+//sync
+// bsp3-lixiaojie end
+
+// bsp3-yangqiang begin
+//WDT
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/include/linux
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/watchdog/wdt_balong.c
+//regulator   好多lint消不掉
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/regulator/regulator_balong.c
+//cpufreq
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/cpufreq
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/cpufreq/cpufreq_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/cpufreq/cpufreq_balong_ondemand.c
+// bsp3-yangqiang end
+
+// bsp3-shangmianyou begin
+/*pm & edma */
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/dump
+-IBALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930
+BALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930/pm.c
+/*BALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930/pm_test.c*/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/edma
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/edma/edma_balong.c
+/*BALONG_TOPDIR/modem/drv/acore/kernel/drivers/edma/edma_balong_test.c*/
+// bsp3-shangmianyou end
+
+// bsp3-yaoguocai begin
+// icc
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/icc/icc_balong_debug.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/icc/icc_balong_test.c
+
+
+// bsp3-xujingcui end
+/*clk*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/clk/clock_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/clk/clock_balong_hi6930.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/clk/clock_balong_ops.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/clk/clock_balong_test.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/clk/clock_balong_debug.c
+
+/*cpuidle*/
+BALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930/cpuidle_balong.c
+
+/*wakelock debug*/
+BALONG_TOPDIR/modem/drv/acore/kernel/kernel/power/wakelock_debug.c
+
+/*lowpower_mntn*/
+BALONG_TOPDIR/modem/drv/acore/kernel/kernel/power/lowpower_mntn_balong.c
+// bsp3-xujingcui end
+
+// bsp3-wangxiandong end
+//uart-at
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/uartat/at_uart_balong.c
+//cipher
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/cipher/kdf.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/cipher/balong_kdf_ioctrl.c
+//fastboot-uart
+-IBALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/include
+-IBALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/include/balongv7r2/gpio_config
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/serial.c
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/cipher.c
+BALONG_TOPDIR/modem/drv/acore/bootable/bootloader/legacy/arch_balongv7r2/console.c
+
+//uart
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/tty/serial/balongv7r2_uart.c
+// bsp3-wangxiandong end
+/*******************************************bsp3   end*******************************************/
+
+
+
+
+/*******************************************bsp4   begin*******************************************/
+//ipf
+-header(BALONG_TOPDIR/modem/drv/common/include/bsp_ipf.h)
+-header(BALONG_TOPDIR/include/drv/drv_ipf.h)
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/ipf/ipf_balong.c
+
+//hsic
+-header(BALONG_TOPDIR/modem/system/android/android_4.2_r1/out/target/product/balongv7r2/obj/KERNEL_OBJ/include/linux/version.h)
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/susb
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc_common_port
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/susb/dwc_otg_hcd_linux.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/susb/dwc_otg_hcd_queue.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/susb/dwc_otg_hcd.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/susb/dwc_otg_driver.c
+
+
+/*usb*/
+-header(BALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/usb/gadget/usbstring.c)
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/usb/gadget
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget
+-header(BALONG_TOPDIR/modem/system/android/android_4.2_r1/out/target/product/balongv7r2/obj/KERNEL_OBJ/include/linux/version.h)
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/dwc3-balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/gadget.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/core.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/host.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/debugfs.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/dwc3/ep0.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/f_ecm.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/f_ncm.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/f_rndis.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/ncm_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/rndis.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/u_ether.c
+/*acm*/
+-header(BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/f_acm.c)
+-header(BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/u_cdev.c)
+-header(BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/u_serial.c)
+-header(BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/u_modem.c)
+/*mass*/
+-header(BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/f_mass_storage.c)
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/gadget/usb_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/usb/otg/dwc_otg3.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_usb.c
+
+/*mmc*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mmc/host/dwc_mmc.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/mmc/host/mshci.c
+/*mmc adp*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_mmc.c
+/*******************************************bsp4   end*******************************************/

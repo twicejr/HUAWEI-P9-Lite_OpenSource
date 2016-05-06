@@ -1,0 +1,8 @@
+#
+#Hisilicon HI3xxx SIM hotplug support.
+#
+config HI3XXX_SIM_HOTPLUG
+	bool "support sim hotplug function"
+	default n
+	help
+	  Say 'Y' here if you want to support the SIM HOTPLUG.

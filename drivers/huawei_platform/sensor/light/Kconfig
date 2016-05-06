@@ -1,0 +1,34 @@
+#
+# light sensor driver configuration
+#
+menuconfig INPUT_LIGHT_SENSOR
+	bool "light sensor"
+	depends on !SENSORHUB_FEATURE_SUPPORT
+	select HUAWEI_SENSORS_INPUT_INFO
+	default n
+	help
+		Say Y here, and a list of supported light sensors will be displayed.
+		This option doesn't affect the kernel.
+
+
+if INPUT_LIGHT_SENSOR
+
+config HUAWEI_FEATURE_PROXIMITY_APDS990X
+	tristate "apds990x"
+	default n
+	help
+		If you say yes here you get support for light sensor apds990x.
+config HUAWEI_FEATURE_PROXIMITY_RPR0521
+	tristate "rpr0521"
+	depends on !SENSORHUB_FEATURE_SUPPORT
+	default n
+	help
+		If you say yes here you get support for light sensor rpr0521.
+config PROXIMITY_LIGHT_DEBUG
+	bool "proximity and light debugging messages"
+	default n
+	help
+		Say Y here if you want the proximity and the light to produce a bunch of debug
+		messages to the system log.  Select this if you are having a
+		problem with proximity or light and want to see more of what is going on.
+endif

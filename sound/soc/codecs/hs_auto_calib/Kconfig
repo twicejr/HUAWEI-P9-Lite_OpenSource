@@ -1,0 +1,2 @@
+  config SND_SOC_HEADSET_AUTO_CALIB
+       tristate "headset auto calibration support"

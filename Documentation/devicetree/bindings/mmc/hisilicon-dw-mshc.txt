@@ -1,0 +1,50 @@
+* Hisilicon specific extensions to the Synopsis Designware Mobile
+  Storage Host Controller
+
+Read synopsis-dw-mshc.txt for more details
+The Synopsis designware mobile storage host controller is used to interface
+a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+differences between the core Synopsis dw mshc controller properties described
+by synopsis-dw-mshc.txt and the properties used by the Hisilicon specific
+extensions to the Synopsis Designware Mobile Storage Host Controller.
+
+Required Properties:
+
+* compatible: should be
+	- "hisilicon,hi4511-dw-mshc": for controllers with hi4511
+	  specific extentions.
+	- "hisilicon,hi3620-dw-mshc": for controllers with hi3620
+	  specific extentions.
+
+Required properties for a slot:
+
+* vmmc-supply is vmmc used in dwmmc
+* fifo-depth should be provided if register can not provide correct value
+
+Example:
+
+  The MSHC controller node can be split into two portions, SoC specific and
+  board specific portions as listed below.
+
+	dwmmc_0: dwmmc0@fcd03000 {
+		compatible = "hisilicon,hi4511-dw-mshc";
+		reg = <0xfcd03000 0x1000>;
+		interrupts = <0 16 4>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		clocks = <&clk_sd>, <&clk_ddrc_per>;
+		clock-names = "ciu", "biu";
+	};
+	dwmmc0@fcd03000 {
+		num-slots = <1>;
+		vmmc-supply = <&ldo12>;
+		fifo-depth = <0x100>;
+		supports-highspeed;
+		pinctrl-names = "default";
+		pinctrl-0 = <&sd_pmx_pins &sd_cfg_func1 &sd_cfg_func2>;
+		slot@0 {
+			reg = <0>;
+			bus-width = <4>;
+			hisilicon,cd-pinmux-gpio = <&gpio10 3 0>;
+		};
+	};

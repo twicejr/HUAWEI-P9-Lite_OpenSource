@@ -1,0 +1,16 @@
+menuconfig NFC_DEVICES
+	bool "Near Field Communication (NFC) devices"
+	default n
+	---help---
+	  You'll have to say Y if your computer contains an NFC device that
+	  you wtant to use under Linux.
+
+	  You can say N here if you don't have any Near Field Communication
+	  devices connected to your computer.
+
+
+source "drivers/huawei_platform/nfc/NXP_PN547_64/Kconfig"
+source "drivers/huawei_platform/nfc/nfc_bcm20793/Kconfig"
+
+
+

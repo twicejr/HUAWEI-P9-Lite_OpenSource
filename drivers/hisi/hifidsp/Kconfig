@@ -1,0 +1,9 @@
+menu "Hifimisc driver serve HIFI dsp"
+
+config HIFI_DSP_ONE_TRACK
+     bool "hifi low power play device support"
+     help
+          hifi lpp device provide service for HIFI and AP, in case of HIFI ultra-low power audio play.
+
+endmenu
+

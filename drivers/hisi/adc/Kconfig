@@ -1,0 +1,17 @@
+config HISILICON_PLATFORM_ADC
+	bool "HISILICON PLATFORM ADC"
+	default n
+
+if HISILICON_PLATFORM_ADC
+config HISI_HKADC
+	bool "HISI ADC support"
+	depends on HISI_MAILBOX
+	default n
+	help
+	  Say yes here to support the HISI ADC device
+
+config HISI_HKADC_DEBUG
+	tristate "HISI ADC DEBUG"
+	help
+	  Say yes here to support this lock
+endif

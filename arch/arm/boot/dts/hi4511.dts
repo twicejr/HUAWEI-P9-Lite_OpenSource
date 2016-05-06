@@ -1,0 +1,1542 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *  Author: Haojian Zhuang <haojian.zhuang@linaro.org>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "hi3620.dtsi"
+
+/ {
+	model = "Hisilicon Hi4511 Development Board";
+	compatible = "hisilicon,hi3620-hi4511";
+
+	chosen {
+		bootargs = "console=ttyAMA0,115200 root=/dev/ram0 earlyprintk no_console_suspend";
+	};
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <0>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@1 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <1>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@2 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <2>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@3 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <3>;
+			next-level-cache = <&l2>;
+		};
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x40000000 0x20000000>;
+	};
+
+	amba {
+		dual_timer0: dual_timer@fc800000 {
+			status = "ok";
+		};
+
+		dma0: dma@fcd02000 {
+			status = "ok";
+		};
+
+		uart0: uart@fcb00000 {	/* console */
+		/*
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart0_pmx_func &uart0_cfg_func>;
+			pinctrl-1 = <&uart0_pmx_idle &uart0_cfg_idle>;
+		*/
+			status = "ok";
+		};
+
+		uart1: uart@fcb01000 { /* modem */
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart1_pmx_func &uart1_cfg_func>;
+			pinctrl-1 = <&uart1_pmx_idle &uart1_cfg_idle>;
+			status = "ok";
+		};
+
+		uart2: uart@fcb02000 { /* audience */
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart2_pmx_func &uart2_cfg_func>;
+			pinctrl-1 = <&uart2_pmx_idle &uart2_cfg_idle>;
+			status = "ok";
+		};
+
+		uart3: uart@fcb03000 {
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart3_pmx_func &uart3_cfg_func>;
+			pinctrl-1 = <&uart3_pmx_idle &uart3_cfg_idle>;
+			status = "ok";
+		};
+
+		uart4: uart@fcb04000 {
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart4_pmx_func &uart4_cfg_func>;
+			pinctrl-1 = <&uart4_pmx_idle &uart4_cfg_func>;
+			status = "ok";
+		};
+
+		rtc0: rtc@fc804000 {
+			status = "ok";
+		};
+
+		gpio0: gpio@fc806000 {
+			status = "ok";
+		};
+
+		gpio1: gpio@fc807000 {
+			status = "ok";
+		};
+
+		gpio2: gpio@fc808000 {
+			status = "ok";
+		};
+
+		gpio3: gpio@fc809000 {
+			status = "ok";
+		};
+
+		gpio4: gpio@fc80a000 {
+			status = "ok";
+		};
+
+		gpio5: gpio@fc80b000 {
+			status = "ok";
+		};
+
+		gpio6: gpio@fc80c000 {
+			status = "ok";
+		};
+
+		gpio7: gpio@fc80d000 {
+			status = "ok";
+		};
+
+		gpio8: gpio@fc80e000 {
+			status = "ok";
+		};
+
+		gpio9: gpio@fc80f000 {
+			status = "ok";
+		};
+
+		gpio10: gpio@fc810000 {
+			status = "ok";
+		};
+
+		gpio11: gpio@fc811000 {
+			status = "ok";
+		};
+
+		gpio12: gpio@fc812000 {
+			status = "ok";
+		};
+
+		gpio13: gpio@fc813000 {
+			status = "ok";
+		};
+
+		gpio14: gpio@fc814000 {
+			status = "ok";
+		};
+
+		gpio15: gpio@fc815000 {
+			status = "ok";
+		};
+
+		gpio16: gpio@fc816000 {
+			status = "ok";
+		};
+
+		gpio17: gpio@fc817000 {
+			status = "ok";
+		};
+
+		gpio18: gpio@fc818000 {
+			status = "ok";
+		};
+
+		gpio19: gpio@fc819000 {
+			status = "ok";
+		};
+
+		gpio20: gpio@fc81a000 {
+			status = "ok";
+		};
+
+		gpio21: gpio@fc81b000 {
+			status = "ok";
+		};
+
+		gpio-keys {
+			compatible = "gpio-keys";
+
+			call {
+				label = "call";
+				gpios = <&gpio17 2 0>;
+				linux,code = <169>;	/* KEY_PHONE */
+			};
+		};
+
+		pmx0: pinmux@fc803000 {
+			pinctrl-names = "default";
+			pinctrl-0 = <&board_pmx_pins>;
+
+			board_pmx_pins: pinmux_board_pmx_pins {
+				pinctrl-single,pins = <
+					0x008 0x0	/* GPIO -- eFUSE_DOUT */
+					0x100 0x0	/* USIM_CLK & USIM_DATA (IOMG63) */
+				>;
+			};
+			sd_pmx_pins: pinmux_sd_pins {
+				pinctrl-single,pins = <
+					0x0bc 0x0	/* SD_CLK, SD_CMD, SD_DATA[0:2] */
+					0x0c0 0x0	/* SD_DATA[3] */
+				>;
+			};
+			uart0_pmx_func: pinmux_uart0_func  {
+				pinctrl-single,pins = <
+					0x0f0 0x0
+					0x0f4 0x0	/* UART0_RX & UART0_TX */
+				>;
+			};
+			uart0_pmx_idle: pinmux_uart0_idle {
+				pinctrl-single,pins = <
+					/*0x0f0 0x1*/	/* UART0_CTS & UART0_RTS */
+					0x0f4 0x1	/* UART0_RX & UART0_TX */
+				>;
+			};
+			uart1_pmx_func: pinmux_uart1_func  {
+				pinctrl-single,pins = <
+					0x0f8 0x0	/* UART1_CTS & UART1_RTS (IOMG61) */
+					0x0fc 0x0	/* UART1_RX & UART1_TX (IOMG62) */
+				>;
+			};
+			uart1_pmx_idle: pinmux_uart1_idle  {
+				pinctrl-single,pins = <
+					0x0f8 0x1	/* GPIO (IOMG61) */
+					0x0fc 0x1	/* GPIO (IOMG62) */
+				>;
+			};
+			uart2_pmx_func: pinmux_uart2_func {
+				pinctrl-single,pins = <
+					0x104 0x2	/* UART2_RXD (IOMG96) */
+					0x108 0x2	/* UART2_TXD (IOMG64) */
+				>;
+			};
+			uart2_pmx_idle: pinmux_uart2_idle {
+				pinctrl-single,pins = <
+					0x104 0x1	/* GPIO (IOMG96) */
+					0x108 0x1	/* GPIO (IOMG64) */
+				>;
+			};
+			uart3_pmx_func: pinmux_uart3_func {
+				pinctrl-single,pins = <
+					0x160 0x2	/* UART3_CTS & UART3_RTS (IOMG85) */
+					0x164 0x2	/* UART3_RXD & UART3_TXD (IOMG86) */
+				>;
+			};
+			uart3_pmx_idle: pinmux_uart3_idle {
+				pinctrl-single,pins = <
+					0x160 0x1	/* GPIO (IOMG85) */
+					0x164 0x1	/* GPIO (IOMG86) */
+				>;
+			};
+			uart4_pmx_func: pinmux_uart4_func {
+				pinctrl-single,pins = <
+					0x168 0x0	/* UART4_CTS & UART4_RTS (IOMG87) */
+					0x16c 0x0	/* UART4_RXD (IOMG88) */
+					0x170 0x0	/* UART4_TXD (IOMG93) */
+				>;
+			};
+			uart4_pmx_idle: pinmux_uart4_idle {
+				pinctrl-single,pins = <
+					0x168 0x1	/* GPIO (IOMG87) */
+					0x16c 0x1	/* GPIO (IOMG88) */
+					0x170 0x1	/* GPIO (IOMG93) */
+				>;
+			};
+			i2c0_pmx_func: pinmux_i2c0_func {
+				pinctrl-single,pins = <
+					0x0b4 0x0	/* I2C0_SCL & I2C0_SDA (IOMG45) */
+				>;
+			};
+			i2c0_pmx_idle: pinmux_i2c0_idle {
+				pinctrl-single,pins = <
+					0x0b4 0x1	/* GPIO (IOMG45) */
+				>;
+			};
+			i2c1_pmx_func: pinmux_i2c1_func {
+				pinctrl-single,pins = <
+					0x0b8 0x0	/* I2C1_SCL & I2C1_SDA (IOMG46) */
+				>;
+			};
+			i2c1_pmx_idle: pinmux_i2c1_idle {
+				pinctrl-single,pins = <
+					0x0b8 0x1	/* GPIO (IOMG46) */
+				>;
+			};
+			i2c2_pmx_func: pinmux_i2c2_func {
+				pinctrl-single,pins = <
+					0x068 0x0	/* I2C2_SCL (IOMG26) */
+					0x06c 0x0	/* I2C2_SDA (IOMG27) */
+				>;
+			};
+			i2c2_pmx_idle: pinmux_i2c2_idle {
+				pinctrl-single,pins = <
+					0x068 0x1	/* GPIO (IOMG26) */
+					0x06c 0x1	/* GPIO (IOMG27) */
+				>;
+			};
+			i2c3_pmx_func: pinmux_i2c3_func {
+				pinctrl-single,pins = <
+					0x050 0x2	/* I2C3_SCL (IOMG20) */
+					0x054 0x2	/* I2C3_SDA (IOMG21) */
+				>;
+			};
+			i2c3_pmx_idle: pinmux_i2c3_idle {
+				pinctrl-single,pins = <
+					0x050 0x1	/* GPIO (IOMG20) */
+					0x054 0x1	/* GPIO (IOMG21) */
+				>;
+			};
+			spi0_pmx_func: pinmux_spi0_func {
+				pinctrl-single,pins = <
+					0x0d4 0x0	/* SPI0_CLK/SPI0_DI/SPI0_DO (IOMG53) */
+					0x0d8 0x0	/* SPI0_CS0 (IOMG54) */
+					0x0dc 0x0	/* SPI0_CS1 (IOMG55) */
+					0x0e0 0x0	/* SPI0_CS2 (IOMG56) */
+					0x0e4 0x0	/* SPI0_CS3 (IOMG57) */
+				>;
+			};
+			spi0_pmx_idle: pinmux_spi0_idle {
+				pinctrl-single,pins = <
+					0x0d4 0x1	/* GPIO (IOMG53) */
+					0x0d8 0x1	/* GPIO (IOMG54) */
+					0x0dc 0x1	/* GPIO (IOMG55) */
+					0x0e0 0x1	/* GPIO (IOMG56) */
+					0x0e4 0x1	/* GPIO (IOMG57) */
+				>;
+			};
+			spi1_pmx_func: pinmux_spi1_func {
+				pinctrl-single,pins = <
+					0x184 0x0	/* SPI1_CLK/SPI1_DI (IOMG98) */
+					0x0e8 0x0	/* SPI1_DO (IOMG58) */
+					0x0ec 0x0	/* SPI1_CS (IOMG95) */
+				>;
+			};
+			spi1_pmx_idle: pinmux_spi1_idle {
+				pinctrl-single,pins = <
+					0x184 0x1	/* GPIO (IOMG98) */
+					0x0e8 0x1	/* GPIO (IOMG58) */
+					0x0ec 0x1	/* GPIO (IOMG95) */
+				>;
+			};
+			kpc_pmx_func: pinmux_kpc_func {
+				pinctrl-single,pins = <
+					0x12c 0x0	/* KEY_IN0 (IOMG73) */
+					0x130 0x0	/* KEY_IN1 (IOMG74) */
+					0x134 0x0	/* KEY_IN2 (IOMG75) */
+					0x10c 0x0	/* KEY_OUT0 (IOMG65) */
+					0x110 0x0	/* KEY_OUT1 (IOMG66) */
+					0x114 0x0	/* KEY_OUT2 (IOMG67) */
+				>;
+			};
+			gpio_key_func: pinmux_gpiokey_func {
+				pinctrl-single,pins = <
+					0x10c 0x1	/* KEY_OUT0/GPIO (IOMG65) */
+					0x130 0x1	/* KEY_IN1/GPIO (IOMG74) */
+				>;
+			};
+			emmc_pmx_func: pinmux_emmc_pins@0 {
+				pinctrl-single,pins = <
+					0x030 0x2	/* eMMC_CMD/eMMC_CLK (IOMG12) */
+					0x018 0x0	/* NAND_CS3_N (IOMG6) */
+					0x024 0x0	/* NAND_BUSY2_N (IOMG8) */
+					0x028 0x0	/* NAND_BUSY3_N (IOMG9) */
+					0x02c 0x2	/* eMMC_DATA[0:7] (IOMG10) */
+				>;
+			};
+			emmc_pmx_idle: pinmux_emmc_pins@1 {
+				pinctrl-single,pins = <
+					0x030 0x0	/* GPIO (IOMG12) */
+					0x018 0x1	/* GPIO (IOMG6) */
+					0x024 0x1	/* GPIO (IOMG8) */
+					0x028 0x1	/* GPIO (IOMG9) */
+					0x02c 0x1	/* GPIO (IOMG10) */
+				>;
+			};
+			sd_pmx_func: pinmux_sd_pins@0 {
+				pinctrl-single,pins = <
+					0x0bc 0x0	/* SD_CLK/SD_CMD/SD_DATA0/SD_DATA1/SD_DATA2 (IOMG47) */
+					0x0c0 0x0	/* SD_DATA3 (IOMG48) */
+				>;
+			};
+			sd_pmx_idle: pinmux_sd_pins@1 {
+				pinctrl-single,pins = <
+					0x0bc 0x1	/* GPIO (IOMG47) */
+					0x0c0 0x1	/* GPIO (IOMG48) */
+				>;
+			};
+			nand_pmx_func: pinmux_nand_func {
+				pinctrl-single,pins = <
+					0x00c 0x0	/* NAND_ALE/NAND_CLE/.../NAND_DATA[0:7] (IOMG3) */
+					0x010 0x0	/* NAND_CS1_N (IOMG4) */
+					0x014 0x0	/* NAND_CS2_N (IOMG5) */
+					0x018 0x0	/* NAND_CS3_N (IOMG6) */
+					0x01c 0x0	/* NAND_BUSY0_N (IOMG94) */
+					0x020 0x0	/* NAND_BUSY1_N (IOMG7) */
+					0x024 0x0	/* NAND_BUSY2_N (IOMG8) */
+					0x028 0x0	/* NAND_BUSY3_N (IOMG9) */
+					0x02c 0x0	/* NAND_DATA[8:15] (IOMG10) */
+				>;
+			};
+			nand_pmx_idle: pinmux_nand_idle {
+				pinctrl-single,pins = <
+					0x00c 0x1	/* GPIO (IOMG3) */
+					0x010 0x1	/* GPIO (IOMG4) */
+					0x014 0x1	/* GPIO (IOMG5) */
+					0x018 0x1	/* GPIO (IOMG6) */
+					0x01c 0x1	/* GPIO (IOMG94) */
+					0x020 0x1	/* GPIO (IOMG7) */
+					0x024 0x1	/* GPIO (IOMG8) */
+					0x028 0x1	/* GPIO (IOMG9) */
+					0x02c 0x1	/* GPIO (IOMG10) */
+				>;
+			};
+			sdio_pmx_func: pinmux_sdio_func {
+				pinctrl-single,pins = <
+					0x0c4 0x0	/* SDIO_CLK/SDIO_CMD/SDIO_DATA[0:3] (IOMG49) */
+				>;
+			};
+			sdio_pmx_idle: pinmux_sdio_idle {
+				pinctrl-single,pins = <
+					0x0c4 0x1	/* GPIO (IOMG49) */
+				>;
+			};
+			audio_out_pmx_func: pinmux_audio_func {
+				pinctrl-single,pins = <
+					0x0f0 0x1	/* GPIO (IOMG59), audio spk & earphone */
+				>;
+			};
+			pwm0_pmx_func: pinmux_pwm0_func {
+				pinctrl-single,pins = <
+					0x154 0x0	/* PWM0 (IOMG82) */
+				>;
+			};
+			pwm0_pmx_idle: pinmux_pwm0_idle {
+				pinctrl-single,pins = <
+					0x154 0x1	/* GPIO149 (IOMG82) */
+				>;
+			};
+			pwm1_pmx_func: pinmux_pwm1_func {
+				pinctrl-single,pins = <
+					0x158 0x0	/* PWM1 (IOMG83) */
+				>;
+			};
+			pwm1_pmx_idle: pinmux_pwm1_idle {
+				pinctrl-single,pins = <
+					0x158 0x1	/* GPIO150 (IOMG83) */
+				>;
+			};
+
+		};
+
+		pmx1: pinmux@fc803800 {
+			pinctrl-names = "default";
+			pinctrl-0 = <	&board_pu_pins &board_pd_pins &board_pd_ps_pins
+					&board_np_pins &board_ps_pins &kpc_cfg_func
+					&audio_out_cfg_func>;
+			board_pu_pins: pinmux_board_pu_pins {
+				pinctrl-single,pins = <
+					0x014 0		/* GPIO_158 (IOCFG2) */
+					0x01c 0		/* BOOT_MODE0 (IOCFG4) */
+					0x020 0		/* BOOT_MODE1 (IOCFG5) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+			};
+			board_pd_pins: pinmux_board_pd_pins {
+				pinctrl-single,pins = <
+					0x038 0		/* eFUSE_DOUT (IOCFG11) */
+					0x150 0		/* ISP_GPIO8 (IOCFG93) */
+					0x154 0		/* ISP_GPIO9 (IOCFG94) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			board_pd_ps_pins: pinmux_board_pd_ps_pins {
+				pinctrl-single,pins = <
+					0x2d8 0		/* CLK_OUT0 (IOCFG190) */
+					0x004 0		/* PMU_SPI_DATA (IOCFG192) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			board_np_pins: pinmux_board_np_pins {
+				pinctrl-single,pins = <
+					0x24c 0		/* KEYPAD_OUT7 (IOCFG155) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			board_ps_pins: pinmux_board_ps_pins {
+				pinctrl-single,pins = <
+					0x000 0		/* PMU_SPI_CLK (IOCFG191) */
+					0x008 0		/* PMU_SPI_CS_N (IOCFG193) */
+				>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			uart0_cfg_func: pincfg_uart0_func {
+				pinctrl-single,pins = <
+					0x208 0		/* UART0_RXD (IOCFG138) */
+					0x20c 0		/* UART0_TXD (IOCFG139) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart0_cfg_idle: pincfg_uart0_idle {
+				pinctrl-single,pins = <
+					0x208 0		/* UART0_RXD (IOCFG138) */
+					0x20c 0		/* UART0_TXD (IOCFG139) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart1_cfg_func: pincfg_uart1_func {
+				pinctrl-single,pins = <
+					0x210 0		/* UART1_CTS (IOCFG140) */
+					0x214 0		/* UART1_RTS (IOCFG141) */
+					0x218 0		/* UART1_RXD (IOCFG142) */
+					0x21c 0		/* UART1_TXD (IOCFG143) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart1_cfg_idle: pincfg_uart1_idle {
+				pinctrl-single,pins = <
+					0x210 0		/* UART1_CTS (IOCFG140) */
+					0x214 0		/* UART1_RTS (IOCFG141) */
+					0x218 0		/* UART1_RXD (IOCFG142) */
+					0x21c 0		/* UART1_TXD (IOCFG143) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart2_cfg_func: pincfg_uart2_func {
+				pinctrl-single,pins = <
+					0x220 0		/* UART2_CTS (IOCFG144) */
+					0x224 0		/* UART2_RTS (IOCFG145) */
+					0x228 0		/* UART2_RXD (IOCFG146) */
+					0x22c 0		/* UART2_TXD (IOCFG147) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart2_cfg_idle: pincfg_uart2_idle {
+				pinctrl-single,pins = <
+					0x220 0		/* GPIO (IOCFG144) */
+					0x224 0		/* GPIO (IOCFG145) */
+					0x228 0		/* GPIO (IOCFG146) */
+					0x22c 0		/* GPIO (IOCFG147) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart3_cfg_func: pincfg_uart3_func {
+				pinctrl-single,pins = <
+					0x294 0		/* UART3_CTS (IOCFG173) */
+					0x298 0		/* UART3_RTS (IOCFG174) */
+					0x29c 0		/* UART3_RXD (IOCFG175) */
+					0x2a0 0		/* UART3_TXD (IOCFG176) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart3_cfg_idle: pincfg_uart3_idle {
+				pinctrl-single,pins = <
+					0x294 0		/* UART3_CTS (IOCFG173) */
+					0x298 0		/* UART3_RTS (IOCFG174) */
+					0x29c 0		/* UART3_RXD (IOCFG175) */
+					0x2a0 0		/* UART3_TXD (IOCFG176) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			uart4_cfg_func: pincfg_uart4_func {
+				pinctrl-single,pins = <
+					0x2a4 0		/* UART4_CTS (IOCFG177) */
+					0x2a8 0		/* UART4_RTS (IOCFG178) */
+					0x2ac 0		/* UART4_RXD (IOCFG179) */
+					0x2b0 0		/* UART4_TXD (IOCFG180) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			i2c0_cfg_func: pincfg_i2c0_func {
+				pinctrl-single,pins = <
+					0x17c 0		/* I2C0_SCL (IOCFG103) */
+					0x180 0		/* I2C0_SDA (IOCFG104) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			i2c1_cfg_func: pincfg_i2c1_func {
+				pinctrl-single,pins = <
+					0x184 0		/* I2C1_SCL (IOCFG105) */
+					0x188 0		/* I2C1_SDA (IOCFG106) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			i2c2_cfg_func: pincfg_i2c2_func {
+				pinctrl-single,pins = <
+					0x118 0		/* I2C2_SCL (IOCFG79) */
+					0x11c 0		/* I2C2_SDA (IOCFG80) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			i2c3_cfg_func: pincfg_i2c3_func {
+				pinctrl-single,pins = <
+					0x100 0		/* I2C3_SCL (IOCFG73) */
+					0x104 0		/* I2C3_SDA (IOCFG74) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			spi0_cfg_func1: pincfg_spi0_f1 {
+				pinctrl-single,pins = <
+					0x1d4 0		/* SPI0_CLK (IOCFG125) */
+					0x1d8 0		/* SPI0_DI (IOCFG126) */
+					0x1dc 0		/* SPI0_DO (IOCFG127) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			spi0_cfg_func2: pincfg_spi0_f2 {
+				pinctrl-single,pins = <
+					0x1e0 0		/* SPI0_CS0 (IOCFG128) */
+					0x1e4 0		/* SPI0_CS1 (IOCFG129) */
+					0x1e8 0		/* SPI0_CS2 (IOCFG130 */
+					0x1ec 0		/* SPI0_CS3 (IOCFG131) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			spi1_cfg_func1: pincfg_spi1_f1 {
+				pinctrl-single,pins = <
+					0x1f0 0		/* SPI1_CLK (IOCFG132) */
+					0x1f4 0		/* SPI1_DI (IOCFG133) */
+					0x1f8 0		/* SPI1_DO (IOCFG134) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			spi1_cfg_func2: pincfg_spi1_f2 {
+				pinctrl-single,pins = <
+					0x1fc 0		/* SPI1_CS (IOCFG135) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			kpc_cfg_func: pincfg_kpc_func {
+				pinctrl-single,pins = <
+					0x250 0		/* KEY_IN0 (IOCFG156) */
+					0x254 0		/* KEY_IN1 (IOCFG157) */
+					0x258 0		/* KEY_IN2 (IOCFG158) */
+					0x230 0		/* KEY_OUT0 (IOCFG148) */
+					0x234 0		/* KEY_OUT1 (IOCFG149) */
+					0x238 0		/* KEY_OUT2 (IOCFG150) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			emmc_cfg_func: pincfg_emmc_func {
+				pinctrl-single,pins = <
+					0x0ac 0		/* eMMC_CMD (IOCFG40) */
+					0x08c 0		/* NAND_DATA8 (IOCFG32) */
+					0x090 0		/* NAND_DATA9 (IOCFG33) */
+					0x094 0		/* NAND_DATA10 (IOCFG34) */
+					0x098 0		/* NAND_DATA11 (IOCFG35) */
+					0x09c 0		/* NAND_DATA12 (IOCFG36) */
+					0x0a0 0		/* NAND_DATA13 (IOCFG37) */
+					0x0a4 0		/* NAND_DATA14 (IOCFG38) */
+					0x0a8 0		/* NAND_DATA15 (IOCFG39) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			emmc_cfg_clk_func: pincfg_emmc_clk_func {
+				pinctrl-single,pins = <
+					0x0b0 0		/* eMMC_CLK (IOCFG41) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			sd_cfg_func1: pincfg_sd_f1 {
+				pinctrl-single,pins = <
+					0x18c 0		/* SD_CLK (IOCFG107) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			sd_cfg_func2: pincfg_sd_f2 {
+				pinctrl-single,pins = <
+					0x190 0		/* SD_CMD (IOCFG108) */
+					0x194 0		/* SD_DATA0 (IOCFG109) */
+					0x198 0		/* SD_DATA1 (IOCFG110) */
+					0x19c 0		/* SD_DATA2 (IOCFG111) */
+					0x1a0 0		/* SD_DATA3 (IOCFG112) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+				pinctrl-single,drive-strength = <0x70 0xf0>;
+			};
+			nand_cfg_func1: pincfg_nand_f1 {
+				pinctrl-single,pins = <
+					0x03c 0		/* NAND_ALE (IOCFG12) */
+					0x040 0		/* NAND_CLE (IOCFG13) */
+					0x06c 0		/* NAND_DATA0 (IOCFG24) */
+					0x070 0		/* NAND_DATA1 (IOCFG25) */
+					0x074 0		/* NAND_DATA2 (IOCFG26) */
+					0x078 0		/* NAND_DATA3 (IOCFG27) */
+					0x07c 0		/* NAND_DATA4 (IOCFG28) */
+					0x080 0		/* NAND_DATA5 (IOCFG29) */
+					0x084 0		/* NAND_DATA6 (IOCFG30) */
+					0x088 0		/* NAND_DATA7 (IOCFG31) */
+					0x08c 0		/* NAND_DATA8 (IOCFG32) */
+					0x090 0		/* NAND_DATA9 (IOCFG33) */
+					0x094 0		/* NAND_DATA10 (IOCFG34) */
+					0x098 0		/* NAND_DATA11 (IOCFG35) */
+					0x09c 0		/* NAND_DATA12 (IOCFG36) */
+					0x0a0 0		/* NAND_DATA13 (IOCFG37) */
+					0x0a4 0		/* NAND_DATA14 (IOCFG38) */
+					0x0a8 0		/* NAND_DATA15 (IOCFG39) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			nand_cfg_func2: pincfg_nand_f2 {
+				pinctrl-single,pins = <
+					0x044 0		/* NAND_RE_N (IOCFG14) */
+					0x048 0		/* NAND_WE_N (IOCFG15) */
+					0x04c 0		/* NAND_CS0_N (IOCFG16) */
+					0x050 0		/* NAND_CS1_N (IOCFG17) */
+					0x054 0		/* NAND_CS2_N (IOCFG18) */
+					0x058 0		/* NAND_CS3_N (IOCFG19) */
+					0x05c 0		/* NAND_BUSY0_N (IOCFG20) */
+					0x060 0		/* NAND_BUSY1_N (IOCFG21) */
+					0x064 0		/* NAND_BUSY2_N (IOCFG22) */
+					0x068 0		/* NAND_BUSY3_N (IOCFG23) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			sdio_cfg_func: pincfg_sdio_func {
+				pinctrl-single,pins = <
+					0x1a4 0		/* SDIO0_CLK (IOCG113) */
+					0x1a8 0		/* SDIO0_CMD (IOCG114) */
+					0x1ac 0		/* SDIO0_DATA0 (IOCG115) */
+					0x1b0 0		/* SDIO0_DATA1 (IOCG116) */
+					0x1b4 0		/* SDIO0_DATA2 (IOCG117) */
+					0x1b8 0		/* SDIO0_DATA3 (IOCG118) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			audio_out_cfg_func: pincfg_audio_func {
+				pinctrl-single,pins = <
+					0x200 0		/* GPIO (IOCFG136) */
+					0x204 0		/* GPIO (IOCFG137) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+			};
+			pmic_int_cfg_func: pincfg_pmic_func {
+				pinctrl-single,pins = <
+					0x018 0		/* GPIO159 (IOCFG003) */
+				>;
+			};
+			/* TP_IRQ need pullup */
+			ts_pin_cfg: pincfg_ts_func {
+				pinctrl-single,pins = <
+					0x010 0		/* GPIO157 (TP_IRQ) */
+				>;
+				pinctrl-single,bias-pulldown = <0 2 0 2>;
+				pinctrl-single,bias-pullup = <1 1 0 1>;
+			};
+			pwm0_cfg_func: pincfg_pwm0_func {
+				pinctrl-single,pins = <
+					0x280 0		/* PWM0 (IOCFG168) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			pwm1_cfg_func: pincfg_pwm1_func {
+				pinctrl-single,pins = <
+					0x284 0		/* PWM1 (IOCFG169) */
+				>;
+				pinctrl-single,bias-pulldown = <2 2 0 2>;
+				pinctrl-single,bias-pullup = <0 1 0 1>;
+				pinctrl-single,drive-strength = <0x30 0xf0>;
+			};
+			pmic_int_cfg_func: pincfg_pmic_func {
+				pinctrl-single,pins = <
+					0x018 0		/* GPIO159 (IOCFG003) */
+				>;
+			};
+		};
+
+		i2c0: i2c@fcb08000 {
+			status = "ok";
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&i2c0_pmx_func &i2c0_cfg_func>;
+			pinctrl-1 = <&i2c0_pmx_idle &i2c0_cfg_func>;
+		};
+
+		i2c1: i2c@fcb09000 {
+			status = "ok";
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c1_pmx_func &i2c1_cfg_func>;
+			ts_mxt224e: ts@4a {
+				compatible = "atmel,ts-mxt224e";
+				reg = <0x4a>;
+				ldo-supply = <&ldo6>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&ts_pin_cfg>;
+				atmel-ts,gpio-irq = <&gpio19 5 0>;
+				atmel-ts,gpio-reset = <&gpio19 4 0>;
+				/* min max: x y pressure width */
+				atmel-ts,abs = <0 719 0 1279 0 255 0 255>;
+				atmel-ts,cfg_t6 = /bits/ 8 <0 0 0 0 0 0>;
+				atmel-ts,cfg_t7 = /bits/ 8 <32 255 10>;
+				atmel-ts,cfg_t8 = /bits/ 8 <24 0 1 10 0 0 5 60 10 192>;
+				atmel-ts,cfg_t9 = /bits/ 8 <143 0 0 19 11 0 32 66 2 3 0 2 2 47 10 15 22 10 106 5
+									207 2 0 0 0 0 161 40 183 64 30 20 0 0 1>;
+				atmel-ts,cfg_t15 = /bits/ 8 <0 0 0 0 0 0 0 0 0 0 0>;
+				atmel-ts,cfg_t19 = /bits/ 8 <0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>;
+				atmel-ts,cfg_t23 = /bits/ 8 <0 0 0 0 0 0 0 0 0 0 0 0 0 0 0>;
+				atmel-ts,cfg_t25 = /bits/ 8 <0 0 0 0 0 0 0 0 0 0 0 0 0 0>;
+				atmel-ts,cfg_t40 = /bits/ 8 <0 0 0 0 0>;
+				atmel-ts,cfg_t42 = /bits/ 8 <0 40 40 80 128 0 0 0>;
+				atmel-ts,cfg_t46 = /bits/ 8 <0 3 32 32 0 0 0 0 0>;
+				atmel-ts,cfg_t47 = /bits/ 8 <0 20 50 5 2 40 40 180 0 100>;
+				atmel-ts,cfg_t48 = /bits/ 8 <1 4 10 0 0 0 0 0 1 1 0 0 0 6 6 0 0 63 6 64
+						10 0 20 5 0 38 0 20 0 0 0 0 0 0 0 40 2 2 2 32
+						10 12 20 241 251 0 0 191 40 183 64 30 15 0>;
+				atmel-ts,object_crc = /bits/ 8 <0xFD 0x3B 0x8D>;
+				atmel-ts,cable_config = /bits/ 8 <70 30 32 32>;
+				atmel-ts,cable_config_t7 = /bits/ 8 <32 16 25>;
+				atmel-ts,cable_config_t8 = /bits/ 8 <24 0 5 5 0 0 5 60 10 192>;
+				atmel-ts,cable_config_T9 = /bits/ 8 <139 0 0 19 11 0 32 66 2 3 0 5 2 64 10
+					12 20 10 106 5 207 2 0 0 0 0 161 40 183 64 30 20 0 0 0>;
+				atmel-ts,cable_config_t46 = /bits/ 8 <0 3 40 40 0 0 0 0 0>;
+				atmel-ts,cable_config_t48 = /bits/ 8 <1 128 114 0 0 0 0 0 1 2 0 0 0 6 6
+					0 0 63 6 64 10 0 20 5 0 38 0 20 0 0 0 0 0 0 0
+					40 2 2 2 32 10 12 20 241 251 0 0 191 40 183 64 30 15 0>;
+				atmel-ts,noise_config = /bits/ 8 <70 3 35>;
+				atmel-ts,filter_level = /bits/ 16 <0 0 539 539>;
+				atmel-ts,gcaf_level = /bits/ 8 <8 16 24 32 40>;
+				atmel-ts,atch_nor = /bits/ 8 <0 0 5 60 10 192>;
+				atmel-ts,atch_nor_20s = /bits/ 8 <0 0 255 1 0 0>;
+			};
+		};
+
+		dwmmc1@fcd04000 {
+			num-slots = <1>;
+			vmmc-supply = <&ldo0>;
+			vqmmc-supply = <&ldo5>;
+			/* emmc fifo register value is incorrect */
+			fifo-depth = <0x100>;
+			broken-cd;
+			supports-highspeed;
+			pinctrl-names = "default";
+			pinctrl-0 = <&emmc_pmx_func &emmc_cfg_func &emmc_cfg_clk_func>;
+			slot@0 {
+				reg = <0>;
+				bus-width = <8>;
+				disable-wp;
+			};
+		};
+
+		dwmmc0@fcd03000 {
+			num-slots = <1>;
+			vmmc-supply = <&ldo12>;
+			fifo-depth = <0x100>;
+			supports-highspeed;
+			pinctrl-names = "default";
+			pinctrl-0 = <&sd_pmx_pins &sd_cfg_func1 &sd_cfg_func2>;
+			cd-gpio = <&gpio10 3 0>;
+			slot@0 {
+				reg = <0>;
+				bus-width = <4>;
+				disable-wp;
+			};
+		};
+
+		dwmmc2@fcd05000 {
+			status = "disabled";
+		};
+
+		dwmmc3@fcd06000 {
+			status = "disabled";
+		};
+
+		power_management {
+			compatible = "hisilicon,hs-power-management";
+			reg = <0xfcc00000 0x0240>, /* pmu_spi_base_addr */
+			      <0xf8000000 0x14000>, /* secram_base_addr */
+			      <0xfca09000 0x1000>, /* pctrl_base_addr */
+			      <0xfc000000 0x2000>, /* a9_per_base_addr */
+			      <0xfcb00000 0x1000>, /* uart0_base_addr, console workaround */
+			      <0xfc803000 0x1000>; /* io_base, console workaround */
+			pmu-power-hold-gpios = <&gpio19 6 0>;
+		};
+
+		edc0: edc@fa202000 {
+			hisilicon,pixel-format = "RGB565";
+			hisilicon,color-mode = <5>;
+			hisilicon,dsi-clock-frequency = <270000000>;    /* 241MHz, not 300MHz */
+			hisilicon,mipi-mode = "video";
+			hisilicon,mipi-lanes = <4>;
+			status = "ok";
+
+			display-timings {
+				native-mode = <&timing0>;
+				timing0: timing0 {
+					clock-frequency = <68000000>;      /* 13.158MHz pixel clock */
+					hactive = <720>;
+					vactive = <1280>;
+					hsync-active = <0>;
+					vsync-active = <0>;
+					de-active = <1>;
+					pixelclk-active = <1>;
+					hfront-porch = <96>;
+					hback-porch = <16>;
+					hsync-len = <16>;
+					vfront-porch = <12>;
+					vback-porch = <12>;
+					vsync-len = <16>;
+				};
+			};
+		};
+
+		pmic: pmic@fcc00000 {
+			compatible = "hisilicon,hi6421-pmic";
+			reg = <0xfcc00000 0x0180>; /* 0x60 << 2 */
+			#interrupt-cells = <2>;
+			interrupt-controller;
+			gpios = <&gpio19 7 0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&pmic_int_cfg_func>;
+
+			ldo0: ldo@20 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO0";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x20 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x20 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <10000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo1: ldo@21 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO1";
+				regulator-min-microvolt = <1700000>;
+				regulator-max-microvolt = <2000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x21 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x21 0x03>;
+				hisilicon,hi6421-n-voltages = <4>;
+				hisilicon,hi6421-vset-table = <1700000>, <1800000>,
+							      <1900000>, <2000000>;
+				hisilicon,hi6421-off-on-delay-us = <10000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <5000>;
+			};
+
+			ldo2: ldo@22 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO2";
+				regulator-min-microvolt = <1050000>;
+				regulator-max-microvolt = <1400000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x22 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x22 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1050000>, <1100000>,
+							      <1150000>, <1200000>,
+							      <1250000>, <1300000>,
+							      <1350000>, <1400000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo3: ldo@23 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO3";
+				regulator-min-microvolt = <1050000>;
+				regulator-max-microvolt = <1400000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x23 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x23 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1050000>, <1100000>,
+							      <1150000>, <1200000>,
+							      <1250000>, <1300000>,
+							      <1350000>, <1400000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo4: ldo@24 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO4";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x24 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x24 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo5: ldo@25 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO5";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x25 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x25 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo6: ldo@26 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO6";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x26 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x26 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo7: ldo@27 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO7";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x27 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x27 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <5000>;
+			};
+
+			ldo8: ldo@28 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO8";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3300000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x28 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x28 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2600000>,
+							      <2700000>, <2850000>,
+							      <3000000>, <3300000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo9: ldo@29 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO9";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x29 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x29 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo10: ldo@2a {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO10";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2a 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2a 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo11: ldo@2b {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO11";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2b 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2b 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo12: ldo@2c {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO12";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2c 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2c 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo13: ldo@2d {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO13";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2d 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2d 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo14: ldo@2e {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO14";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2e 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2e 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo15: ldo@2f {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO15";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3300000>;
+				hisilicon,hi6421-ctrl = <0x2f 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2f 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2600000>,
+							      <2700000>, <2850000>,
+							      <3000000>, <3300000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo16: ldo@30 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO16";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x30 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x30 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo17: ldo@31 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO17";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x31 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x31 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo18: ldo@32 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO18";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x32 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x32 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo19: ldo@33 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO19";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x2a 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x2a 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldo20: ldo@34 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDO20";
+				regulator-min-microvolt = <1500000>;
+				regulator-max-microvolt = <3000000>;
+				hisilicon,hi6421-ctrl = <0x34 0x10 0x20>;
+				hisilicon,hi6421-vset = <0x34 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1500000>, <1800000>,
+							      <2400000>, <2500000>,
+							      <2600000>, <2700000>,
+							      <2850000>, <3000000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <8000>;
+			};
+
+			ldoaudio: ldo@36 {
+				compatible = "hisilicon,hi6421-ldo";
+				regulator-name = "LDOAUDIO";
+				regulator-min-microvolt = <2800000>;
+				regulator-max-microvolt = <3300000>;
+				hisilicon,hi6421-ctrl = <0x36 0x01 0x02>;
+				hisilicon,hi6421-vset = <0x36 0x70>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <2800000>, <2850000>,
+							      <2900000>, <2950000>,
+							      <3000000>, <3100000>,
+							      <3200000>, <3300000>;
+				hisilicon,hi6421-off-on-delay-us = <40000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+				hisilicon,hi6421-eco-microamp = <5000>;
+			};
+
+			buck0: buck@0c {
+				compatible = "hisilicon,hi6421-buck012";
+				regulator-name = "BUCK0";
+				regulator-min-microvolt = <700000>;
+				regulator-max-microvolt = <1600000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x0c 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x0d 0x7f>;
+				hisilicon,hi6421-n-voltages = <128>;
+				hisilicon,hi6421-uv-step = <7086>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <300>;
+			};
+
+			buck1: buck@0e {
+				compatible = "hisilicon,hi6421-buck012";
+				regulator-name = "BUCK1";
+				regulator-min-microvolt = <700000>;
+				regulator-max-microvolt = <1600000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x0e 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x0f 0x7f>;
+				hisilicon,hi6421-n-voltages = <128>;
+				hisilicon,hi6421-uv-step = <7086>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <300>;
+			};
+
+			buck2: buck@10 {
+				compatible = "hisilicon,hi6421-buck012";
+				regulator-name = "BUCK2";
+				regulator-min-microvolt = <700000>;
+				regulator-max-microvolt = <1600000>;
+				regulator-boot-on;
+				hisilicon,hi6421-ctrl = <0x10 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x11 0x7f>;
+				hisilicon,hi6421-n-voltages = <128>;
+				hisilicon,hi6421-uv-step = <7086>;
+				hisilicon,hi6421-off-on-delay-us = <100>;
+				hisilicon,hi6421-enable-time-us = <250>;
+			};
+
+			buck3: buck@12 {
+				compatible = "hisilicon,hi6421-buck345";
+				regulator-name = "BUCK3";
+				regulator-min-microvolt = <950000>;
+				regulator-max-microvolt = <1200000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x12 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x13 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <950000>, <1050000>,
+							      <1100000>, <1170000>,
+							      <1134000>, <1150000>,
+							      <1167000>, <1200000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+			};
+
+			buck4: buck@14 {
+				compatible = "hisilicon,hi6421-buck345";
+				regulator-name = "BUCK4";
+				regulator-min-microvolt = <1150000>;
+				regulator-max-microvolt = <2000000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x14 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x15 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1150000>, <1200000>,
+							      <1250000>, <1350000>,
+							      <1700000>, <1800000>,
+							      <1900000>, <2000000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+			};
+
+			buck5: buck@16 {
+				compatible = "hisilicon,hi6421-buck345";
+				regulator-name = "BUCK5";
+				regulator-min-microvolt = <1150000>;
+				regulator-max-microvolt = <1900000>;
+				regulator-boot-on;
+				regulator-always-on;
+				hisilicon,hi6421-ctrl = <0x16 0x01 0x10>;
+				hisilicon,hi6421-vset = <0x17 0x07>;
+				hisilicon,hi6421-n-voltages = <8>;
+				hisilicon,hi6421-vset-table = <1150000>, <1200000>,
+							      <1250000>, <1350000>,
+							      <1600000>, <1700000>,
+							      <1800000>, <1900000>;
+				hisilicon,hi6421-off-on-delay-us = <20000>;
+				hisilicon,hi6421-enable-time-us = <250>;
+			};
+
+			onkey {
+				compatible = "hisilicon,hi6421-onkey";
+				interrupt-parent = <&pmic>;
+				interrupts = <7 0>, <6 0>, <5 0>, <4 0>;
+				interrupt-names = "down", "up", "hold 1s", "hold 10s";
+			};
+
+			rtc {
+				compatible = "hisilicon,hi6421-rtc";
+				interrupt-parent = <&pmic>;
+				interrupts = <0 0>;
+			};
+		}; /* end of pmic */
+
+		regulators_vcc: regulators_vcc@0xFC802000 {
+			compatible = "hisilicon,hisi_regulator_vcc_core";
+			reg = <0xFC802000 0x0180>; /* 0x60 << 2 */
+			clocks = <&pclk>;
+
+			edc1_vcc: vcc@110 {
+				compatible = "hisilicon,vcc-edc1";
+				regulator-name = "edc1";
+				hisilicon,hisi-sysctrl = <0xDC 0x01>;
+				hisilicon,hisi-regulator-id = <0>;
+			};
+			isp_vcc: vcc@111 {
+				compatible = "hisilicon,vcc-med";
+				regulator-name = "isp";
+				hisilicon,hisi-sysctrl = <0xDC 0x02>;
+				hisilicon,hisi-regulator-id = <1>;
+			};
+			venc_vcc: vcc@112 {
+				compatible = "hisilicon,vcc-med";
+				regulator-name = "venc";
+				hisilicon,hisi-sysctrl = <0xDC 0x04>;
+				hisilicon,hisi-regulator-id = <2>;
+			};
+			vdec_vcc: vcc@113 {
+				compatible = "hisilicon,vcc-med";
+				regulator-name = "vdec";
+				hisilicon,hisi-sysctrl = <0xDC 0x08>;
+				hisilicon,hisi-regulator-id = <3>;
+			};
+			bt_vcc: vcc@114 {
+				compatible = "hisilicon,vcc-med";
+				regulator-name = "bt";
+				hisilicon,hisi-sysctrl = <0xDC 0x20>;
+				hisilicon,hisi-regulator-id = <4>;
+			};
+			cpu2_vcc: vcc@115 {
+				compatible = "hisilicon,vcc-cpu23";
+				regulator-name = "cpu2";
+				hisilicon,hisi-sysctrl = <0xDC 0x40>;
+				hisilicon,hisi-regulator-id = <4>;
+			};
+			cpu3_vcc: vcc@116 {
+				compatible = "hisilicon,vcc-cpu23";
+				regulator-name = "cpu3";
+				hisilicon,hisi-sysctrl = <0xDC 0x80>;
+				hisilicon,hisi-regulator-id = <6>;
+			};
+			g3d_vcc: vcc@117 {
+				compatible = "hisilicon,vcc-g3d";
+				regulator-name = "g3d";
+				g3dvcc-supply = <&buck2>;
+				hisilicon,hisi-regulator-id = <7>;
+			};
+		};
+		mcu: mcu@fd000000 {
+			status = "ok";
+		};
+		k3v2_otg@fd240000 {
+			otgphy-supply = <&ldo4>;
+			dvc-supply = <&ldo8>;
+			status = "ok";
+		};
+	}; /* end of amba */
+};

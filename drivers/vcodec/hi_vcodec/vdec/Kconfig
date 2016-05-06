@@ -1,0 +1,11 @@
+menuconfig HI_VCODEC
+    tristate "Support Hisi Video Decoder Driver"
+    default n
+    ---help---
+      This is the hisilicon decoder driver.
+
+if HI_VCODEC
+source "drivers/vcodec/hi_vcodec/vdec/omxvdec/Kconfig"
+source "drivers/vcodec/hi_vcodec/vdec/vfmw/Kconfig"
+endif
+

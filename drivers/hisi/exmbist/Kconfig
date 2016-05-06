@@ -1,0 +1,5 @@
+config HISI_EXMBIST
+	bool "hisi exmbist for DDR test"
+	default n
+	help
+		User exmbist IP to verify DDR.

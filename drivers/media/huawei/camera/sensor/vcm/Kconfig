@@ -1,0 +1,28 @@
+if HISI_CAMERA_VCM
+
+menu "Hisilicon camera vcm driver support"
+
+config HISI_CAMERA_DW9714
+    tristate "DW9714 camera vcm driver"
+    depends on HISI_CAMERA_VCM
+    default y
+    ---help---
+        DW9714 camera vcm driver
+
+config HISI_CAMERA_AD5816
+    tristate "AD5816 camera vcm driver"
+    depends on HISI_CAMERA_VCM
+    default y
+    ---help---
+        AD5816 camera vcm driver
+
+config HISI_CAMERA_AD5823
+    tristate "AD5823 camera vcm driver"
+    depends on HISI_CAMERA_VCM
+    default y
+    ---help---
+        AD5823 camera vcm driver
+
+endmenu
+
+endif

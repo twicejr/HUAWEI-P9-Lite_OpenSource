@@ -1,0 +1,6 @@
+#sensor unification for differ platform
+config HUAWEI_CHIPVERIFICATION_INFO
+	bool "huawei chip verification info"
+	default n
+	help
+		get the huawei chip verification information.

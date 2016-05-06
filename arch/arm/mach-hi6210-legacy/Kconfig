@@ -1,0 +1,158 @@
+menu "Hisilicon hi6210 board feature"
+	depends on ARCH_HI6XXX
+
+# -------------------------------------
+if ARCH_HI6XXX
+
+comment "Hisilicon K3V200 options"
+
+choice
+	prompt "Select K3V200 processor family for target system"
+
+endchoice
+
+# config MACH_TC45MSU3
+#	bool "TC45MSU3 Board"
+#	help
+#	  Support for  Hisilicon TC45MSU3 FPGA Verify platform
+
+config MACH_HI6210SFT
+	bool "HI6210SFT Board"
+	help
+	  Support for  Hisilicon Balong hi6210sft platform
+
+config MACH_HI6210OEM
+	bool "HI6210OEM Board"
+	help
+	  Support for  Hisilicon Balong hi6210oem platform
+
+comment "K3V200 features"
+config K3_EDB_LEVEL
+	int "Kernel Early-Debug Level( 0~254, 255 => Disable Early-Debug)"
+	range 0 255
+	default "0"
+	help
+	  Set the debug level of Early-Debug, low level will cause more debug message
+# ADC driver
+
+config IPPS_SUPPORT
+	bool "IPPS driver support"
+	select ARCH_HAS_CPUFREQ
+	default y
+	help
+	  IPPS driver support for cpu gpu ddr dvfs.
+
+config IPPS_PARAM_ALTERNATIVE
+	bool "IPPS parameters seperate from firmware"
+	default y
+	help
+	  IPPS parameters seperate from firmware.
+
+config TRIM_VOL
+	bool "TRIM Voltage support"
+	default n
+	help
+	  TRIM Voltage patch support.
+
+config S10_IPPS_FIRMWARE
+	bool "S10 IPPS Firmware"
+	depends on IPPS_SUPPORT
+	default n
+	help
+	  S10 Special IPPS Firmware.
+
+config MMC_EMMC_DEVICE
+	bool "emmc device support"
+	default y
+	help
+	  EMMC device support.
+
+config MMC_SD_DEVICE
+	bool "sd device support"
+	default y
+	help
+	  SD device support.
+
+config MMC_SDIO_DEVICE
+	bool "sdio device support"
+	default y
+	help
+	  SDIO device support.
+config WIFI_DEVICE
+	bool "bcm4330-wifi device support"
+	select WIFI_CONTROL_FUNC
+	default n
+	help
+	  bcm4330-wifi device support
+
+config XMM_POWER
+	bool "xmm6260 power control support"
+	default y
+	help
+	  xmm6260 power control
+
+config XMM_RMNET
+	bool "xmm6260 rmnet support"
+	default y
+	help
+	  xmm6260 rmnet
+
+config DEFAULT_TIMERCLK
+	int "Kernel Timer Clock Frequence"
+	default "26000000"
+	help
+	  Set default timer clock frequence
+
+config CONNECTIVE_CONTROL_FPGA
+	bool "connective platform select"
+	default n
+	help
+	  Set connective platform
+
+config LOWPM_DEBUG
+	bool "low power debug property"
+	depends on DEBUG_FS
+	help
+		set low power debug property
+
+config DEBUG_LED
+	bool "LED light for debug"
+	default n
+	help
+		set LED light for debug
+
+config HI6401_CODEC
+	bool "hi6401 codec support"
+	default n
+	help
+	  hi6401 codec  support.
+
+config HI6421_CODEC
+	bool "hi6421 codec support"
+	default n
+	help
+	  hi6421 codec  support.
+
+config HISI_ALTER_HARDWARE_NAME
+	bool "Hardware name can be set a alternative one"
+	default y
+	help
+	Hardware name can be set a alternative one
+
+config DEBUG_IRQ_WARNING
+    bool "debug irq warning"
+    default n
+    help
+      show warnings if irq is enabled in irq-contex
+
+config DEBUG_MUTEX_ERROR
+    bool "debug mutex error"
+    default n
+
+endif
+
+config MIGRATION_RT_WALKAROUND
+    bool "walk around for migrating rt task"
+    default n
+endmenu
+

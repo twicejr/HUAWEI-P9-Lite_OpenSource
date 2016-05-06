@@ -1,0 +1,11 @@
+
+config INPUT_HW_ATE
+        tristate "huawei automatic test engine"
+        help
+          Say Y here if you want use the funtion of huawei automatic test engine.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called ate.
+

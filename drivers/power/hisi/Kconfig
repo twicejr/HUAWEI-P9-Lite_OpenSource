@@ -1,0 +1,11 @@
+
+config HISI_BATTERY_DATA
+	bool "hisi battery data"
+	default n
+	
+config HISI_BCI_BATTERY
+        bool "hisi bci battery"
+        default n
+
+source "drivers/power/hisi/charger/Kconfig"
+source "drivers/power/hisi/coul/Kconfig"

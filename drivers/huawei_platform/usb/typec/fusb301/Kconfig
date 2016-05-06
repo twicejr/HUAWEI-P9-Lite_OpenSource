@@ -1,0 +1,9 @@
+# Fairchild Type C Connector
+
+config HUAWEI_TYPEC_FUSB301
+	tristate "fusb301 typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable fusb301 Type C Connector support.
+

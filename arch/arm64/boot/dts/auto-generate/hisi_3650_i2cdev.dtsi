@@ -1,0 +1,111 @@
+
+
+/{
+	amba{
+		i2c2: i2c@FFD73000 {
+			tsc@1A {
+				compatible = "cy,cyttsp4_i2c_adapter";
+				reg = <0x1A>;
+				/* GPIO 17, high-to-low edge triggered */
+				//interrupts = <6 2>;
+				/* interrupt-parent = <&gpio2>; */
+				cy,adapter_id = "cyttsp4_i2c_adapter";
+				cy,power_pin = "8226_l28";
+
+				status = "disabled";
+
+				cy,gpio_en  = <&gpio7 4 0>;
+				cy,2v85_en  = <&gpio6 2 0>;
+				cy,1v80_en  = <&gpio6 5 0>;
+				cy,irq_gpio = <&gpio4 2 0>;
+
+				cy,core {
+				    cy,name = "cyttsp4_core";
+				    cy,id = "main_ttsp_core";
+
+				    cy,gpio_en  = <&gpio7 4 0>;
+				    cy,2v85_en  = <&gpio6 2 0>;
+				    cy,1v80_en  = <&gpio6 5 0>;
+				    cy,irq_gpio = <&gpio4 2 0>;
+				    cy,rst_gpio = <&gpio8 5 0>;
+
+				    /* Enable cy,max_xfer_len to limit max I2C/SPI transfer length */
+				    /* cy,max_xfer_len = <0x100>; */
+
+				    /* CY_CORE_FLAG_WAKE_ON_GESTURE */
+				    cy,flags = <0>;
+				    /* CY_CORE_EWG_TAP_TAP | CY_CORE_EWG_TWO_FINGER_SLIDE */
+				    cy,easy_wakeup_gesture = <3>;
+				    cy,btn_keys = <102 /* KEY_HOME */
+				               139 /* KEY_MENU */
+				               158 /* KEY_BACK */
+				               217 /* KEY_SEARCH */
+				               114 /* KEY_VOLUMEDOWN */
+				               115 /* KEY_VOLUMEUP */
+				               212 /* KEY_CAMERA */
+				               116>; /* KEY_POWER */
+				    cy,btn_keys-tag = <0>;
+
+				    cy,mt {
+				        cy,name = "cyttsp4_mt";
+
+				        cy,inp_dev_name = "cyttsp4_mt";
+				        /* CY_MT_FLAG_FLIP | CY_MT_FLAG_INV_X | CY_MT_FLAG_INV_Y */
+				        cy,flags = <0x40>;
+				        cy,abs =
+				            /* ABS_MT_POSITION_X, CY_ABS_MIN_X, CY_ABS_MAX_X, 0, 0 */
+				            <0x35 0 540 0 0
+				            /* ABS_MT_POSITION_Y, CY_ABS_MIN_Y, CY_ABS_MAX_Y, 0, 0 */
+				            0x36 0 960 0 0
+				            /* ABS_MT_PRESSURE, CY_ABS_MIN_P, CY_ABS_MAX_P, 0, 0 */
+				            0x3a 0 255 0 0
+				            /* CY_IGNORE_VALUE, CY_ABS_MIN_W, CY_ABS_MAX_W, 0, 0 */
+				            0xffff 0 255 0 0
+				            /* ABS_MT_TRACKING_ID, CY_ABS_MIN_T, CY_ABS_MAX_T, 0, 0 */
+				            0x39 0 15 0 0
+				            /* ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0 */
+				            0x30 0 255 0 0
+				            /* ABS_MT_TOUCH_MINOR, 0, 255, 0, 0 */
+				            0x31 0 255 0 0
+				            /* ABS_MT_ORIENTATION, -128, 127, 0, 0 */
+				            0x34 0xfffffed7 127 0 0>;
+
+				        cy,vkeys_x = <540>;
+				        cy,vkeys_y = <960>;
+
+				        cy,virtual_keys = /* KeyCode CenterX CenterY Width Height */
+				            /* KEY_BACK */
+				            <158 120 1340 200 100
+				            /* KEY_HOMEPAGE instead of KEY_HOME(102) */
+				            172 360 1340 200 100
+				            /* KEY_MENU */
+				            139 600 1340 200 100>;
+				            /* KEY SEARCH */
+				            /*217 1360 630 160 180>;*/
+				    };
+
+				    cy,btn {
+				        cy,name = "cyttsp4_btn";
+
+				        cy,inp_dev_name = "cyttsp4_btn";
+				    };
+
+				    cy,proximity {
+				        cy,name = "cyttsp4_proximity";
+
+				        cy,inp_dev_name = "cyttsp4_proximity";
+				        cy,abs =
+				            /* ABS_DISTANCE, CY_PROXIMITY_MIN_VAL, CY_PROXIMITY_MAX_VAL, 0, 0 */
+				            <0x19 0 1 0 0>;
+				    };
+
+				    cy,loader {
+				        cy,name = "cyttsp4_loader";
+
+				        cy,firmware_name = "cyttsp4_fw_g750.bin";
+				    };
+				};
+			};
+		};
+	};
+};

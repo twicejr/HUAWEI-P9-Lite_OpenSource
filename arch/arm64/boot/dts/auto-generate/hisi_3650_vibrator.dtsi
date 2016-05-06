@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/{
+	hisi_vibrator@fff34000 {
+	compatible = "hisilicon,vibrator";
+	/*马达使能地址 */
+	vibrator-reg-on = <0x94>;
+	vibrator-reg-off = <0x94>;
+	vibrator-bit-on = <0x2>;
+	/*马达采用的电源   ldo31*/
+	vibrator-vdd-supply = <&ldo31>;
+	/*马达震动采用的最低电压和最高电压 3000000,3000000*/
+	vibrator_vout_min_voltage = <3000000>;
+	vibrator_vout_max_voltage = <3000000>;
+	status = "disabled";
+	};
+};

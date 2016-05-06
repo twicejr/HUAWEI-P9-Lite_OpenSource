@@ -1,0 +1,3 @@
+config HUAWEI_HI6422V100
+	bool "huawei hi6422v100"
+	default n

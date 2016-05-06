@@ -1,0 +1,9 @@
+rem wtf 圈复杂度>15暂时不参见圈复杂度检查
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacCEntProc.c /f 
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacComm.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacEEntProc.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacEntry.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacHsEntProc.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacMntn.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacTrafficMeas.c /f
+del ..\..\..\MAPS_CODE\Maps\Src\Ttf\Wtf\MAC\Src\WttfMacDEntProc.c /f

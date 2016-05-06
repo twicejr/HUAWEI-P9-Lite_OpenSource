@@ -1,0 +1,10 @@
+include_directories(
+
+    ${TOP_DIR}/modem/plum
+    ${TOP_DIR}/modem/include/plum
+    ${TOP_DIR}/modem/include/plum/dllist
+    ${TOP_DIR}/modem/include/plum/ess
+    ${TOP_DIR}/modem/include/plum/log
+    ${TOP_DIR}/modem/include/plum/fsm
+    ${TOP_DIR}/modem/include/plum/iff
+  )

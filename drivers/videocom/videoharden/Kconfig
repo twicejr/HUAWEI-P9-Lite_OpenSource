@@ -1,0 +1,12 @@
+#
+# Video configuration
+#
+
+config MEDIA_VIDEO_HARDEN
+    tristate "Balong Media Video Harden"
+    default n
+    ---help---
+      This module adds support for video harden
+
+
+

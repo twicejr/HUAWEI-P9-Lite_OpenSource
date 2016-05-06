@@ -1,0 +1,242 @@
+#include "nv_tl_struct_datatype_def.txt"
+#include "./tl/AppNasComm.h"
+#include "./tl/RrcNvInterface.h"
+#include "./tl/LNasNvInterface.h"
+#include "./tl/LPsNvInterface.h"
+#include "./tl/lte_nv_para_define.h"
+#include "./tl/FactoryNvInterface.h"
+#include "./tl/TdsPsNvInterface.h"
+#include "./tl/Tps_Dsp_Nv_Interface.h"
+#include "./tl/drv_nv_def.h"
+#include "./tl/msp_nv_def.h"
+#include "./tl/LRrcLPhyInterface.h"
+#include "./tl/tds_dsp_equip_interface.h"
+#include "./tl/tds_nv_interface.h"
+#include "./tl/ImsaNvInterface.h"
+#include "./tl/ImsParm.h"
+#include "./tl/CssNvInterface.h"
+#include "./product/product_nv_def.h"
+#include "product_config.h"
+
+
+typedef struct
+{
+   U32_T FLMidPrioThred;
+}NV_ID_FLASH_LESS_MID_THRED_STRU;
+typedef struct
+{
+   S16_T ssLevel[4];
+   S16_T ssLevel[4];
+}NV_ID_RSRP_CFG_STRU;
+
+typedef struct
+{
+    S16_T ssLevel[4];
+    S16_T ssLevel[4];
+}NV_ID_ECIO_CFG_STRU;
+
+typedef struct
+{
+   S16_T ssLevel[4];
+   S16_T ssLevel[4];
+}NV_ID_RSCP_CFG_STRU;
+typedef struct
+{
+    U16_T usURCSWT;
+    U16_T usPeriod;
+}NV_ID_MSP_URC_STRU;
+
+typedef struct
+{
+    VOS_UINT8 aucBuildTime[32]; // 编译时间，格式如Oct 15 2009 16:27:00，以\0结尾
+    VOS_UINT8 aucSwVer[32];  // 外部软件版本号，以\0结尾
+}NV_ID_SW_VER_STRU;
+
+typedef struct
+{
+    U32_T ulCsimEnable;
+}NV_ID_MSP_CSIM_ENALBE_STRU;
+
+typedef struct
+{
+  union
+  {
+    VOS_UINT8 aucIPV4[4];
+    VOS_UINT8 aucIPV6[16];
+  };
+}NV_ID_OM_IP_STRU;
+
+typedef struct
+{
+    VOS_UINT8 aucMac[6];
+}NV_ID_OM_MAC_STRU;
+
+typedef struct
+{
+    VOS_UINT8 aucMac[6];
+}NV_ID_LTE_MAC_STRU;
+
+//PS_STRU
+
+typedef struct
+{
+  U8_T aucBuf[8];
+}NAS_ESM_NV_PDP_MANAGE_INFO_STRU;
+
+
+typedef struct
+{
+  CHAR_T    aucDescript[32];
+}NV_DESCRIPTION_STRU;
+
+
+//无初始值
+
+typedef struct
+{
+  U8_T aucBuf[1440];
+}NAS_ESM_SDF_PARA_STRU;
+
+
+typedef struct
+{
+    VOS_UINT8   aucIPaddr[4];   /*四个数组的值是：2,2,1,1*/
+    VOS_UINT8   ucInitFlag;     /*初始值1*/
+    VOS_UINT8   aucRev[3];     /*三个数组的值是：0，0，0*/
+}GIP_ADDR_STRU;
+
+
+//DSP
+
+
+/*上行功控的开关*/
+typedef struct
+{
+
+   VOS_UINT16 usPuschPwrCtrlSwitch;
+
+   VOS_UINT16 usPuschClosedLoopSwitch;
+
+   VOS_UINT16 usPucchPwrCtrlSwitch;
+
+   VOS_UINT16 usPucchClosedLoopSwitch;
+
+    /*0：关掉功控 1：打开功控 . BT时，配1*/
+    VOS_UINT16 usSrsPwrCtrlSwitch;
+
+    /*0：关掉功控 1：打开功控  . BT时，配1*/
+    VOS_UINT16 usPrachPwrCtrlSwitch;
+
+
+    VOS_INT16  sPucchTxPower;     /* 默认23, ulPucchPwrCtrlSwitch为0时有效*/
+
+    VOS_INT16  sPuschTxPower;     /* 默认23, ulPuschPwrCtrlSwitch为0时有效*/
+
+    VOS_INT16  sSrsTxPower;       /* 默认23, ulSrsPwrCtrlSwitch为0时有效*/
+
+    VOS_INT16  sPrachTxPower;     /* 默认15, ulPrachPwrCtrlSwitch为0时有效*/
+
+}UPLINK_POWER_CONFIG_STRU;
+
+/*补偿的开关*/
+typedef struct
+{
+    /*0：关掉频率补偿 1:打开频率补偿*/
+    VOS_UINT16 usFreqCmpnstSwitch;
+
+    /*0：关掉温度补偿  1:打开温度补偿*/
+    VOS_UINT16 usTempCmpnstSwitch;
+    
+}CMPNST_SWITCH_STRU;
+
+typedef struct
+{
+    U16_T usWatchDogFlag;          /* 0：关闭。1：打开 */
+    U16_T usPeriod;                /* watch dog的周期  值：0，1，2，3对应文档WDT_TIMEOUT_1等值，NV初时值为2 对应WDT_TIMEOUT_3 */
+}NV_ID_MSP_WATCH_DOG_STRU;
+
+typedef struct
+{
+    U32_T ulCoreDumpFlag;          /* 0：关闭。1：打开。默认关 */
+}NV_ID_MSP_CORE_DUMP_STRU;
+typedef struct
+{
+    U8_T ucAuthorityVer[4];        /*默认值为 [1,0,0,1] */
+}NV_ID_AUTHORITY_VER_STRU;
+
+typedef struct
+{
+    U32_T ucAuthorityType;        /*默认值为 0 */
+}NV_ID_AUTHORITY_TYPE_STRU;
+
+
+// 名称  : EN_NV_ID_MSP_AUTHDATA (0xb)
+// 默认值: 全0
+// STRUCT: L4A_AUTHDATA_STRU
+
+#define L4A_AUTHDATA_UNDEFIEND               (0)
+#define L4A_AUTHDATA_DEFIEND                 (1)
+
+#define L4A_AUTHDATA_MAX_USERNAME_LEN        (127)
+#define L4A_AUTHDATA_MAX_PASSWORD_LEN        (127)
+
+#define L4A_AUTHDATA_AUTHTYPE_NONE           (0)
+#define L4A_AUTHDATA_AUTHTYPE_PAP            (1)
+#define L4A_AUTHDATA_AUTHTYPE_CHAP           (2)
+#define L4A_AUTHDATA_AUTHTYPE_BUTT           (0xFF)
+
+// NV Item EN_NV_ID_MSP_AUTHDATA storage
+typedef struct
+{
+    U8_T ucCid;        /* 1~16*/
+    U8_T ucDefined;    /* 0:undefined,1:defined*/
+    U16_T usAuthType;  /* 0,1,2,0xFF*/
+    U32_T ulPLMN;      /* 16进制存储*/
+    U8_T ucPwdLen;
+    U8_T aucPadding1[3];
+    U8_T szPassword[128];
+    U8_T ucUserNameLen;
+    U8_T aucPadding2[3];
+    U8_T szUserName[128];
+}L4A_PDP_AUTHDATA_STRU;
+
+//TMODE装备融合 
+typedef struct 
+{ 
+    U32_T ulTmodeRat; 
+}FTM_TMODE_RAT_NV_STRU;
+
+/*标识当前版本是否是路测版本*/
+typedef struct
+{
+    U32_T ulAgentFlag; /*：1，路测 0 非路测*/ 
+    U8_T ulRandData[256];  /*鉴权随机数校验码*/
+}NV_AGENT_FLAG_STRU;
+
+typedef struct
+{
+    U32_T ulSocpDelayWriteFlg;/* SOCP延迟写入功能启动标记 */
+    U32_T ulGuSocpLevel;      /* GU SOCP目的BUFFER发送水线 */
+    U32_T ulLSocpLevel;       /* L SOCP目的BUFFER发送水线 */
+    U32_T ulTimeOutValue;     /* SOCP目的BUFFER的超时时间 */
+}NV_SOCP_LOG_CFG_STRU;
+
+typedef struct
+{
+  U8_T aucBuf[1];
+}UINT8_STRU;
+
+typedef struct
+{
+  U8_T aucBuf[1];
+}INT8_STRU;
+
+typedef struct
+{
+  U32_T aulBuf[1];
+}UINT32_STRU;
+
+typedef struct
+{
+  S32_T aulBuf[1];
+}INT32_STRU;

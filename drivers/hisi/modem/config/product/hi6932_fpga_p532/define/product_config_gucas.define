@@ -1,0 +1,141 @@
+#####################################################################
+# Copyright (C) 2015 Huawei Tech. Co., Ltd.                         #
+# obuild product define file                                        #
+#                                                                   #
+#####################################################################
+
+#####################################################################
+# 注意:                                                             #
+# 本文档定义GUCAS管理的特性宏，大家新增特性宏时请增加在各子模块的尾 #
+# 部                                                                #
+#####################################################################
+
+
+#####################################################################
+# GU TTF FEATURE CONFIG                                             #
+#####################################################################
+
+# 流控模块在AP上的流控点注册
+CFG_FEATURE_ACPU_FC_POINT_REG                   = FEATURE_OFF
+
+# ACPU 负载统计
+CFG_FEATURE_ACPU_STAT                           = FEATURE_OFF
+
+CFG_FEATURE_BBPMST_FREQUENCY_REDUCE             = FEATURE_ON
+
+CFG_FEATURE_CSD                                 = FEATURE_OFF
+
+CFG_FEATURE_CST_ASYN_OR_NOT_TRANS               = FEATURE_OFF
+
+# CFG_FEATURE_PPP CFG_FEATURE_HARDWARE_HDLC_FUNC CFG_FEATURE_HARDWARE_HDLC_ON_CCPU三个宏定义配合使用
+# CFG_FEATURE_HARDWARE_HDLC_FUNC和CFG_FEATURE_HARDWARE_HDLC_ON_CCPU不能同时为FEATURE_ON
+# CFG_FEATURE_PPP为FEATURE_OFF时，CFG_FEATURE_HARDWARE_HDLC_FUNC一定为FEATURE_OFF
+# 伯克利PPP是否支持硬件HDLC功能，支持硬件HDLC功能FEATURE_ON
+CFG_FEATURE_HARDWARE_HDLC_FUNC                  = FEATURE_OFF
+
+#HISOCKET 功能开关
+CFG_FEATURE_HISOCKET				=FEATURE_OFF
+
+CFG_FEATURE_MMU_MEDIUM                          = FEATURE_ON
+
+CFG_FEATURE_MMU_SMALL                           = FEATURE_OFF
+
+CFG_FEATURE_NFEXT                               = FEATURE_OFF
+
+# CFG_FEATURE_PPP CFG_FEATURE_HARDWARE_HDLC_FUNC CFG_FEATURE_HARDWARE_HDLC_ON_CCPU三个宏定义配合使用
+# CFG_FEATURE_HARDWARE_HDLC_FUNC和CFG_FEATURE_HARDWARE_HDLC_ON_CCPU不能同时为FEATURE_ON
+# CFG_FEATURE_PPP为FEATURE_OFF时，CFG_FEATURE_HARDWARE_HDLC_FUNC一定为FEATURE_OFF
+# 伯克利PPP模块是否在A核加载
+CFG_FEATURE_PPP                                 = FEATURE_OFF
+
+# BBP小邮箱: 此特性开启后, WTTF会将BBP邮箱中的数据拷贝到TTF MEM, 从而减小BBP邮箱规格, 达到裁剪内存的目的
+CFG_FEATURE_SMALL_MAILBOX                       = FEATURE_OFF
+
+
+# TCP-ACK前移
+CFG_FEATURE_TCP_ACK_IN_FRONT                    = FEATURE_ON
+
+# TTF内存调试开关
+# 目前打开开关以主要检查内存泄漏, 稳定后可以关闭
+CFG_FEATURE_TTF_MEM_DEBUG                       = FEATURE_ON
+
+# RTOSck 操作系统visp vpp
+# 当CFG_FEATURE_IMS开关打开时，本特性宏也需要打开
+CFG_FEATURE_VISP_VPP				= FEATURE_ON
+
+# 加密系统控制器
+CFG_SC_CTRL_MOD_6620_FPGA                       = 1
+CFG_SC_CTRL_MOD_6620_SFT                        = 2
+CFG_SC_CTRL_MOD_6758_FPGA                       = 3
+CFG_SC_CTRL_MOD_6758_SFT                        = 4
+CFG_SC_CTRL_MOD_6930_FPGA                       = 5
+CFG_SC_CTRL_MOD_6930_SFT                        = 6
+CFG_SC_CTRL_MOD_3630_UDP                        = 7
+CFG_SC_CTRL_MOD_6210_FPGA                       = 8
+CFG_SC_CTRL_MOD_6210_SFT                        = 9
+CFG_SC_CTRL_MOD_P532                            = 10
+CFG_SC_CTRL_MOD_6950_SFT                        = 11
+CFG_SC_CTRL_MOD_3650_SFT                        = 12
+CFG_SC_CTRL_MOD                                 = (SC_CTRL_MOD_P532)
+
+# 压缩开关
+CFG_TTF_CF_FEATURE                              = FEATURE_OFF
+
+#SVLTE 共天线特性开关
+CFG_FEATURE_DSDS                                = FEATURE_OFF
+
+
+
+#####################################################################
+# GU GAS FEATURE CONFIG                                             #
+#####################################################################
+# GAS协议版本定义
+CFG_GAS_PTL_VER_PRE_R99                         = (PS_PTL_VER_PRE_R99)
+CFG_GAS_PTL_VER_R99                             = (PS_PTL_VER_R99)
+CFG_GAS_PTL_VER_R3                              = (PS_PTL_VER_R3)
+CFG_GAS_PTL_VER_R4                              = (PS_PTL_VER_R4)
+CFG_GAS_PTL_VER_R5                              = (PS_PTL_VER_R5)
+CFG_GAS_PTL_VER_R6                              = (PS_PTL_VER_R6)
+CFG_GAS_PTL_VER_R7                              = (PS_PTL_VER_R7)
+CFG_GAS_PTL_VER_R8                              = (PS_PTL_VER_R8)
+CFG_GAS_PTL_VER_R9                              = (PS_PTL_VER_R9)
+
+# GAS当前版本
+CFG_GAS_UE_REL_VER                              = (GAS_PTL_VER_R9)
+
+
+#####################################################################
+# GU WAS FEATURE CONFIG                                             #
+#####################################################################
+
+CFG_FEATURE_DC_MIMO                             = FEATURE_OFF
+
+CFG_FEATURE_DC_UPA                              = FEATURE_OFF
+
+# DL E CELL FACH
+CFG_FEATURE_DL_E_CELL_FACH                      = FEATURE_ON
+
+CFG_FEATURE_UL_E_CELL_FACH                      = FEATURE_ON
+
+
+#####################################################################
+# C TTF FEATURE CONFIG                                              #
+#####################################################################
+# CFG_FEATURE_PPP CFG_FEATURE_HARDWARE_HDLC_FUNC CFG_FEATURE_HARDWARE_HDLC_ON_CCPU三个宏定义配合使用
+# CFG_FEATURE_HARDWARE_HDLC_FUNC和CFG_FEATURE_HARDWARE_HDLC_ON_CCPU不能同时为FEATURE_ON
+# CFG_FEATURE_PPP为FEATURE_OFF时，CFG_FEATURE_HARDWARE_HDLC_FUNC一定为FEATURE_OFF
+# PPPC是否支持硬件HDLC功能，支持硬件HDLC功能FEATURE_ON
+CFG_FEATURE_HARDWARE_HDLC_ON_CCPU               = FEATURE_OFF
+
+#CFG_FEATURE_UE_MODE_CDMA                       = FEATURE_OFF
+
+#####################################################################
+# C AS FEATURE CONFIG                                               #
+#####################################################################
+
+
+
+#####################################################################
+# 数据代理，产品线维护，接口人(钟文国)                              #
+#####################################################################
+CFG_FEATURE_BASTET                              = FEATURE_OFF

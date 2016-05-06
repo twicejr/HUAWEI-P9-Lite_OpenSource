@@ -1,0 +1,37 @@
+CFG_FEATURE_BBP_MASTER                          = FEATURE_ON
+
+CFG_BBP_MASTER_INT_MODE                         = FEATURE_ON
+
+CFG_FEATURE_BBP_MASTER_CHAN_EXTEND              = FEATURE_ON
+
+CFG_FEATURE_BBP_MASTER_CHAN_U2              	= FEATURE_ON
+
+# 多文件系统分区,后续需要删除
+CFG_FEATURE_MULTI_FS_PARTITION                  = FEATURE_OFF
+
+#ACORE VOS Hard Timer
+CFG_FEATURE_POWER_TIMER                         = FEATURE_OFF
+
+#卡多应用开关宏
+CFG_FEATURE_UE_UICC_MULTI_APP_SUPPORT           = FEATURE_ON
+
+# 虚拟卡特性开关
+CFG_FEATURE_VSIM                                = FEATURE_ON
+
+# GUC BBP TRIG特性开关
+CFG_FEATURE_GUC_BBP_TRIG                        = FEATURE_OFF
+
+# GU DRX低功耗特性BBP握手功能
+CFG_FEATURE_GUBBP_HANDSHAKE                     = FEATURE_ON
+
+# GU DRX新版本特性控制开关
+CFG_FEATURE_GUDRX_NEWVERSION                    = FEATURE_ON
+
+#减少VOS内存
+CFG_FEATURE_VOS_REDUCE_MEM_CFG                  = FEATURE_OFF
+
+# BBP采数功能
+CFG_FEATURE_OM_BBPLOG                           = FEATURE_OFF
+
+# RTC Timer DBG功能
+CFG_FEATURE_RTC_TIMER_DBG                       = FEATURE_OFF

@@ -1,0 +1,17 @@
+if VIDEO_HI6210_CAMERA
+
+config VIDEO_HIK3_ISP_CAMERA
+    tristate "Support Camera ISP"
+    depends on VIDEO_HI6210_CAMERA
+    default n
+    ---help---
+        Hisilicon K3 ISP driver.
+
+config CAMERA_MINI_ISP
+    tristate "Support Camera Mini ISP"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default n
+    ---help---
+        HI6210 camera driver for mini isp
+
+endif

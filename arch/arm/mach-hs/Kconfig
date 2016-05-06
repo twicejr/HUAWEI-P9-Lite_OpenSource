@@ -1,0 +1,46 @@
+menu "Hisilicon Hi3xxx family"
+
+config ARCH_HS
+	bool "Hisilicon Hi36xx/Hi37xx family" if ARCH_MULTI_V7
+	select CACHE_L2X0
+	select CACHE_PL310
+	select PINCTRL
+	select PINCTRL_SINGLE
+	select SERIAL_AMBA_PL011
+	select SERIAL_AMBA_PL011_CONSOLE
+	help
+	  Support for Hislicon Hi36xx/Hi37xx processor family
+
+if ARCH_HS
+
+config MACH_HS_DT
+	bool "Hisilicon Development Board"
+	default y
+	help
+	  Say 'Y' here if you want to support the Hisilicon Development
+	  Board.
+
+menu "Hisilicon Hi3620 Features"
+
+config IPPS_SUPPORT
+	bool "IPPS driver support"
+	select ARCH_HAS_CPUFREQ
+	default n
+	help
+	  IPPS driver support for cpu gpu ddr dvfs
+
+config IPPS_PARAM_ALTERNATIVE
+	bool "IPPS parameters seperate from firmware"
+	default n
+	help
+	  IPPS parameters seperate from firmware
+
+config TRIM_VOL
+	bool "TRIM Voltage support"
+	default n
+	help
+	  TRIM Voltage Patch Support
+endmenu
+endif
+
+endmenu

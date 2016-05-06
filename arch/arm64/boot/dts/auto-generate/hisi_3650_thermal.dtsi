@@ -1,0 +1,114 @@
+
+
+  /{
+
+		tsens: tsens@0{
+			compatible = "hisi,tsens";
+			hisi,sensors = <5>;
+			hisi,tsensor_enable_cmd = <0x000E000B>;
+			hisi,tsensor_disable_cmd = <0x000E010B>;
+			hisi,tsensor_read_thermal_h_cmd = <0x000E0208>;
+			hisi,tsensor_read_thermal_l_cmd = <0x000E0209>;
+			hisi,tsensor_write_thermal_h_cmd = <0x000E0308>;
+			hisi,tsensor_write_thermal_l_cmd = <0x000E0309>;
+			hisi,tsensor_read_temperature_cmd = <0x000E020B>;
+			hisi,tsensor_int_reback_cmd = <0x080E030B>;
+		};
+
+		hisi_peripheral_tm: hisi_tm@1 {
+			compatible = "hisi,hisi-peripheral-tm";
+			hisi,peripheral_sensors = <8>;
+
+			hisi,detect_system_h_tm_chanel = <12>;
+			hisi,detect_system_h_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_system_h_tm_state = "enable";
+
+			hisi,detect_flash_led_tm_chanel = <11>;
+			hisi,detect_flash_led_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_flash_led_tm_state = "enable";
+
+			hisi,detect_charger_tm_chanel = <5>;
+			hisi,detect_charger_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_charger_tm_state = "enable";
+
+			hisi,detect_pa_0_tm_chanel = <9>;
+			hisi,detect_pa_0_tm_ntc = "austin_hkadc_pa_temp_table";
+			hisi,detect_pa_0_tm_state = "enable";
+
+			hisi,detect_pa_1_tm_chanel = <13>;
+			hisi,detect_pa_1_tm_ntc = "austin_hkadc_pa_temp_table";
+			hisi,detect_pa_1_tm_state = "enable";
+
+			hisi,detect_dcxo0_tm_chanel = <3>;
+			hisi,detect_dcxo0_tm_ntc = "austin_hkadc_adc_temp_table";
+			hisi,detect_dcxo0_tm_state = "enable";
+
+			hisi,detect_shell_tm_chanel = <7>;
+			hisi,detect_shell_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_shell_tm_state = "enable";
+
+			hisi,detect_charger1_tm_chanel = <4>;
+			hisi,detect_charger1_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_charger1_tm_state = "disable";
+		};
+
+		ipa_sensor0: ipa-sensor@0 {
+			compatible = "arm,ipa-thermal";
+			hisilicon,cluster_dyn_capacitance  = <126 790>;/*little big*/
+			hisilicon,cluster_static_capacitance = <4 20>;/*little big*/
+			hisilicon,cache_capacitance  = <33 50>;/*little big*/
+			hisilicon,temperature_scale_capacitance = "48020","2120","-50","1","563"; /*temperature_scale_capacitance*/
+			hisilicon,gpu_dyn_capacitance  = <2913>;
+			hisilicon,gpu_temp_scale_capacitance = "48020","2120","-50","1","400";
+			#thermal-sensor-cells = <1>;
+			status = "ok";
+		};
+
+		thermal-zones {
+			soc_thermal {
+				governor_name = "power_allocator";
+				polling-delay = <200>;
+				polling-delay-passive = <50>;
+				sustainable-power = <3000>;
+				k_po = <0>;
+				k_pu = <0>;
+				k_i = <10>;
+				integral_cutoff = <8>;
+				thermal-sensors = <&ipa_sensor0 255>;
+
+	                       trips {
+	                                 threshold: trip-point@0 {
+	                                            temperature = <65000>;
+	                                            hysteresis = <1000>;
+	                                            type = "passive";
+	                                };
+	                                target: trip-point@1 {
+	                                           temperature = <80000>;
+	                                           hysteresis = <1000>;
+	                                           type = "passive";
+	                                };
+	                        };
+
+
+	                        cooling-maps {
+	                                   map0 {
+	                                           trip = <&target>;
+	                                           cooling-device = <&cluster0 0xffffffff 0xffffffff>;
+	                                           contribution = <768>;
+	                                   };
+	                                   map1 {
+	                                           trip = <&target>;
+	                                           cooling-device = <&cluster1 0xffffffff 0xffffffff>;
+	                                           contribution = <256>;
+	                                   };
+	                                   map2 {
+	                                           trip = <&target>;
+	                                           cooling-device = <&gpu 0xffffffff 0xffffffff>;
+	                                           contribution = <768>;
+	                                   };
+	                        };
+
+	                    };
+		};
+
+	};

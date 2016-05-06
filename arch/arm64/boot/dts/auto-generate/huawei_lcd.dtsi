@@ -1,0 +1,12 @@
+ 
+/{
+	huawei,lcd_panel {
+			compatible = "huawei,lcd_panel_type";
+			support_lcdid_count = <1>;	/*gpio count for lcdid*/
+			gpio_id_0 = <38>;	/*gpio no.*/
+			support_lcd_type_count = <1>;	/*lcdtype count supported*/
+			support_lcd_type_0 = "JDI_NT35695_LCD";	/*lcd type supported*/
+			expect_id_status_0 = <0>;	/*lcd id status for specifical type*/
+	};
+};
+

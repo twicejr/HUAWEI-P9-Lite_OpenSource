@@ -1,0 +1,54 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    /*power*/
+    hi1102 {
+	    compatible = "hisilicon,hi1102";
+	    huawei,pmu_clk32b = "pmu_clk32kb";
+	    hi1102,gpio_power_on = <&gpio4 3 0>;
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+    };
+
+    /*wifi*/
+    hisi_wifi {
+        compatible = "hisilicon,hisi_wifi";
+
+        hi1102,gpio_wlan_wakeup_host =  <&gpio26 5 0>;
+
+        hisi_wifi_firmware {
+	        compatible = "hisi,wifi_firmware";
+	        firmware_type_num="1";
+        };
+
+        hisi_wifi_supp {
+            compatible = "hisi,wifi_supp";
+            supp_config_template="/system/etc/wifi/wpa_supplicant_hisi.conf";
+        };
+
+        hisi_wifi_p2p {
+            compatible = "hisi,wifi_p2p";
+            p2p_config_template="/system/etc/wifi/p2p_supplicant_hisi.conf";
+        };
+
+        hisi_wifi_apd {
+            compatible = "hisi,wifi_hostapd";
+            hostapd_bin_file="/system/bin/hostapd_hisi";
+        };
+    };
+
+    /*bfgx*/
+    hisi_bfgx {
+        compatible = "hisilicon,hisi_bfgx";
+
+        hi1102,gpio_bfgn_wakeup_host = <&gpio26 2 0>;
+        hi1102,uart_port = "/dev/ttyAMA3";
+    };
+};

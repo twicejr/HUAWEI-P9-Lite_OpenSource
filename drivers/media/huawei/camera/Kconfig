@@ -1,0 +1,35 @@
+comment "Huawei Camera"
+
+# source "drivers/media/huawei/camera/isp/Kconfig"
+source "drivers/media/huawei/camera/hisp/Kconfig"
+source "drivers/media/huawei/camera/sensor/Kconfig"
+
+source "drivers/media/huawei/camera/platform/hi3650/Kconfig"
+source "drivers/media/huawei/camera/platform/hi3635/Kconfig"
+source "drivers/media/huawei/camera/platform/hi6250/Kconfig"
+
+menuconfig HUAWEI_CAMERA_USE_EXTISP
+    bool "Huawei external ISP support"
+    default n
+    select SPI
+    help
+        Say Y here to enable external ISP for Huawei camera
+
+config HISI_CAMERA_HISTAR_ISPV100
+    tristate "Support histar ispv100 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv100 driver.
+
+config HISI_CAMERA_HISTAR_ISPV110
+    tristate "Support histar ispv110 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv110 driver.
+
+if HUAWEI_CAMERA_USE_EXTISP
+source "drivers/media/huawei/camera/extisp/Kconfig"
+endif
+

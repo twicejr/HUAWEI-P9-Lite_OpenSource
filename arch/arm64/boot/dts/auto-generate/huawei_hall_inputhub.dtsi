@@ -1,0 +1,71 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+ 
+ /*
+ *    Copyright (c) 2014 Huawei co Ltd
+ *    Hall DTS Configuration NOTES
+ *        1.All the configurations must be configured except the poles configurations(But at least one pole configuration).
+ *        2.If add a new hall device in this file(huawei_hall_inputhub.dtsi), please configure the configuration of "huawei,default-state" "off"
+ *          and configure the configuration of "huawei,default-state" "on" in product file "config.dts"
+ *        3.The configuration "huawei,type" and "huawei,hw-wakeup-support"
+ *            depend on the number of gpios the boart supported.
+ *            These two configuration items are configured according to bit.
+ *    The main Hall Item Description
+ *        huawei,default-state:
+ *            This is the switch of the device "on"/"off"
+ *        huawei,type:
+ *            0x01: single-north-pole
+ *            0x02: single-south-pole
+ *            0x03: double-pole
+ *        huawei,hw-wakeup-support:
+ *            0x01: n-pole supported wakeup
+ *            0x02: s-pole supported wakeup
+ *            0x03: double-pole supported wakeup
+ *    Add a new hall sample:
+ *        Add a new child node of hall device int hall node as below:
+ *    hall{
+ *        // Add the new hall device
+ *        huawei,hall_x{                               // The value of 'x' is better to use the same number of the hall ID
+ *            // add the gpio numbers
+ *            huawei,single-n-pole = <&gpio25 7 0>;    // If suppport please configure the n-pole gpio number
+ *            huawei,single-s-pole = <&gpio25 7 0>;    // If suppport please configure the s-pole gpio number
+ *
+ *            huawei,id = <x>;                         // Configure the hall device ID
+ *            huawei,type = <0x03>;                    // Configure the hall type depand on the support gpio nums
+ *            huawei,wakeup-flag = <0x4000>;           // Default configuration, no need to change
+ *            huawei,hw-wakeup-support = <0x03>;       // Configure the hall wakeup support by hardware of gpio
+ *            huawei,default-state = "off";            // Configure the switch "on" if need this hall device configuration work
+ *            // Configure the hall coordinate, default configuration x=0, y=0
+ *            huawei,x-coordinate = <0>;
+ *            huawei,y-coordinate = <0>;
+ *        };
+ *    };
+ */
+ 
+/{
+    hall {
+        compatible = "huawei,hall_sensor";
+        status = "disabled";
+        huawei,hall_0{
+            huawei,single-n-pole = <&gpio25 7 0>;
+            huawei,single-s-pole = <&gpio26 1 0>;
+            huawei,id = <0>;
+            huawei,type = <0x03>;
+            huawei,wakeup-flag = <0x4000>;
+            huawei,hw-wakeup-support = <0x03>;
+            huawei,default-state = "off";
+            huawei,x-coordinate = <0>;
+            huawei,y-coordinate = <0>;
+        };
+    };
+};

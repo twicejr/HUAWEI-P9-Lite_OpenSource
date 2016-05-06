@@ -1,0 +1,2 @@
+
+source "drivers/huawei_platform/camera_legacy/hi6220/Kconfig"

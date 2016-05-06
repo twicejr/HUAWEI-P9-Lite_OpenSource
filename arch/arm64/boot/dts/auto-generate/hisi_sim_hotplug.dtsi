@@ -1,0 +1,83 @@
+
+
+/{
+    pmic: pmic@FFF34000 {
+        sim0 {
+            compatible = "hisilicon,sim-hotplug0";
+            gpios = <&gpio27 5 0>;
+            sim_id = <0>;
+            /*
+            pinctrl-names = "default", "idle";
+            pinctrl-0 = <&gpio83_pmx_func &gpio84_pmx_func &gpio85_pmx_func
+                    &gpio83_cfg_func &gpio84_cfg_func &gpio85_cfg_func>;
+            pinctrl-1 = <&gpio83_pmx_idle &gpio84_pmx_idle &gpio85_pmx_idle
+                    &gpio83_cfg_idle &gpio84_cfg_idle &gpio85_cfg_idle>;
+            */
+            status = "disabled";
+            func_sel_state = "not_use_multi_func";
+            det_normal_direction = "closed";
+            allocate_gpio = <0>;
+            shared_det_irq = <0>;
+            send_msg_to_cp = <0>;
+            card_tray_style = <0>;
+            hpd_interrupt_to_close_ldo = <0>;
+            hpd_debounce_wait_time = <0>;
+            det_debounce_wait_time = <0>;
+            interrupt-parent = <&pmic>;
+            interrupts = <25 0>;
+            interrupt-names = "hpd0_falling";
+            pmu_status1_address = <0x007>;
+            pmu_ldo11_onoff_eco_address = <0x06E>;
+            pmu_ldo11_vset_address = <0x06F>;
+            pmu_ldo12_onoff_eco_address = <0x070>;
+            pmu_ldo12_vset_address = <0x071>;
+            pmu_sim_ctrl_address = <0x0DE>;
+            pmu_sim_deb_ctrl_address = <0x0DF>;
+            pmu_irq_mask3_address = <0x0E4>;
+            pmu_irq3_address = <0x123>;
+            pmu_ldo11_onoff_value = <0x02>;
+            pmu_ldo11_vset_value = <0x01>;
+            pmu_ldo12_onoff_value = <0x02>;
+            pmu_ldo12_vset_value = <0x01>;
+        };
+
+        sim1 {
+            compatible = "hisilicon,sim-hotplug1";
+            gpios = <&gpio27 5 0>;
+            sim_id = <1>;
+            /*
+            pinctrl-names = "default", "idle";
+            pinctrl-0 = <&gpio86_pmx_func &gpio87_pmx_func &gpio88_pmx_func
+                    &gpio86_cfg_func &gpio87_cfg_func &gpio88_cfg_func>;
+            pinctrl-1 = <&gpio86_pmx_idle &gpio87_pmx_idle &gpio88_pmx_idle
+                    &gpio86_cfg_idle &gpio87_cfg_idle &gpio88_cfg_idle>;
+            */
+            status = "disabled";
+            func_sel_state = "not_use_multi_func";
+            det_normal_direction = "closed";
+            allocate_gpio = <0>;
+            shared_det_irq = <0>;
+            send_msg_to_cp = <0>;
+            card_tray_style = <0>;
+            hpd_interrupt_to_close_ldo = <0>;
+            hpd_debounce_wait_time = <0>;
+            det_debounce_wait_time = <0>;
+            interrupt-parent = <&pmic>;
+            interrupts = <29 0>;
+            interrupt-names = "hpd1_falling";
+            pmu_status1_address = <0x007>;
+            pmu_ldo11_onoff_eco_address = <0x06E>;
+            pmu_ldo11_vset_address = <0x06F>;
+            pmu_ldo12_onoff_eco_address = <0x070>;
+            pmu_ldo12_vset_address = <0x071>;
+            pmu_sim_ctrl_address = <0x0DE>;
+            pmu_sim_deb_ctrl_address = <0x0DF>;
+            pmu_irq_mask3_address = <0x0E4>;
+            pmu_irq3_address = <0x123>;
+            pmu_ldo11_onoff_value = <0x02>;
+            pmu_ldo11_vset_value = <0x01>;
+            pmu_ldo12_onoff_value = <0x02>;
+            pmu_ldo12_vset_value = <0x01>;
+        };
+    };
+};

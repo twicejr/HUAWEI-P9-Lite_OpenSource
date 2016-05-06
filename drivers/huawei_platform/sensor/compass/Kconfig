@@ -1,0 +1,33 @@
+#
+# compass driver configuration
+#
+menuconfig INPUT_COMPASS
+	bool "Compass"
+	depends on !SENSORHUB_FEATURE_SUPPORT
+	select HUAWEI_SENSORS_INPUT_INFO
+	default n
+	help
+		Say Y here, and a list of supported COMPASSs will be displayed.
+		This option doesn't affect the kernel.
+
+
+
+if INPUT_COMPASS
+
+config HUAWEI_FEATURE_SENSORS_AKM09911
+	tristate "AKM09911"
+	default n
+	depends on I2C
+	help
+		If you say yes here you get support for Asahi Kasei's
+		orientation sensor AKM09911.
+
+config COMPASS_DEBUG
+	bool "compass debugging messages"
+	default n
+	help
+		Say Y here if you want the compass to produce a bunch of debug
+		messages to the system log.  Select this if you are having a
+		problem with compass and want to see more of what is going on.
+
+endif

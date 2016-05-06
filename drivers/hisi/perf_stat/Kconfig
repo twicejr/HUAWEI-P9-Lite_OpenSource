@@ -1,0 +1,10 @@
+config HISI_PERF_STAT
+	bool "Hisilicon perf_stat driver 32bit driver"
+	default n
+	help
+	Hi3650 perf_stat driver support
+config HISI_PERF_STAT64
+	bool "Hisilicon perf_stat driver 64bit driver"
+	default n
+	help
+	Hi3660 perf_stat driver support

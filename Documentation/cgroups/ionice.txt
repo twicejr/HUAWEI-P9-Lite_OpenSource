@@ -1,0 +1,34 @@
+Ionice Controller
+======================
+
+Overview
+--------
+
+Ionice cgroup is used to control processes' io prio value by cgroup, details
+please refer to Documentation\block\ioprio.txt
+
+Why don't use blkio cgroup:
+1. blkio cgroup is used to control disk I/O R/W weight of processes, it's not
+effective for flash storage
+2. blkio cgroup depends on CONFIG_CFQ_GROUP_IOSCHED,  but other schedulers,
+like ROW,  may be used to replace CFQ
+
+User interface
+--------------
+
+prio:  processes io priority, signed long type, set by both class and level
+       for example, class IOPRIO_CLASS_BE, level 4, value is:
+       IOPRIO_CLASS_BE << 13 | 4 = 0x4003 = 16387
+       echo 16387 > [ionice cgroup]/prio
+
+class: read only, string type, after writing prio, user can cat it to verify
+       class
+
+level: read only, signed long type, after writing prio, user can cat it to verify
+       level
+
+Notice
+--------------
+root group hasn't above interfaces, that means the tasks in root group(by default) io priority won't be affected
+parent group and child group has no inherited or restricted relationship,
+tasks' io priority in any group only determined by the group prio.

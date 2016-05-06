@@ -1,0 +1,1 @@
+obj-$(CONFIG_HISI_SOCP)			+= socp.o

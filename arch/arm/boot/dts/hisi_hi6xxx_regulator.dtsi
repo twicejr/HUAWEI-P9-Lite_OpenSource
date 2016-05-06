@@ -1,0 +1,697 @@
+/*
+ *  Copyright (C) 2012-2014 Hisilicon
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	pmic: pmic@F8000000 {
+		compatible = "hisilicon,hi6xxx-pmic-driver";
+		reg = <0xF8000000 0x1000>;
+		#interrupt-cells = <2>;
+		interrupt-controller;
+                gpios = <&gpio1 0 0>;
+		/*clocks = <&pmic_clk>;
+		clock-names = "pmic_clk";*/
+		
+		ponkey:ponkey@b1{
+			compatible = "hisilicon,hisi-powerkey";
+			interrupt-parent = <&pmic>;
+			interrupts = <6 0>, <5 0>, <4 0>;
+			interrupt-names = "down", "up", "hold 1s";
+		};
+		
+		usbvbus:usbvbus@b2{
+			compatible = "hisilicon,usbvbus";
+			interrupt-parent = <&pmic>;
+			interrupts = <11 0>, <10 0>;
+			interrupt-names = "connect", "disconnect";
+		};		
+		buck2: regulator@a1 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "buck2";		
+			regulator-min-microvolt = <700000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0>;
+			
+			hisilicon,off-on-delay = <480>;
+			hisilicon,ctrl-regs = <0x2d 0x2e 0x2f>;
+			hisilicon,ctrl-data = <2 0x01>;
+			hisilicon,vset-regs = <0x98>;
+			hisilicon,vset-data = <0 0x08>;
+			hisilicon,regulator-n-vol = <64>;
+			hisilicon,vset-table = <700000>, <708000>,<716000>, <724000>,<732000>, <740000>,
+						<748000>, <756000>,<764000>, <772000>,<780000>, <788000>,
+						<796000>, <804000>,<812000>, <820000>,<828000>, <836000>,									 
+						<844000>, <852000>,<860000>, <868000>,<876000>, <884000>,
+						<892000>, <900000>,<908000>, <916000>,<924000>, <932000>,
+						<940000>, <948000>,<956000>, <964000>,<972000>, <980000>,
+						<988000>, <996000>,<1004000>, <1012000>,<1020000>, <1028000>,
+						<1036000>, <1044000>,<1052000>, <1060000>,<1068000>, <1076000>,
+						<1084000>, <1092000>,<1100000>, <1108000>,<1116000>, <1124000>,									  
+						<1132000>, <1140000>,<1148000>, <1156000>,<1164000>, <1172000>,		
+						<1180000>, <1196000>,<1204000>, <1212000>;
+            /*hisilicon,regulator-supply*/		
+		};		
+
+		boost1: regulator@a2 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "boost1";		
+			regulator-min-microvolt = <3400000>;
+			regulator-max-microvolt = <5500000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x3>;
+				
+			hisilicon,off-on-delay = <480>;
+			hisilicon,ctrl-regs = <0xb9 0xb9 0xb9>;
+			hisilicon,ctrl-data = <0 0x01>;
+			hisilicon,vset-regs = <0xc2>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <5500000>, <5400000>,
+									<5200000>, <5000000>,
+									<4200000>, <3800000>,
+									<3500000>, <3400000>;
+            /*hisilicon,regulator-supply*/		
+		};	
+
+		ldo2: regulator@a3 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo2";		
+			regulator-min-microvolt = <2500000>;
+			regulator-max-microvolt = <3300000>;
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x030 0x031 0x032>;
+			hisilicon,ctrl-data = <1 0x01>;
+			hisilicon,vset-regs = <0x09e>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <2500000>, <2600000>,
+									<2800000>, <2900000>,
+									<3000000>, <3100000>,
+									<3200000>, <3300000>;
+            /*hisilicon,regulator-supply*/		
+		};
+
+		ldo5: regulator@a4 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo5";		
+			regulator-min-microvolt = <2850000>;
+			regulator-max-microvolt = <3300000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;	
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x030 0x031 0x032>;
+			hisilicon,ctrl-data = <4 0x01>;
+			hisilicon,vset-regs = <0xa1>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <2850000>, <2900000>,
+									<2950000>, <3000000>,
+									<3050000>, <3100000>,
+									<3150000>, <3300000>;
+            /*hisilicon,regulator-supply*/		
+		};	
+		ldo7: regulator@a5 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo7";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3050000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;	
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x030 0x031 0x032>;
+			hisilicon,ctrl-data = <0x6 0x01>;
+			hisilicon,vset-regs = <0xa3>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <1850000>,
+									<2800000>, <2850000>,
+									<2900000>, <2950000>,
+									<3000000>, <3050000>;
+            /*hisilicon,regulator-supply*/		
+		};	
+
+		ldo10: regulator@a6 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo10";		
+			regulator-min-microvolt = <2800000>;
+			regulator-max-microvolt = <3150000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <0 0x01>;
+			hisilicon,vset-regs = <0xa6>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <2800000>, <2850000>,
+									<2900000>, <2950000>,
+									<3000000>, <3050000>,
+									<3100000>, <3150000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo13: regulator@a7 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo13";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3000000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <2 0x01>;
+			hisilicon,vset-regs = <0xa9>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <2500000>,
+									<2600000>, <2700000>,
+									<2800000>, <2850000>,
+									<2900000>, <3000000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo14: regulator@a8 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo14";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3000000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <3 0x01>;
+			hisilicon,vset-regs = <0xaa>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <2500000>,
+									<2600000>, <2700000>,
+									<2800000>, <2850000>,
+									<2900000>, <3000000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo15: regulator@a9 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo15";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3000000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <4 0x01>;
+			hisilicon,vset-regs = <0xab>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <2500000>,
+									<2600000>, <2700000>,
+									<2800000>, <2850000>,
+									<2900000>, <3000000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo16: regulator@a10 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo16";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3000000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;	
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <5 0x01>;
+			hisilicon,vset-regs = <0xac>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <2500000>,
+									<2600000>, <2700000>,
+									<2800000>, <2850000>,
+									<2900000>, <3000000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo17: regulator@a11 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo17";		
+			regulator-min-microvolt = <900000>;
+			regulator-max-microvolt = <1250000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <6 0x01>;
+			hisilicon,vset-regs = <0xad>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <900000>, <950000>,
+									<1000000>, <1050000>,
+									<1100000>, <1150000>,
+									<1200000>, <1250000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo18: regulator@a12 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo18";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3000000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x33 0x34 0x35>;
+			hisilicon,ctrl-data = <7 0x01>;
+			hisilicon,vset-regs = <0xae>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1800000>, <2500000>,
+									<2600000>, <2700000>,
+									<2800000>, <2850000>,
+									<2900000>, <3000000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo19: regulator@a13 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo19";		
+			regulator-min-microvolt = <900000>;
+			regulator-max-microvolt = <1075000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <0 0x01>;
+			hisilicon,vset-regs = <0xaf>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <900000>, <925000>,
+									<950000>, <975000>,
+									<1000000>, <1025000>,
+									<1050000>, <1075000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo20: regulator@a14 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo20";		
+			regulator-min-microvolt = <2500000>;
+			regulator-max-microvolt = <3100000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+		
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <1 0x01>;
+			hisilicon,vset-regs = <0xb0>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <2500000>, <2600000>,
+									<2700000>, <27500000>,
+									<2800000>, <2850000>,
+									<3000000>, <3100000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo21: regulator@a15 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo21";		
+			regulator-min-microvolt = <1200000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+		
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <2 0x01>;
+			hisilicon,vset-regs = <0xb1>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1200000>, <1250000>,
+									<1275000>, <1300000>,
+									<1325000>, <1350000>,
+									<1500000>, <1800000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo22: regulator@a16 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo22";		
+			regulator-min-microvolt = <1400000>;
+			regulator-max-microvolt = <1525000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <3 0x01>;
+			hisilicon,vset-regs = <0xb2>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <6>;
+			hisilicon,vset-table = <1400000>, <1425000>,
+									<1450000>, <1475000>,
+									<1500000>, <1525000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo23: regulator@a17 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo23";		
+			regulator-min-microvolt = <1500000>;
+			regulator-max-microvolt = <2850000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <4 0x01>;
+			hisilicon,vset-regs = <0xb3>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <1500000>, <1800000>,
+									<1850000>, <1900000>,
+									<1950000>, <2500000>,
+									<2800000>, <2850000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		ldo24: regulator@a18 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "ldo24";		
+			regulator-min-microvolt = <2800000>;
+			regulator-max-microvolt = <3150000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x1>;
+			
+			hisilicon,off-on-delay = <240>;
+			hisilicon,ctrl-regs = <0x36 0x37 0x38>;
+			hisilicon,ctrl-data = <5 0x01>;
+			hisilicon,vset-regs = <0xb4>;
+			hisilicon,vset-data = <0 0x03>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <2800000>, <2850000>,
+									<2900000>, <2950000>,
+									<3000000>, <3050000>,
+									<3100000>, <3150000>;
+            /*hisilicon,regulator-supply*/		
+		};
+		lvs2: regulator@a19 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs2";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+				
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <0 0x01>;
+
+		};	
+		lvs3: regulator@a20 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs3";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+			
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <1 0x01>;
+		};
+		lvs4: regulator@a21 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs4";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+		
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <2 0x01>;	
+		};	
+		lvs5: regulator@a22 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs5";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+			
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <3 0x01>;	
+		};
+		lvs6: regulator@a23 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs6";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+			
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <4 0x01>;
+		};
+		lvs7: regulator@a24 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs7";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+				
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <5 0x01>;
+		};	
+		lvs8: regulator@a25 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs8";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+			
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x39 0x3a 0x3b>;
+			hisilicon,ctrl-data = <6 0x01>;
+	
+		};
+
+		lvs10: regulator@a26 {
+			compatible = "hisilicon,hi6xxx-regulator-pmic";				
+			regulator-name = "lvs10";		
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			/*regulator-always-on;*/
+			hisilicon,valid-modes-mask = <0x2>;
+			hisilicon,valid-ops-mask = <0x1d>;
+			hisilicon,initial-mode = <0x2>;			
+			hisilicon,regulator-type = <0x2>;
+			
+			hisilicon,off-on-delay = <180>;
+			hisilicon,ctrl-regs = <0x3c 0x3d 0x3e>;
+			hisilicon,ctrl-data = <0 0x01>;
+
+		};
+	}; /* end of pmic type*/
+	
+	/*please mtcmos driver init must after pmic driver*/
+	
+	mtcmos: mtcmos@f7410000 {
+		compatible = "hisilicon,hi6xxx-mtcmos-driver";
+		hisilicon,mtcmos-steady-us = <10>;
+		hisilicon,mtcmos-nn-time-numb = <20>;
+		hisilicon,mtcmos-pwer-time = <0x884 0 0x10000>,<0x884 16 0x80000000>,
+									<0x888 0 0x10000>,<0x888 16 0x80000000>,
+									<0x88c 0 0x10000>,<0x88c 16 0x80000000>,
+									<0x890 0 0x10000>,<0x890 16 0x80000000>,
+									<0x894 0 0x10000>,<0x898 0 0x10000>,
+									<0x898 16 0x80000000>,<0x89c 0 0x10000>,
+									<0x89c 16 0x80000000>,<0x8a4 0 0x10000>,
+									<0x8a0 16 0x80000000>,<0x8a8 16 0x80000000>,
+									<0x8ac 0 0x10000>,<0x8a4 16 0x80000000>,
+									<0x340 0 0x10000>,<0x340 16 0x80000000>;
+									
+		mtcmos4: regulator@a27{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS4-EDC1";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <4 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos4-vcc";
+			mtcmos4-vcc-supply  = <&buck3>;	*/
+		};		
+		mtcmos5: regulator@a28{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS5-EDC0";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <3 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos5-vcc";
+			mtcmos5-vcc-supply  = <&buck3>;	*/
+		};		
+		mtcmos6: regulator@a29{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS6-G2D";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <2 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos6-vcc";
+			mtcmos6-vcc-supply  = <&buck3>;	*/	
+		};		
+		mtcmos7: regulator@a30{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS7-ISP";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+				
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <5 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos7-vcc";
+			mtcmos7-vcc-supply  = <&buck3>;	*/	
+		};		
+		mtcmos8: regulator@a31{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS8-VDEC";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <7 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos8-vcc";
+			mtcmos8-vcc-supply  = <&buck3>;	*/	
+		};		
+		mtcmos9: regulator@a32{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS9-VPP";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <9 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos9-vcc";
+			mtcmos9-vcc-supply  = <&buck3>;	*/
+		};		
+		mtcmos10: regulator@a33{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS10-VENC";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+			
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <6 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos10-vcc";
+			mtcmos10-vcc-supply  = <&buck3>;*/	
+		};		
+		mtcmos11: regulator@a34{
+			compatible = "hisilicon,hi6xxx-regulator-mtcmos";
+			regulator-name = "MTCMOS11-HIFI";
+			hisilicon,valid-ops-mask = <0x8>;
+			hisilicon,regulator-type = <4>;
+				
+			hisilicon,ctrl-regs = <0x830 0x834 0x854>;
+			hisilicon,ctrl-data = <8 0x1>;
+			/*regulator-always-on;*/
+			/*hisilicon,initdata-regulator-supply = "mtcmos11-vcc";
+			mtcmos11-vcc-supply  = <&buck3>;*/	
+		};					
+	}; /*end of mtcmos type*/
+	
+	/*scharge maybe will be added after it*/
+};

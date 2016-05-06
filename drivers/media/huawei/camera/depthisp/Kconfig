@@ -1,0 +1,14 @@
+comment "Huawei External Depth ISP"
+
+choice
+	prompt "External Depth ISP"
+	default HUAWEI_CAMERA_USE_ALD2
+	depends on HUAWEI_CAMERA && HUAWEI_CAMERA_USE_DEPTHISP
+	help
+        Select external ISP version. 
+
+config HUAWEI_CAMERA_USE_ALTEK6045
+    bool "Huawei external Depth ISP support"
+    select SPI
+
+endchoice

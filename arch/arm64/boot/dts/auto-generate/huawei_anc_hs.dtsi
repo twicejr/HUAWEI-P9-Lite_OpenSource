@@ -1,0 +1,27 @@
+/ {
+	amba {
+		i2c4: i2c@FDF0D000 {
+			anc_max14744: anc_max14744@15{
+				compatible = "huawei,anc_max14744";
+				reg = <0x15>;
+				adc_channel_l = <9>;
+				adc_channel_h = <7>;
+				gpio_type = <1>;
+				gpio_int = <&gpio31 5 0>;
+				pinctrl-names = "default", "idle";
+				pinctrl-0 = <&gpio029_hi6402_pinctrl_func &gpio010_hi6402_pinctrl_func>;
+				pinctrl-1 = <&gpio029_hi6402_pinctrl_idle &gpio010_hi6402_pinctrl_idle>;
+				gpio_pwr_en = <&gpio29 2 0>;
+				anc_hs_limit_min = <8>;
+				anc_hs_limit_max = <200>;
+				anc_hs_btn_hook_min_voltage = <170>;
+				anc_hs_btn_hook_max_voltage = <200>;
+				anc_hs_btn_volume_up_min_voltage = <210>;
+				anc_hs_btn_volume_up_max_voltage = <235>;
+				anc_hs_btn_volume_down_min_voltage = <245>;
+				anc_hs_btn_volume_down_max_voltage = <280>;
+				status = "disabled";
+			};
+		};
+	};
+};

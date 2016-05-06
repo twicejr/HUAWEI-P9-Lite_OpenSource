@@ -1,0 +1,233 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "hi6620_pin_oem.dtsi"
+/include/ "hi6620.dtsi"
+/include/ "hi6620-clk.dtsi"
+/include/ "hisi_hi6xxx_regulator.dtsi"
+/include/ "test_hisi_hi6xxx_regulator.dtsi"
+/include/ "hisi_hi6620_ion.dtsi"
+/include/ "hi6620-touchscreen.dtsi"
+
+/ {
+	model = "Hisilicon Hi6620 OEM Development Board";
+	compatible = "hisilicon,hi6620";
+	hisi,boardid = <1 1 1>;
+	#address-cells = <1>;
+    #size-cells = <1>;
+    interrupt-parent = <&gic>;
+
+	chosen {};
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <0>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@1 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <1>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@2 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <2>;
+			next-level-cache = <&l2>;
+		};
+
+		cpu@3 {
+			compatible = "arm,cortex-a9";
+			device_type = "cpu";
+			reg = <3>;
+			next-level-cache = <&l2>;
+		};
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x08600000 0x20000000>;
+	};
+
+	sctrl: sctrl@f711a000 {
+		status = "ok";
+	};
+
+	ao_sctrl: ao_sctrl@f7410000 {
+		status = "ok";
+	};
+
+	amba {
+		dual_timer0: timer@f7405000 {
+			status = "ok";
+		};
+
+		uart0: uart@f7110000 {	/* console */
+		/*
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&uart0_pmx_func &uart0_cfg_func>;
+			pinctrl-1 = <&uart0_pmx_idle &uart0_cfg_idle>;
+		*/
+			status = "ok";
+		};
+
+		gpio0: gpio@f7800000 {
+	 	        status = "ok";
+		};
+		gpio1: gpio@f7801000 {
+                        status = "ok";
+                };
+		gpio2: gpio@f7802000 {
+                        status = "ok";
+                };
+		gpio3: gpio@f7803000 {
+                        status = "ok";
+                };
+		gpio4: gpio@f7130000 {
+                        status = "ok";
+                };
+		gpio5: gpio@f7131000 {
+                        status = "ok";
+                };
+		gpio6: gpio@f7132000 {
+                        status = "ok";
+                };
+		gpio7: gpio@f7133000 {
+                        status = "ok";
+                };
+		gpio8: gpio@f7134000 {
+                        status = "ok";
+                };
+		gpio9: gpio@f7135000 {
+                        status = "ok";
+                };
+		gpio10: gpio@f7136000 {
+                        status = "ok";
+                };
+		gpio11: gpio@f7137000 {
+                        status = "ok";
+                };
+		gpio12: gpio@f7138000 {
+                        status = "ok";
+                };
+                gpio13: gpio@f7139000 {
+                        status = "ok";
+                };
+		gpio14: gpio@f713a000 {
+                        status = "ok";
+                };
+		gpio15: gpio@f713b000 {
+                        status = "ok";
+                };
+		gpio16: gpio@f713c000 {
+                        status = "ok";
+                };
+		gpio17: gpio@f713d000 {
+                        status = "ok";
+                };
+		gpio18: gpio@f713e000 {
+                        status = "ok";
+                };
+		gpio19: gpio@f7011000 {
+                        status = "ok";
+                };
+		/*i2c bus node*/
+		i2c0: i2c@f7100000 {
+			status = "ok";
+		};
+		i2c1: i2c@f7101000 {
+			status = "ok";
+			bq2419x_charger:charger@6B {
+				compatible = "huawei,bq2419x_charger";
+				reg = <0x6B>;
+				//gpio_cd = <&gpio4 0 0>;
+				//gpio_int = <&gpio4 1 0>;
+				//gpio_otg = <&gpio1 3 0>;
+				max_charger_voltagemV = <4208>;
+				max_charger_currentmA = <1000>;
+				max_cin_limit_currentmA = <1200>;
+				status = "ok";
+			};
+		};
+		i2c2: i2c@f7102000 {
+			status = "ok";
+		};
+		i2c3: i2c@f7103000 {
+			status = "ok";
+		};
+		i2c4: i2c@f7104000 {
+			status = "disabled";
+		};
+		i2c5: i2c@f7105000 {
+			status = "disabled";
+		};
+
+	};
+
+	/* emmc */
+	dwmmc_0: dwmmc0@F4109000 {
+ 		compatible = "hisilicon,hi3630-dw-mshc";
+ 	    reg = <0xF4109000 0x1000>;
+ 		interrupts = <0 72 4>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+/*
+ 		clocks = <&clk_gate_mmc0>, <&clk_ppll0>;
+ 		clock-names = "ciu", "biu";
+*/
+     };
+
+	thermal {
+		compatible = "hisilicon,tsensors";
+		tsen_num = <2>;
+		tsen_enable = <0x03>;
+		tsen_lag_value0 = <10>;
+		tsen_lag_value1 = <10>;
+		tsen_thres_value0 = <95>;
+		tsen_thres_value1 = <95>;
+		tsen_reset_thres_value0 = <120>;
+		tsen_reset_thres_value1 = <120>;
+		tsen_alarm_count1 = <5>;
+		tsen_alarm_count2 = <300>;
+		tsen_resume_count = <30>;
+		acpu_maxfreq = <800>;
+		gpu_maxfreq = <120>;
+		ddr_maxfreq = <360>;
+	};
+
+	hisi_gpio_key {
+       compatible = "hisilicon,gpio-key";
+       pinctrl-names = "default", "idle";
+       pinctrl-0 = <&GPIO_1_4_pmx_func
+                    &GPIO_1_5_pmx_func
+                    &GPIO_1_6_pmx_func
+                    &GPIO_1_4_cfg_func
+                    &GPIO_1_5_cfg_func
+                    &GPIO_1_6_cfg_func>;
+       pinctrl-1 = <&GPIO_1_4_pmx_idle
+                    &GPIO_1_5_pmx_idle
+                    &GPIO_1_6_pmx_idle
+                    &GPIO_1_4_cfg_idle
+                    &GPIO_1_5_cfg_idle
+                    &GPIO_1_6_cfg_idle>;
+       gpio-keyup,gpio-irq = <&gpio1 4 0>;
+       gpio-keydown,gpio-irq = <&gpio1 5 0>;
+       gpio-keyback,gpio-irq = <&gpio1 6 0>;
+       status = "ok";
+   };
+};

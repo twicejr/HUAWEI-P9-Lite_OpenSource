@@ -1,0 +1,126 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+    icc_channels_app{
+	    compatible = "hisilicon,icc_balong_app";
+		
+		icc_channels_sddr_app{
+		    ref = "sddr";
+			plus_size = <20>;		
+			icc_channel_drv  /* A<->C */
+			{
+				ch_name = "DRV";           /* 通道名字，可谓可测 */
+				cfg = <0 0x3 0x1000 31 6 50 1>;  /* <id  mode  size  tx_ipc  rx_ipc  func_size  rx_fifo_first> */
+				                                /* id:通道编号,mode:通道类型：共享或独享,size:fifo大小 */ 
+												/* tx_ipc:发送IPC,rx_ipc:接收IPC,func_size:最大func个数, rx_fifo_first:地址上，接收fifo在前，发送fifo在后*/ 				
+				status = "ok";
+			};
+			icc_channel_rfile  /* A<->C */
+			{                 
+				ch_name = "RFILE"; 
+                cfg = <1 0x3 0x1000 31 6 20 1>;				
+				status = "ok";			
+			};	
+			icc_channel_nv  /* A<->C */
+			{                 
+				ch_name = "NV";  
+                cfg = <2 0x3 0x1000 31 6 20 1>;				
+				status = "ok";			
+			};	
+			icc_channel_guom0  /* A<->C */
+			{                 
+				ch_name = "GUOM0"; 
+                cfg = <3 0x3 0x4000 31 6 20 1>;				
+				status = "ok";            
+			};	
+			icc_channel_guom1  /* A<->C */
+			{                 
+				ch_name = "GUOM1"; 
+                cfg = <4 0x3 0x0 31 6 20 1>;				
+				status = "ok";			
+			};
+			icc_channel_guom2  /* A<->C */
+			{                 
+				ch_name = "GUOM2"; 
+                cfg = <5 0x3 0x0 31 6 20 1>;				
+				status = "ok";			
+			};	
+			icc_channel_guom3  /* A<->C */
+			{
+			    ch_name = "GUOM3"; 
+                cfg = <6 0x3 0x0 31 6 20 1>;				
+				status = "ok";			
+			};	
+			icc_channel_guom4  /* A<->C */
+			{                 
+				ch_name = "GUOM4"; 
+                cfg = <7 0x3 0x20000 31 6 20 1>;				
+				status = "ok";            
+			};	
+			icc_channel_guom5  /* A<->C */
+			{                 
+				ch_name = "GUOM5"; 
+                cfg = <8 0x3 0x0 31 6 20 1>;				
+				status = "ok";            
+			};	
+			icc_channel_cshell  /* A<->C */
+			{                 
+				ch_name = "CSHELL";
+                cfg = <9 0x3 0x2000 31 6 20 1>;				
+				status = "ok";			
+			};	
+			icc_channel_panrpc  /* A<->C */
+			{                 
+				ch_name = "PANRPC"; 
+                cfg = <10 0x3 0x1000 31 6 20 1>;				
+				status = "ok";			
+			};
+			icc_channel_acmax  /* acmax */     /* 无此物理通道 */
+			{                
+				ch_name = "ACMAX"; 
+				unused = <1>;
+                cfg = <11 0x3 0x0 31 6 20 1>;
+                status = "ok";					
+			};	
+			icc_channel_cm  /* CM */          /* 此通道对A核无意义，但是对fifo地址初始化有意义 */
+			{                
+				ch_name = "CM"; 
+				skip = <1>;
+                cfg = <12 0x3 0x200 29 6 20 1>;
+                status = "ok";					
+			};	
+			icc_channel_amcore  /* A<->M */
+			{                 
+				ch_name = "A-M"; 
+                cfg = <13 0x3 0x200 29 6 20 1>;				
+				status = "ok";			
+			};
+			icc_channel_chifi_vos  /* C<->HIFI VOS */
+			{                 
+				ch_name = "C-HIFI-VOS"; 
+				skip = <1>;   /* C核与HIFI通信使用，skip */
+                cfg = <14 0x3 0x1800 1 31 20 1>;  /* skip的节点不关心ipc */
+                status = "ok";					
+			};
+			icc_channel_chifi_tphy  /* C<->HIFI TPHY */
+			{                 
+				ch_name = "C-HIFI-TPHY";
+				skip = <1>;	 /* C核与HIFI通信使用，skip */			
+                cfg = <15 0x3 0x1800 2 31 20 1>;  /* skip的节点不关心ipc */
+                status = "ok";					
+			};
+			icc_channel_vt_voip  /* A<->C VT_VOIP */
+			{                 
+				ch_name = "VT_VOIP";
+                cfg = <16 0x3 0x1000 31 6 20 0>;
+                status = "ok";					
+			};			
+		};
+	};
+ };
+
+

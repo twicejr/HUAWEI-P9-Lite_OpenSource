@@ -1,0 +1,9 @@
+include_directories(
+  ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_hrpd
+  ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_hrpd_cm
+  ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_hrpd_sm
+  ${TOP_DIR}/modem/include/phy/cphy/cproc
+)
+
+set(CPROC_HRPD_DIR ${PRODUCT_DIR}/phy/proc/cproc_hrpd)
+include(${CPROC_HRPD_DIR}/cmake_cproc_hrpd.txt)

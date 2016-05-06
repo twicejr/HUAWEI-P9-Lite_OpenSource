@@ -1,0 +1,5 @@
+config ANC_HS
+	tristate "Support for ANC headset"
+	default n
+	---help---
+	 Say Y here if you want to support ANC headset

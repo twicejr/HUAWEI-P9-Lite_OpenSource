@@ -1,0 +1,42 @@
+Hisilicon Platforms Device Tree Bindings
+----------------------------------------------------
+
+Hi3716 Development Board
+Required root node properties:
+	- compatible = "hisilicon,hi3716-dkb";
+
+Hi4511 Board
+Required root node properties:
+	- compatible = "hisilicon,hi3620-hi4511";
+
+
+Hisilicon sctrl resiter description
+
+Required properties:
+- compatible : "hisilicon,sctrl"
+- reg : Address and size of sysctrl.
+- smp_reg : offset in sysctrl for notifying slave cpu booting
+		cpu 1, reg;
+		cpu 2, reg + 0x4;
+		cpu 3, reg + 0x8;
+		If reg value is not zero, cpun exit wfi and go
+- resume_reg : offset in sysctrl for notifying cpu0 when resume
+- reset_reg : offset in sysctrl for system reset
+
+Example:
+	hi3716:
+	sctrl@f8000000 {
+		compatible = "hisilicon,sctrl";
+		reg = <0xf8000000 0x1000>;
+		smp_reg = <0xc0>;
+		reboot_reg = <0x4>;
+	};
+
+	hi3620:
+	sctrl@fc802000 {
+		compatible = "hisilicon,sctrl";
+		reg = <0xfc802000 0x1000>;
+		smp_reg = <0x31c>;
+		resume_reg = <0x308>;
+		reboot_reg = <0x4>;
+	};

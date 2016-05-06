@@ -1,0 +1,48 @@
+if HISI_CAMERA_SENSOR
+
+menu "Hisilicon camera sensor driver support"
+
+config HISI_CAMERA_IMX214
+	tristate "IMX214  camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		IMX214  camera sensor driver
+
+config HISI_CAMERA_OV8830
+	tristate "OV8830 camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		OV8830 camera sensor driver
+
+config HISI_CAMERA_IMX135
+	tristate "IMX135  camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		IMX135  camera sensor driver
+
+config HISI_CAMERA_OV5648
+	tristate "OV5648 camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		OV5648 camera sensor driver
+
+config HISI_CAMERA_S5K4E1GA
+	tristate "S5K4E1GA camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		S5K4E1GA camera sensor driver
+
+config HISI_CAMERA_MT9M114
+	tristate "MT9M114  camera sensor driver"
+	depends on HISI_CAMERA_SENSOR
+	default n
+	---help---
+		MT9M114  camera sensor driver
+endmenu
+
+endif

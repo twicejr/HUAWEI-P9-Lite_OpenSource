@@ -1,0 +1,23 @@
+#
+# balong modem reset driver
+#
+
+comment "balong modem reset"
+
+config BALONG_MODEM_RESET
+	tristate "support balong modem reset feature"
+	default n
+	help
+	  balong modem reset
+
+config BALONG_MODEM_RESET_TEST
+	tristate "test code of balong modem reset feature"
+	default n
+	help
+	  balong modem reset test program
+	  
+config BALONG_MODEM_POWER_MANAGE
+	tristate "the interface of balong modem power manage"
+	default n
+	help
+	  balong modem state

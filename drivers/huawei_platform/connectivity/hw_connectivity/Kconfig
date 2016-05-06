@@ -1,0 +1,6 @@
+menuconfig HWCONNECTIVITY
+	tristate "Huawei connectivity OneTrack support"
+	default n
+	help
+	  Say Y here to enable Huawei connectivity OneTrack support. This allows
+	  ap to control this module.

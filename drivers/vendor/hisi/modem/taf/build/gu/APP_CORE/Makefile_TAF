@@ -1,0 +1,272 @@
+MODEM_DIR := $(srctree)/$(src)/..
+-include $(MODEM_DIR)/config/product/$(OBB_PRODUCT_NAME)/config/balong_product_config.mk
+
+ifeq ($(CONFIG_UTTEST), y)
+LINUXINCLUDE := -I$(MODEM_DIR)/config/product/hi6210sft/include
+LINUXINCLUDE := -I$(MODEM_DIR)/config/product/hi6210sft/config $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/config/osa $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/config/nvim/include/gu $(LINUXINCLUDE)
+
+LINUXINCLUDE := -I$(MODEM_DIR)/include/med $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/comm/om $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/gu/si $(LINUXINCLUDE)
+#LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/gu/usimm $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/comm/errno $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/comm/socp $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/comm/nvim $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/gu/nvim $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/gu/log $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/oam/gu/om $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/codec $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/oam $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/nas $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/was $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/ttf $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/gu/gas $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/tl/lps $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/nv/tl/oam $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/taf/acore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/taf/common $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/sdio $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/tlps/acore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/tlps/ccore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/tlps/common $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/gups/acore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/gups/ccore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/gups/common $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/include/ps/nas $(LINUXINCLUDE)
+
+LINUXINCLUDE := -I$(MODEM_DIR)/ps/inc/gu $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/ps/comm/comm/common/LOGFILTER/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/inc/acore $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/inc/common $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/oam/inc/comm/comm/ppm $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/oam/inc/gu/comm/om $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/oam/inc/gu/acore/om $(LINUXINCLUDE)
+
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/ADS/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/APPVCOM/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/at/inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/CSD/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/RNIC/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/TAFAGENT/Inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/acore/tafapi/inc $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(MODEM_DIR)/taf/comm/src/mcore/TAF/Lib/Inc $(LINUXINCLUDE)
+
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/kernel $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/kernel/generated/uapi $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/kernel/include $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/kernel/arch/arm/include $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/include $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/comm/osa $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/comm/usimm $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/LinuxStub $(LINUXINCLUDE)
+LINUXINCLUDE := -I$(BALONG_TOPDIR)/llt/nas/ut/utprj_acore/stub/VxWorkStubH $(LINUXINCLUDE)
+
+else
+
+ifeq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -Iarch/arm64/include/asm
+else
+EXTRA_CFLAGS += -Iarch/arm/include/asm
+endif
+EXTRA_CFLAGS += -Iinclude/linux
+EXTRA_CFLAGS += -Iinclude/generated
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/med
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/osa
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/codec
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/om/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/nvim/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/log/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/om/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/si/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/gu/usimm/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/errno/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/socp/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/nvim/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/comm/cpm/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/oam/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/codec/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/nas/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/was/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/ttf/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/nv/gu/gas/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/taf/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/sdio/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/ccore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/tlps/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/ccore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/gups/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/ps/nas/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/osa/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/config/nvim/include/gu/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/inc/gu/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/inc/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/inc/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/comm/acore/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/comm/comm/ppm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/comm/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/gu/acore/om
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/ADS/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/APPVCOM/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/at/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/CSD/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/RNIC/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/TAFAGENT/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/tafapi/inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/mcore/TAF/Lib/Inc/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/ps/comm/comm/common/LOGFILTER/Inc/
+
+-include $(MODEM_DIR)/config/product/$(OBB_PRODUCT_NAME)/config/balong_product_config.mk
+ifeq ($(CFG_FEATURE_BASTET), FEATURE_ON)
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/comm/src/acore/bastet/inc/
+EXTRA_CFLAGS += -DCONFIG_HUAWEI_BASTET_COMM
+endif
+
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/acore/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/include/oam/lt/common/
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/sdm
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/sda
+EXTRA_CFLAGS += -I$(MODEM_DIR)/oam/inc/lt/comm/diag
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/lt/inc/acore/at
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/lt/inc/common
+EXTRA_CFLAGS += -I$(MODEM_DIR)/taf/lt/inc/acore
+
+endif
+
+ifneq ($(TARGET_ARM_TYPE), arm64)
+EXTRA_CFLAGS += -D__LINUX_ARM_ARCH__=7 -march=armv7-a -Uarm
+endif
+
+
+ifeq ($(CONFIG_UTTEST), y)	
+EXTRA_CFLAGS +=  -DVOS_LINUX=4 -DOSA_CPU_ACPU=1 -DVOS_WIN32=3 -DVOS_OS_VER=VOS_WIN32 -DVOS_OSA_CPU=OSA_CPU_ACPU -D__LOG_RELEASE__ \
+				-DBSP_CORE_APP -DGU_MODE -DMSP_SUPPORT_USB_VCOM1 -DMSP_SUPPORT_USB_VCOM2 -DVOS_DOPRA_VER=2 -DNDIS_RELEASE \
+				-DBALONG_PHY_V200=2 -DBALONG_PHY_V300=3 -DBALONG_PHY_VER=BALONG_PHY_V300 -DBALONG_CHIP_V200=2 \
+				-DBALONG_CHIP_V300=3 -DBALONG_CHIP_V500=4 -DBALONG_CHIP_VER=BALONG_CHIP_V500 -DMSP_GUNAS_AT_UNITE -DVERSION_V3R2 \
+				-DFEATURE_AT_HSUART=1 -D__PC_UT__=1
+			
+else
+EXTRA_CFLAGS +=  -DVOS_LINUX=4 -DOSA_CPU_ACPU=1 -DVOS_OS_VER=VOS_LINUX -DVOS_OSA_CPU=OSA_CPU_ACPU -D__LOG_RELEASE__ \
+				-DBSP_CORE_APP -DGU_MODE -DMSP_SUPPORT_USB_VCOM1 -DMSP_SUPPORT_USB_VCOM2 -DVOS_DOPRA_VER=2 -DNDIS_RELEASE \
+				-DBALONG_PHY_V200=2 -DBALONG_PHY_V300=3 -DBALONG_PHY_VER=BALONG_PHY_V300 -DBALONG_CHIP_V200=2 \
+				-DBALONG_CHIP_V300=3 -DBALONG_CHIP_V500=4 -DBALONG_CHIP_VER=BALONG_CHIP_V500 -DMSP_GUNAS_AT_UNITE -DVERSION_V3R2 
+			
+EXTRA_CFLAGS += -DHAL_DIAG_SDM_USE
+endif
+	
+#编译器相关的宏定义
+EXTRA_CFLAGS += -fsigned-char 
+
+taf-objs := comm/src/acore/ADS/Src/AdsCtx.o
+taf-objs += comm/src/acore/ADS/Src/AdsDownLink.o
+taf-objs += comm/src/acore/ADS/Src/AdsInit.o
+taf-objs += comm/src/acore/ADS/Src/AdsTimerMgmt.o
+taf-objs += comm/src/acore/ADS/Src/AdsUpLink.o
+taf-objs += comm/src/acore/ADS/Src/AdsDebug.o
+taf-objs += comm/src/acore/ADS/Src/AdsFilter.o
+taf-objs += comm/src/acore/ADS/Src/AdsMntn.o
+taf-objs += comm/src/acore/APPVCOM/Src/AppVcomDev.o
+taf-objs += comm/src/acore/CSD/Src/CsdCtx.o
+taf-objs += comm/src/acore/CSD/Src/CsdDebug.o
+taf-objs += comm/src/acore/CSD/Src/CsdDownLink.o
+taf-objs += comm/src/acore/CSD/Src/CsdUpLink.o
+taf-objs += comm/src/acore/CSD/Src/CsdInit.o
+taf-objs += comm/src/acore/RNIC/Src/RnicCtx.o
+taf-objs += comm/src/acore/RNIC/Src/RnicEntity.o
+taf-objs += comm/src/acore/RNIC/Src/RnicInit.o
+taf-objs += comm/src/acore/RNIC/Src/RnicProcMsg.o
+taf-objs += comm/src/acore/RNIC/Src/RnicTimerMgmt.o
+taf-objs += comm/src/acore/RNIC/Src/RnicDebug.o
+taf-objs += comm/src/acore/RNIC/Src/RnicDemandDialFileIO.o
+taf-objs += comm/src/acore/RNIC/Src/RnicDev.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/Taf_MmiStrParse.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/MnMsgDecode.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/TafApsApi.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/TafMtcApi.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/TafMmaApi.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/MnCommApi.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/MnMsgEncode.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/MnMsgCbEncDec.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/hi_list.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/TafMmiEncode.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/TafStdlib.o
+taf-objs += comm/src/mcore/TAF/Lib/Src/GuNasLogFilter.o
+taf-objs += comm/src/acore/TAFAGENT/Src/TafAgent.o
+taf-objs += comm/src/acore/TAFAGENT/Src/TafAgentCtx.o
+taf-objs += comm/src/acore/at/src/AtBasicCmd.o
+taf-objs += comm/src/acore/at/src/AtCheckFunc.o
+taf-objs += comm/src/acore/at/src/AtCmdFtmProc.o
+taf-objs += comm/src/acore/at/src/AtCmdMsgProc.o
+taf-objs += comm/src/acore/at/src/ATCmdProc.o
+taf-objs += comm/src/acore/at/src/AtCmdCallProc.o
+taf-objs += comm/src/acore/at/src/AtCmdPacketProc.o
+taf-objs += comm/src/acore/at/src/AtCmdSimProc.o
+taf-objs += comm/src/acore/at/src/AtCmdMiscProc.o
+taf-objs += comm/src/acore/at/src/AtCombinecmd.o
+taf-objs += comm/src/acore/at/src/AtDataProc.o
+taf-objs += comm/src/acore/at/src/AtDeviceCmd.o
+taf-objs += comm/src/acore/at/src/AtEventReport.o
+taf-objs += comm/src/acore/at/src/AtCmdImsProc.o
+taf-objs += comm/src/acore/at/src/AtCmdCssProc.o
+taf-objs += comm/src/acore/at/src/AtExtendCmd.o
+taf-objs += comm/src/acore/at/src/AtExtendPrivateCmd.o
+taf-objs += comm/src/acore/at/src/AtInputProc.o
+taf-objs += comm/src/acore/at/src/AtMntn.o
+taf-objs += comm/src/acore/at/src/AtMsgPrint.o
+taf-objs += comm/src/acore/at/src/AtOutputProc.o
+taf-objs += comm/src/acore/at/src/AtParseBasicCmd.o
+taf-objs += comm/src/acore/at/src/AtParseCmd.o
+taf-objs += comm/src/acore/at/src/AtParseCore.o
+taf-objs += comm/src/acore/at/src/AtParseDCmd.o
+taf-objs += comm/src/acore/at/src/AtParseDMCmd.o
+taf-objs += comm/src/acore/at/src/AtParseExtendCmd.o
+taf-objs += comm/src/acore/at/src/AtParsePara.o
+taf-objs += comm/src/acore/at/src/AtParseSCmd.o
+taf-objs += comm/src/acore/at/src/AtQueryParaCmd.o
+taf-objs += comm/src/acore/at/src/AtSetParaCmd.o
+taf-objs += comm/src/acore/at/src/AtTestParaCmd.o
+taf-objs += comm/src/acore/at/src/AtTimer.o
+taf-objs += comm/src/acore/at/src/ATSndMsg.o
+taf-objs += comm/src/acore/at/src/AtAbortParaCmd.o
+taf-objs += comm/src/acore/at/src/AtCtx.o
+taf-objs += comm/src/acore/at/src/AtInit.o
+taf-objs += comm/src/acore/at/src/AtCmdCagpsProc.o
+taf-objs += comm/src/acore/tafapi/src/MnCallApi.o
+taf-objs += comm/src/acore/tafapi/src/MnMsgApi.o
+taf-objs += comm/src/acore/tafapi/src/Ssa_App_Remote.o
+taf-objs += comm/src/acore/tafapi/src/Taf_Tafm_AppRemote.o
+taf-objs += comm/src/acore/tafapi/src/VcApi.o
+taf-objs += comm/src/acore/tafapi/src/TafXsmsApi.o
+taf-objs += comm/src/acore/dms/src/dms_acm_at_rx.o
+taf-objs += comm/src/acore/dms/src/dms_acm_at_tx.o
+taf-objs += comm/src/acore/dms/src/dms_core.o
+taf-objs += comm/src/acore/dms/src/dms_debug.o
+taf-objs += comm/src/acore/dms/src/dms_ndis.o
+
+ifeq ($(CFG_FEATURE_BASTET), FEATURE_ON)
+taf-objs += comm/src/acore/bastet/src/BastetInit.o
+taf-objs += comm/src/acore/bastet/src/BastetComm.o
+endif
+
+ifneq ($(CONFIG_UTTEST), y)
+taf-objs += lt/src/acore/at/at_lte_common.o
+taf-objs += lt/src/acore/at/at_lte_ct_ex_proc.o
+taf-objs += lt/src/acore/at/at_lte_ct_ex2_proc.o
+taf-objs += lt/src/acore/at/at_lte_ct_proc.o
+taf-objs += lt/src/acore/at/at_lte_eventreport.o
+taf-objs += lt/src/acore/at/at_lte_ms_proc.o
+taf-objs += lt/src/acore/at/at_lte_set_proc.o
+taf-objs += lt/src/acore/at/at_lte_st_proc.o
+taf-objs += lt/src/acore/at/at_lte_upgrade_proc.o 
+taf-objs += lt/src/acore/at/AtDeviceCmdTL.o 
+taf-objs += lt/src/acore/at/at_comm_cmd.o 
+endif
+
+obj-y  := taf.o
+
+
+

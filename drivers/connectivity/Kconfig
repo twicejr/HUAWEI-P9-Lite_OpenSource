@@ -1,0 +1,28 @@
+#
+# Generic huawei hisi misc drivers configuration
+#
+menuconfig CONNECTIVITY_HI110X
+	bool "Hisilicon Wireless Connectivity Support"
+	---help---
+		If you want to use Hisilicon  Wireless Connectivity, you should set this,
+		and choose one product
+
+if CONNECTIVITY_HI110X
+
+if ARCH_HI6250
+
+config HISI_GPS_REF_CLK
+       bool "hisi_gnss_refclk"
+       default y
+endif
+
+config HI110X_DRIVER_PATH
+	string "The Kernel Driver Path"
+	default "drivers/connectivity/hisi"
+
+source "drivers/connectivity/hisi/Kconfig"
+source "drivers/connectivity/hisi/platform/Kconfig"
+source "drivers/connectivity/hisi/wifi/Kconfig"
+endif
+
+

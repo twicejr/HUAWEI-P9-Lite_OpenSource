@@ -1,0 +1,11 @@
+#
+# shared memory
+#
+
+comment "shared memory"
+
+config S_MEMORY_TEST
+	tristate "support shared memory test"
+	default n
+	help
+	  shared memory test

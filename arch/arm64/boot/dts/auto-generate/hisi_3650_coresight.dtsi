@@ -1,0 +1,503 @@
+
+/ {
+	amba {
+/* A53 cluster internal coresight */
+		etm@0,ecc40000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xecc40000 0 0x1000>;
+
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little0>;
+			cti_name = "cti_cpu0";
+			cluster_etb = <&etb0>;
+			cluster_funnel =<&funnel0>;
+			port {
+				etm0_out_port: endpoint {
+					remote-endpoint = <&funnel0_in_port0>;
+				};
+			};
+		};
+		cti_cpu0: cti_cpu0@0,ecc20000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xecc20000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little0>;
+			coresight-name = "cti_cpu0";
+		};
+
+		etm@1,ecd40000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xecd40000 0 0x1000>;
+
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little1>;
+			cti_name = "cti_cpu1";
+			cluster_etb = <&etb0>;
+			cluster_funnel =<&funnel0>;
+			port {
+				etm1_out_port: endpoint {
+					remote-endpoint = <&funnel0_in_port1>;
+				};
+			};
+
+		};
+		cti_cpu1: cti_cpu1@1,ecd20000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xecd20000 0 0x1000>;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little1>;
+			coresight-name = "cti_cpu1";
+		};
+
+		etm@2,ece40000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xece40000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little2>;
+			cti_name = "cti_cpu2";
+			cluster_etb = <&etb0>;
+			cluster_funnel =<&funnel0>;
+			port {
+				etm2_out_port: endpoint {
+					remote-endpoint = <&funnel0_in_port2>;
+				};
+			};
+		};
+		cti_cpu2: cti_cpu2@2,ece20000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xece20000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little2>;
+			coresight-name = "cti_cpu2";
+		};
+		etm@3,ecf40000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xecf40000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little3>;
+			cti_name = "cti_cpu3";
+			cluster_etb = <&etb0>;
+			cluster_funnel =<&funnel0>;
+			port {
+				etm3_out_port: endpoint {
+					remote-endpoint = <&funnel0_in_port3>;
+				};
+			};
+		};
+		cti_cpu3: cti_cpu3@3,ecf20000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xecf20000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&little3>;
+			coresight-name = "cti_cpu3";
+		};
+
+		funnel0:funnel@0,ec801000 {
+			compatible = "arm,coresight-funnel","arm,primecell";
+			reg = <0 0xec801000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+					/* funnel output port */
+				port@0 {
+					reg = <0>;
+					funnel0_out_port0: endpoint {
+						remote-endpoint =
+							<&etb0_in_port>;
+					};
+				};
+
+					/* funnel input ports */
+				port@1 {
+					reg = <0>;
+					funnel0_in_port0: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm0_out_port>;
+					};
+				};
+
+				port@2 {
+					reg = <1>;
+					funnel0_in_port1: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm1_out_port>;
+					};
+				};
+
+				port@3 {
+					reg = <2>;
+					funnel0_in_port2: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm2_out_port>;
+					};
+				};
+
+				port@4 {
+					reg = <3>;
+					funnel0_in_port3: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm3_out_port>;
+					};
+				};
+			};
+		};
+
+		etb0:etb@0,ec802000 {
+			compatible = "arm,coresight-tmc","arm,primecell";
+			reg = <0 0xec802000 0 0x1000>;
+			tmc_type = "etf";
+			clocks = <&pclk>;
+			arm,buffer-size=<0x4000>;
+			clock-names = "apb_pclk";
+			#coresight-default-sink;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				/* funnel input port */
+				port@0 {
+					reg = <0>;
+					etb0_in_port: endpoint {
+					slave-mode;
+					remote-endpoint = <&funnel0_out_port0>;
+					};
+				};
+					/* funnel output port */
+				port@1 {
+					reg = <0>;
+					etb0_out_port: endpoint {
+					remote-endpoint = <&funnel2_in_port0>;
+					};
+				};
+			};
+		};
+
+	/* A72 cluster internal coresight */
+		etm@4,ed440000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xed440000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big0>;
+			cti_name = "cti_cpu4";
+			cluster_etb = <&etb1>;
+			cluster_funnel =<&funnel1>;
+			port {
+				etm4_out_port: endpoint {
+				remote-endpoint = <&funnel1_in_port0>;
+				};
+			};
+		};
+
+		cti_cpu4: cti_cpu4@4,ed420000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xed420000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big0>;
+			coresight-name = "cti_cpu4";
+		};
+
+		etm@5,ed540000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xed540000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big1>;
+			cti_name = "cti_cpu5";
+			cluster_etb = <&etb1>;
+			cluster_funnel =<&funnel1>;
+			port {
+				etm5_out_port: endpoint {
+				remote-endpoint = <&funnel1_in_port1>;
+				};
+			};
+		};
+
+		cti_cpu5: cti_cpu5@5,ed520000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xed520000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big1>;
+			coresight-name = "cti_cpu5";
+		};
+
+		etm@6,ed640000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xed640000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big2>;
+			cti_name = "cti_cpu6";
+			cluster_etb = <&etb1>;
+			cluster_funnel =<&funnel1>;
+			port {
+				etm6_out_port: endpoint {
+					remote-endpoint = <&funnel1_in_port2>;
+				};
+			};
+		};
+		cti_cpu6: cti_cpu6@6,ed620000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xed620000 0 0x1000>;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big2>;
+			coresight-name = "cti_cpu6";
+		};
+
+		etm@7,ed740000 {
+			compatible = "arm,coresight-etm4x","arm,primecell";
+			reg = <0 0xed740000 0 0x1000>;
+			default_enable;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big3>;
+			cti_name = "cti_cpu7";
+			cluster_etb = <&etb1>;
+			cluster_funnel =<&funnel1>;
+			port {
+				etm7_out_port: endpoint {
+					remote-endpoint = <&funnel1_in_port3>;
+				};
+			};
+		};
+
+		cti_cpu7: cti_cpu7@7,ed720000 {
+			compatible = "arm,coresight-cti";
+			reg = <0 0xed720000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			cpu = <&big3>;
+			coresight-name = "cti_cpu7";
+		};
+
+		funnel1:funnel@1,ed001000 {
+			compatible = "arm,coresight-funnel","arm,primecell";
+			reg = <0 0xed001000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				/* funnel output port */
+				port@0 {
+					reg = <0>;
+					funnel1_out_port0: endpoint {
+						remote-endpoint = <&etb1_in_port>;
+					};
+				};
+
+					/* funnel input ports */
+				port@1 {
+					reg = <0>;
+					funnel1_in_port0: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm4_out_port>;
+					};
+				};
+
+				port@2 {
+					reg = <1>;
+					funnel1_in_port1: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm5_out_port>;
+					};
+				};
+
+				port@3 {
+					reg = <2>;
+					funnel1_in_port2: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm6_out_port>;
+					};
+				};
+
+				port@4 {
+					reg = <3>;
+					funnel1_in_port3: endpoint {
+						slave-mode;
+						remote-endpoint = <&etm7_out_port>;
+					};
+				};
+			};
+		};
+
+		etb1:etb@1,ed002000 {
+			compatible = "arm,coresight-tmc","arm,primecell";
+			reg = <0 0xed002000 0 0x1000>;
+			arm,buffer-size=<0x4000>;
+			#coresight-default-sink;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			tmc_type = "etf";
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				/* etb input port */
+				port@0 {
+					reg = <0>;
+					etb1_in_port: endpoint {
+						slave-mode;
+						remote-endpoint = <&funnel1_out_port0>;
+					};
+				};
+				port@1 {
+					reg = <0>;
+					etb1_out_port: endpoint {
+						remote-endpoint = <&funnel2_in_port1>;
+					};
+				};
+			};
+		};
+		/* Top coresight config */
+		funnel@2,ec031000 {
+			compatible = "arm,coresight-funnel","arm,primecell";
+			reg = <0 0xec031000 0 0x1000>;
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			top_cssys-supply = <&top_cssys>;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				/* funnel output port */
+				port@0 {
+					reg = <0>;
+					funnel2_out_port0: endpoint {
+						remote-endpoint =
+							<&etb2_in_port>;
+					};
+				};
+
+				/* funnel input ports */
+				port@1 {
+					reg = <0>;
+					funnel2_in_port0: endpoint {
+						slave-mode;
+						remote-endpoint = <&etb0_out_port>;
+					};
+				};
+				port@2 {
+					reg = <0>;
+					funnel2_in_port1: endpoint {
+						slave-mode;
+						remote-endpoint = <&etb1_out_port>;
+					};
+				};
+			};
+		};
+
+		etb@2,ec036000 {
+			compatible = "arm,coresight-tmc","arm,primecell";
+			reg = <0 0xec036000 0 0x1000>;
+
+			#coresight-default-sink;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			tmc_type = "etf";
+			arm,buffer-size=<0x1000>;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+			/* etb input port  */
+			port@0 {
+					reg = <0>;
+					etb2_in_port: endpoint{
+						slave-mode;
+						remote-endpoint = <&funnel2_out_port0>;
+					};
+				};
+				/* etb out port  */
+				port@1 {
+					reg = <0>;
+					etb2_out_port: endpoint {
+						remote-endpoint = <&replicator0_in_port>;
+					};
+				};
+			};
+		};
+
+		replicator@0{
+			compatible = "arm,coresight-replicator";
+
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			top_cssys-supply = <&top_cssys>;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				/* etb input port  */
+				port@0 {
+					reg = <0>;
+					replicator0_in_port: endpoint{
+					slave-mode;
+					remote-endpoint = <&etb2_out_port>;
+					};
+				};
+				/* etb out port  */
+				port@1 {
+					reg = <0>;
+					replicator0_out_port: endpoint {
+						remote-endpoint = <&etr0_in_port>;
+					};
+				};
+			};
+		};
+
+		etr@0,ec033000 {
+			compatible = "arm,coresight-tmc","arm,primecell";
+			reg = <0 0xec033000 0 0x1000>;
+
+			coresight-default-sink;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			tmc_type = "etr";
+			arm,buffer-size=<0x800000>;
+			top_cssys-supply = <&top_cssys>;
+			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				/* etr input port  */
+				port@0 {
+					reg = <0>;
+					etr0_in_port: endpoint{
+					slave-mode;
+					remote-endpoint = <&replicator0_out_port>;
+					};
+				};
+			};
+		};
+	};
+};

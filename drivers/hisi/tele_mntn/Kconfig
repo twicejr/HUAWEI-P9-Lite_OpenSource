@@ -1,0 +1,5 @@
+config HISILICON_PLATFORM_TELE_MNTN
+	bool "Hisilicon platform tele_mntn support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform tele_mntn 

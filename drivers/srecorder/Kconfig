@@ -1,0 +1,88 @@
+menuconfig SRECORDER
+	bool "SRecorder"
+	help
+		SRecorder is used to save panic log when kernel crash
+
+if SRECORDER
+config SRECORDER_LOG_BUF_LEN
+	hex "Length of SRecorder's reserved memory"
+	default 0x40000
+
+if !HISI_3635 && !HISI_3635_FPGA && !HISI_3635_EMULATOR
+config SRECORDER_RESERVED_MEM_PHYS_ADDR
+    hex "srecorder DDR"
+    default 0x39200000
+config SRECORDER_RESERVED_MEM_SIZE
+    hex "srecorder DDR SIZE"
+    default 0x00200000
+endif
+
+config SRECORDER_TEMPBUF_ADDR_FROM_PHYS_OFFSET
+	hex "Temporary buffer addr for SRecorder "
+	default 0x4000000
+
+config KERNEL_LOAD_PHYS_OFFSET
+	hex "Kernel load phys offset "
+
+config SRECORDER_SPECIAL_MEM_ADDR_FROM_PHYS_OFFSET
+	hex "Special buffer addr for SRecorder and NFF Log"
+	default 0x6000000
+
+config SRECORDER_DUMP_LOG_TO_STORAGECARD
+	bool "Dump log captured by SRecorder to storage card"
+	
+config DUMP_CRASH_TIME
+	bool "Save crash reason and time"
+	default n
+
+config DUMP_DMESG
+	bool "Save dmesg"
+	default n
+
+config DUMP_SYS_INFO
+	bool "Save sys info "
+
+config DUMP_ALLCPU_STACK
+	bool "Save all cpu's stack"
+
+config DUMP_ALLPS_INFO
+	bool "Save all process' basic info"
+
+config DUMP_CURRENT_PS_BACKTRACE
+	bool "Save the current process' backtace"
+
+config DUMP_SLAB_INFO
+	bool "Save slab info"
+
+config DUMP_MODEM_LOG
+	bool "Save modem log"
+
+config DUMP_MODEM_LOG_BY_FIQ
+	bool "Save modem log by FIQ"
+	depends on DUMP_MODEM_LOG
+
+config DUMP_MODEM_LOG_DELAY_MAX_MS
+	int "The millisecond to delay before dump modem log"
+	depends on DUMP_MODEM_LOG_BY_FIQ
+	default 10
+
+config CPU_FREQ_DEFAULT_VALUE
+	int "CPU's working frequency"
+	depends on DUMP_MODEM_LOG_BY_FIQ
+	default 1150000000
+
+config POWERCOLLAPSE
+	bool "Save dmesg after power collapse"
+if POWERCOLLAPSE
+config DUMP_LOGCAT
+	bool "Save logcat after power collapse"
+endif
+
+config SRECORDER_VERSION
+	string "SRecorder's version"
+	default "0.0.0.1"
+
+config DEBUG_SRECORDER
+	bool "Debug srecorder"
+
+endif # SRECORDER

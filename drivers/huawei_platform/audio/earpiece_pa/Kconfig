@@ -1,0 +1,5 @@
+config EARPA
+	tristate "earpice PA driver"
+	default y
+	help
+		Say Y to enable earpice PA driver support

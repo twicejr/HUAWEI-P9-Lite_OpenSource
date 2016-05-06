@@ -1,0 +1,337 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+/*
+  request_id: timer enum id in mdrv_timer_comm.h
+  wakesrc: is wakesource:0-not,1-yes
+  need_adp_connect_isr:need connect isr in adp_timer.c
+ */
+/{
+	balong_timer_app{
+		compatible = "hisilicon,timer_device";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		timer0_app@0xFFF14000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF14000 0x0 0x1000>;
+			interrupts = <0 48 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer1_app@0xFFF14020 {
+			request_id = <19>;
+			timer_name ="acpu osa";
+			reg = <0x0 0xFFF14020 0x0 0x1000>;
+			interrupts = <0 49 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <1>;
+			need_adp_connect_isr = <1>;
+			status = "ok";
+		};
+		timer2_app@0xFFF16000 {
+			request_id = <0>;
+			timer_name ="ccpu dsp_drx_prot";
+			reg = <0x0 0xFFF16000 0x0 0x1000>;
+			interrupts = <0 52 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <1>;
+			need_adp_connect_isr = <1>;
+			status = "disabled";
+		};
+		timer3_app@0xFFF16020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF16020 0x0 0x1000>;
+			interrupts = <0 53 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer4_app@0xFFF17000 {
+			request_id = <20>;
+			timer_name ="ccpu osa";
+			reg = <0x0 0xFFF17000 0x0 0x1000>;
+			interrupts = <0 54 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <1>;
+			need_adp_connect_isr = <1>;
+			status = "disabled";
+		};
+		timer5_app@0xFFF17020 {
+			request_id = <24>;
+			timer_name ="ccpu drx";
+			reg = <0x0 0xFFF17020 0x0 0x1000>;
+			interrupts = <0 55 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <1>;
+			status = "disabled";
+		};
+		timer6_app@0xFFF18000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF18000 0x0 0x1000>;
+			interrupts = <0 56 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		
+		timer7_app@0xFFF18020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF18020 0x0 0x1000>;
+			interrupts = <0 57 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer8_app@0xFFF19000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF19000 0x0 0x1000>;
+			interrupts = <0 58 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer9_app@0xFFF19020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF19020 0x0 0x1000>;
+			interrupts = <0 59 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer10_app@0xFFF1A000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1A000 0x0 0x1000>;
+			interrupts = <0 60 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+	
+		timer11_app@0xFFF1A020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1A020 0x0 0x1000>;
+			interrupts = <0 61 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer12_app@0xFFF1B000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1B000 0x0 0x1000>;
+			interrupts = <0 62 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer13_app@0xFFF1B020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1B020 0x0 0x1000>;
+			interrupts = <0 63 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer14_app@0xFFF1C000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1C000 0x0 0x1000>;
+			interrupts = <0 64 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		
+		timer15_app@0xFFF1C020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xFFF1C020 0x0 0x1000>;
+			interrupts = <0 65 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <0>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer16_app_pd@0xE8A00000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A00000 0x0 0x1000>;
+			interrupts = <0 66 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer17_app_pd@0xE8A00020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A00020 0x0 0x1000>;
+			interrupts = <0 67 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer18_app_pd@0xE8A01000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A01000 0x0 0x1000>;
+			interrupts = <0 68 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer19_app_pd@0xE8A01020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A01020 0x0 0x1000>;
+			interrupts = <0 69 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer20_app_pd@0xE8A02000 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A02000 0x0 0x1000>;
+			interrupts = <0 70 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+		timer21_app_pd@0xE8A02020 {
+			request_id = <25>;
+			timer_name ="acpu om_timer";
+			reg = <0x0 0xE8A02020 0x0 0x1000>;
+			interrupts = <0 71 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <1>;
+			status = "ok";
+		};
+		timer22_app_pd@0xE8A03000 {
+			request_id = <8>;
+			timer_name ="acpu softtimer_nowake";
+			reg = <0x0 0xE8A03000 0x0 0x1000>;
+			interrupts = <0 72 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "ok";
+		};
+		timer23_app_pd@0xE8A03020 {
+			request_id = <>;
+			timer_name ="";
+			reg = <0x0 0xE8A03020 0x0 0x1000>;
+			interrupts = <0 73 4>;
+			clock-frequency  = <32764>;
+			sr_flag = <1>;
+			periphid = <0x0000A000>;
+			wakesrc = <0>;
+			need_adp_connect_isr = <0>;
+			status = "disabled";
+		};
+	};
+	timeslice_app:timerslice@0xFFF0A000 {
+		compatible = "hisilicon,timer_slice";
+		reg = <0x0 0xfff0a534 0x0 0x1000>;
+		offset = <0x0 0x4>;
+		increase_count_flag=<1>;
+		clock-frequency  = <32764>;
+		need_map=<1>;
+		status = "ok";
+	};
+	/*k3 source is sys counter*/
+	hrttimer_app@0xfff08000 {
+		compatible = "hisilicon,hrttimer_slice";
+		reg = <0x0 0xfff08000 0x0 0x2000>;
+		offset = <0x1008 0x100c>;
+		clock-frequency  = <1920000>;
+		increase_count_flag=<1>;
+		sr_flag = <0>;
+		need_map=<1>;
+		status = "ok";
+	};
+	softtimer_type_support{
+		compatible = "hisilicon,softtimer_support_type";
+		support_wake=<0>;
+		support_unwake=<1>;
+		wake-frequency = <32764>;
+		unwake-frequency = <32764>;
+		status = "ok";
+	};
+};

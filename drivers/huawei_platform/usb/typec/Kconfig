@@ -1,0 +1,20 @@
+config HUAWEI_TYPEC
+	tristate "typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable Type C Connector support.
+
+config DUAL_ROLE_USB_INTF
+	bool "Generic DUAL ROLE sysfs interface"
+	depends on SYSFS && USB_PHY
+	help
+		A generic sysfs interface to track and change the state of
+		dual role usb phys. The usb phy drivers can register to
+		this interface to expose it capabilities to the userspace
+		and thereby allowing userspace to change the port mode.
+
+source "drivers/huawei_platform/usb/typec/pericom30216/Kconfig"
+source "drivers/huawei_platform/usb/typec/tusb320/Kconfig"
+source "drivers/huawei_platform/usb/typec/fusb301/Kconfig"
+source "drivers/huawei_platform/usb/typec/ptn5150h/Kconfig"

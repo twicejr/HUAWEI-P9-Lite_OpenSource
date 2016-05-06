@@ -1,0 +1,20 @@
+/*
+ *  Copyright (C) 2012-2014 Hisilicon
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	test_regulator: test_regulator@f000{
+		compatible = "hisilicon,test-hi6xxx-regulator-driver";
+		hisilicon,test-hi6xxx-regulator = "test_hi6xxx_regulator";
+		hisilicon,test-hi6xxx-regulator-numb = <34>;
+		mtcmos4-supply  = <&mtcmos4>;	
+		lvs2-supply  = <&lvs2>;
+		ldo2-supply  = <&ldo2>;
+		buck2-supply  = <&buck2>;
+		boost1-supply  = <&boost1>;		
+	};
+};

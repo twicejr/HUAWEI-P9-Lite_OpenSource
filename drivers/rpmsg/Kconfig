@@ -1,0 +1,15 @@
+menu "Rpmsg drivers"
+
+# RPMSG always gets selected by whoever wants it
+config RPMSG
+	tristate
+	select VIRTIO
+	select VIRTUALIZATION
+
+config HISTAR_ISP
+	tristate "Histar ISP rpmsg client"
+	depends on RPMSG
+	depends on ARCH_HI3XXX
+	help
+
+endmenu

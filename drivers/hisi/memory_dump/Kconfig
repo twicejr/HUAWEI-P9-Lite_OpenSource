@@ -1,0 +1,15 @@
+config HISILICON_PLATFORM_KERNELDUMP
+	bool "Support HiSilicon KERNELDUMP"
+	default n
+	help
+	  This driver supports HiSilicon HiXXX KERNELDUMP,
+	  including hisilicon kerneldump driver.
+
+config HISI_KERNELDUMP
+	bool "Support HiSilicon Hisi KERNELDUMP"
+	default n
+	help
+	  This driver supports HiSilicon HiXXX KERNELDUMP,
+	  including hisilicon kerneldump driver.
+	  
+

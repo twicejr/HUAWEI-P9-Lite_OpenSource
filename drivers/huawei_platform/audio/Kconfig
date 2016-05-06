@@ -1,0 +1,7 @@
+source "drivers/huawei_platform/audio/maxim/Kconfig"
+source "drivers/huawei_platform/audio/deviceboxID/Kconfig"
+source "drivers/huawei_platform/audio/tfa9895/Kconfig"
+source "drivers/huawei_platform/audio/earpiece_pa/Kconfig"
+source "drivers/huawei_platform/audio/invert_hs/Kconfig"
+source "drivers/huawei_platform/audio/anc_hs_module/Kconfig"
+source "drivers/huawei_platform/audio/tps65133/Kconfig"

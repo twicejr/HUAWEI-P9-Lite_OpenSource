@@ -1,0 +1,12 @@
+menuconfig IMAGINATION_D5500_VCODEC
+    tristate "Hi3xxx Support IMG Video Codec Drivers"
+    default n
+    ---help---
+      This is the codec driver based on hi3xxx.
+
+if IMAGINATION_D5500_VCODEC      
+source "drivers/vcodec/imagination/D5500/imgvideo/Kconfig"
+source "drivers/vcodec/imagination/D5500/vdec/Kconfig"
+source "drivers/vcodec/imagination/D5500/encode/Kconfig"
+endif
+

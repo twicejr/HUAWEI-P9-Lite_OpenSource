@@ -1,0 +1,18 @@
+#
+# nv driver
+#
+
+comment "nv driver"
+
+config NVIM
+	tristate "support nv"
+	default n
+	help
+	  NVIM driver
+
+config NVIM_TEST
+    tristate "nv test"
+    default n
+    help 
+      NVIM test	
+	  

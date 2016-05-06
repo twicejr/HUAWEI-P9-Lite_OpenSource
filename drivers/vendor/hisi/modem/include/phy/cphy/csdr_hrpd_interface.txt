@@ -1,0 +1,6 @@
+  include_directories(
+    ${TOP_DIR}/modem/include/phy/cphy/csdr
+    ${TOP_DIR}/modem/include/phy/cphy/csdr/hrpd
+  )
+
+  

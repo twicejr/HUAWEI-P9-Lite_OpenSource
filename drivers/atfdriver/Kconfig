@@ -1,0 +1,6 @@
+config ATFDRIVER 
+    tristate "Secure Execution Communicator driver"
+    default n
+    help
+      Provides a communication interface between userspace and
+      Trusted Firmware -BL31 Operating Environment.

@@ -1,0 +1,17 @@
+#
+# balong onoff management
+#
+
+comment "balong onoff management"
+
+config BALONG_ONOFF
+	tristate "balong onoff management"
+	default n
+	help
+	  balong onoff management
+
+config BALONG_MODEM_ONOFF
+	tristate "balong modem onoff management"
+	default n
+	help
+	  balong modem state

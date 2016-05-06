@@ -1,0 +1,149 @@
+/{
+	sensorhub{
+		#address-cells=<1>;
+		#size-cells=<0>;
+		als_sensor:light{
+			als1{
+				compatible="huawei,taos-apds990x";
+				bus_number=<0>;
+				reg=<0x39>;
+				chip_id_register=<0x92>;
+				chip_id_value=<0x20 0x29 0x30 0x39>;
+				file_id=<2>;
+				sensor_list_info_id=<3>;
+				sensor_type="als";
+				//sensor-vdd-supply = <&ldo24>;
+				poll_interval=<500>;   //??¡è?31a????£¤?¨¢?D?¡§o?¨¤??????
+				threshold_value=<1>;
+				GA1=<4166>; //2?¨º¡§¡é?¨¬¡§a?1a?¡§o ?¨º?3??1a???
+				GA2=<3900>; //2?¨º¡§¡é?¨¬¡§a?1a?¡§o
+				GA3=<4500>; //2?¨º¡§¡é?¨¬¡§a?1a?¡§o
+				tp_color =<0>;
+				again=<1>;
+				gpio_int1=<&gpio25 6 0>;
+				atime=<0xdb>;
+				init_time = <150>;   //??¡è?31a3?¡§o???£¤¡§o?¨¤??
+				status = "disabled";
+			};
+		};
+
+		ps_sensor:proximity{
+			ps1{
+				compatible="huawei,taos_apds990x";
+				bus_number=<0>;
+				reg=<0x39>;
+				chip_id_register=<0x92>;
+				chip_id_value=<0x20 0x29 0x30 0x39>;
+				file_id=<2>;
+				sensor_list_info_id=<4>;
+				sensor_type="ps";
+				//sensor-vdd-supply = <&ldo24>;
+				tp_color =<0>;
+				min_proximity_value=<750>;
+				pwindows_value=<110>;
+				pwave_value=<80>;
+				threshold_value=<90>;
+				ps_pulse_count=<5>;
+				persistent=<0x33>;
+				rdata_under_sun=<5500>;
+				gpio_int1=<&gpio25 6 0>;
+				ptime=<0xFF>;
+				p_on = <0>;   //??£¤???¡§2??¡§o??¡è?D¡§¡§¡§¡ãa1??¨¤???¨¬??
+				poll_interval = <300>;
+				init_time = <50>;
+				status = "disabled";
+			};
+		};
+		acc_sensor:gsensor{
+			acc1{
+				compatible="huawei,st-lsm330";
+				bus_number=<0>;
+				reg=<0x1e>;
+				chip_id_register=<0x0f>;
+				chip_id_value=<0x40>;
+				file_id=<1>;
+				sensor_list_info_id=<0>;
+				sensor_type="acc";
+				//sensor-vdd-supply = <&ldo24>;
+				axis_map_x=<1>;
+				axis_map_y=<0>;
+				axis_map_z=<2>;
+				negate_x=<0>;
+				negate_y=<1>;
+				negate_z=<0>;
+				offset_x=<0>;
+				offset_y=<0>;
+				offset_z=<0>;
+				poll_interval=<10>;
+				gpio_int1=<&gpio26 0 0>;
+				gpio_int2=<&gpio8 3 0>;
+				status = "disabled";
+			};
+		};
+
+		gyro_sensor:gyroscope{
+			gyro1{
+				compatible ="huawei,st-lsm330";
+				bus_number=<0>;
+				reg=<0x6b>;
+				chip_id_register=<0xf>;
+				chip_id_value=<0xd4>;
+				file_id=<3>;
+				sensor_list_info_id=<5>;
+				sensor_type="gyro";
+				//sensor-vdd-supply = <&ldo24>;
+				axis_map_x=<1>;
+				axis_map_y=<0>;
+				axis_map_z=<2>;
+				negate_x=<0>;
+				negate_y=<1>;
+				negate_z=<0>;
+				poll_interval=<10>;
+				gpio_int1=<&gpio26 2 0>;
+				gpio_int2=<&gpio8 3 0>;
+				status = "disabled";
+			};
+		};
+
+		mag_sensor:compass{
+			mag1{
+				compatible="huawei,akm-akm09911";
+				bus_number=<0>;
+				reg=<0x0d>;
+				chip_id_register=<0x00>;
+				chip_id_value=<0x48>;
+				file_id=<0>;
+				sensor_list_info_id=<1>;
+				sensor_type="mag";
+				//sensor-vdd-supply = <&ldo24>;
+				outbit=<0>;
+				calibrate_method=<2>;
+				axis_map_x=<1>;
+				axis_map_y=<0>;
+				axis_map_z=<2>;
+				negate_x=<0>;
+				negate_y=<0>;
+				negate_z=<1>;
+				poll_interval=<10>;
+				gpio_int1=<&gpio0 0 0>;
+				gpio_reset=<&gpio0 0 0>;
+				softiron_parameter = <127 80 16 203 177 0 0 161 216 55 57 227 111 50 0 10 8 248 199 114 192 252 23 59 11 196 81>;
+				status = "disabled";
+			};
+		};
+	};
+
+	sensorhub_ext_config:sensorhub_ex{
+		compatible = "huawei,sensorhub";
+		akm_need_current = "no";
+		invensense_exist = "no";
+		isensor_version = "no";
+		adapt_sensor_list_id = <0x2 0x6 0x7 0x8 0x9 0xa>;
+	};
+
+	sensorhub_io_power{
+		compatible = "huawei,sensorhub_io";
+		//sensor-io-supply = <&lsw51>;
+		status="disabled";
+	};
+};

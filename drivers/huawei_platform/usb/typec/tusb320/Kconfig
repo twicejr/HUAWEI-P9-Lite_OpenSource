@@ -1,0 +1,9 @@
+# TI Type C Connector
+
+config HUAWEI_TYPEC_TUSB320
+	tristate "tusb320 typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable tusb320 Type C Connector support.
+

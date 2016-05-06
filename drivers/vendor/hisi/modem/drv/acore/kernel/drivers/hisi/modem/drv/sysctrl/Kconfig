@@ -1,0 +1,11 @@
+#
+# sysctrl
+#
+
+comment "sysctrl"
+
+config SYSCTRL_TEST
+	tristate "support sysctrl test"
+	default n
+	help
+	  sysctrl test

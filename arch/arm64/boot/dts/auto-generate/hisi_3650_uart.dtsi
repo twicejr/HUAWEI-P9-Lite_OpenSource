@@ -1,0 +1,146 @@
+/*
+ * Hisilicon Ltd. hi3xxxASIC SoC
+ *
+ * Copyright (C) 2013 Hisilicon Technologies CO., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+/ {
+	aliases {
+		serial0 = &serial0;
+		serial1 = &serial1;
+		serial2 = &serial2;
+		serial3 = &serial3;
+		serial4 = &serial4;
+		serial5 = &serial5;
+		serial6 = &serial6;
+           };
+
+	   amba {
+		serial0: uart@fdf02000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf02000 0x0 0x1000>;
+			interrupts = <0 74 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio067_pmx_func &gpio068_pmx_func &gpio067_cfg_func &gpio068_cfg_func>;
+			pinctrl-1 = <&gpio067_pmx_idle &gpio068_pmx_idle &gpio067_cfg_idle &gpio068_cfg_idle>;
+			dma-names = "rx", "tx";
+			dmas =  <&dma0 0	/* read(rx) request */
+				&dma0 1>;	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_factor_uart0 &pclk>;
+			clock-names = "clk_uart0_fac", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 10>;
+			status = "disabled";
+		};
+
+		serial1: uart@fdf00000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf00000 0x0 0x1000>;
+			interrupts = <0 75 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio057_pmx_func &gpio058_pmx_func &gpio059_pmx_func &gpio060_pmx_func &gpio057_cfg_func &gpio058_cfg_func &gpio059_cfg_func &gpio060_cfg_func>;
+			pinctrl-1 = <&gpio057_pmx_idle &gpio058_pmx_idle &gpio059_pmx_idle &gpio060_pmx_idle &gpio057_cfg_idle &gpio058_cfg_idle &gpio059_cfg_idle &gpio060_cfg_idle>;
+			dma-names = "rx", "tx";
+			dmas =  <&dma0 2	/* read(rx) request */
+				&dma0 3>;	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart1 &clk_gate_uart1>;
+			clock-names = "clk_uart1", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 11>;
+			status = "disabled";
+		};
+
+		serial2: uart@fdf03000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf03000 0x0 0x1000>;
+			interrupts = <0 76 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio054_pmx_func &gpio055_pmx_func &gpio054_cfg_func &gpio055_cfg_func>;
+			pinctrl-1 = <&gpio054_pmx_idle &gpio055_pmx_idle &gpio054_cfg_idle &gpio055_cfg_idle>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 4	  /* read(rx) request */
+				&dma0 5>;	  /* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart2 &pclk>;
+			clock-names = "clk_uart2", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 12>;
+			status = "disabled";
+		};
+
+		serial3: uart@ffd74000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xffd74000 0x0 0x1000>;
+			interrupts = <0 114 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio071_pmx_func &gpio072_pmx_func &gpio073_pmx_func &gpio074_pmx_func &gpio071_cfg_func &gpio072_cfg_func &gpio073_cfg_func &gpio074_cfg_func>;
+			pinctrl-1 = <&gpio071_pmx_idle &gpio072_pmx_idle &gpio073_pmx_idle &gpio074_pmx_idle &gpio071_cfg_idle &gpio072_cfg_idle &gpio073_cfg_idle &gpio074_cfg_idle>;
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart3 &pclk>;
+			clock-names = "clk_uart3", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0x28 11>;
+			status = "disabled";
+	        };
+
+		serial4: uart@fdf01000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf01000 0x0 0x1000>;
+			interrupts = <0 77 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio075_pmx_func &gpio076_pmx_func &gpio077_pmx_func &gpio078_pmx_func &gpio075_cfg_func &gpio076_cfg_func &gpio077_cfg_func &gpio078_cfg_func>;
+			pinctrl-1 = <&gpio075_pmx_idle &gpio076_pmx_idle &gpio077_pmx_idle &gpio078_pmx_idle &gpio075_cfg_idle &gpio076_cfg_idle &gpio077_cfg_idle &gpio078_cfg_idle>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 6		/* read(rx) request */
+				&dma0 7>;		/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart4 &clk_gate_uart4>;
+			clock-names = "clk_uart4", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 14>;
+			status = "disabled";
+		};
+
+		serial5: uart@fdf05000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf05000 0x0 0x1000>;
+			interrupts = <0 78 4>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 8	   	/* read(rx) request */
+				&dma0 9>;	   	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart5 &clk_gate_uart5>;
+			clock-names = "clk_uart5", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 15>;
+			status = "disabled";
+		};
+
+		serial6: uart@fff32000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfff32000 0x0 0x1000>;
+			interrupts = <0 79 4>;
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio069_pmx_func &gpio070_pmx_func &gpio069_cfg_func &gpio070_cfg_func>;
+			pinctrl-1 = <&gpio069_pmx_idle &gpio070_pmx_idle &gpio069_cfg_idle &gpio070_cfg_idle>;
+			fifo-deep-size = <64>;
+			clocks = <&clk_uart6 &pclk>;
+			clock-names = "uart6clk", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF0A000 0x0 0x1000>; /* SCTRL */
+			reset-controller-reg = <0x504 0x508 0x50c 9>;
+			status = "disabled";
+		};
+	};
+};

@@ -1,0 +1,5 @@
+config MAXQ616_POWER_SWITCH
+	tristate "CONFIG_MAXQ616_POWER_SWITCH feature support"
+	default n
+	help
+	  Say Y here to enable Infrared remote control feature support.

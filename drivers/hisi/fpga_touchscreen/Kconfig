@@ -1,0 +1,27 @@
+#
+# huawei touchscreen driver configuration
+#
+
+config HISI_FPGA_TS
+	bool "hisi_fpga touchscreen"
+	default n
+	help
+	  If you say yes here you get support for hisi_fpga touchscreen.
+
+config HISI_FPGA_TS_TEST
+	bool "hisi_fpga touchscreen test"
+	default n
+	help
+	  If you say yes here you get support for hisi_fpga touchscreen.
+
+source "drivers/huawei_platform/touthscreen/panel/Kconfig"
+source "drivers/huawei_platform/touthscreen/panel/cyttsp5/Kconfig"
+
+#sensor unification for differ platform
+menu "huawei linux device driver support package"
+config HISI_FPGA_TP_COLOR_INFO
+	bool "hisi_fpga tp color info"
+	default n
+	help
+		get the hisi_fpga tp color information.
+endmenu

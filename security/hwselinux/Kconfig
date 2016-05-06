@@ -1,0 +1,9 @@
+#
+# huawei selinux dsm configuration
+#
+
+config HUAWEI_SELINUX_DSM
+        bool "Listen selinux avc denied err"
+        default n
+        help
+           use huawei dsm log radar

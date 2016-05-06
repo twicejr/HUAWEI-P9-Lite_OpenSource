@@ -1,0 +1,20 @@
+#
+# huawei touchscreen driver configuration
+#
+
+config SYNAPTICS_TS
+	bool "synaptics touchscreen"
+	default n
+	help
+	  If you say yes here you get support for synaptics touchscreen.
+config SYNAPTICS_LCD_TYPE
+	bool "synaptics touchscreen"
+	default n
+	help
+	  If you say yes here you get support for synaptics touchscreen.
+config CYPRESS_TS
+	bool "cypress touchscreen"
+	default n
+	help
+	  If you say yes here you get support for cypress touchscreen.
+

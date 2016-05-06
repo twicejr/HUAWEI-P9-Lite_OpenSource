@@ -1,0 +1,18 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	dsp_dtcm_mdm:dsp@49000000 {
+		compatible = "hisilicon,dsp_balong_dtcm";
+		bbe16_pd_clk_stat = <0xe0200000 0x2c 0 0>;
+        bbe16_core_clk_stat = <0xe0200000 0x2c 1 1>;
+        bbe16_pd_srst_stat = <0xe0200000 0x68 0 0>;
+        bbe16_core_srst_stat =<0xe0200000 0x68 1 1>;
+        bbe16_mtcmos_rdy_stat = <0xe0200000 0xe04 4 4>;
+        bbe16_iso_ctrl_stat = <0xe0200000 0xe0c 4 4>;
+		status = "ok";
+	};
+};

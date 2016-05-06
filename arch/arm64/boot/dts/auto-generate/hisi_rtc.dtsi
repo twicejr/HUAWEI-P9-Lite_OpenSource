@@ -1,0 +1,31 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    pmic: pmic@FFF34000 {
+
+        pmic_rtc: pmic_rtc@a0 {
+                    compatible = "hisilicon,hisi-rtc";
+                    soc-rtc-baseaddr = <0xFFF04000>;        /*SOC RTC BaseAddr*/
+                    soc-rtc-irq      = <78>;                /*SOC RTC IRQ*/
+
+                    interrupt-parent = <&pmic>;
+                    interrupts = <3 0>;
+                    interrupt-names = "hisi-pmic-rtc";
+
+                    hisilicon,pmic-rtc-base = <0x12c>;
+                    hisilicon,pmic-rtc-imr  = <0x0e1>;
+                    hisilicon,pmic-rtc-icr  = <0x120>;
+                    hisilicon,pmic-rtc-ib   = <0x3>;
+
+                    hisilicon,pmic-rtc-xo-thrshd-pwroff-val = <0x00B8>;
+
+                    status = "disabled";
+	    };
+	};
+};

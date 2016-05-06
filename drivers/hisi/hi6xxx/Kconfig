@@ -1,0 +1,65 @@
+config HISILICON_PLATFORM_HI6XXX
+	bool "Support HiSilicon Hi6XXX SOC platform"
+	depends on ARCH_HI6XXX
+	default n 
+	help
+	  This driver supports HiSilicon HiXXX SOC,
+	  including easy shell, etc.
+
+if HISILICON_PLATFORM_HI6XXX
+config HISILICON_PLATFORM_HI6XXX_SOC
+	bool "Support HiSilicon Hi6XXX SOC"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon Hi6XXX SOC,
+	  including system controller configuration, etc.
+
+config HISILICON_PLATFORM_HI6XXX_IOMAP
+	bool "Support HiSilicon Hi6XXX I/O Mapping"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon Hi6XXX SOC,
+	  including io mapping, etc.
+
+config HISILICON_PLATFORM_HI6XXX_BOARDID
+	bool "Support HiSilicon Hi6XXX Board ID"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon HiXXX SOC,
+	  including board id configuration, etc.
+
+config HISILICON_PLATFORM_HI6XXX_BOOTCMD
+	bool "Support HiSilicon Hi6XXX Boot Comand"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon HiXXX SOC,
+	  including hisilicon platform boot command, etc.
+
+config HISILICON_PLATFORM_HI6XXX_MODEM
+	bool "Support HiSilicon Hi6XXX Modem"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon HiXXX Modem,
+	  including hisilicon hi6xxx modem driver, etc.
+
+config HISILICON_PLATFORM_HI6XXX_IPC
+	bool "Support HiSilicon Hi6XXX IPC"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon HiXXX IPC,
+	  including hisilicon hi6xxx IPC driver, etc.
+	  
+config HI6XXX_SR
+	bool "Support HiSilicon Hi6XXX 64bit suspend/resume"
+	depends on HISILICON_PLATFORM_HI6XXX
+	default n
+	help
+	  This driver supports HiSilicon Hi6XXX 64bit SR,
+	  including hisilicon hi6xxx suspend/resume driver, etc.	  
+endif

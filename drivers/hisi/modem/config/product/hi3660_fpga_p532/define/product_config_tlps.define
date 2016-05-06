@@ -1,0 +1,53 @@
+#####################################################################
+# Copyright (C) 2015 Huawei Tech. Co., Ltd.
+# obuild product define file
+#
+# Author : wangyuqin/00161397, 2015-08-26
+#####################################################################
+
+
+#####################################################################
+#   LPS FEATURE CONFIG     大家增加宏，请在尾部添加              #
+#####################################################################
+
+#支持IMS_控制VoLTE特性开关
+CFG_FEATURE_IMS                                 = FEATURE_ON
+
+#支持R11协议
+CFG_FEATURE_LTE_R11                             = FEATURE_ON
+
+# MBMS在R11基础上开发，MBMS宏打开时请确保CFG_FEATURE_LTE_R11是FEATURE_ON状态
+CFG_FEATURE_LTE_MBMS                            = FEATURE_OFF
+
+#控制NAS R11特性开关
+CFG_FEATURE_LTE_NAS_R11                         = FEATURE_OFF
+
+#支持CDMA开关
+CFG_FEATURE_LTE_CDMA_R11                        = FEATURE_OFF
+
+
+#商用ERROR LOG特性开关
+CFG_FEATURE_PTM                                 = FEATURE_OFF
+
+CFG_FEATURE_BALONG_CL                           = FEATURE_UE_MODE_CDMA
+
+#UE能力上下行分离开关-仅在V7R5版本使用
+CFG_FEATURE_LTE_CAT_PART_R11                    = NO
+
+# 协议栈支持8个传输信道
+CFG_TL_PS_MAX_TRCH_NUM_8    = YES
+
+CFG_FEATURE_LPP                                 = FEATURE_OFF
+
+#####################################################################
+#                     T/W Dynamic Load                              #
+#####################################################################
+CFG_FEATURE_TDS_WCDMA_DYNAMIC_LOAD         = FEATURE_OFF
+#####################################################################
+# CSG 特性宏                                                        #
+#####################################################################
+CFG_FEATURE_CSG                            = FEATURE_OFF 
+#####################################################################
+# CSS 内存池管理宏                                                  #
+#####################################################################
+CFG_FEATURE_CSS_CLOUD_MEMORY_IMPROVE           = FEATURE_ON

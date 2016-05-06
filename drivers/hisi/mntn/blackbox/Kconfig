@@ -1,0 +1,41 @@
+menu "RDR - Running data recorder menu"
+
+config HISI_BB
+	bool "kernel run data recorder"
+	depends on SYSFS
+	default n
+	help
+	  This module can record some data about kernel internal info.
+	  Include:
+	  the task switch,
+	  interrupts switch,
+	  arm exception info,
+	  etc ...
+
+config HISI_BB_DEBUG
+	bool "test unit for kernel run data recorder"
+	depends on SYSFS && HISI_BB
+	default n
+	help
+	  This module can test RDR function ...
+	  Include:
+	  dataabort,
+	  etc
+
+# need_other_module_clear
+config HISI_LPMCU_BB
+	bool "hisi lpmcu bbox"
+	depends on  HISI_BB
+	default n
+
+config HISI_HIFI_BB
+	bool "hisi hifi bbox"
+	depends on  HISI_BB
+	default n
+
+# need_other_module_clear
+config HISI_ISP_RDR
+       bool "hisi isp rdr"
+       depends on HISI_BB
+       default n
+endmenu

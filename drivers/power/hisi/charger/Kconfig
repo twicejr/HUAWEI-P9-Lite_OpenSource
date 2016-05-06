@@ -1,0 +1,15 @@
+config HISI_CHARGER
+	bool "hisi charger"
+	default n
+config HISI_CHARGER_ARCH
+	bool "hisi charger arch"
+	default n
+config BQ25892_CHARGER
+	bool "bq25892 charger"
+	default n
+config SCHARGER_V200
+	bool "schargerV200"
+	default n
+config SCHARGER_V300
+	bool "schargerV300"
+	default n

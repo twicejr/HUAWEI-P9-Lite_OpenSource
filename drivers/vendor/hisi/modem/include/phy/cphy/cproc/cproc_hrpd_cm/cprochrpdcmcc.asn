@@ -1,0 +1,872 @@
+--/*********************************************************************************/
+--/* FileName:      cprochrpdcmcc.asn                                              */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2015.11.11 14:2:47                                             */
+--
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Cprochrpdcmcc-definitions.Cprochrpdcmcc-MSG                                              
+--PROTOCOL: Cprochrpdcmcc                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Cprochrpdcmcc-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+CPROC-HRPD-WORKMODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-WORKMODE-MASTER(0), 
+    cPROC-HRPD-WORKMODE-SLAVE(1), 
+    cPROC-HRPD-WORKMODE-BUTT(2) 
+} 
+
+CPROC-HRPD-CHANNEL-RECORD-STRU    ::= <V> SEQUENCE  
+{ 
+    usBandClass    VOS-UINT16 , 
+ 
+    usChannelNumber    VOS-UINT16  
+} 
+
+CPROCHRPDCMCC-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CAS-CPROC-HRPD-SIGNAL-LEVEL-REQ(16896),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SIGNAL-LEVEL-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SIGNAL-LEVEL-IND(16897),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SIGNAL-LEVEL-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-RESET-REQ(16898),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-RESET-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-RESET-CNF(16899),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-RESET-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-SET-MODE-REQ(16900),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SET-MODE-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SET-MODE-CNF(16901),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SET-MODE-CNF-STRU */ 
+    iD-CPROC-CAS-HRPD-WAKEUP-IND(16902),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-WAKEUP-IND-STRU */ 
+    iD-CPROC-CAS-HRPD-SLEEP-IND(16903),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SLEEP-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-CC-CONFIG-REQ(16904),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-CC-CONFIG-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-CC-CONFIG-CNF(16905),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-CC-CONFIG-CNF-STRU */ 
+    iD-CPROC-CAS-HRPD-ACTIVE-CELL-IND(16906),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-ACTIVE-CELL-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-SEARCH-PILOT-REQ(16907),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SEARCH-PILOT-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SEARCH-PILOT-IND(16908),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SEARCH-PILOT-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-SEARCH-PILOT-STOP-REQ(16909),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SEARCH-PILOT-STOP-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SEARCH-PILOT-STOP-CNF(16910),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SEARCH-PILOT-STOP-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-SYSTIME-UPDATE-REQ(16911),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SYSTIME-UPDATE-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SYSTIME-UPDATE-IND(16912),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SYSTIME-UPDATE-IND-STRU */ 
+    iD-CPROC-CAS-HRPD-ERROR-IND(16913),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-ERROR-IND-STRU */ 
+    iD-CPROC-CAS-HRPD-NO-RF-IND(16914),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-NO-RF-IND-STRU */ 
+    iD-CPROC-CAS-HRPD-RF-IND(16915),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-RF-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-LTE-MEAS-REQ(16916),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-LTE-MEAS-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-LTE-MEAS-CNF(16917),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-LTE-MEAS-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-STOP-LTE-MEAS-REQ(16918),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-STOP-LTE-MEAS-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-STOP-LTE-MEAS-CNF(16919),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-STOP-LTE-MEAS-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-LTE-BSR-REQ(16920),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-LTE-BSR-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-LTE-BSR-CNF(16921),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-LTE-BSR-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-STOP-LTE-BSR-REQ(16922),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-STOP-LTE-BSR-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-STOP-LTE-BSR-CNF(16923),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-STOP-LTE-BSR-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-READ-LTE-NL-REQ(16924),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-READ-LTE-NL-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-READ-LTE-NL-CNF(16925),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-READ-LTE-NL-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-STOP-LTE-NL-REQ(16926),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-STOP-LTE-NL-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-STOP-LTE-NL-CNF(16927),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-STOP-LTE-NL-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-REL-ALL-REQ(16928),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-REL-ALL-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-REL-ALL-CNF(16929),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-REL-ALL-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-SEARCH-PILOT-SUSPEND-REQ(16930),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SEARCH-PILOT-SUSPEND-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SEARCH-PILOT-SUSPEND-CNF(16931),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SEARCH-PILOT-SUSPEND-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-SEARCH-PILOT-RESUME-REQ(16932),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-SEARCH-PILOT-RESUME-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-SEARCH-PILOT-RESUME-CNF(16933),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-SEARCH-PILOT-RESUME-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-CC-STOP-REQ(16934),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-CC-STOP-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-CC-STOP-CNF(16935),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-CC-STOP-CNF-STRU */ 
+    iD-CAS-CPROC-HRPD-TIME-SYNC-REQ(16936),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-TIME-SYNC-REQ-STRU */ 
+    iD-CPROC-CAS-HRPD-TIME-SYNC-IND(16937),    --/* -H2ASN-MsgChoice CPROC-CAS-HRPD-TIME-SYNC-IND-STRU */ 
+    iD-CAS-CPROC-HRPD-CONNECTION-STATUS-REQ(16938),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-CONNECTION-STATUS-REQ-STRU */ 
+    iD-CAS-CPROC-HRPD-TCH-FLOW-STATUS-REQ(16939),    --/* -H2ASN-MsgChoice CAS-CPROC-HRPD-TCH-FLOW-STATUS-REQ-STRU */ 
+    iD-CPROCHRPDCMCC-MSG-TYPE-ENUM-BUTT(16940) 
+} 
+
+CPROCHRPDCMCC-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCAS-CPROC-HRPD-SIGNAL-LEVEL-REQ-STRU   CAS-CPROC-HRPD-SIGNAL-LEVEL-REQ-STRU   WHEN(usChoice1.v==16896), 
+   struCPROC-CAS-HRPD-SIGNAL-LEVEL-IND-STRU   CPROC-CAS-HRPD-SIGNAL-LEVEL-IND-STRU   WHEN(usChoice1.v==16897), 
+   struCAS-CPROC-HRPD-RESET-REQ-STRU   CAS-CPROC-HRPD-RESET-REQ-STRU   WHEN(usChoice1.v==16898), 
+   struCPROC-CAS-HRPD-RESET-CNF-STRU   CPROC-CAS-HRPD-RESET-CNF-STRU   WHEN(usChoice1.v==16899), 
+   struCAS-CPROC-HRPD-SET-MODE-REQ-STRU   CAS-CPROC-HRPD-SET-MODE-REQ-STRU   WHEN(usChoice1.v==16900), 
+   struCPROC-CAS-HRPD-SET-MODE-CNF-STRU   CPROC-CAS-HRPD-SET-MODE-CNF-STRU   WHEN(usChoice1.v==16901), 
+   struCPROC-CAS-HRPD-WAKEUP-IND-STRU   CPROC-CAS-HRPD-WAKEUP-IND-STRU   WHEN(usChoice1.v==16902), 
+   struCPROC-CAS-HRPD-SLEEP-IND-STRU   CPROC-CAS-HRPD-SLEEP-IND-STRU   WHEN(usChoice1.v==16903), 
+   struCAS-CPROC-HRPD-CC-CONFIG-REQ-STRU   CAS-CPROC-HRPD-CC-CONFIG-REQ-STRU   WHEN(usChoice1.v==16904), 
+   struCPROC-CAS-HRPD-CC-CONFIG-CNF-STRU   CPROC-CAS-HRPD-CC-CONFIG-CNF-STRU   WHEN(usChoice1.v==16905), 
+   struCPROC-CAS-HRPD-ACTIVE-CELL-IND-STRU   CPROC-CAS-HRPD-ACTIVE-CELL-IND-STRU   WHEN(usChoice1.v==16906), 
+   struCAS-CPROC-HRPD-SEARCH-PILOT-REQ-STRU   CAS-CPROC-HRPD-SEARCH-PILOT-REQ-STRU   WHEN(usChoice1.v==16907), 
+   struCPROC-CAS-HRPD-SEARCH-PILOT-IND-STRU   CPROC-CAS-HRPD-SEARCH-PILOT-IND-STRU   WHEN(usChoice1.v==16908), 
+   struCAS-CPROC-HRPD-SEARCH-PILOT-STOP-REQ-STRU   CAS-CPROC-HRPD-SEARCH-PILOT-STOP-REQ-STRU   WHEN(usChoice1.v==16909), 
+   struCPROC-CAS-HRPD-SEARCH-PILOT-STOP-CNF-STRU   CPROC-CAS-HRPD-SEARCH-PILOT-STOP-CNF-STRU   WHEN(usChoice1.v==16910), 
+   struCAS-CPROC-HRPD-SYSTIME-UPDATE-REQ-STRU   CAS-CPROC-HRPD-SYSTIME-UPDATE-REQ-STRU   WHEN(usChoice1.v==16911), 
+   struCPROC-CAS-HRPD-SYSTIME-UPDATE-IND-STRU   CPROC-CAS-HRPD-SYSTIME-UPDATE-IND-STRU   WHEN(usChoice1.v==16912), 
+   struCPROC-CAS-HRPD-ERROR-IND-STRU   CPROC-CAS-HRPD-ERROR-IND-STRU   WHEN(usChoice1.v==16913), 
+   struCPROC-CAS-HRPD-NO-RF-IND-STRU   CPROC-CAS-HRPD-NO-RF-IND-STRU   WHEN(usChoice1.v==16914), 
+   struCPROC-CAS-HRPD-RF-IND-STRU   CPROC-CAS-HRPD-RF-IND-STRU   WHEN(usChoice1.v==16915), 
+   struCAS-CPROC-HRPD-LTE-MEAS-REQ-STRU   CAS-CPROC-HRPD-LTE-MEAS-REQ-STRU   WHEN(usChoice1.v==16916), 
+   struCPROC-CAS-HRPD-LTE-MEAS-CNF-STRU   CPROC-CAS-HRPD-LTE-MEAS-CNF-STRU   WHEN(usChoice1.v==16917), 
+   struCAS-CPROC-HRPD-STOP-LTE-MEAS-REQ-STRU   CAS-CPROC-HRPD-STOP-LTE-MEAS-REQ-STRU   WHEN(usChoice1.v==16918), 
+   struCPROC-CAS-HRPD-STOP-LTE-MEAS-CNF-STRU   CPROC-CAS-HRPD-STOP-LTE-MEAS-CNF-STRU   WHEN(usChoice1.v==16919), 
+   struCAS-CPROC-HRPD-LTE-BSR-REQ-STRU   CAS-CPROC-HRPD-LTE-BSR-REQ-STRU   WHEN(usChoice1.v==16920), 
+   struCPROC-CAS-HRPD-LTE-BSR-CNF-STRU   CPROC-CAS-HRPD-LTE-BSR-CNF-STRU   WHEN(usChoice1.v==16921), 
+   struCAS-CPROC-HRPD-STOP-LTE-BSR-REQ-STRU   CAS-CPROC-HRPD-STOP-LTE-BSR-REQ-STRU   WHEN(usChoice1.v==16922), 
+   struCPROC-CAS-HRPD-STOP-LTE-BSR-CNF-STRU   CPROC-CAS-HRPD-STOP-LTE-BSR-CNF-STRU   WHEN(usChoice1.v==16923), 
+   struCAS-CPROC-HRPD-READ-LTE-NL-REQ-STRU   CAS-CPROC-HRPD-READ-LTE-NL-REQ-STRU   WHEN(usChoice1.v==16924), 
+   struCPROC-CAS-HRPD-READ-LTE-NL-CNF-STRU   CPROC-CAS-HRPD-READ-LTE-NL-CNF-STRU   WHEN(usChoice1.v==16925), 
+   struCAS-CPROC-HRPD-STOP-LTE-NL-REQ-STRU   CAS-CPROC-HRPD-STOP-LTE-NL-REQ-STRU   WHEN(usChoice1.v==16926), 
+   struCPROC-CAS-HRPD-STOP-LTE-NL-CNF-STRU   CPROC-CAS-HRPD-STOP-LTE-NL-CNF-STRU   WHEN(usChoice1.v==16927), 
+   struCAS-CPROC-HRPD-REL-ALL-REQ-STRU   CAS-CPROC-HRPD-REL-ALL-REQ-STRU   WHEN(usChoice1.v==16928), 
+   struCPROC-CAS-HRPD-REL-ALL-CNF-STRU   CPROC-CAS-HRPD-REL-ALL-CNF-STRU   WHEN(usChoice1.v==16929), 
+   struCAS-CPROC-HRPD-SEARCH-PILOT-SUSPEND-REQ-STRU   CAS-CPROC-HRPD-SEARCH-PILOT-SUSPEND-REQ-STRU   WHEN(usChoice1.v==16930), 
+   struCPROC-CAS-HRPD-SEARCH-PILOT-SUSPEND-CNF-STRU   CPROC-CAS-HRPD-SEARCH-PILOT-SUSPEND-CNF-STRU   WHEN(usChoice1.v==16931), 
+   struCAS-CPROC-HRPD-SEARCH-PILOT-RESUME-REQ-STRU   CAS-CPROC-HRPD-SEARCH-PILOT-RESUME-REQ-STRU   WHEN(usChoice1.v==16932), 
+   struCPROC-CAS-HRPD-SEARCH-PILOT-RESUME-CNF-STRU   CPROC-CAS-HRPD-SEARCH-PILOT-RESUME-CNF-STRU   WHEN(usChoice1.v==16933), 
+   struCAS-CPROC-HRPD-CC-STOP-REQ-STRU   CAS-CPROC-HRPD-CC-STOP-REQ-STRU   WHEN(usChoice1.v==16934), 
+   struCPROC-CAS-HRPD-CC-STOP-CNF-STRU   CPROC-CAS-HRPD-CC-STOP-CNF-STRU   WHEN(usChoice1.v==16935), 
+   struCAS-CPROC-HRPD-TIME-SYNC-REQ-STRU   CAS-CPROC-HRPD-TIME-SYNC-REQ-STRU   WHEN(usChoice1.v==16936), 
+   struCPROC-CAS-HRPD-TIME-SYNC-IND-STRU   CPROC-CAS-HRPD-TIME-SYNC-IND-STRU   WHEN(usChoice1.v==16937), 
+   struCAS-CPROC-HRPD-CONNECTION-STATUS-REQ-STRU   CAS-CPROC-HRPD-CONNECTION-STATUS-REQ-STRU   WHEN(usChoice1.v==16938), 
+   struCAS-CPROC-HRPD-TCH-FLOW-STATUS-REQ-STRU   CAS-CPROC-HRPD-TCH-FLOW-STATUS-REQ-STRU   WHEN(usChoice1.v==16939) 
+} 
+
+CAS-CPROC-HRPD-TCH-FLOW-STATUS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cAS-CPROC-HRPD-TCH-FLOW-TCA-RCV-SETUP(0), 
+    cAS-CPROC-HRPD-TCH-FLOW-TCA-RCV-RECFG(1), 
+    cAS-CPROC-HRPD-TCH-FLOW-TCC-FINISH(2), 
+    cAS-CPROC-HRPD-TCH-FLOW-STATUS-ENUM-BUTT(3) 
+} 
+
+CPROC-HRPD-DEFAULT-IDLE-FLAG-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-DEFAULT-IDLE-FLAG-DEFAULT(0), 
+    cPROC-HRPD-DEFAULT-IDLE-FLAG-NOT-DEFAULT(1), 
+    cPROC-HRPD-DEFAULT-IDLE-FLAG-ENUM-BUTT(2) 
+} 
+
+CPROC-HRPD-CONNECTION-STATUS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-CONNECTION-STATUS-OPEN(0), 
+    cPROC-HRPD-CONNECTION-STATUS-CLOSED(1), 
+    cPROC-HRPD-CONNECTION-STATUS-BUTT(2) 
+} 
+
+CPROC-HRPD-RSLT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-RSLT-SUCC(0), 
+    cPROC-HRPD-RSLT-FAIL(1), 
+    cPROC-HRPD-RSLT-ENUM-BUTT(2) 
+} 
+
+CPROC-HRPD-CC-CFG-RESULT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-CC-CFG-RESULT-SUCCESS(0), 
+    cPROC-HRPD-CC-CFG-RESULT-CELL-NOT-FOUND(1), 
+    cPROC-HRPD-CC-CFG-RESULT-FAIL-TX-ACC(2), 
+    cPROC-HRPD-CC-CFG-RESULT-BUTT(3) 
+} 
+
+CPROC-HRPD-PILOT-SEARCH-RES-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-PILOT-SEARCH-RES-FOUND(0), 
+    cPROC-HRPD-PILOT-SEARCH-RES-NOT-FOUND(1), 
+    cPROC-HRPD-PILOT-SEARCH-RES-ERROR(2), 
+    cPROC-HRPD-PILOT-SEARCH-RES-BUTT(3) 
+} 
+
+CPROC-HRPD-CC-SETUP-STATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-CC-SETUP-STATE-IDLE-DRX(0), 
+    cPROC-HRPD-CC-SETUP-STATE-CONTINUOUS(1), 
+    cPROC-HRPD-CC-SETUP-STATE-BUTT(2) 
+} 
+
+CPROC-HRPD-CDMA-EUTRA-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-HRPD-CDMA-EUTRA-SYNCHRONIZED(0), 
+    cPROC-HRPD-CDMA-EUTRA-NOT-SYNCHRONIZED(1), 
+    cPROC-HRPD-CDMA-EUTRA-BUTT(2) 
+} 
+
+CPROC-HRPD-SIGNAL-LEVEL-STRU    ::= <V> SEQUENCE  
+{ 
+    stFreqInfo    CPROC-HRPD-CHANNEL-RECORD-STRU, 
+ 
+    --/**< Frequency */ 
+    sFreqRssi    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32 bit alginment */ 
+} 
+
+CPROC-HRPD-CC-SETUP-CONT-STRU    ::= <V> SEQUENCE  
+{ 
+    usPhySubType    VOS-UINT16, 
+ 
+    --/**< phy layer's sub type */ 
+    usShortPacketsMacIndex    VOS-UINT16 
+    --/**< [0x00, 0x06-0x3f, 0x48-0x7f] Only valid if enPhySubtype is not 0 */ 
+} 
+
+CPROC-HRPD-PAGINGMASK-STRU    ::= <V> SEQUENCE  
+{ 
+    usPreMaskDuration    VOS-UINT16, 
+ 
+    --/**< value in units of 4 slots */ 
+    usMaskDuration    VOS-UINT16, 
+ 
+    --/**< value in units of 4 slots */ 
+    usPostMaskDuration    VOS-UINT16, 
+ 
+    --/**< value in units of 4 slots */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32-bit alignment */ 
+} 
+
+CPROC-HRPD-CC-SETUP-DRX-STATE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    enDefaultIdleFlag    CPROC-HRPD-DEFAULT-IDLE-FLAG-ENUM, 
+ 
+    --/**< indicate cproc it is default idle or not */ 
+    usR    VOS-UINT16, 
+ 
+    --/**< Offset within 5.12 ms cycle in units of Control Channel cycles (16 * 26.67 ms = 426.72 ms), [0,11] */ 
+    usOffset    VOS-UINT16, 
+ 
+    --/**< Offset from Control Channel cycle in slots, [0..3], enhanced parameter */ 
+    usSlotCycle1    VOS-UINT16, 
+ 
+    --/**< [0x00..0x1c], enhanced parameter */ 
+    usSlotCycle2    VOS-UINT16, 
+ 
+    --/**< [usSlotCycle1..0x1c], enhanced parameter */ 
+    usSlotCycle3    VOS-UINT16, 
+ 
+    --/**< [usSlotCycle2..0x1c], enhanced parameter */ 
+    usWakeCount1    VOS-UINT16, 
+ 
+    --/**< [0..15], enhanced parameter */ 
+    usWakeCount2    VOS-UINT16 
+    --/**< [usWakeCount1..15], enhanced parameter */ 
+} 
+
+CPROC-HRPD-PAGINGMASK-PARAM-STRU    ::= <V> SEQUENCE  
+{ 
+    usMaskCount    VOS-UINT16, 
+ 
+    --/**< number of masks */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astMask    <V>SEQUENCE(SIZE(2)) OF CPROC-HRPD-PAGINGMASK-STRU 
+    --/**< masks */ 
+} 
+
+CAS-CPROC-HRPD-SIGNAL-LEVEL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usFreqNum    VOS-UINT16, 
+ 
+    --/**< number of frequencies 1..CPROC-HRPD-MAX-FREQ-IN-SIGNAL-LEVEL */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astFreq    <V>SEQUENCE(SIZE(16)) OF CPROC-HRPD-CHANNEL-RECORD-STRU 
+    --/**< frequencies to be searched */ 
+} 
+
+CPROC-CAS-HRPD-SIGNAL-LEVEL-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usFreqNum    VOS-UINT16, 
+ 
+    --/**< number of frequencies 1..CPROC-HRPD-MAX-FREQ-IN-SIGNAL-LEVEL */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astResults    <V>SEQUENCE(SIZE(16)) OF CPROC-HRPD-SIGNAL-LEVEL-STRU 
+    --/**< results per frequency */ 
+} 
+
+CAS-CPROC-HRPD-RESET-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-RESET-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-SET-MODE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enWorkMode    CPROC-HRPD-WORKMODE-ENUM, 
+ 
+    --/**< Master mode or Slave mode */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-HRPD-SET-MODE-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-WAKEUP-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-SLEEP-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-CC-CONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    stChannelInfo    CPROC-HRPD-CHANNEL-RECORD-STRU, 
+ 
+    --/**< Frequency */ 
+    usPnOffset    VOS-UINT16, 
+ 
+    --/**< 0..511 */ 
+    enCcSetupState    CPROC-HRPD-CC-SETUP-STATE-ENUM, 
+ 
+    --/**< DRX or Continuous */ 
+    stDRXPara    CPROC-HRPD-CC-SETUP-DRX-STATE-REQ-STRU, 
+ 
+    --/**< Parameters for IDLE-DRX */ 
+    stContPara    CPROC-HRPD-CC-SETUP-CONT-STRU 
+    --/**< Parameters for CC Continuous */ 
+} 
+
+CPROC-CAS-HRPD-CC-CONFIG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    ulResult    CPROC-HRPD-CC-CFG-RESULT-ENUM , 
+ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-HRPD-ACTIVE-CELL-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    stFreqInfo    CPROC-HRPD-CHANNEL-RECORD-STRU, 
+ 
+    --/**< Frequency */ 
+    usPnOffset    VOS-UINT16, 
+ 
+    --/**< 0..511 */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-HRPD-SEARCH-PILOT-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usNbrOfChannels    VOS-UINT16, 
+ 
+    --/**< number of channels 1..CPROC-HRPD-CS-MAX-CHANNEL-NUM */ 
+    usPnOffset    VOS-UINT16, 
+ 
+    --/**< Only valid at LTE handoff. The PNOffset to search for. If not valid CPROC-HRPD-NOT-VALID-US */ 
+     
+    astChannelInfoList    <V>SEQUENCE(SIZE(20)) OF CPROC-HRPD-CHANNEL-RECORD-STRU, 
+ 
+    --/**< channels */ 
+    usNbrOfAvoidPn    VOS-UINT16, 
+ 
+    --/**< 0..CPROC-HRPD-MAX-AVOID-PN Number of PN offsets to be avoided */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    ausAvoidPn    <V>SEQUENCE(SIZE(10)) OF VOS-UINT16 
+    --/**< PN offsets to be avoided */ 
+} 
+
+CPROC-CAS-HRPD-SEARCH-PILOT-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enPilotFound    CPROC-HRPD-PILOT-SEARCH-RES-ENUM, 
+ 
+    --/**< No pilot found, Pilot found, Error */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8, 
+ 
+    --/**< 32 bit alignment */ 
+    stChannelInfo    CPROC-HRPD-CHANNEL-RECORD-STRU 
+    --/**< the frequency, only valid if pilot found */ 
+} 
+
+CAS-CPROC-HRPD-SEARCH-PILOT-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-SEARCH-PILOT-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    ulResult    VOS-UINT32 
+    --/**< 0-success, others-failure */ 
+} 
+
+CAS-CPROC-HRPD-SYSTIME-UPDATE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+     
+    aulSystemTime    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32, 
+ 
+    --/**< SystemTime from sync message,  aulSystemTime[0] bit[31:0] = systemTime bit[31:0], aulSystemTime[1] bit[4:0] = systemTime bit[36:32] (unit 26.67 ms) */ 
+    ulBaseTime    VOS-UINT32, 
+ 
+    --/**< Time stamp of receiving the  F-SYNC message */ 
+    usPNOffset    VOS-UINT16, 
+ 
+    --/**< PN Offset from system msg */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(2)) OF VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-HRPD-SYSTIME-UPDATE-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-ERROR-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    ulEventId    VOS-UINT32 
+    --/**< Signal ID or Event ID that triggered sending of CPROC-CAS-HRPD-ERROR-IND */ 
+} 
+
+CPROC-CAS-HRPD-NO-RF-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-RF-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-LTE-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enBackoffValid    VOS-UINT8, 
+ 
+    --/**< 1: backoff valid, 0: not valid */ 
+    ucMinMeasurementBackoff    VOS-UINT8, 
+ 
+    --/**< LTE measurement period >= 2^ucMinMeasurementBackoff */ 
+    ucMaxMeasurementBackoff    VOS-UINT8, 
+ 
+    --/**< LTE measurement period <= 2^ucMaxMeasurementBackoff */ 
+    ucReserved    VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-HRPD-LTE-MEAS-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-STOP-LTE-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-STOP-LTE-MEAS-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-LTE-BSR-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-LTE-BSR-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-STOP-LTE-BSR-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-STOP-LTE-BSR-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-READ-LTE-NL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    ucOtherRatTxCycle    VOS-UINT8, 
+ 
+    --/**< [2, 3, 6, 10, 14, 24, 40, 64] */ 
+     
+    aucReserve    <V>SEQUENCE(SIZE(3)) OF VOS-UINT8 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-HRPD-READ-LTE-NL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-STOP-LTE-NL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-STOP-LTE-NL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-REL-ALL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-REL-ALL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-SEARCH-PILOT-SUSPEND-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-SEARCH-PILOT-SUSPEND-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-SEARCH-PILOT-RESUME-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-SEARCH-PILOT-RESUME-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-CC-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-CC-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-HRPD-TIME-SYNC-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-HRPD-TIME-SYNC-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enResult    CPROC-HRPD-RSLT-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    auwPulseTime    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32 
+    --/**< System time in 1 16 chip */ 
+} 
+
+CAS-CPROC-HRPD-CONNECTION-STATUS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enConnectionStatus    CPROC-HRPD-CONNECTION-STATUS-ENUM , 
+ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-HRPD-TCH-FLOW-STATUS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enTchFlowStatus    CAS-CPROC-HRPD-TCH-FLOW-STATUS-ENUM , 
+ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+Cprochrpdcmcc-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CPROCHRPDCMCC-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 */ 
+    --CPROCHRPDCMCC-DummySignalUnion    dummySignalUnion 
+    struMsgChoice    CPROCHRPDCMCC-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CPROCHRPDCMCC-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Cprochrpdcmcc-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Cprochrpdcmcc-msg-data  
+} 
+
+Cprochrpdcmcc-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

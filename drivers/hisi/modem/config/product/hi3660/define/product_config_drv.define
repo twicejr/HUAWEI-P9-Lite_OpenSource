@@ -1,0 +1,568 @@
+
+# enable Mcore build vars，工程组
+CFG_ENABLE_BUILD_VARS = YES
+
+#AT 升级命令 TAF
+CFG_FEATURE_UPGRADE_TL = YES
+
+# [base_info]: name, full version, dload software
+CFG_PRODUCT_NAME                      ="hi3660"
+CFG_PRODUCT_CFG_CHIP_SOLUTION_NAME    ="Balong"
+CFG_PRODUCT_FULL_VERSION_STR          ="Chicago V100R001C10B010"
+CFG_PRODUCT_DLOAD_SOFTWARE_VER        ="21.150.00.00.031"
+
+
+# [chipset_info]:
+#####################################################################
+# PLATFORM,下面两个宏要归一
+CFG_PLATFORM = hi3660
+CFG_PLATFORM_HISI_BALONG =hi3660
+
+# [os_info]
+####################################################################
+#Linux内核使用的ARCH类型
+#CFG_ARCH_TYPE	=3339
+#单编底软时可以打开为true
+OBB_SEPARATE = true
+CFG_OS_LINUX_PRODUCT_NAME=hisi_3660_defconfig
+
+#####################################################################
+
+# 压缩C核镜像
+CFG_ROM_COMPRESS = NO
+CFG_CONFIG_COMPRESS_CCORE_IMAGE = NO
+CFG_CONFIG_MODEM_DTB_LOAD_IN_KERNEL = YES
+
+# A/C核解耦
+CFG_FEATURE_DELAY_MODEM_INIT                    = FEATURE_ON
+
+
+# [bsp.versin_info]:
+#define hw version stub
+CFG_CONFIG_VERSION_STUB             =NO
+
+# [bsp.comm_feature_info]:
+#####################################################################
+
+CFG_BSP_CONFIG_EDA = NO
+CFG_BSP_CONFIG_EMU = NO
+#CFG_BSP_CONFIG_K3V3_ASIC = YES
+CFG_BSP_CONFIG_HI3650 = YES
+CFG_BSP_CONFIG_PHONE_TYPE = YES
+CFG_BSP_CONFIG_HI3660 = YES
+CFG_BSP_CONFIG_BOARD_ASIC = YES
+CFG_BSP_CONFIG_BOARD_SFT = YES
+CFG_BSP_HAS_SEC_FEATURE     = NO
+
+# [bsp.module_info]:
+#####################################################################
+#modem ccpu小系统调试宏，CFG_CONFIG_OF要关闭
+CFG_CONFIG_SMART_SYSTEM_MODEM = NO
+# fastboot 仿真器调试版本
+CFG_CONFIG_FASTBOOT_DEBUG = NO
+
+############################## BSP 1组 start#######################################
+#控制是否编译NV
+CFG_CONFIG_NVIM = YES
+#控制NV文件操作存储
+CFG_FEATURE_NV_FLASH_ON = NO
+CFG_FEATURE_NV_EMMC_ON  = YES
+CFG_FEATURE_NV_LFILE_ON = NO
+CFG_FEATURE_NV_RFILE_ON = NO
+
+# arm<->tlphy mailbox
+CFG_FEATURE_TLPHY_MAILBOX =YES
+
+# mailbox type
+CFG_CONFIG_MAILBOX_TYPE = YES
+CFG_CONFIG_HIFI_MAILBOX=NO
+
+# arm<->cphy mailbox
+CFG_FEATURE_CPHY_MAILBOX     = YES
+
+#区分dallas bbit平台tl mailbox 邮箱ipc核号
+CFG_FEATURE_CONFIG_P532_DALLAS = YES
+
+#bsp OM build
+CFG_ENABLE_BUILD_OM = YES
+#OM type config(MBB/PHONE)
+CFG_FEATURE_OM_PHONE = NO
+#bsp OM system view build
+CFG_ENABLE_BUILD_SYSVIEW = NO
+#bsp OM CPU view build
+CFG_ENABLE_BUILD_CPUVIEW = NO
+#bsp OM memory view build
+CFG_ENABLE_BUILD_MEMVIEW = NO
+#bsp OM AXI Monitor build
+CFG_ENABLE_BUILD_AMON = YES
+#bsp OM TRACE build
+CFG_ENABLE_BUILD_UTRACE = NO
+#bsp SOCP build
+CFG_ENABLE_BUILD_SOCP = YES
+# socp 解码超时寄存器
+CFG_FEATURE_SOCP_DECODE_INT_TIMEOUT     = FEATURE_ON
+CFG_FEATURE_SOCP_ON_DEMAND			= FEATURE_OFF
+
+#SAMPLE OF LTE FOR V8&V9
+CFG_FEATURE_SAMPLE_LTE_CHAN 			= FEATURE_OFF
+
+#sim inout
+CFG_FEATURE_SIM_NOTIFY = NO
+
+#控制是否编译SC
+CFG_CONFIG_SC = YES
+
+CFG_CONFIG_DSP = YES
+#　CBBE16
+CFG_CONFIG_CBBE   = YES
+
+#pdlock
+CFG_CONFIG_PDLOCK = YES
+
+#bsp coresight
+CFG_CONFIG_CORESIGHT = YES
+
+#watchpoint
+CFG_CONFIG_WATCHPOINT = NO
+
+#####################################################################################
+# 07 MSP FEATURE CONFIG                                                            #
+#####################################################################################
+#OM CHAN MERGE
+CFG_FEATURE_MERGE_OM_CHAN						= FEATURE_ON
+# socp通道裁剪
+CFG_FEATURE_SOCP_CHANNEL_REDUCE                 = FEATURE_OFF
+#RTT 多通道特性开关
+CFG_FEATURE_MULTI_CHANNEL			= FEATURE_OFF
+CFG_FEATURE_BSP_LCH_OM                       = FEATURE_ON
+
+
+############################## BSP 1组 end#########################################
+
+############################## BSP 2组 start#######################################
+
+# modem pintrl
+CFG_CONFIG_MODEM_PINTRL = NO
+
+# gpio 驱动选择
+CFG_CONFIG_GPIO_PL061 = YES
+#RFFE
+CFG_CONFIG_RFFE_MIPI = NO
+CFG_CONFIG_RFFE_ANTEN = NO
+CFG_CONFIG_RFFE_POWER = NO
+
+CFG_CONFIG_PCIE_CFG = NO
+
+#pmu使用fpga平台的
+CFG_CONFIG_PMIC_FPGA = NO
+CFG_CONFIG_PMU_NEW = NO
+#编译库仑计
+CFG_CONFIG_COUL = NO
+
+#编译SPI
+CFG_CONFIG_SPI = NO
+
+#编译SFLASH
+CFG_CONFIG_SFLASH = NO
+
+CFG_CONFIG_ABB = NO
+
+CFG_CONFIG_HIFI = NO
+CFG_CONFIG_HKADC = NO
+
+#编译BBP
+CFG_CONFIG_BBP = NO
+CFG_CONFIG_HW_SPINLOCK = YES
+# enable bbp mem repair
+CFG_MODEM_MEM_REPAIR = NO
+
+# turn the bbp abb on when doing the fpga bbit,turn off when tuning the low power feature
+CFG_CONFIG_BBP_ON = YES
+
+# mipi
+CFG_CONFIG_MIPI = NO
+CFG_CONFIG_CROSS_MIPI = NO
+
+# leds core
+CFG_CONFIG_LEDS_CCORE = NO
+
+# lcd
+CFG_CONFIG_FB_SPI_BALONG = NO
+CFG_CONFIG_FB_EMI_BALONG = NO
+CFG_CONFIG_FB_1_4_5_INCH_BALONG=NO
+CFG_CONFIG_FB_2_4_INCH_BALONG=NO
+
+# ----------------------------------
+# slic 编译选项如下：
+# 1）y：编入内核；
+# 2）m：编译为.ko，/system/bin目录下；
+# 3）n：为不编译（默认）。
+# ----------------------------------
+CFG_CONFIG_SLIC = n
+# wm8990 codec
+CFG_CONFIG_WM8990 = NO
+# gpio expander
+CFG_CONFIG_GPIO_EXPANDER = NO
+# temperature protect
+CFG_CONFIG_TEMPERATURE_PROTECT = NO
+
+# antenna plug or not
+CFG_CONFIG_ANTEN = NO
+
+# efuse
+CFG_CONFIG_EFUSE = NO
+
+# 注意:宏打开会导致烧写EFUSE，不熟悉这个功能请不要动这个宏!
+CFG_CONFIG_BURN_EFUSE_NANDC = NO
+
+# ddm启动打点
+CFG_CONFIG_DDM = YES
+
+# tsensor
+CFG_CONFIG_TSENSOR = NO
+
+# designware i2c
+CFG_CONFIG_DESIGNWARE_I2C = NO
+
+CFG_CONFIG_ONOFF = YES
+#E5 FEATURE
+CFG_FEATURE_E5_ONOFF = NO
+
+
+#mt ca
+CFG_CONFIG_MULTI_CARRIER =NO
+
+############################## BSP 2组 end#########################################
+
+############################## BSP 3组 start#######################################
+
+CFG_OS_K3V3_USE_LPM3_API           =YES
+CFG_BSP_ICC_MCHANNEL_USE_LPM3TCM = YES
+#l2cache
+CFG_CONFIG_BALONG_L2CACHE = YES
+# fastboot 串口号分配
+CFG_CONFIG_FASTBOOT_UART_NUM = 0
+
+# 编译vic
+CFG_CONFIG_MODULE_VIC = NO
+
+CFG_CONFIG_AT_UART = NO
+CFG_CONFIG_CSHELL = YES
+CFG_CONFIG_ICC = YES
+
+#modem ccpu小系统调试宏，CFG_CONFIG_OF要关闭
+CFG_CONFIG_OF = YES
+#DTS
+CFG_CONFIG_ARM_ENABLE_DTS = NO
+CFG_DTS_NAME = v711
+dts=true
+
+CFG_CONFIG_CPUFREQ = NO
+CFG_CONFIG_CCORE_REGULATOR = YES
+CFG_CONFIG_CCORE_WDT = NO
+CFG_CONFIG_ACORE_WDT = NO
+
+CFG_CONFIG_PM_OM = YES
+
+#clk
+CFG_CONFIG_BALONG_CCLK = YES
+
+#cpuidle
+CFG_CONFIG_CCORE_CPU_IDLE = YES
+#ipc timer dpm sync
+CFG_CONFIG_CCORE_PM = YES
+CFG_CONFIG_MODULE_IPC = YES
+CFG_CONFIG_IPCM_USE_FPGA_VIC = NO
+CFG_CONFIG_MODULE_TIMER = YES
+CFG_CONFIG_MODULE_SYNC = YES
+
+#wakelock
+CFG_CONFIG_HAS_CCORE_WAKELOCK = NO
+# core pm
+CFG_CONFIG_CCORE_BALONG_PM = YES
+#edma
+CFG_CONFIG_BALONG_EDMA = YES
+CFG_CONFIG_BALONG_EDMA_TEST = YES
+
+#lowpower mntn
+CFG_CONFIG_PWC_MNTN_CCORE = NO
+
+#HWADP
+CFG_CONFIG_HWADP = YES
+
+#SYSCTRL
+CFG_CONFIG_SYSCTRL = YES
+CFG_CONFIG_SYSCTRL_TEST = NO
+
+#S_MEMORY
+CFG_CONFIG_S_MEMORY = YES
+CFG_CONFIG_S_MEMORY_TEST = NO
+
+#hpm temperature
+CFG_CONFIG_BALONG_HPM_TEMP = NO
+
+CFG_CONFIG_MEM = YES
+#tcxo
+CFG_CONFIG_TCXO_BALONG = NO
+
+# modem reset
+CFG_CONFIG_BALONG_MODEM_RESET = NO
+CFG_CONFIG_LOAD_SEC_IMAGE = NO
+
+#VFP
+#CFG_CONFIG_VFP = YES
+#a core dpm ：控制A核侵入内核修改内容
+CFG_CONFIG_BALONG_DPM = NO
+
+CFG_CONFIG_USE_TIMER_STAMP=YES
+
+CFG_CONFIG_MODULE_BUSSTRESS = YES
+
+############################## BSP 3组 end#########################################
+
+############################## BSP 4组 start#######################################
+CFG_CONFIG_IPF    = YES
+CFG_CONFIG_PSAM   = YES
+CFG_CONFIG_CIPHER = YES
+
+# ipf_test
+CFG_CONFIG_IPF_VESION  = 2
+CFG_CONFIG_IPF_ADQ_LEN = 3
+# k3 should =NO
+CFG_CONFIG_IPF_PROPERTY_MBB = NO
+
+# usb
+CFG_CONFIG_USB_DWC3_VBUS_DISCONNECT=NO
+CFG_USB3_SYNOPSYS_PHY=NO
+CFG_CONFIG_USB_FORCE_HIGHSPEED=NO
+
+
+############################## BSP 4组 end#########################################
+
+############################## BSP 5组 start#######################################
+CFG_ENABLE_TEST_CODE = NO
+# dynamic_load should be set to NO in released version	307
+CFG_CONFIG_DYNAMIC_LOAD = YES
+
+#rtc
+CFG_CONFIG_RTC_BUILD_CTRL = YES
+CFG_CONFIG_RTC_ON_SOC = YES
+CFG_CONFIG_PHONE_PLATFORM = YES
+############################## BSP 5组 end#########################################
+
+
+# [bsp.flash_info]
+####################################################################
+
+# [bsp.memory_info.entry]
+####################################################################
+if (CFG_CONFIG_HISI_FAMA == true)
+CFG_MCORE_TEXT_START_ADDR               = 0xA5000000
+else
+CFG_MCORE_TEXT_START_ADDR               = 0x38400000
+endif
+
+# CFG_FASTBOOT_ENTRY = HI_SRAM_MEM_ADDR
+CFG_FASTBOOT_ENTRY                      = 0x4fe00000
+#CFG_FASTBOOT_DDR_ENTRY = DDR_MEM_ADDR + DDR_MEM_SIZE - 0x300000
+CFG_FASTBOOT_DDR_ENTRY                  = 0x5FD00000
+
+#CFG_PRODUCT_CFG_KERNEL_ENTRY = DDR_ACORE_ADDR + 0x8000
+CFG_PRODUCT_CFG_KERNEL_ENTRY 		= 0x59008000
+#CFG_PRODUCT_KERNEL_PARAMS_PHYS = DDR_ACORE_ADDR + 0x100
+CFG_PRODUCT_KERNEL_PARAMS_PHYS		= 0x59000100
+# onchip fastboot ddr addr
+# CFG_ONCHIP_FASTBOOT_ADDR = DDR_MEM_ADDR +
+# DDR_MEM_SIZE - PRODUCT_CFG_FLASH_RECOVERY_LEN -0x300000
+CFG_ONCHIP_FASTBOOT_ADDR                = 0x5F900000
+
+#mcore code entry addr
+CFG_RTX_KERNEL_ENTRY                    = 0x10000000
+
+# [bsp.memory_info.sram]
+####################################################################
+# sram start addr
+CFG_HI_SRAM_MEM_ADDR            = 0xE0800000
+CFG_HI_SRAM_SIZE                = 0xC000
+CFG_DRV_SRAM_ADDR               = (HI_SRAM_MEM_ADDR)
+CFG_DRV_SRAM_SIZE               = 0x2000
+CFG_CPHY_SRAM_ADDR              = ((DRV_SRAM_ADDR) + (DRV_SRAM_SIZE))
+CFG_CPHY_SRAM_SIZE              = 0x800
+CFG_CPHY_LPC_SRAM_ADDR          = ( CPHY_SRAM_ADDR )
+CFG_CPHY_LPC_SRAM_SIZE          = 0x40
+CFG_CPHY_1X_DATA_MBX_SRAM_ADDR  = ( (CPHY_LPC_SRAM_ADDR) + (CPHY_LPC_SRAM_SIZE) )
+CFG_CPHY_1X_DATA_MBX_SRAM_SIZE  = 0x40
+CFG_CPHY_HRPD_DATA_MBX_SRAM_ADDR= ( (CPHY_1X_DATA_MBX_SRAM_ADDR) + (CPHY_1X_DATA_MBX_SRAM_SIZE) )
+CFG_CPHY_HRPD_DATA_MBX_SRAM_SIZE= 0x40
+
+# [bsp.memory_info.board]
+####################################################################
+# 单板内存使用分配 : 从顶往下分配，以下地址和大小不可改变
+
+if (CFG_CONFIG_HISI_FAMA == true)
+CFG_DDR_MEM_ADDR                =  0xA4C00000
+CFG_DDR_MEM_ADDR_FAMA           = 0x5A4C00000
+else
+CFG_DDR_MEM_ADDR                =  0x38000000
+CFG_DDR_MEM_ADDR_FAMA           =  0x38000000
+endif
+
+CFG_DDR_MEM_SIZE                = 0x09F00000
+CFG_DDR_SECMEM_SIZE             = 0x08900000
+
+
+# ACORE ACP                     SIZE: 0
+CFG_DDR_APP_ACP_ADDR            = (DDR_MEM_ADDR)
+CFG_DDR_APP_ACP_SIZE            = 0x000000
+
+# GU+数传                       SIZE: 0.75M
+CFG_DDR_GU_ADDR                 = ((DDR_APP_ACP_ADDR) + (DDR_APP_ACP_SIZE))
+CFG_DDR_GU_SIZE                 = 0x000C0000
+    # =============GU+数传0.75M大小划分=================== #
+CFG_DDR_UPA_ADDR                = DDR_GU_ADDR
+CFG_DDR_UPA_SIZE                = 0x00024000
+CFG_DDR_CQI_ADDR                = ((DDR_UPA_ADDR) + (DDR_UPA_SIZE))
+CFG_DDR_CQI_SIZE                = 0x00003400
+CFG_DDR_APT_ADDR                = ((DDR_CQI_ADDR) + (DDR_CQI_SIZE))
+CFG_DDR_APT_SIZE                = 0x00008400
+CFG_DDR_ET_ADDR                 = ((DDR_APT_ADDR) + (DDR_APT_SIZE))
+CFG_DDR_ET_SIZE                 = 0x00004800
+CFG_DDR_NV_ADDR                 = ((DDR_ET_ADDR) + (DDR_ET_SIZE))
+CFG_DDR_NV_SIZE                 = 0x00000000
+CFG_DDR_ZSP_UP_ADDR             = ((DDR_NV_ADDR) + (DDR_NV_SIZE))
+CFG_DDR_ZSP_UP_SIZE             = 0x00008000
+CFG_DDR_ECS_TEE_ADDR            = ((DDR_ZSP_UP_ADDR) + (DDR_ZSP_UP_SIZE))
+CFG_DDR_ECS_TEE_SIZE            = 0x00001800
+CFG_DDR_MDM_GU_RESERVE_ADDR     = ((DDR_ECS_TEE_ADDR) + (DDR_ECS_TEE_SIZE))
+CFG_DDR_MDM_GU_RESERVE_SIZE     = 0x00082800
+
+CFG_DDR_EVDO_ADDR               = DDR_MDM_GU_RESERVE_ADDR
+CFG_DDR_EVDO_SIZE               = 0x00003C00
+CFG_DDR_1X_ADDR                 = ((DDR_EVDO_ADDR) + (DDR_EVDO_SIZE))
+CFG_DDR_1X_SIZE                 = 0x00012C00
+CFG_DDR_RESERVE_ADDR            = ((DDR_1X_ADDR) + (DDR_1X_SIZE))
+CFG_DDR_RESERVE_SIZE            = CFG_DDR_MDM_GU_RESERVE_SIZE
+CFG_CSDR_DDR_RAM_BASE           = DDR_EVDO_ADDR
+
+# TLDSP镜像                   SIZE: 3.25M
+CFG_DDR_TLPHY_IMAGE_ADDR     	= ((DDR_MDM_GU_RESERVE_ADDR) + (DDR_MDM_GU_RESERVE_SIZE))
+CFG_DDR_TLPHY_IMAGE_SIZE     	= 0x340000
+
+# MDM CORE使用内存            SIZE: 126M
+CFG_DDR_MCORE_ADDR              = (( DDR_TLPHY_IMAGE_ADDR ) + (DDR_TLPHY_IMAGE_SIZE))
+CFG_DDR_MCORE_SIZE              = 0x7E00000
+
+# CCORE DTS使用内存           SIZE: 1M
+CFG_DDR_MCORE_DTS_ADDR          = ((DDR_MCORE_ADDR) + (DDR_MCORE_SIZE))
+CFG_DDR_MCORE_DTS_SIZE          = 0x0100000
+
+# CDSP镜像                         SIZE: 1M
+CFG_DDR_CBBE_IMAGE_ADDR         = ((DDR_MCORE_DTS_ADDR) + (DDR_MCORE_DTS_SIZE))
+CFG_DDR_CBBE_IMAGE_SIZE         = 0x100000
+
+# TL DSP 使用 			SIZE: 2M = SDR 1.5M + TDS 0.5M
+CFG_DDR_LPHY_SDR_ADDR		= ((DDR_CBBE_IMAGE_ADDR) + (DDR_CBBE_IMAGE_SIZE))
+CFG_DDR_LPHY_SDR_SIZE     	= 0x200000
+
+# LCS                           SIZE: 2.5M
+CFG_DDR_LCS_ADDR                = ((DDR_LPHY_SDR_ADDR) + (DDR_LPHY_SDR_SIZE))
+CFG_DDR_LCS_SIZE                = 0x280000
+
+# RESERVED                      SIZE: 0.5M
+CFG_DDR_MDM_RESERVED_ADDR       = ((DDR_LCS_ADDR) + (DDR_LCS_SIZE))
+CFG_DDR_MDM_RESERVED_SIZE       = 0x80000
+
+# APP　CORE使用内存            SIZE: 0M
+CFG_DDR_ACORE_ADDR              = ((DDR_MDM_RESERVED_ADDR) + (DDR_MDM_RESERVED_SIZE))
+CFG_DDR_ACORE_SIZE              = 0x0
+
+# ACORE DTS使用内存           SIZE: 0M
+CFG_DDR_ACORE_DTS_ADDR          = ((DDR_ACORE_ADDR) + (DDR_ACORE_SIZE))
+CFG_DDR_ACORE_DTS_SIZE          = 0x0
+
+# MODEM ACP                     SIZE: 0M
+CFG_DDR_MDM_ACP_ADDR            = ((DDR_ACORE_DTS_ADDR) + (DDR_ACORE_DTS_SIZE))
+CFG_DDR_MDM_ACP_SIZE            = 0x0
+
+################################modem侧非安全区#####################################
+########## MODEM 共享内存 SIZE: 5M     包括 DDR_SHARED_MEM 和 DDR_MNTN  ############
+# DDR_SHARED_MEM              SIZE: 4M
+CFG_DDR_SHARED_MEM_ADDR         = ((DDR_MEM_ADDR) + (DDR_SECMEM_SIZE))
+CFG_DDR_SHARED_MEM_SIZE         = 0x00400000
+
+# 可维可测                     SIZE: 1M
+CFG_DDR_MNTN_ADDR               = ((DDR_SHARED_MEM_ADDR) + (DDR_SHARED_MEM_SIZE))
+CFG_DDR_MNTN_SIZE               = (0x00100000)
+
+############################ SOCP ########################################
+# SOCP采数                     SIZE:  17M
+CFG_DDR_SOCP_ADDR               = ((DDR_MNTN_ADDR) + (DDR_MNTN_SIZE))
+CFG_DDR_SOCP_SIZE               = 0x01100000
+
+# HIFI                          SIZE: 0
+CFG_DDR_HIFI_ADDR               = ((DDR_SOCP_ADDR) + (DDR_SOCP_SIZE))
+CFG_DDR_HIFI_SIZE               = 0x0
+
+# 共享内存分配  start
+
+# 大小定义:CFG_SHM_SIZE_XXXX ，在 bsp_shared_ddr.h中使用
+# 新增不满足KB对齐请在bsp_shared_ddr.h中 从 SHM_OFFSET_SLICE_MEM 添加
+
+# HIFI邮箱，内存需要固定在共享内存起始地址处，大小0x9800
+CFG_DDR_HIFI_MBX_ADDR               = (DDR_SHARED_MEM_ADDR)
+CFG_DDR_HIFI_MBX_SIZE               = (0X9800)
+# NV使用内存大小定义
+CFG_NV_DDR_SIZE                     = 0x280000
+
+#### CFG_SHM ####
+CFG_SHM_SIZE_HIFI_MBX               =(DDR_HIFI_MBX_SIZE)
+CFG_SHM_SIZE_HIFI                   =(10*1024)
+CFG_SHM_SIZE_TLPHY                  =(12*1024)
+CFG_SHM_SIZE_TEMPERATURE            =(3*1024)
+CFG_SHM_SIZE_DDM_LOAD               =(1*1024)
+#### CFG_SHM #### v7r2 a9_boot_addr 对齐方式可配置，需要64/32/16KB/8KB对齐  64K全占满 
+CFG_SHM_SIZE_MEM_APPA9_PM_BOOT      =(0)
+CFG_SHM_SIZE_MEM_MDMA9_PM_BOOT      =(0x2000)
+#### CFG_SHM #### CT BT
+CFG_SHM_SIZE_TENCILICA_MULT_BAND    =(0x8000)
+#### CFG_SHM #### 总大小为236KB, 其中, GU通道192KB, L通道40KB, icc控制结构体为页对齐取为4KB
+CFG_SHM_SIZE_ICC                    =(0x61800)
+#### CFG_SHM #### 总大小为64KB, 其中, 用于从AXI(SRAM)移过来的IPF描述符和IPF低功耗的寄存器保存恢复, 首地址要求8字节对齐 
+CFG_SHM_SIZE_IPF                    =(0x10000)
+#### CFG_SHM #### 如果定义了 CONFIG_PSAM 4K， 否则 0
+CFG_SHM_SIZE_PSAM                   =(0x1000)
+CFG_SHM_SIZE_WAN                    =(0x8000)
+CFG_SHM_SIZE_NV                     =(NV_DDR_SIZE)
+CFG_SHM_SIZE_M3_MNTN                =(0)
+#### CFG_SHM #### LTE DRX唤醒全流程打点
+CFG_SHM_SIZE_TIMESTAMP              =(1*1024)
+CFG_SHM_SIZE_IOS                    =(6*1024)
+CFG_SHM_SIZE_RESTORE_AXI            =(HI_SRAM_SIZE)
+#### CFG_SHM #### 电压源属性控制表，大小有预留，实际使用为0x85c
+CFG_SHM_SIZE_PMU                    =(0)
+#### CFG_SHM #### 分区表
+CFG_SHM_SIZE_PTABLE                 =(0)
+#### CFG_SHM #### modem 单独复位标记
+CFG_SHM_SIZE_CCORE_RESET            =(0x400)
+#### CFG_SHM #### pm om log区
+CFG_SHM_SIZE_PM_OM                  =(256*1024)
+CFG_SHM_SIZE_M3PM                   =(0x1000)
+#### CFG_SHM #### 用于分配不满足KB对齐的分配
+CFG_SHM_SIZE_SLICE_MEM              =(0x1000)
+CFG_SHM_SIZE_OSA_LOG                =(0)
+CFG_SHM_SIZE_WAS_LOG                =(0)
+CFG_SHM_SIZE_SRAM_BAK               =(0)
+#### CFG_SHM #### 如果定义了 CONFIG_SRAM_SECURE，否则为0
+CFG_SHM_SIZE_SRAM_TO_DDR            =(0)
+#### CFG_SHM #### 如果定义了 CONFIG_RSR_ACC，否则为0
+CFG_SHM_SIZE_M3RSRACC_BD            =(0)
+# 共享内存分配  end
+
+# NV分区是否复用 
+CFG_FEATURE_NV_PARTRION_MULTIPLEX               = FEATURE_OFF
+
+#底软删除后，请于阳思聪->翁建宏->zhangyizhan->李欣 确认，若全删除后，则可以删除该宏，否则依次放入对应组件的define文件中
+CFG_RAT_GU=0
+CFG_RAT_GUL=1
+CFG_RAT_MODE =RAT_GUL
+

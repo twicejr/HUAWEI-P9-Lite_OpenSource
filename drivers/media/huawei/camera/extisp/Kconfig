@@ -1,0 +1,14 @@
+comment "Huawei External ISP"
+
+choice
+	prompt "External ISP Version"
+	default HUAWEI_CAMERA_USE_ALTEK6045
+	depends on HUAWEI_CAMERA && HUAWEI_CAMERA_USE_EXTISP
+	help
+        Select external ISP version. 
+
+config HUAWEI_CAMERA_USE_ALTEK6045
+    bool "Huawei external ISP support"
+    select SPI
+
+endchoice

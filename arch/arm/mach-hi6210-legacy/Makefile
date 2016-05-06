@@ -1,0 +1,43 @@
+#
+# Makefile for the linux kernel.
+#
+CFLAGS_dev_usb.o    = -DDEBUG
+obj-y				:= init_param.o lm.o io.o board_id.o easy_shell.o
+obj-y               		+= dev_audio.o dev_gpio.o
+obj-y				+= dev_i2c.o dev_lm.o dev_mmc.o dev_pmu.o dev_rtc.o dev_timer.o
+obj-y				+= dev_watchdog.o
+obj-y				+= dev_etb.o
+obj-y				+= dev_spi.o dev_uart.o dev_usb.o dev_video.o dev_fb.o
+obj-y	+= mtcmos_driver.o
+obj-$(CONFIG_ION_HISI)               += k3v2_ion.o
+obj-$(CONFIG_ANDROID_PMEM)           += pmem.o
+obj-y	+= dev_balong_power.o
+obj-y	+= balong_power.o
+obj-y	+= dev_powerkey.o
+obj-y	+= dev_cnm_vcodec.o
+obj-y	+= dev_pmussi.o
+obj-y	+= mtcmos_driver.o
+obj-y	+= dev_balong_power.o
+obj-y	+= balong_power.o
+obj-y	+= clock.o k3v2_clocks_ops.o
+obj-y	+= mem_info.o
+obj-y	+= queue.o
+obj-y	+= dev_pmussi.o
+obj-y   += pmic_device.o pmicirq_device.o 
+obj-$(CONFIG_LCD_SAMSUNG_LMS350DF04) += dev_lcd_samsung_lms350df04.o
+obj-$(CONFIG_MACH_HI6210SFT)	     += board-sft.o k3v2_clocks_cs_sft.o dev_keyboard_sft.o delay_32k.o
+obj-$(CONFIG_MACH_HI6210OEM)	     += board-oem.o k3v2_clocks_cs_oem.o dev_keyboard_oem.o delay_19m.o
+obj-$(CONFIG_SMP)		     += platsmp.o headsmp.o irq_affinity.o
+obj-$(CONFIG_LOCAL_TIMERS)	     += localtimer.o
+obj-$(CONFIG_HOTPLUG_CPU)	     += hotplug.o
+obj-$(HUTAF_HLT_LTCOV)	             += ltcov_acore.o
+obj-$(HUTAF_HLT_LTCOV)	             += ltcov_mcu.o
+obj-y	+= cpu-k3v2.o
+obj-y	+= ipps-core.o ipps2.o
+obj-y		+= cpuidle.o
+obj-y	+= pwrctrl/
+obj-y	+= iomux/
+obj-y	+= app_info.o
+obj-y	+= dev_balong_sim.o
+obj-y	+= balong_sim.o
+obj-y	+= platform_wakelock.o

@@ -1,0 +1,10 @@
+#
+# huawei trace counter configuration
+#
+
+config HWTC
+	bool "hwtc"
+	default n
+	help
+	  If you say yes here you get support for huawei trace counter.
+

@@ -1,0 +1,9 @@
+#
+# Balong sys_hdlc configuration
+#
+
+config SYS_HDLC_SUPPORT
+	tristate "sys_hdlc support"
+	default y
+	help
+	  balong sys_hdlc driver

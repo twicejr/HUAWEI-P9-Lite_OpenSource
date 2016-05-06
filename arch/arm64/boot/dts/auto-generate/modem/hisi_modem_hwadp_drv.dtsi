@@ -1,0 +1,292 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/*                  提供给上层
+
+          +---------------------+-------+ --> 0xe0440000
+          |   CICOM0            | 0x1000|
+          +---------------------+-------+ --> 0xe0450000
+          |   CICOM1            | 0x1000|
+          +---------------------+-------+ --> 0x00000000
+          |   HDLC              | 0x1000|
+          +---------------------+-------+ --> 0xe0471000
+          |   UPACC             | 0x1000|
+          +---------------------+-------+ -->
+
+*/
+
+/{
+	hwadp{
+		compatible = "hisilicon,hardware_adapt";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/* ip base */
+		cicom0_balong {
+			compatible = "hisilicon,cicom0";
+			reg = <0x0 0xe0440000 0x0 0x10000>;
+			ip_type = <1>;
+		};
+		cicom1_balong {
+			compatible = "hisilicon,cicom1";
+			reg = <0x0 0xe0450000 0x0 0x10000>;
+			ip_type = <2>;
+		};
+		bbpmaster_balong {
+			compatible = "hisilicon,bbpmaster";
+			reg = <0x0 0xe1900000 0x0 0x0>;/* not map */
+			ip_type = <4>;
+		};
+		wbbp_balong {
+			compatible = "hisilicon,wbbp";
+			reg = <0x0 0xe1900000 0x0 0x0>;/* not map */
+			ip_type = <8>;
+		};
+		wbbp_drx_balong {
+			compatible = "hisilicon,wbbp_drx";
+			reg = <0x0 0xfff12000 0x0 0x0>;/* not map */
+			ip_type = <9>;
+		};
+		gbbp_balong {
+			compatible = "hisilicon,gbbp";
+			reg = <0x0 0xe1800000 0x0 0x0>;/* not map */
+			ip_type = <10>;
+		};
+		gbbp_drx_balong {
+			compatible = "hisilicon,gbbp_drx";
+			reg = <0x0 0xfff12800 0x0 0x0>;/* not map */
+			ip_type = <11>;
+		};
+		gbbp1_balong {
+			compatible = "hisilicon,gbbp1";
+			reg = <0x0 0xe1880000 0x0 0x0>;/* not map */
+			ip_type = <12>;
+		};
+		gbbp_drx1_balong {
+			compatible = "hisilicon,gbbp_drx1";
+			reg = <0x0 0xfff12c00 0x0 0x0>;/* not map */
+			ip_type = <13>;
+		};
+		ctu_balong {
+			compatible = "hisilicon,ctu";
+			reg = <0x0 0xe1F80000 0x0 0x0>;/* not map */
+			ip_type = <18>;
+		};
+		tdssys_balong {
+			compatible = "hisilicon,tdssys";
+			reg = <0x0 0xe1D00000 0x0 0x0>;/* not map */
+			ip_type = <19>;
+		};
+		upacc_balong {
+			compatible = "hisilicon,upacc";
+			reg = <0x0 0xe0471000 0x0 0x1000>;
+			ip_type = <30>;
+		};
+		
+		/* irq num */
+		uicc_int_balong {
+			compatible = "hisilicon,uicc_int";
+			interrupts = <0 7 4>;/* 39 - 32 = 7 */
+			int_type   = <3>;
+		};
+		int16 {
+			compatible = "hisilicon,int16";
+			interrupts = <0 37 4>;/* 69 - 32 = 37 */
+			int_type   = <16>;
+		};
+		int65 {
+			compatible = "hisilicon,int65";
+			interrupts = <0 37 4>;/* 69 - 32 = 37 */
+			int_type   = <65>;
+		};
+		int17 {
+			compatible = "hisilicon,int17";
+			interrupts = <0 39 4>;/* 71 - 32 = 39 */
+			int_type   = <17>;
+		};
+		int47 {
+			compatible = "hisilicon,int47";
+			interrupts = <0 39 4>;/* 71 - 32 = 39 */
+			int_type   = <47>;
+		};
+		int14 {
+			compatible = "hisilicon,int14";
+			interrupts = <0 36 4>;/* 68 - 32 = 36 */
+			int_type   = <14>;
+		};
+		int15 {
+			compatible = "hisilicon,int15";
+			interrupts = <0 38 4>;/* 70 - 32 = 38 */
+			int_type   = <15>;
+		};
+		int20 {
+			compatible = "hisilicon,int20";
+			interrupts = <0 41 4>;/* 73 - 32 = 41 */
+			int_type   = <20>;
+		};
+		int21 {
+			compatible = "hisilicon,int21";
+			interrupts = <0 43 4>;/* 75 - 32 = 43 */
+			int_type   = <21>;
+		};
+		int18 {
+			compatible = "hisilicon,int18";
+			interrupts = <0 40 4>;/* 72 - 32 = 40 */
+			int_type   = <18>;
+		};
+		int19 {
+			compatible = "hisilicon,int19";
+			interrupts = <0 42 4>;/* 74 - 32 = 42 */
+			int_type   = <19>;
+		};
+		int22 {
+			compatible = "hisilicon,int22";
+			interrupts = <0 130 4>;/* 162 - 32 = 130 */
+			int_type   = <22>;
+		};
+		int23 {
+			compatible = "hisilicon,int23";
+			interrupts = <0 131 4>;/* 163 - 32 = 131 */
+			int_type   = <23>;
+		};
+		int24 {
+			compatible = "hisilicon,int24";
+			interrupts = <0 132 4>;/* 164 - 32 = 132 */
+			int_type   = <24>;
+		};
+		int25 {
+			compatible = "hisilicon,int25";
+			interrupts = <0 133 4>;/* 165 - 32 = 133 */
+			int_type   = <25>;
+		};
+		int66 {
+			compatible = "hisilicon,int66";
+			interrupts = <0 133 4>;/* 165 - 32 = 133 */
+			int_type   = <66>;
+		};
+		int26 {
+			compatible = "hisilicon,int26";
+			interrupts = <0 134 4>;/* 166 - 32 = 134 */
+			int_type   = <26>;
+		};
+		int67 {
+			compatible = "hisilicon,int67";
+			interrupts = <0 134 4>;/* 166 - 32 = 134 */
+			int_type   = <67>;
+		};
+		int27 {
+			compatible = "hisilicon,int27";
+			interrupts = <0 135 4>;/* 167 - 32 = 135 */
+			int_type   = <27>;
+		};
+		int68 {
+			compatible = "hisilicon,int68";
+			interrupts = <0 135 4>;/* 167 - 32 = 135 */
+			int_type   = <68>;
+		};
+		int28 {
+			compatible = "hisilicon,int28";
+			interrupts = <0 136 4>;/* 168 - 32 = 136 */
+			int_type   = <28>;
+		};
+		int69 {
+			compatible = "hisilicon,int69";
+			interrupts = <0 136 4>;/* 168 - 32 = 136 */
+			int_type   = <69>;
+		};
+		int29 {
+			compatible = "hisilicon,int29";
+			interrupts = <0 137 4>;/* 169 - 32 = 137 */
+			int_type   = <29>;
+		};
+		int70 {
+			compatible = "hisilicon,int70";
+			interrupts = <0 137 4>;/* 169 - 32 = 137 */
+			int_type   = <70>;
+		};
+		int30 {
+			compatible = "hisilicon,int30";
+			interrupts = <0 138 4>;/* 170 - 32 = 138 */
+			int_type   = <30>;
+		};
+		int71 {
+			compatible = "hisilicon,int71";
+			interrupts = <0 138 4>;/* 170 - 32 = 138 */
+			int_type   = <71>;
+		};
+		int31 {
+			compatible = "hisilicon,int31";
+			interrupts = <0 139 4>;/* 171 - 32 = 139 */
+			int_type   = <31>;
+		};
+		int72 {
+			compatible = "hisilicon,int72";
+			interrupts = <0 139 4>;/* 171 - 32 = 139 */
+			int_type   = <72>;
+		};
+		int32 {
+			compatible = "hisilicon,int32";
+			interrupts = <0 140 4>;/* 172 - 32 = 140 */
+			int_type   = <32>;
+		};
+		int73 {
+			compatible = "hisilicon,int73";
+			interrupts = <0 140 4>;/* 172 - 32 = 140 */
+			int_type   = <73>;
+		};
+		int43 {
+			compatible = "hisilicon,int43";
+			interrupts = <0 143 4>;/* 175 - 32 = 143 */
+			int_type   = <43>;
+		};
+		int42 {
+			compatible = "hisilicon,int42";
+			interrupts = <0 142 4>;/* 174 - 32 = 142 */
+			int_type   = <42>;
+		};
+		int46 {
+			compatible = "hisilicon,int46";
+			interrupts = <0 23 4>;/* 55 - 32 = 23 */
+			int_type   = <46>;
+		};
+		int9 {
+			compatible = "hisilicon,int9";
+			interrupts = <0 20 4>;/* 52 - 32 = 20 */
+			int_type   = <9>;
+		};
+		int8 {
+			compatible = "hisilicon,int8";
+			interrupts = <0 19 4>;/* 51 - 32 = 19 */
+			int_type   = <8>;
+		};
+		int11 {
+			compatible = "hisilicon,int11";
+			interrupts = <0 22 4>;/* 54 - 32 = 22 */
+			int_type   = <11>;
+		};
+		int10 {
+			compatible = "hisilicon,int10";
+			interrupts = <0 21 4>;/* 53 - 32 = 21 */
+			int_type   = <10>;
+		};
+		int13 {
+			compatible = "hisilicon,int13";
+			interrupts = <0 24 4>;/* 56 - 32 = 24 */
+			int_type   = <13>;
+		};
+		int12 {
+			compatible = "hisilicon,int12";
+			interrupts = <0 25 4>;/* 57 - 32 = 25 */
+			int_type   = <12>;
+		};
+		int33 {
+			compatible = "hisilicon,int33";
+			interrupts = <0 120 4>;/* 152 - 32 = 120 */
+			int_type   = <33>;
+		};
+	};
+};

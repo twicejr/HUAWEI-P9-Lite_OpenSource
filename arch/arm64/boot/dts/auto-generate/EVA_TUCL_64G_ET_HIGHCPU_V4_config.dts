@@ -1,0 +1,22 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_TUCL_64G_ET_V4_config.dtsi"
+/include/ "EVA_TUCL_64G_ET_HIGHCPU_V4_pin.dtsi"
+/include/ "EVA_TUCL_64G_ET_HIGHCPU_V4_modem_pin.dtsi"
+/include/ "EVA_TUCL_64G_ET_HIGHCPU_V4_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C012800>;
+	hisi,boardid = <3 5 5 8>;
+	hisi,boardname = "EVA_TUCL_64G_ET_HIGHCPU_V4";
+	hisi,config_profile = "highhigh";
+	target-cpu {
+		target_cpu = "Kirin 955";
+	};
+};

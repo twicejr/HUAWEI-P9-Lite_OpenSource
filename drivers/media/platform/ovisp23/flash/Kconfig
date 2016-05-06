@@ -1,0 +1,28 @@
+if HISI_CAMERA_FLASH
+
+menu "Hisilicon camera flash driver support"
+
+config HISI_CAMERA_TPS61310
+    tristate "TPS61310 camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        TPS61310 camera flash driver
+
+config HISI_CAMERA_LM3642
+    tristate "LM3642 camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3642 camera flash driver
+
+config HISI_CAMERA_PMU_LED
+    tristate "LM3642 camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3642 camera flash driver
+
+endmenu
+
+endif

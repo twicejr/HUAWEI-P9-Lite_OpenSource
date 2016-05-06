@@ -1,0 +1,128 @@
+/{
+	aliases {
+		mshc1 = &dwmmc1;
+		mshc2 = &dwmmc2;
+		mshc0 = &dwmmc3;
+	};
+
+	/* emmc 5.0 */
+	sdhci0: sdhci@FF390000 {
+		compatible = "arasan,sdhci";
+		reg = <0x0 0xff390000 0x0 0x10000>;
+		clock-names = "clk_xin", "clk_ahb";
+		clocks = <&clk_gate_emmc0>, <&hclk_gate_emmc0>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 137 4>;
+		bus-width = <8>;
+		non-removable;
+		use-adma;//use-pio, use-dma, use-adma
+		fix-qbr;
+		caps2-mmc-cache-ctrl;
+		caps2-mmc-HC-erase-size;
+		status = "ok";
+	};
+
+	/* SD */
+	dwmmc1: dwmmc1@FF37F000 {
+		compatible = "hisilicon,hi3650-dw-mshc";
+		reg = <0x0 0xff37f000 0x0 0x1000>;
+		interrupts = <0 139 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sd>, <&hclk_gate_sd>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <300>;
+		supports-highspeed;
+		caps2-mmc-detect-on-error;
+		scperctrls = <0x214>;
+		bit_sdcard_o_sel18 = <0x4>; /* 1<<2 */
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <&gpio041_pmx_func &gpio042_pmx_func &gpio043_pmx_func
+				&gpio044_pmx_func &gpio045_pmx_func &gpio046_pmx_func
+				&gpio041_cfg_func &gpio042_cfg_func &gpio043_cfg_func
+				&gpio044_cfg_func &gpio045_cfg_func &gpio046_cfg_func>;
+		pinctrl-1 = <&gpio041_pmx_idle &gpio042_pmx_idle &gpio043_pmx_idle
+				&gpio044_pmx_idle &gpio045_pmx_idle &gpio046_pmx_idle
+				&gpio041_cfg_idle &gpio042_cfg_idle &gpio043_cfg_idle
+				&gpio044_cfg_idle &gpio045_cfg_idle &gpio046_cfg_idle>;
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};	
+
+	/* wifi */
+	dwmmc2: dwmmc2@ff3ff000 {
+		compatible = "hisilicon,hi3650-dw-mshc";
+		reg = <0x0 0xff3ff000 0x0 0x1000>;
+		interrupts = <0 140 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sdio0>, <&hclk_gate_sdio0>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		caps2-support-wifi;
+		supports-highspeed;
+		keep-power-in-suspend;
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};
+
+	/* sdio1 */
+	dwmmc3: dwmmc3@FF37D000 {
+		compatible = "hisilicon,hi3650-dw-mshc";
+		reg = <0x0 0xff37d000 0x0 0x1000>;
+		interrupts = <0 141 4>;
+		clocks = <&clk_gate_sdio1>,<&hclk_gate_sdio1>;
+		clock-names = "ciu", "biu";
+		num-slots = <1>;
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		//broken-cd;
+		//supports-highspeed;
+		//caps2-mmc-packed-command;
+		//caps2-mmc-hs200-1_8v;
+		caps2-mmc-cache-ctrl;
+		//caps2-mmc-poweroff-notify;
+		pinctrl-names = "default", "idle";
+	    pinctrl-0 = <&gpio031_pmx_func &gpio032_pmx_func
+				     &gpio033_pmx_func &gpio034_pmx_func
+				     &gpio035_pmx_func &gpio036_pmx_func
+				     &gpio057_pmx_func &gpio058_pmx_func
+				     &gpio059_pmx_func &gpio060_pmx_func
+				     &gpio031_cfg_func &gpio032_cfg_func
+				     &gpio033_cfg_func &gpio034_cfg_func
+				     &gpio035_cfg_func &gpio036_cfg_func
+				     &gpio057_cfg_func &gpio058_cfg_func
+				     &gpio059_cfg_func &gpio060_cfg_func>;
+	    pinctrl-1 = <&gpio031_pmx_idle &gpio032_pmx_idle
+				     &gpio033_pmx_idle &gpio034_pmx_idle
+				     &gpio035_pmx_idle &gpio036_pmx_idle
+				     &gpio057_pmx_idle &gpio058_pmx_idle
+				     &gpio059_pmx_idle &gpio060_pmx_idle
+				     &gpio031_cfg_idle &gpio032_cfg_idle
+				     &gpio033_cfg_idle &gpio034_cfg_idle
+				     &gpio035_cfg_idle &gpio036_cfg_idle
+				     &gpio057_cfg_idle &gpio058_cfg_idle
+				     &gpio059_cfg_idle &gpio060_cfg_idle>;
+		status = "disabled";
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};
+
+	hisi_rpmb: rpmb {
+		compatible = "hisilicon,hisi-rpmb";
+		hisi,bl31-share-mem = <0x8000 0x8000>;
+		status = "ok";
+	};
+};

@@ -1,0 +1,6 @@
+config CHR_NETLINK_MODULE
+	tristate "kernel space communicate with user space use chr netlink socket."
+    default y
+    help
+	  This module adds support for data speed slow detecting funtion based on
+	  Balong V3R3 chipset.

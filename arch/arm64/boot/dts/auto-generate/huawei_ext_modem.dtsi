@@ -1,0 +1,56 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	balong_power:balong_power {
+		compatible = "huawei,balong_ext_power";
+		balong_power_on = <&gpio14 2 0>;		//modem power hold, 114
+		balong_pmu_reset = <&gpio14 1 0>;		//modem pmu reset, 113
+		balong_host_active = <&gpio13 7 0>;	// hsic active, 111
+		balong_host_wakeup = <&gpio25 2 0>;	//modem wakeup ap, 202
+		balong_slave_wakeup = <&gpio2 1 0>;	//ap wakeup modem, 017
+		balong_reset_ind = <&gpio23 3 0>;		//modem reset notice AP, 187
+		balong_slave_active = <&gpio12 3 0>;    //modem ready, 99
+		balong_usb_insert_ind = <&gpio8 3 0>;  //AP notice CP: usb insert, 67
+
+		status = "disabled";
+	};
+	viacbp82d_power:viacbp82d_power {
+		compatible = "huawei,viacbp82d-power";
+		via_pwr_en = <&gpio14 2 0>;	      // modem power enable,    114
+		via_rst_mdm = <&gpio14 1 0>;	      // reset modem,           113
+		via_reset_ind = <&gpio31 6 0>;	      //default is hi6402cs. modem reset notice AP is connectid to hi6402 codec in FIFA; (porting from jazz)
+		via_reset_ind_connect_to_codec = <0x1>;	        //reset_indication is connected to hi6402 codec?
+		//via_sim_switch = <&gpio15 4 0>;       // NO sim switch in k3v3+;  sim switch(porting from jazz),
+		via_backup = <&gpio3 5 0>;            // ap notify via produce ramdump 29
+
+		status = "disabled";
+	};
+	viacbp82d_cbp_spi:viacbp82d_cbp_spi {
+		compatible = "huawei,viacbp82d-cbp-spi";
+		via_requst_to_send = <&gpio15 2 0>;   // modem request to send, 122
+		via_data_ack = <&gpio2 2 0>;          // modem data ack,        18
+		via_flow_ctrl = <&gpio6 5 0>;         // modem flow control,    53
+		via_ap_abort_cp = <&gpio12 0 0>;       // ap abort cp,           96
+		via_ap_wkup_cp = <&gpio2 1 0>;        // ap wakeup cp,          17
+		via_cp_ready = <&gpio12 3 0>;         // cp ready,              99
+		via_cp_wkup_ap = <&gpio25 2 0>;       // cp wakeup ap,          202
+		via_ap_ready = <&gpio13 7 0>;         // ap ready,              111
+
+		status = "disabled";
+	};
+	rnic_adapter:rnic_adapter {
+		compatible = "rnic_adapter_interface_dev";
+		status = "disabled";
+	};
+	viacbp82d_flashless_boot_dl_uart:viacbp82d_flashless_boot_dl_uart {
+		uart_port = "5";
+		status = "disabled";
+	};
+
+};

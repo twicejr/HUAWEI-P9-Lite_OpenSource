@@ -1,0 +1,5 @@
+config DEVICEBOXID
+	tristate "deviceboxID driver"
+	default n
+	help
+		Say Y to enable deviceboxID driver support

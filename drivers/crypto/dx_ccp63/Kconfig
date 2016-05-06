@@ -1,0 +1,37 @@
+#
+# DX CC-P Driver Layer
+#
+
+comment "DX CC-P Sep RAM size"
+
+config DX_SEP_SRAM_SIZE
+	int
+	default "4096"
+
+comment "DX CC-P ROM Version"
+
+config DX_ROM_VERSION
+	hex
+	default "0x03000009"
+
+comment "DX CC-P coherent dma ops"
+
+config DX_DISABLE_COHERENT_DMA_OPS
+	bool "DX CC-P coherent dma ops"
+	default y
+	help
+	  DX CC-P coherent dma ops
+
+config DX_FPGA_ENV
+	bool "DX CC-P FPGA envirament"
+	default n
+	help
+	  DX CC-P FPGA envirament
+
+config DX_DEBUG
+	bool "DX CC-P driver debug option"
+	default n
+	help
+	  DX CC-P driver debug option
+
+

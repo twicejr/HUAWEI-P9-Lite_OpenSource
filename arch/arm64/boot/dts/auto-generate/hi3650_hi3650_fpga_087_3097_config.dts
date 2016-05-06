@@ -1,0 +1,102 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hisi_6421v500_pmic.dtsi"
+/include/ "hisi_6421v500_pmic_mntn.dtsi"
+/include/ "hisi_6421v500_pmic_led.dtsi"
+/include/ "hisi_rtc.dtsi"
+/include/ "hisi_3650_vibrator.dtsi"
+/include/ "hisi_bci_battery.dtsi"
+/include/ "hisi_battery.dtsi"
+/include/ "hisi_charger.dtsi"
+/include/ "hisi_coul.dtsi"
+/include/ "default_3000_68k_4352.dtsi"
+/include/ "huawei_connectivity.dtsi"
+/include/ "hisi_connectivity.dtsi"
+/include/ "hi3650_hi3650_fpga_080_3080_config.dtsi"
+/include/ "huawei_wifi.dtsi"
+/ {
+	hisi,boardid = <3 0 9 7>;
+	hisi,boardname = "hi3650_hi3650_fpga_087_3097";
+	hisi_battery:hisi_battery {
+		batt_name = <&default_3000_68k_4352>;
+		status = "ok";
+	};
+	hisi_bci_battery:battery {
+        status = "ok";
+    }; 
+	coul_core:coul_core{					
+	    status = "ok";
+	};
+	pmic: pmic@FFF34000 {
+        hi6421v500_coul: hi6421v500_coul@1 {					
+	          status = "ok";
+        };
+		pmic_led: pmic_led@a0 {
+			status = "ok";
+		};
+		pmic_rtc: pmic_rtc@a0 {
+			status = "ok";
+		};
+		ponkey:ponkey@b1{
+			status = "ok";
+		};
+	};
+
+	dwmmc2: dwmmc2@ff3ff000 {
+		status = "ok";
+	};
+	bcm_wifi {
+		wlan-irq,gpio-irq = <&gpio1 0 0>;
+		wlan-on,gpio-enable= <&gpio2 0 0>;
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+		wifi_nvram_name = "/vendor/firmware/nvram43455_hw.txt";
+		wifi_fw_name = "/vendor/firmware/fw_bcm43455_hw.bin";
+		wifi_fw_ap_name = "/vendor/firmware/fw_bcm43455_apsta_hw.bin";
+		wifi_fw_test_name = "/vendor/firmware/fw_bcm43455_test_hw_apsta.bin";
+		ic_type = "bcm43455";
+		udp_board;
+	};
+
+	hisi_coul_drv_test:hisi_coul_test {
+	    status = "ok";
+	};
+	hisi_charger: hisi_charger{
+		status = "disabled";
+	};
+	hisi_charging_core:hisi_charging_core {
+		iin_ac = <2000>;
+		ichg_ac = <2100>;
+		ichrg_pre_limit = <256>;
+		iin_fcp = <2000>;
+		ichg_fcp = <3000>;
+		ichg_usb = <512>;
+		iterm = <150>;
+		status = "disabled";
+	};
+	amba {
+		i2c4: i2c@FDF0D000 {
+			bq25892_charger: bq25892_charger@6B{
+				bat_comp = <80>;
+				vclamp = <224>;
+				rilim = <124>;
+				adc_channel_iin = <10>;
+				fcp_support = <1>;
+				status = "disabled";
+			};
+		};
+	};
+
+	hisi_vibrator@fff34000 {
+		status = "ok";
+	};
+};

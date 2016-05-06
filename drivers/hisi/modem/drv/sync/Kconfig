@@ -1,0 +1,10 @@
+#
+# sync
+#
+comment "sync"
+
+config SYNC_BALONG
+	tristate "sync adaption"
+	default n
+	help
+	  sync adaption for v7r1

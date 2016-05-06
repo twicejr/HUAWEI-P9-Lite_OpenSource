@@ -1,0 +1,927 @@
+/*******************************************************************************
+*
+*
+*                Copyright 2011, Huawei Technologies Co. Ltd.
+*                            ALL RIGHTS RESERVED
+*
+*-------------------------------------------------------------------------------
+*
+*                              ptp_cbb_shell.c
+*
+*  Project Code: 1588
+*   Module Name:
+*  Date Created: 2011-07-14
+*        Author: 梁继成
+*   Description: PTP CBB 适配接口
+*
+*-------------------------------------------------------------------------------
+*  Modification History
+*  DATE        NAME             DESCRIPTION
+*  -----------------------------------------------------------------------------
+*
+*
+*******************************************************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "tcpip/public/tcpip_config.h"
+
+#include "vos/vospubh/basetype.h"
+#include "vos/vospubh/vos_err.h"
+#include "vos/vospubh/vos_ker.h"
+#include "vos/vospubh/vos_mem.h"
+#include "vos/vospubh/vos_util.h"
+#include "vos/vospubh/vos_id.h"
+#include "vos/vospubh/compbase.h"
+#include "vos/vospubh/vos_arg.h"
+#include "vos/vospubh/vos_lib.h"
+#include "vos/vospubh/vos_task.h"
+#include "vos/vospubh/vos_def.h"
+#include "vos/vospubh/vos_intr.h"
+#include "dopra/vos/config/vrpvos/vos/vospubh/utldll.h"
+
+
+#include "ptp/cbb/include/ptp_def.h"
+#include "ptp/include/ptp_api.h"
+#include "ptp/shell/sh/include/ptp_ppi.h"
+#include "ptp/cbb/include/ptp_type.h"
+#ifndef MACADDRLEN
+#define MACADDRLEN       6       /*MAC地址长度*/
+#endif
+#include "ptp/cbb/include/ptp_var.h"
+#include "ptp/cbb/include/ptp_main.h"
+
+ULONG          g_ulPTPPpiTimeSwitch = 0;  /*PTP下发耗时计算开关*/
+PTP_PPI_TIME_S g_ulPTPPpiTime = {0};      /*PTP下发耗时统计处理变量*/
+PTP_PPI_HOOK_FUNC g_pfPtpPpiHookFunc = NULL;
+
+/*******************************************************************************
+*    Func Name: TCPIP_GetFileName
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 获取不带路径的文件名，用于记录MBUF删除时，记录文件名
+*        Input: CHAR *pstFile:传入的待路径的文件名
+*               ULONG ulstrMaxLen:存放返回文件名的空间大小,
+*                                 拷贝的字符串长度只占ulstrMaxLen-1个字符，最后一个字符作为\0用
+*       Output: CHAR *pstFileName:返回不带路径的文件名
+*       Return: VOID
+*      Caution: 基本函数，必须适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+VOID TCPIP_GetFileName(CHAR *pstFile, CHAR *pstFileName, ULONG ulstrMaxLen)
+{
+    return;
+}
+
+/*******************************************************************************
+*    Func Name: MBUF_DestroyFunc
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: MBUF删除
+*        Input: CHAR *szCurrentFileName:文件名
+*               ULONG ulLine:           行号
+*               MBUF_S *pMBuf:          MBUF指针
+*       Output: 
+*       Return: VOID
+*      Caution: 使用PTP IPv6功能/层二组播模式需要适配 时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+VOID MBUF_DestroyFunc(CHAR *szCurrentFileName, ULONG ulLine, VOID *pMBuf)
+{
+    return;
+}
+
+/****************************************************************************
+*    Func Name: MBUF_CutHeadInMultiDataBlock()
+* Date Created: 2000-3-25
+*       Author: zhang hong yan(19316)        
+*  Description: cut the first ulLength data that may be in multiple data blocks of the pstMBuf
+*        Input: MBUF_S * pstMBuf:MBUF
+*               ULONG ulLength:长度
+*       Output: 无
+*       Return: 无
+*      Caution: 层二组播模式需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE        NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2000-3-25  zhang hong yan(19316)         Creat the first version.
+*
+*******************************************************************************/
+VOID MBUF_CutHeadInMultiDataBlock(VOID * pstMBuf, ULONG ulLength)
+{
+    return;
+}
+
+/****************************************************************************
+*    Func Name: MBUF_PullUp()
+* Date Created: 2000-3-25
+*       Author: zhang hong yan(19316)        
+*  Description: create a data block and data block descriptor, 
+*               then move the first ulLength data to the data block,
+*               then insert the data block and data block descriptor 
+*               into the head of data block list
+*        Input: MBUF_S * pstMBuf:MBUF
+*               ULONG ulLength:the first ulLength data that need be moved to the data block
+*               ULONG ulModuleID:模块号
+*       Output: 无
+*       Return: MBUF_OK:   成功
+*               MBUF_FAIL: 失败
+*      Caution: 层二组播模式需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE        NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2000-3-25  zhang hong yan(19316)         Creat the first version.
+*
+*******************************************************************************/
+ULONG MBUF_PullUp(VOID * pstMBuf, ULONG ulLength, ULONG ulModuleID)
+{
+    return VOS_OK;
+}
+
+/****************************************************************************
+*    Func Name: MBUF_CopyDataFromMBufToBuffer()
+* Date Created: 2000-3-25
+*       Author: zhang hong yan(19316)        
+*  Description: 从MBUF拷贝数据到buffer
+*        Input: MBUF_S * pstMBuf:MBUF指针
+*               ULONG ulOffset:偏移量
+*               ULONG ulLength:长度
+*               UCHAR * pucBuffer:buffer
+*       Output: 无
+*       Return: MBUF_OK:   成功
+*               MBUF_FAIL: 失败
+*      Caution: 层二组播模式需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE        NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2000-3-25  zhang hong yan(19316)         Creat the first version.
+*
+*******************************************************************************/
+ULONG MBUF_CopyDataFromMBufToBuffer(VOID * pstMBuf, ULONG ulOffset, ULONG ulLength,
+                                    UCHAR * pucBuffer)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_Log_Fixlen_Output
+* Date Created: 2008-04-08
+*       Author: wuhailan
+*  Description: 固长日志输出处理接口
+*        Input: ULONG ulCode:日志ID
+*               ULONG ulLogLevel:日志级别
+*               ULONG ulLogType:日志类型
+*               VOID *ucMessage:字符串信息
+*               ULONG ulPara1:参数1
+*               ULONG ulPara2:参数2
+*               ULONG ulPara3:参数3
+*               ULONG ulPara4:参数4
+*       Output: 无
+*       Return: VOID
+*      Caution: 使用日志功能时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2008-04-08   wuhailan                Create 
+*
+*******************************************************************************/
+VOID TCPIP_Log_Fixlen_Output(ULONG ulCode, ULONG ulLogLevel, ULONG ulLogType, VOID *ucMessage, 
+                             ULONG ulPara1, ULONG ulPara2, ULONG ulPara3, ULONG ulPara4)
+{
+    return;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_Log_Varlen_Output
+* Date Created: 2008-04-08
+*       Author: wuhailan
+*  Description: 变长日志输出处理接口
+*        Input: ULONG ulCode:日志ID
+*               ULONG ulLogLevel:日志级别
+*               ULONG ulLogType:日志类型
+*               VOID *ucMessage:字符串信息
+*               VOID *strPara:参数1
+*       Output: 无
+*       Return: VOID
+*      Caution: 使用日志功能时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2008-04-08   wuhailan                Create
+*
+*******************************************************************************/
+VOID TCPIP_Log_Varlen_Output(ULONG ulCode, ULONG ulLogLevel, ULONG ulLogType, VOID *ucMessage, VOID *strPara)
+{
+    return;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_CreateMutex
+* Date Created: 2007-9-3
+*       Author: X36317
+*  Description: 创建互斥信号量
+*        Input: pMutexName: 互斥信号量的名称
+*       Output: pulMutexID:返回的信号量ID
+*       Return: VOS_OK，成功,其他,失败
+*      Caution: 用于VISP的共享资源互斥保护 (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2007-9-3     X36317           Create
+*  2009-03-02   liangjicheng           BC3D01250 信号量名字NULL
+*
+*******************************************************************************/
+ULONG TCPIP_CreateMutex(CHAR *pMutexName, ULONG *pulMutexID)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_DeleteMutex
+* Date Created: 2007-9-3
+*       Author: X36317
+*  Description: 删除互斥/同步信号量
+*        Input: ulMutexID: 信号量ID
+*       Output: NA
+*       Return: VOS_OK，成功,其他,失败
+*      Caution: 用于VISP的共享资源互斥/同步保护 (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2007-9-3     X36317                  Create
+*
+*******************************************************************************/
+ULONG TCPIP_DeleteMutex(ULONG ulMutexID)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_Free
+* Date Created: 2008-03-12
+*       Author: wuhailan
+*  Description: VISP内存释放函数,与TCPIP_Malloc配套使用.要求MBUF模块不允许调用.
+*               另外涉及到VOS_Mem_IncRef/VOS_Mem_GetRef等存在访问块内存首地址的模块也不允许通过该接口来进行内存释放
+*               由于CBB模块也使用了此类处理,所以对VISP CBB模块依赖于该内存申请和释放函数
+*        Input: VOID* pBuf:要释放的内存首地址
+*       Output: 无
+*       Return: 成功/失败
+*      Caution: (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2008-03-12   wuhailan                Create
+*******************************************************************************/
+ULONG TCPIP_Free(VOID* pBuf)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_Malloc
+* Date Created: 2008-03-12
+*       Author: wuhailan
+*  Description: VISP内存申请函数,要求COMMON/MBUF模块不允许调用.另外涉及到VOS_Mem_IncRef
+*               /VOS_Mem_GetRef等存在访问块内存首地址的模块也不允许通过该接口来进行内存申请
+*               由于CBB模块也使用了此类处理,所以对VISP CBB模块依赖于该内存申请和释放函数
+*        Input: ULONG ulInfo:模块ID,必需传入VISP支持的模块ID(见tcpip_id.h文件)
+*               ULONG ulSize:申请的内存大小
+*       Output: 无
+*       Return: 申请到的内存首地址
+*      Caution: (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2008-03-12   wuhailan                Create
+*  2008-12-13   z62474                  BC3D00903
+*******************************************************************************/
+VOID *TCPIP_Malloc(ULONG ulInfo, ULONG ulSize)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_SmP
+* Date Created: 2007-9-3
+*       Author: X36317
+*  Description: 互斥/同步信号量P操作
+*        Input: ulMutexID: 互斥信号量ID
+*       Output: NA
+*       Return: VOS_OK，成功,其他,失败
+*      Caution: 用于VISP的共享资源互斥保护 (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2007-9-3     X36317           Create
+*
+*******************************************************************************/
+ULONG TCPIP_SmP(ULONG ulMutexID)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: TCPIP_SmV
+* Date Created: 2007-9-3
+*       Author: X36317
+*  Description: 互斥/同步信号量V操作
+*        Input: ulMutexID: 互斥信号量ID
+*       Output: NA
+*       Return: VOS_OK，成功,其他,失败
+*      Caution: 用于VISP的共享资源互斥保护  (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2007-9-3     X36317           Create
+*
+*******************************************************************************/
+ULONG TCPIP_SmV(ULONG ulMutexID)
+{
+    return VOS_OK;
+}
+
+
+/*******************************************************************************
+*    Func Name: PTP_Que_Read
+* Date Created: 2009-3-10
+*       Author: wangchengyang
+*  Description: 从控制消息队列读取控制消息
+*        Input: NA
+*       Output: PTP_TMSG_S* pstPtpMsg
+*       Return: PTP_OK/错误码
+*      Caution: (基本函数，必须适配)
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2009-3-10    Wangchengyang  xujun for vispv1r8c01
+*
+*******************************************************************************/
+ULONG PTP_Que_Read(PTP_TMSG_S* pstPtpMsg)
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_Que_Write
+* Date Created: 2009-3-10
+*       Author: wangchengyang
+*  Description: 向控制消息队列写消息
+*        Input: 消息
+*       Output: 
+*       Return: PTP_OK/错误码
+*      Caution: 
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2009-3-10    Wangchengyang  xujun for vispv1r8c01
+*
+*******************************************************************************/
+ULONG PTP_Que_Write(PTP_TMSG_S* pstPtpMsg)
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_AddrToStr
+* Date Created: 2009-3-10
+*       Author: wangchengyang
+*  Description: 将地址IP/MAC转换为字符串
+*        Input: NA
+*       Output: PTP_TMSG_S* pstPtpMsg
+*       Return: PTP_OK/错误码
+*      Caution: 基本函数，必须适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2009-3-10    Wangchengyang  xujun for vispv1r8c01
+*******************************************************************************/
+VOID PTP_AddrToStr(PTP_PORT_ADDR_S *pstPortAddr,CHAR *pszBuf)
+{
+    return;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_InetAddr
+* Date Created: 2009-09-29
+*       Author: xujun57575
+*  Description: 
+*        Input: CHAR *pIpChar:
+*       Output: 
+*       Return: 
+*      Caution: 基本函数，必须适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2009-09-29   xujun57575              Create
+*
+*******************************************************************************/
+ULONG PTP_InetAddr(CHAR *pIpChar)
+{    
+    /*return InetAddr(pIpChar); */
+    return 0;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetCPUType
+* Date Created: 2008-9-11
+*       Author: wangchengyang
+*  Description: 获取CPU类型
+*        Input: CHAR *pCPUType: 保存输出CPU类型信息
+*       Output: 
+*       Return: BFD_OK/BFD_ERR
+*      Caution: 调试被 PTP_ShowVersion使用
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME             DESCRIPTION    
+*  ----------------------------------------------------------------------------
+*  2008-9-11    Wangchengyang    Creat the first version.
+*
+*******************************************************************************/
+ULONG PTP_GetCPUType(CHAR *pCPUType)
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_InfoOutput
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 用于输出调试信息
+*        Input: CHAR *pInfo:  调试信息字符串
+*       Output: 
+*       Return: VOID
+*      Caution: 当需要使用PTP的show函数输出调试信息时，可以适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+VOID PTP_InfoOutput(CHAR *pInfo)/*调试用日志输出接口*/
+{
+    return;
+}
+
+/******************************************************************************
+*Func Name   : PTP_PPI_LogMsg
+*Description : PTP PPI可谓可测记录接口,包括日志/统计/调试
+*Input       : ulDebugFlag:设置PPI调试标记,1-打开,0-关闭
+*Output      : NA。
+*Return      : 需要使用PPI日志功能时需要适配
+*******************************************************************************/
+VOID PTP_PPI_LogMsg(ULONG ulRet,USHORT usPtpPortNumber, ULONG ulPtpPpiCmd, PTP_PPI_S *pstPtpPpiInfo)
+{
+    return;
+}
+
+/******************************************************************************
+*Func Name   : PTP_Shell_SocketProcess
+*Description : socket消息处理函数，供主任务调用
+*Input       : ULONG *pAsynMsg 异步消息，一个有4个元素的数组
+*Output      : NA.
+*Return      : 成功返回PTP_OK，失败返回错误码，                             
+*Caution     : (基本函数，必须适配)
+*Calls       : 
+*Called by   :  
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*  2008-6-3             wangchengyang  Create
+*******************************************************************************/
+ULONG PTP_Shell_SocketProcess (ULONG *pAsynMsg)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_Shell_RcvGeneralMsgWithMAC
+*Description : 1588 OverMac 模式General消息接收
+*Input       : UCHAR     *pBuffer    报文
+*              ULONG     ulPacketLen  报文长度
+*Output      : NA.
+*Return      : 成功返回PTP_OK，失败返回错误码，                             
+*Caution     : 层二组播模式下需要适配
+*Calls       : 
+*Called by   :  
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*  2009-3-9             xujun 57575    Create
+*  2009-10-10           tuyan          Modify for BC3D02047　
+*                                     【PTP】产品抓包的钩子再OVER MAC模式会将ETH头也带给产品 ，产品无法解析
+*******************************************************************************/
+ULONG PTP_Shell_RcvGeneralMsgWithMAC(UCHAR *pBuffer, ULONG ulPacketLen,ULONG ulIfIndex)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_Shell_SndEventMsg
+*Description : Event消息发送
+*Input       : UCHAR *pucBuffer             待发送的报文
+*            : ULONG ulPacketLength         待发送的报文长度
+*            : ULONG ulPtpMsgType           待发送的报文类型(PTP_MSG_TYPE_E)
+*            : PTP_ADDRINFO_S  *pstAddrInfo 发送地址信息
+*Output      : NA.
+*Return      : 成功返回PTP_OK，失败返回错误码，                             
+*Caution     : 暂时不实现event消息收发处理，架构上保留 
+               如果需要握手功能，需要适配
+*Calls       : 
+*Called by   : 
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*  2008-6-3             wangchengyang  Create
+*******************************************************************************/
+ULONG PTP_Shell_SndEventMsg (UCHAR *pucBuffer, ULONG ulPacketLength, ULONG ulPtpMsgType, PTP_ADDRINFO_S *pstAddrInfo)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_Shell_SndGeneralMsg
+*Description : General消息发送
+*Input       : UCHAR *pucBuffer             待发送的报文
+*            : ULONG ulPacketLength         待发送的报文长度
+*            : ULONG ulPtpMsgType           待发送的报文类型(PTP_MSG_TYPE_E)
+*            : PTP_ADDRINFO_S  *pstAddrInfo 发送地址信息
+*Output      : NA.
+*Return      : 成功返回PTP_OK，失败返回错误码，                             
+*Caution     : 基本功能
+*Calls       : 
+*Called by   :  
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*******************************************************************************/
+ULONG PTP_Shell_SndGeneralMsg (UCHAR *pucBuffer, ULONG ulPacketLength, ULONG ulPtpMsgType, PTP_ADDRINFO_S *pstAddrInfo)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_Shell_BMC
+*Description : 无线定制选源函数
+*Input       : pstPtpPort      时钟端口指针                
+*Output      : *pulRecommendState   返回给调用者的推荐状态
+*Return      : 成功返回PTP_OK，失败返回错误码
+*Caution     : 无线定制
+*Calls       :
+*Called by   :
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME               DESCRIPTION
+*
+*******************************************************************************/
+ULONG PTP_Shell_BMC(PTP_PORT_S *pstPtpPort, ULONG *pulRecommendState)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_SetSocketSrcAddr
+*Description : 设置socket 源地址值选项，由修改添加IP地址接口调用
+*Input       : PTP_PORT_ADDR_S *pstPortAddr   源地址
+*Output      : NA
+*Return      : 成功返回PTP_OK，失败返回错误码
+*Caution     : 层三单播特性需要适配
+*Calls       : 
+*Called by   :  
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*  2008-6-3             wangchengyang  Create
+*  2010-04-21           xujun          Mody for BC3D03003 
+*******************************************************************************/
+ULONG PTP_SetSocketSrcAddr (USHORT usPtpPortNumber,PTP_PORT_ADDR_S *pstPortAddr)
+{
+    return PTP_OK;
+}
+
+/******************************************************************************
+*Func Name   : PTP_SetSocketMultiCast
+*Description : 设置socket多播选项，由cbb在设置多播模式后调用(采用钩子函数的形式调用)
+*Input       : NA
+*Output      : NA
+*Return      : 成功返回PTP_OK，失败返回错误码
+*Caution     : 层三多播模式下需要适配
+*Calls       : 
+*Called by   :  
+*-----------------------------------------------------------------------------
+*  Modification History
+*  DATE                 NAME           DESCRIPTION
+*  2008-6-3             wangchengyang  Create
+*  2010-04-21           xujun          Mody for BC3D03003 
+*******************************************************************************/
+ULONG PTP_SetSocketMultiCast (ULONG ulPortNumber)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_IP_GetIfindexbyIpAddr
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 根据IP地址和VRF索引获取接口索引值
+*        Input: ULONG ulIpAddr:    IP地址(网络序)
+*               ULONG ulVrfIndex:  VRF索引值
+*       Output: ULONG *pulIfIndex: 接口索引值
+*       Return: 
+*      Caution: 当使用层三多播模式时，需要适配该接口
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_IP_GetIfindexbyIpAddr(ULONG ulIpAddr,ULONG *pulIfIndex, ULONG ulVrfIndex)/*3层组播特性相关*/
+{
+   return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetAllInterfaceIndex
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 获取所有的接口索引，并设置多播属性
+*        Input: 
+*       Output: 
+*       Return: 
+*      Caution: 当使用层三多播模式时，需要适配该接口
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_GetAllInterfaceIndex()/*3层组播特性相关*/
+{
+   return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetMainIpAddr
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 根据索引获取接口IPv4主地址
+*        Input: ULONG ulIfIndex:接口索引
+*       Output: 
+*               ULONG *pulMainAddr:IP地址 (主机序)
+*               ULONG *pulMainMask:IP掩码 (主机序)
+*       Return: 获取成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 层三多播模式下需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_GetMainIpAddr(ULONG ulIfIndex,ULONG *pulMainAddr, ULONG *pulMainMask)/*3层组播特性相关*/
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PPI_MultiMac_Update
+* Date Created: 2009-09-08
+*       Author: mafeng(59090)
+*  Description: 多播MAC地址下发信息
+*        Input: ULONG ulIfIndex:接口索引值
+*               ULONG ulOptType:操作类型:增加或删除
+*               UCHAR *pszMacAddr:MAC地址指针
+*               UCHAR *pszMacMask:MAC地址掩码
+*       Output: 
+*       Return: VOS_ERR/VOS_OK
+*      Caution: 层二多播模式下需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2009-09-08   mafeng(59090)           Create
+*
+*******************************************************************************/
+ULONG PPI_MultiMac_Update(ULONG ulIfIndex, ULONG ulOptType, UCHAR *pszMacAddr, UCHAR *pszMacMask)
+{
+    return VOS_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetMACByIfindex
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 根据MAC地址获取相应的接口索引
+*        Input: UCHAR *currentmac:  MAC地址 6字节长度UCHAR数组
+*       Output: g_ulMacifindex 接口索引 全局变量
+*       Return: 获取成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 层二多播模式下需要适配该函数
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_GetMACByIfindex(UCHAR *currentmac)/*2层组播特性相关*/
+{
+   return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetEtharpMac
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 根据接口索引获取MAC地址
+*        Input: ULONG ulIfIndex:接口索引
+*               
+*       Output: UCHAR *pucMac: MAC地址
+*       Return: 获取成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 层二多播模式下需要适配该函数
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_GetEtharpMac(ULONG ulIfIndex, UCHAR *pucMac)/*2层组播特性相关*/
+{
+   return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP_GetPortInfo
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 根据索引获取端口类型和端口号
+*        Input: ULONG ulIfIndex:接口索引
+*       Output: 
+*               ULONG *pulPortType:接口类型
+*               ULONG *pulPortNo:接口号
+*       Return: 获取成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 层二多播模式下需要适配该函数
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP_GetPortInfo(ULONG ulIfIndex, ULONG *pulPortType, ULONG *pulPortNo)
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP6_CheckIfIPV6Enable
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 判断PTP IPv6是否使能
+*        Input: 
+*       Output: 
+*       Return: 如果使能IPv6 PTP_TRUE 未使能IPv6 PTP_FALSE
+*      Caution: 当使用了 PTP IPv6功能 需要适配此接口
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP6_CheckIfIPV6Enable()
+{
+    return PTP_FALSE;
+}
+
+/*******************************************************************************
+*    Func Name: PTP6_Inet_pton6
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 将字符串形式IPv6地址转化为 IN6ADDR_S 形式的IPv6 地址
+typedef   struct    tagIN6Addr
+{
+    union
+    {
+        UCHAR     u6_ucaddr[16];
+        USHORT    u6_usaddr[8];
+        ULONG     u6_uladdr[4];
+    } u6_addr;    128-bit IP6 address
+} IN6ADDR_S;
+*        Input: const CHAR *szSrcAddr: 输入的字符串形式IPv6地址
+*               VOID *pDstAddr:        IN6ADDR_S 形式的IPv6地址
+*       Output: 
+*       Return: 
+*      Caution: 当使用了 PTP IPv6功能 需要适配此接口
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+LONG PTP6_Inet_pton6(const CHAR *szSrcAddr, VOID *pDstAddr)/*PTP_IPV6特性相关*/
+{
+    return BOOL_TRUE;
+}
+
+/*******************************************************************************
+*    Func Name: PTP6_SetSocketSrcAddr
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: 设置IPv6端口的地址
+*        Input: USHORT usPtpPortNumber:端口号
+*               PTP_PORT_ADDR_S *pstPortAddr:端口地址
+*       Output: 
+*       Return: 设置成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 使用PTP IPv6功能时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP6_SetSocketSrcAddr (USHORT usPtpPortNumber,PTP_PORT_ADDR_S *pstPortAddr)/*PTP_IPV6特性相关*/
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP6_Shell_SndGeneralMsg
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: IPv6 General消息发送
+* Input       : UCHAR *pucBuffer             待发送的报文
+*             : ULONG ulPacketLength         待发送的报文长度
+*             : ULONG ulPtpMsgType           待发送的报文类型(PTP_MSG_TYPE_E)
+*             : PTP_ADDRINFO_S  *pstAddrInfo 发送地址信息
+*       Output: 
+*       Return: 发送成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 使用PTP IPv6功能时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP6_Shell_SndGeneralMsg (UCHAR *pucBuffer, ULONG ulPacketLength, ULONG ulPtpMsgType, 
+                PTP_ADDRINFO_S *pstAddrInfo)
+{
+    return PTP_OK;
+}
+
+/*******************************************************************************
+*    Func Name: PTP6_Shell_RcvGeneralMsg
+* Date Created: 2011-07-14
+*       Author: liangjicheng 00103192
+*  Description: IPv6 General消息发送
+*        Input: 
+*               VOID *pstVal: SO6_CALLBACKINFO_S 地址信息
+*       Output: CHAR *pChar:  MBUF_S* 用来装载获取的报文
+*       Return: 发送成功返回PTP_OK 否则 返回 PTP_ERR
+*      Caution: 使用PTP IPv6功能时需要适配
+*------------------------------------------------------------------------------
+*  Modification History
+*  DATE         NAME                    DESCRIPTION
+*  ----------------------------------------------------------------------------
+*  2011-07-14   liangjicheng 00103192   Create
+*
+*******************************************************************************/
+ULONG PTP6_Shell_RcvGeneralMsg (CHAR *pChar, VOID *pstVal)/*PTP_IPV6特性相关。原入参类型SO6_CALLBACKINFO_S *pstVal*/
+{
+    return PTP_OK;
+}
+
+#ifdef __cplusplus
+}
+#endif

@@ -1,0 +1,1 @@
+source "drivers/huawei_platform/storage/ddrinfo/Kconfig"

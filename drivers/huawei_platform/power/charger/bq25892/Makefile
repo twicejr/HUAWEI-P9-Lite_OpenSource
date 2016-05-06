@@ -1,0 +1,1 @@
+obj-y += bq25892_charger.o

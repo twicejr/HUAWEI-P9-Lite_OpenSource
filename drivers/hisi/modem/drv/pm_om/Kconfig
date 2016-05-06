@@ -1,0 +1,6 @@
+
+config PM_OM_BALONG
+	bool "balong pm om"
+	default n
+	help
+	support for pm om of balong

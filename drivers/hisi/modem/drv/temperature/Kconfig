@@ -1,0 +1,9 @@
+#
+# TEMPERATURE SYS infrastructure and drivers
+#
+
+config TEMPERATURE_SYS_BALONG
+	tristate "Hisi Balong Temperature Sys support"
+	help
+	  Support for the Hisi balong soc Temperature Sys.
+	  

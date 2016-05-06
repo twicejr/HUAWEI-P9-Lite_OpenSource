@@ -1,0 +1,47 @@
+/*
+* This dtsi is for device check. They may use in bc check and running test.
+*/
+/{
+	devcheck: devcheck {
+		compatible = "huawei,device_check";
+		touch_panel = <0>;
+		compass = <0>;
+		g_sensor = <0>;
+		camera_main = <0>;
+		camera_slave = <0>;
+		keypad = <0>;
+		aps = <0>;
+		gyroscope = <0>;
+		nfc = <0>;
+		dc_dc = <0>;
+		speaker = <0>;
+		ofn = <0>;
+		tps = <0>;
+		l_sensor = <0>;
+		charge = <0>;
+		battery = <0>;
+		nct = <0>;
+		mhl = <0>;
+		audience = <0>;
+		irda = <0>;
+		hand_sensor = <0>;
+		usb_switch = <0>;
+		pmu_dcdc = <0>;
+		camera_pmu = <0>;
+		fm = <0>;
+		wifi = <0>;
+		bt = <0>;
+		gps = <0>;
+		gpu = <0>;
+		cpu_chip = <0>;
+		antenna_ctl = <0>;
+		airpress = <0>;
+		handpress = <0>;
+		vibrator_lra = <0>;
+		laser = <0>;
+		camera_pmic = <0>;
+		typec = <0>;
+                anc_max14744 = <0>;
+		status = "disabled";
+	};
+};

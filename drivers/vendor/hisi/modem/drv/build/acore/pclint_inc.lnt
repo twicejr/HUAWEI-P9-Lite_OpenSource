@@ -1,0 +1,35 @@
+-IBALONG_TOPDIR/config/product/OBB_PRODUCT_NAME/config/
+-IBALONG_TOPDIR/config/product/OBB_PRODUCT_NAME/include_gu/
+-IBALONG_TOPDIR/config/nvim/include/gu/
+-IBALONG_TOPDIR/include/drv/
+-IBALONG_TOPDIR/include/nv/tl/drv/
+-IBALONG_TOPDIR/include/nv/comm/
+-IBALONG_TOPDIR/include/nv/tl/oam/
+-IBALONG_TOPDIR/include/nv/tl/lps/
+-IBALONG_TOPDIR/include/phy/lphy/
+-IBALONG_TOPDIR/platform/CFG_PLATFORM/
+-IBALONG_TOPDIR/platform/CFG_PLATFORM/soc/
+-IBALONG_TOPDIR/modem/drv/common/include/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/include/linux/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/include/linux
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/include/linux/dvb/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/include/asm/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/mach-hi6930/include/mach/
+
+
+// kernel code
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/bootable/bootloader/legacy/include/boot/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/bootable/bootloader/legacy/include/balongv7r2/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/include/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/arch/arm/mach-hi6930/include/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/include/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/include/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/arch/arm/mach-hi6930/include/
+
+/* mtd */
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/mtd/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/mtd/nand/nandc/
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/mtd/nand/ptable/
+
+/* led */
+-IBALONG_TOPDIR/modem/system/android/android_4.2_r1/kernel/drivers/leds/

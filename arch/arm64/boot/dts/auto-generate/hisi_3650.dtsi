@@ -1,0 +1,50 @@
+/**
+ * Note: any file.dtsi or node in this file will be compile into all config.dts
+ *so, if your node or file.dtsi will not use on some products, please don't put it here
+ */
+/include/ "hisi_3650_clock.dtsi"
+/include/ "hisi_3650_hwspinlock.dtsi"
+/include/ "hisi_3650_ddr.dtsi"
+/include/ "hisi_3650_mmc.dtsi"
+/include/ "hisi_3650_ipc.dtsi"
+/include/ "hisi_3650_isp_ipc.dtsi"
+/include/ "hisi_3650_gpio.dtsi"
+/include/ "hisi_3650_i2c.dtsi"
+/include/ "hisi_3650_usb.dtsi"
+/include/ "hisi_3650_ion.dtsi"
+/include/ "hisi_3650_i2cdev.dtsi"
+/include/ "hisi_3650_gpu.dtsi"
+/include/ "hisi_3650_memory.dtsi"
+/include/ "hisi_3650_efuse.dtsi"
+/include/ "hisi_3650_coresight.dtsi"
+/include/ "hisi_3650_noc.dtsi"
+/include/ "hisi_3650_qos.dtsi"
+/include/ "hisi_3650_powerip.dtsi"
+/include/ "hisi_3650_uart.dtsi"
+/include/ "hisi_3650_spi.dtsi"
+/include/ "hisi_3650_dma.dtsi"
+/include/ "hisi_64xx_codec.dtsi"
+/include/ "hisi_3650_perfstat.dtsi"
+/include/ "hisi_3650_vdec.dtsi"
+/include/ "hisi_3650_trustedcore.dtsi"
+/include/ "hisi_3650_venc.dtsi"
+/include/ "hisi_3650_mntn.dtsi"
+/include/ "hisi_3650_framebuffer.dtsi"
+/include/ "hisi_3650_camera3.dtsi"
+/include/ "hisi_3650_jtag.dtsi"
+/include/ "hisi_3650_lowpm.dtsi"
+/include/ "huawei_touchscreen.dtsi"
+/include/ "huawei-sensor.dtsi"
+/include/ "huawei_hall_inputhub.dtsi"
+/include/ "fastboot_6421v500_mntn.dtsi"
+
+/{
+    hisi_flp:flp {
+        compatible = "hisilicon,flp-common";
+        reg = <0x0 0xfff19000 0x0 0x1000>;
+        interrupts = <0x0 0x3a 0x4>;
+        clocks = <&clk_gate_timer5>;
+        clock-names = "clk_timer5";
+        status = "ok";
+    };
+};

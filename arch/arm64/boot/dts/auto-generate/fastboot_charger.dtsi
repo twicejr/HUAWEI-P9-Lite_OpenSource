@@ -1,0 +1,7 @@
+/ {
+	fastboot_charger: fastboot_charger{
+		compatible = "fastboot,charger";
+		ichrg_pre_limit = <256>;
+		status = "disabled";
+	};
+};

@@ -1,0 +1,3 @@
+config HUAWEI_USB_SHORT_CIRCUIT_PROTECT
+	bool "huawei usb short circuit protect"
+	default n

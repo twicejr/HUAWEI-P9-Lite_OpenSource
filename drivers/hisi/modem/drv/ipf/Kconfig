@@ -1,0 +1,9 @@
+#
+# Balong ipf configuration
+#
+
+config IPF_SUPPORT
+	tristate "ipf support"
+	default n
+	help
+	  balong ipf driver

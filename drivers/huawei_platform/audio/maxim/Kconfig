@@ -1,0 +1,11 @@
+config MAX98925
+	tristate "max98925 i2c driver"
+	default n
+	help
+		Say Y to enable max98925 i2c driver support
+
+config MAXIM
+	tristate "maxim ioctl driver"
+	default n
+	help
+		Say Y to enable maxim driver support

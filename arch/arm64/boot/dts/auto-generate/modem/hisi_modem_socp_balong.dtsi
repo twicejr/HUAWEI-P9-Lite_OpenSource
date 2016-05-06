@@ -1,0 +1,16 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	socp_app:socp1@ff030000 {
+		compatible = "hisilicon,socp_balong_app";
+		reg = <0x0 0xff030000 0x0 0x1000>;
+		interrupts = <0 219 4>;
+		modem_socp-supply =<&socp>;
+		dst_chan_cfg = <0 0x200000 0 0>;
+		status = "ok";
+	};
+};

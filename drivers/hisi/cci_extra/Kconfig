@@ -1,0 +1,14 @@
+config HISI_CCI_EXTRA
+	bool "Hisilicon CCI Extra Configuration Driver"
+	default n
+	select ARM_CCI
+	help
+	Hisilicon CCI Extra Configuration Driver support
+
+config HISI_CCI_EXTRA_PMU
+	bool "Hisilicon CCI Extra PMU Driver"
+	default n
+	select ARM_CCI
+	help
+	Hisilicon CCI Extra PMU support
+

@@ -1,0 +1,11 @@
+comment "HISI ISP"
+
+
+if HISI_CAMERA_HISTAR_ISPV100
+source "drivers/media/huawei/camera/hisp/hisp100/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV110
+source "drivers/media/huawei/camera/hisp/hisp110/Kconfig"
+endif
+

@@ -1,0 +1,88 @@
+config HISILICON_PLATFORM_HI3XXX
+	bool "HISILICON PLATFORM HI3XXX"
+	default n
+
+if HISILICON_PLATFORM_HI3XXX
+comment "kernel/driver/hisi/hi3xxx/irq_affinity_debugfs.c"
+config HI3XXX_IRQ_AFFINITY
+	bool "Hisilicon irq affinity"
+	depends on SMP
+	default n
+	help
+	  Driver for irq affinity recovery in smp system
+
+comment "kernel/driver/hisi/hi3xxx/irq_affinity_debugfs.c"
+config HI3XXX_IRQ_AFFINITY_DEBUGFS
+	bool "Hisilicon irq affinity debugfs"
+	depends on HI3XXX_IRQ_AFFINITY
+	default n
+	help
+	  Debug code for HISI irq affinity recovery in smp system
+
+config HI3XXX_POWER_OFF
+	bool "Hisilicon hi3xxx platform power off and reset driver"
+	default n
+	help
+	  Power off and reset support for the Hisilicon HI3xxx boards
+
+config HISI_REBOOT_TYPE
+	bool "Hisilicon hi3xxx reboot type driver"
+	depends on HI3XXX_POWER_OFF
+	default n
+	help
+	  Reboot type support for the Hisilicon HI3xxx boards
+
+config HI3XXX_CMDLINE_PARSE
+       bool "cmdline parse"
+       default n
+
+       help
+          Say 'Y' here if you want to support the cmdline parse
+
+config HISI_SR
+	bool "support hi3xxx suspend and resume"
+	depends on SUSPEND
+	default n
+	help
+	   support hi3xxx suspend and resume
+
+config HISI_SR_DEBUG
+	bool "hisi suspend-resume debug interface"
+	depends on PM
+	default n
+	help
+	suspend-resume debug for hisi platform
+
+config HISI_SR_DEBUG_SLEEP
+	bool "hisi suspend-resume debug sleep"
+	depends on PM
+	default n
+	help
+	suspend-resume debug sleep for hisi platform
+
+config HISI_LPM3_DEBUG
+	depends on HISI_MAILBOX
+	bool "Hisilicon LPM3 debug"
+	default n
+	help
+	  Hi3xxx lpm3 debug driver
+
+config HISI_HISEE
+	depends on HISI_MAILBOX
+	bool "Hisilicon hisee "
+	default n
+	help
+	  Hi3xxx hisee driver
+
+config HI3XXX_MODEM_ETB
+	bool "hisi modem etb driver"
+	default n
+	help
+	  enable etb trace for modem for hisi platform
+
+config HISI_BOOST5V_CONTROL
+	bool "support boost5v control function"
+	default n
+	help
+	  Say 'Y' here if you want to support boost5v control enable.
+endif

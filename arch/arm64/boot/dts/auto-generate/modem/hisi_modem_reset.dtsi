@@ -1,0 +1,13 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only for hisilicon balong modem board. You show change the
+ * address of each node according to datasheet.
+ */
+
+/ {
+	cp_reset_app:cp_reset@0{
+		compatible = "hisilicon,cp_reset_app";
+		scbakdata13 = <0x348>;
+	};
+};

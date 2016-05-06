@@ -1,0 +1,5 @@
+config HI6402_HIFI_MISC
+     tristate "hi6402 hifi misc device support"
+     default n
+     ---help---
+	hi6402 hifi misc driver

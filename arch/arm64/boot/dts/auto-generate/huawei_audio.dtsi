@@ -1,0 +1,64 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	audio_hw_config {
+		product_name = "none";
+		cust_name = "none";
+		spk_pa_name = "none";
+		soc_name = "hi363x";
+		codec_name = "hi6402";
+		codec_dsp_algo = "none";
+		modem_sio_master = "false";
+		ear_pa_name = "none";
+		asr_enable = "true";
+		status = "disabled";
+		audio_capability {
+			bwe_ui_support = "false";
+			bwe_support = "true";
+			wnr_support = "false";
+			lvm_support = "false";
+			dhf_support = "false";
+			dual_smartpa_support = "false";
+			spk_rcv_stereo_support = "false";
+		};
+	};
+
+	deviceboxID: deviceboxID@0 {
+		compatible = "huawei,deviceboxID";
+		channel = <5>;
+		status = "disabled";
+	};
+
+	anc_hs: anc_hs@0{
+		compatible = "huawei,anc_hs";
+		gpios = <&gpio4 2 0>, <&gpio23 4 0>;
+		adc_channel_h = <15>;
+		adc_channel_l = <14>;
+		anc_hs_limit_min = <5>;
+		anc_hs_limit_max = <200>;
+		anc_hs_btn_hook_min_voltage = <160>;
+		anc_hs_btn_hook_max_voltage = <196>;
+		anc_hs_btn_volume_up_min_voltage = <200>;
+		anc_hs_btn_volume_up_max_voltage = <245>;
+		anc_hs_btn_volume_down_min_voltage = <250>;
+		anc_hs_btn_volume_down_max_voltage = <320>;
+		//0 means soc gpios, 1 means codec gpios
+		gpio_type = <0>;
+		status = "disabled";
+	};
+
+	invert_hs: invert_hs@0{
+		compatible = "huawei,invert_hs";
+		gpios = <&gpio30 7 0>;   //codec gpio 23
+
+		//0 means soc gpios, 1 means codec gpios
+		gpio_type = <1>;
+		status = "disabled";
+	};
+};

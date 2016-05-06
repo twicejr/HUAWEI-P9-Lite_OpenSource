@@ -1,0 +1,43 @@
+#
+# Logger extend configuration
+#
+source "drivers/huawei_platform/log/goldeneye/Kconfig"
+source "drivers/huawei_platform/log/boot_log/Kconfig"
+source "drivers/huawei_platform/log/log_usertype/Kconfig"
+
+menu "Logger extend configuration"
+
+config LOGGER_EXTEND
+	bool "Logger extend support"
+	depends on ANDROID_LOGGER
+	default n
+	---help---
+	  Enable support for logger extend
+
+if LOGGER_EXTEND
+
+config LOG_SWITCH
+	tristate "log switch feature support"
+	depends on HISI_NVE
+	default n
+	---help---
+	  Say Y here to enable log switch feature support. This allows
+	  user to control log.
+
+config LOG_EXCEPTION
+	bool "log exception feature support"
+	default n
+	---help---
+	  Say Y here to enable log exception feature support. This allows
+	  user to send log to remote server by net.
+
+config LOG_JANK
+	bool "log jank feature support"
+	default n
+	---help---
+	  Say Y here to enable log jank feature support. This allows
+	  user to send log to remote server by net.
+
+endif # if LOGGER_EXTEND
+
+endmenu

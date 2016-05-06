@@ -1,0 +1,9 @@
+#
+#Hisilicon freqdump support.
+#
+comment "kernel/driver/hisi/freqdump/freqdump_kernel.c"
+config HISILICON_FREQDUMP
+	bool "Hisilicon freqdump"
+	default y
+	help
+	  Driver for kernel freqdump

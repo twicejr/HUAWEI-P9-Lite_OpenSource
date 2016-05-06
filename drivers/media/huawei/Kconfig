@@ -1,0 +1,33 @@
+comment "Huawei Multimedia"
+
+menuconfig HUAWEI_CAMERA
+    bool "Huawei camera and video capture support"
+    default y
+    select ION
+    select MEDIA_CONTROLLER 
+    select VIDEOBUF2_CORE
+    select VIDEO_V4L2
+    help
+        Say Y here to enable selecting the video adapters for
+        Huawei camera
+	
+menuconfig ION_FOR_EMULATOR
+     bool "Huawei camera and video support for emulator"	
+     default n
+     select ION
+     help
+        Say Y here to enable selecting the video adapters for
+        Huawei camera emulator
+
+config USE_CAMERA3_ARCH
+    tristate "Support Camera3 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon K3 camera3 driver.
+
+	
+if HUAWEI_CAMERA
+source "drivers/media/huawei/camera/Kconfig"
+endif
+

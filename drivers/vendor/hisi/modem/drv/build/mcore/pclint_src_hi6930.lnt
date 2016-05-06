@@ -1,0 +1,97 @@
+//这个文件放要进行检查的*.c文件，pclint检查的结果放在编译log相同的文件夹下，名称为pclint_bsp_(相应核).txt
+//shell命令为：./obuild.py product=product_name separate=true maction maction=pclint
+//添加头文件路径方法
+//-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/dpm
+
+/*******************************************bsp2   begin*****************************************/
+// bsp-2 liuwenhui begin
+// tsens
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/tsensor/tsensor_balong.c
+// ios
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/ios/ios_list.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/ios/ios_pd.c
+// bsp-2 liuwenhui end
+
+// bsp-2 zuofenghua begin
+// bsp-2 zuofenghua end
+
+//bsp-2 zhangjingyuan begin
+//hkadc
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/hkadc/bsp_hkadc.c
+//dsp
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/dsp/bsp_hifi.c
+//bsp-2 zhangjingyuan end
+
+//bsp-2 xuwenfang begin
+//pmu
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pmu/
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pmu/pmu.c
+//bsp-2 xuwenfang end
+//bsp-2 haoran begin
+//bsp-2 haoran end
+/*******************************************bsp2 end*******************************************/
+/*******************************************bsp3 begin*******************************************/
+/* pm */
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pm/
+-IBALONG_TOPDIR/modem/system/cmsis/CMSIS-SP-00300-r3p2-00rel1/CMSIS/rtos/
+-header(BALONG_TOPDIR/modem/drv/mcore/kernel/libc/stdint.h)
+-header(BALONG_TOPDIR/modem/system/cmsis/CMSIS-SP-00300-r3p2-00rel1/CMSIS/rtos/cmsis_os.h)
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pm/m3_cpufreq.c 
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pm/m3_pm.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pm/CFG_PLATFORM/pm_api.c
+/* start */
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/start/ccpu_start.c
+// bsp-3 lixiaojie begin
+//ipc typedef Symbol 'funcptr' redeclared 是否有问题？
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/ipc/ipc_balong.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/ipc/ipc_balong_test.c
+//dpm
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/dpm/dpm_balong.c
+//softtimer
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/timer/softtimer_balong.c
+// bsp-3 lixiaojie end
+
+// bsp-3 yaoguocai begin
+//icc
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/icc/icc_balong.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/icc/icc_balong_debug.c
+//console
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/serial/console.c
+//icc
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/icc/icc_balong_test.c
+// bsp-3 yaoguocai end
+
+//bsp-3 xujingcui begin
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/lowpower_mntn/lowpower_mntn_balong.c 
+//bsp-3 xujingcui end
+
+// bsp-3 shangmianyou begin
+/* edma */
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/edma
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/edma/edma_balong.c
+/*BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/edma/edma_balong_test.c*/
+// bsp-3 shangmianyou end
+
+// bsp-3 yangqiang begin
+//WDT
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/watchdog/wdt_balong.c 
+// bsp-3 yangqiang end
+
+// bsp-3 wangxiandong begin
+//serial
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/serial/printk.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/serial/symbol.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/serial/symbol_dummy.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/serial/uart.c
+// bsp-3 wangxiandong end
+/*******************************************bsp3   end*******************************************/
+/*******************************************bsp4   start*******************************************/
+//ipf
+-IBALONG_TOPDIR/modem/drv/common/include
+-IBALONG_TOPDIR/include/drv
+-IBALONG_TOPDIR/platform/hi6930_v7r2/soc
+-IBALONG_TOPDIR/platform/hi6930_v7r2/
+-header(BALONG_TOPDIR/modem/drv/common/include/bsp_ipf.h)
+-header(BALONG_TOPDIR/include/drv/drv_ipf.h)
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/ipf/ipf_balong_pm.c
+/*******************************************bsp4   end*******************************************/

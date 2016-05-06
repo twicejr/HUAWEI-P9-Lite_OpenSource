@@ -1,0 +1,9 @@
+#menu "img decode support"
+
+config IMG_ENC
+#    depends on ANDROID_PMEM
+    tristate "Support for hisi k3 video dec processor"
+    default n
+    help
+        The decode device provides decode function for H.264/MPEG4/VC1
+#endmenu

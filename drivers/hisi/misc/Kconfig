@@ -1,0 +1,16 @@
+config HISILICON_PLATFORM_MISC
+	bool "Support HiSilicon MISC Modules"
+	depends on HISILICON_PLATFORM
+	default n
+	help
+	  This driver supports HiSilicon MISC Modules,
+	  including easy shell, etc.
+
+if HISILICON_PLATFORM_MISC
+config HISILICON_PLATFORM_RSVMAP_CHECK
+	bool "Support HiSilicon HiXXXX Reserved Memory Check"
+	depends on HISILICON_PLATFORM_MISC
+	default n
+	help
+	  This driver supports Overlapping Reserved Memory Detector.
+endif

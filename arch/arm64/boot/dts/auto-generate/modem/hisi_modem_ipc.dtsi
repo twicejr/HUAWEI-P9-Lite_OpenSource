@@ -1,0 +1,32 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+
+
+/{
+	/* if use ap modem_ipc,use base addr 0xFDF21000 node and comment 0xE0475000 node */
+	/* if use cp modem_ipc,use base addr 0xE0475000 node and comment 0xFDF21000 node */
+	/* default use ap modem_ipc */
+	
+	ipc_hisi_modem:ipc_hisi_modem@FDF21000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,ipc_balong_app";
+		reg = <0x0 0xFDF21000 0x0 0x1000>;
+		interrupts = <0 186 4>, <0 187 4>;
+		status = "ok";
+	};
+	
+	
+	/*
+	ipc_hisi_modem:ipc_hisi_modem@E0475000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,ipc_balong_app";
+		reg = <0x0 0xE0475000 0x0 0x1000>;
+		interrupts = <0 186 4>, <0 187 4>;
+		status = "ok";
+	};
+	*/
+};

@@ -1,0 +1,4 @@
+config SEATTLE
+      bool "seattle"
+      default n
+

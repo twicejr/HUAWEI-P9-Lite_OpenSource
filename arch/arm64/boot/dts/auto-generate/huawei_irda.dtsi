@@ -1,0 +1,15 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	irda_maxim:irda_maxim {
+		compatible = "huawei,irda_maxim";
+		gpio_power_control = <&gpio9 0 0>;
+		status = "disabled";
+	};
+};

@@ -1,0 +1,42 @@
+/{
+	/*add empty node here*/
+	chosen{};	/*1*/
+	nve_himntn:himntn {};	/*2*/
+	nve_uartctl:uartctl {}; /*4*/
+	memory@0 {};	/*4*/
+	hisi_charger: hisi_charger{};   /*4*/
+	fastboot_charger: fastboot_charger{};	/*5*/
+	coul_core:coul_core{};   /*6*/
+	fastboot_battery: fastboot_battery{};	/*6*/
+	fastboot {};   /*9*/
+	hisi_bci_battery:battery {};   /*6*/
+	huawei,lcd_panel {};   /*8*/
+	watchdog0 {};	/*9*/
+	rdr {};	/*10*/
+	ese_config {};   /*11*/
+	slimbusmisc@0xe8050000 {};   /*11*/
+	ipa_sensor0: ipa-sensor@0 {};	/*11*/
+	uart@fff32000 {};	/*16*/
+	panel_lcd_jdi_NT35695 {};   /*16*/
+	panel_lcd_jdi_NT35695_cut2_5 {}; /*16*/
+	panel_lcd_jdi_NT35695_cut3_1 {}; /*16*/
+	panel_lcd_lg_eR69006A {}; /*16*/
+	panel_lcd_lg_R69006_5P5 {}; /*14*/
+	panel_lcd_sharp_NT35695_5P5 {}; /*14*/
+	panel_lcd_jdi_R63452_5P5 {}; /*14*/
+	sdhci0: sdhci@FF390000 {};	/*17*/
+	ddr_devfreq@fffc0000 {};	/*20*/
+	hisi_charging_core:hisi_charging_core{};   /*21*/
+	gpu: mali@E8970000 {};	/*22*/
+	framebuffer@E8600000 {};   /*28*/
+	thermal-zones {};	/*45*/
+	ip_freq_autodown: ip_freq_autodown@0xFFF35000 {};	/*48*/
+	reserved-memory {};   /*130*/
+	codec_controller: codec_controller@e82b9000 {};		/*132*/
+	ddr_devfreq_up_threshold@fffc0000 {};	/*21*/
+	modem_pinctrl {};    /*156*/
+	cpus {};	/*160*/
+	fastboot_pmic_mntn: fastboot_pmic_mntn {}; /*65*/
+	jtagtosd {};
+	sysctrl_reason {}; /*3*/
+};

@@ -1,0 +1,4 @@
+config HUAWEI_KSTATE
+    tristate "Huawei Kernel State"
+    help
+        Huawei kernel state, please choose it.

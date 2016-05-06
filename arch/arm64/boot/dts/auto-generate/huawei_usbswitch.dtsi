@@ -1,0 +1,20 @@
+
+
+/{
+	amba{
+		i2c1: i2c@FDF0A000 {
+			fairchild_fsa9685: fsa9685@25 {
+				compatible = "huawei,fairchild_fsa9685";
+				reg = <0x25>;
+				fairchild_fsa9685,gpio-intb = <&gpio24 7 0>;
+				status = "disable";
+			};
+		};
+	};
+
+	usbswitch: usbswitch {
+		compatible = "huawei,usbswitch";
+		gpio_switch_back = "-1";
+		status = "disable";
+	};
+};

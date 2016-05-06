@@ -1,0 +1,14 @@
+CFG_TENSILICA_BUILDS_HIFI   =$(ROOT_XTENSA_PATH_W)/XtDevTools/install/builds/RE-2014.5-linux
+CFG_TENSILICA_TOOLS_HIFI    =$(ROOT_XTENSA_PATH_W)/XtDevTools/install/tools/RE-2014.5-linux
+
+CFG_FEATURE_HIFI                                = FEATURE_OFF
+CFG_FEATURE_HIFI_USE_ICC                        = FEATURE_OFF
+
+# M2M audio play and record
+CFG_FEATURE_MBB_MODULE_AUDIO                    = FEATURE_OFF
+
+# 语音软件上移ARM配置
+CFG_FEATURE_VOICE_UP                            = FEATURE_OFF
+
+# 支持DTMF特性
+CFG_FEATURE_DTMF                                = FEATURE_ON

@@ -1,0 +1,30 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_L09_V3_config.dtsi"
+/include/ "EVA_L09_V4_pin.dtsi"
+/include/ "EVA_L09_V4_modem_pin.dtsi"
+/include/ "EVA_L09_V4_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C012400>;
+	hisi,boardid = <3 5 8 3>;
+	hisi,boardname = "EVA_L09_V4";
+	huawei,imx286dual{
+		compatible = "huawei,imx286dual";
+		huawei,sensor_name = "IMX286DUAL";
+	};
+	amba{
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <1>;
+			};
+		};
+	};
+};

@@ -1,0 +1,149 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	hi6402_irq: hi6402_irq@e82b9000 {
+		compatible = "hisilicon,hi6402-irq";
+		reg = <0x0 0xe82b9000 0x0 0x800>; /* 0x200 << 2 */
+		#interrupt-cells = <2>;
+		interrupt-controller;
+		status = "disabled";
+
+		hi6402_codec: hi6402_codec@0{
+			compatible = "hisilicon,hi6402-codec";
+			interrupt-parent = <&hi6402_irq>;
+			status = "disabled";
+		}; /* end of codec */
+
+		hi6402_mbhc: hi6402_mbhc@0{
+			compatible = "hisilicon,hi6402-mbhc";
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <20 0>, <7 0>, <6 0>, <5 0>, <4 0>, <3 0>, <1 0>, <0 0>;
+			interrupt-names = "pll_unlock", "plugout", "plugin", "btndown_eco", "btnup_eco", "btnup_comp2", "btndown", "btnup";
+			status = "disabled";
+		}; /* end of mbhc */
+
+		hi6402_dsp: hi6402_dsp@0{
+			compatible = "hisilicon,hi6402-dsp";
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <16 0>, <13 0>;
+			interrupt-names = "cmd_valid", "wd_irq";
+			status = "disabled";
+		}; /* end of dsp */
+
+		hi6402_vad: hi6402_vad@0{
+			compatible = "hisilicon,hi6402-vad";
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <12 0>;
+			interrupt-names = "vad";
+			status = "disabled";
+		}; /* end of vad */
+
+		gpio28: gpio@0{
+			compatible = "hisilicon,hi6402-gpio";
+			reg-offset = <0x20008000>;
+			interrupt-parent = <&hi6402_irq>;
+			awake-irq-number;
+			interrupts = <8 0>, <24 0>, <25 0>, <26 0>, <27 0>, <28 0>, <29 0>, <30 0>, <31 0>;
+			interrupt-names = "hi6402_gpio", "pos_awake_irq0", "neg_awake_irq0", "pos_awake_irq1", "neg_awake_irq1",
+						"pos_awake_irq2", "neg_awake_irq2", "pos_awake_irq3", "neg_awake_irq3";
+			linux,gpio-base = <224>;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx4 0 4 8>;
+			status = "disabled";
+		};
+
+		gpio29: gpio@1{
+			compatible = "hisilicon,hi6402-gpio";
+			reg-offset = <0x20009000>;
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <9 0>;
+			interrupt-names = "hi6402_gpio";
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx4 0 12 8>;
+			status = "disabled";
+		};
+
+		gpio30: gpio@2{
+			compatible = "hisilicon,hi6402-gpio";
+			reg-offset = <0x2000a000>;
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <10 0>;
+			interrupt-names = "hi6402_gpio";
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx4 0 20 8>;
+			status = "disabled";
+		};
+
+		gpio31: gpio@3{
+			compatible = "hisilicon,hi6402-gpio";
+			reg-offset = <0x2000b000>;
+			interrupt-parent = <&hi6402_irq>;
+			interrupts = <11 0>;
+			interrupt-names = "hi6402_gpio";
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx4 0 28 7>;
+			status = "disabled";
+		};
+
+		pmx4: hi6402_pinctrl {
+			compatible = "hisilicon,pinctrl-hi6402";
+			pinctrl-hi6402,base-reg = <0x20001000>;
+			pinctrl-hi6402,pins-max-num = <35>;
+			#gpio-range-cells = <3>;
+			#pinctrl-hi6402,gpio-range-cells = <3>;
+			pinctrl-hi6402,gpio-range = <4 31 3>;	/* pin base, nr pins & gpio function */
+			pinctrl-hi6402,ios-ctrl-mux = <
+				0x000		/* IOS_MF_CTRL0, value */
+				0x100 		/* IOS_AF_CTRL0, value */
+				0x100		/* IOS_AF_CTRL0, value */
+				0x104		/* IOS_AF_CTRL1, value */
+				0x108		/* IOS_MF_CTRL2, value */
+			>;
+			pinctrl-hi6402,bits-ctrl = <
+				32 32 32 32 32		/* PIN:MCLK,		  NUM:0 */
+				32 32 32 32 32		/* PIN:CLK32,		  NUM:1 */
+				32 32 32 32 32		/* PIN:RESET,		  NUM:2 */
+				32 32 32 32 32		/* PIN:DFT_MODE,	  NUM:3 */
+				32 2  3  0  0		/* PIN:GPIO0,		  NUM:4 */
+				8  0  32 1  15		/* PIN:DMIC_CLK0(GPIO1),  NUM:5 */
+				8  32 32 2  16		/* PIN:DMIC_DATA0(GPIO2), NUM:6 */
+				9  32 5  3  17		/* PIN:DMIC_CLK1(GPIO3),  NUM:7 */
+				9  32 5  4  18		/* PIN:DMIC_DATA1(GPIO4), NUM:8 */
+				1  2  3  5  32		/* PIN:SSI_DATA(GPIO5),   NUM:9 */
+				2  32 32 6  32		/* PIN:IRQ_N(GPIO6),      NUM:10 */
+				4  1  32 7  32		/* PIN:I2S1_SYNC(GPIO7),  NUM:11 */
+				4  1  32 8  32		/* PIN:I2S1_CLK(GPIO8),   NUM:12 */
+				4  32 32 9  1		/* PIN:I2S1_SDI(GPIO9),   NUM:13 */
+				4  32 32 10 2		/* PIN:I2S1_SDO(GPIO10),  NUM:14 */
+				5  0  32 11 3		/* PIN:I2S2_SYNC(GPIO11), NUM:15 */
+				5  0  32 12 4		/* PIN:I2S2_CLK(GPIO12),  NUM:16 */
+				5  0  4  13 5		/* PIN:I2S2_SDI(GPIO13),  NUM:17 */
+				5  0  4  14 6		/* PIN:I2S2_SDO(GPIO14),  NUM:18 */
+				6  32 32 15 7		/* PIN:I2S3_SYNC(GPIO15), NUM:19 */
+				6  32 32 16 8		/* PIN:I2S3_CLK(GPIO16),  NUM:20 */
+				6  32 32 17 9		/* PIN:I2S3_SDI(GPIO17),  NUM:21 */
+				6  32 32 18 10		/* PIN:I2S3_SDO(GPIO18),  NUM:22 */
+				7  32 32 19 11		/* PIN:I2S4_SYNC(GPIO19), NUM:23 */
+				7  32 32 20 12		/* PIN:I2S4_CLK(GPIO20),  NUM:24 */
+				7  32 32 21 13		/* PIN:I2S4_SDI(GPIO21),  NUM:25 */
+				7  32 32 22 14		/* PIN:I2S4_SDO(GPIO22),  NUM:26 */
+				10 32 32 23 19		/* PIN:SPK_CLK(GPIO23),   NUM:27 */
+				10 32 32 24 20		/* PIN:SPK_DATA(GPIO24),  NUM:28 */
+				11 32 32 25 21		/* PIN:GPIO25,            NUM:29 */
+				12 32 32 26 22		/* PIN:GPIO26,            NUM:30 */
+				12 32 32 27 23		/* PIN:GPIO27,            NUM:31 */
+				32 32 32 28 24		/* PIN:GPIO28,            NUM:32 */
+				32 32 32 29 25		/* PIN:GPIO29,            NUM:33 */
+				32 32 32 30 26		/* PIN:GPIO30,            NUM:34 */
+			>;
+			status = "disabled";
+		};
+
+	};
+};

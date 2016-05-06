@@ -1,0 +1,113 @@
+//这个文件放要进行检查的*.c文件，pclint检查的结果放在编译log相同的文件夹下，名称为pclint_bsp_(相应核).txt
+//shell命令为：./obuild.py product=product_name separate=true maction maction=pclint
+//添加头文件路径方法
+-esym(123,min,max)
+
+/*******************************************bsp1 begin*******************************************/
+
+// rfile 
+-IBALONG_TOPDIR/../../kernel/include
+-IBALONG_TOPDIR/../../kernel/include/linux
+-IBALONG_TOPDIR/../../kernel/include/asm-generic
+-IBALONG_TOPDIR/../../kernel/include/uapi/asm-generic
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/rfile/rfile_balong.c
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_rfile.c
+
+/*MEM*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mem/mem_balong.c
+/*BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_mem_balong.c*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/mem/mem_balong_test.c
+
+/*log*/
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/common
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/oms
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/log
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/dump
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/sys_view
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/usbtrace
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/log/bsp_om_log.c
+/*om common*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/common/bsp_om_comm.c
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/common/bsp_om_save.c
+/*oms*/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/oms/bsp_om_server.c
+
+/*******************************************bsp1 end*******************************************/
+
+/*******************************************bsp3 begin*******************************************/
+// bsp3-lixiaojie begin
+//ipc
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/ipc/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_ipc.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/ipc/ipc_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/ipc/ipc_balong_test.c
+//timer
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/softtimer_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/balong_timer/softtimer_balong_test.c
+
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_timer.c
+//sync
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/sync/sync_balong.c
+
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/hwadp/hwadp_balong.c
+//int
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_int.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_gic_balong.c
+// bsp3-lixiaojie end
+
+// bsp3-yaoguocai begin
+// icc
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/icc
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_icc.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/icc/icc_balong.c
+
+// hwadp_memory
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/hwadp/hwadp_memory.c
+// bsp3-yaoguocai end
+
+// bsp3-wangxiandong start
+//cshell
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/cshell/cshell.c
+// bsp3-wangxiandong end
+/*******************************************bsp3   end*******************************************/
+
+/*******************************************bsp2 begin*******************************************/
+//bsp2-liuwenhui begin
+// adp_mem_save 
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/om/mem_save/mem_save.c
+// antenna
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/antenna/anten_balong.c
+// efuse 
+//BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/efuse/efuse_comm.c
+//bsp2-liuwenhui end
+
+//bsp2-lusuo begin
+//bsp2-lusuo end
+
+//bsp2-zuofenghua begin
+//bbp
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/bbp
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_bbp_balong.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/bbp/bbp_balong.c
+//version
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/version
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/adp/adp_version.c
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/version/version_balong.c
+//bsp2-zuofenghua end
+
+//bsp2-zhangjingyuan begin
+//onoff
+-IBALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/
+BALONG_TOPDIR/modem/drv/acore/kernel/drivers/modem/onoff/bsp_modem_boot.c
+//bsp2-zhangjingyuan end
+
+//bsp2-xuwenfang begin
+//bsp2-xuwenfang end
+
+//bsp2-haoran begin
+//bsp2-haoran end
+/*******************************************bsp2 end*******************************************/
+
+

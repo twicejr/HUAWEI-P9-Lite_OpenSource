@@ -1,0 +1,4 @@
+config DSM_EARLYBOOT_CLIENT
+    default y
+    help
+This module adds support for bus dmd based on Balong V3R3 chipset.

@@ -1,0 +1,85 @@
+U32				32 		0
+S32				32		1
+U16				16		0
+S16 				16		1
+U8 				8		0
+S8 				8		1       1  
+CHAR_T 				8		1       1     
+
+u32				32 		0
+s32				32		1
+u16				16		0
+s16 				16		1
+u8 				8		0
+s8 				8		1       1  
+
+BSP_U32             32      0
+BSP_S32             32      1
+BSP_U16             16      0
+BSP_S16             16      1
+BSP_U8              8       0
+BSP_S8              8       1
+BSP_CHAR            8       1
+
+U32_T				32 		0      
+S32_T				32		1      
+U16_T				16		0      
+S16_T 				16		1      
+U8_T 				8		0      
+S8_T 				8		1
+
+UINT32				32		0
+UINT16				16		0
+UINT8				8		0
+
+INT32				32		1
+INT16				16		1
+INT8				8		1
+
+DT_CMD_ENUM_UINT8		8		0
+VOS_UINT32			32		0
+VOS_INT32			32		1
+VOS_UINT16			16		0
+VOS_INT16			16		1
+VOS_INT8			8		1
+VOS_UINT8			8		0
+
+VOS_CHAR8			8		0	1
+VOS_CHAR                        8               1
+VOS_UCHAR                       8               0
+VOS_WCHAR                       16              1       1
+
+VOS_VOID                        32              0
+
+VOS_BOOL                        32              0
+
+APP_ESM_PARA_SET_ENUM_UINT32    32              0
+APP_ESM_PDN_TYPE_ENUM_UINT32    32              0
+
+
+enum				32		0
+
+/* DSP Begine */
+PHY_UINT16                      16		0
+PHY_INT16                      	16		1
+PHY_UINT32			32		0
+PHY_INT32			32		1
+PHY_VOID			32		0
+UCOM_NV_XO_TYPE_ENUM_UINT16	16		0	
+UCOM_NV_DC_SC_MODE_ENUM_UINT16	16		0
+UCOM_NV_CHAN_CONNECT_ENUM_UINT16	16		0
+UCOM_NV_WCDMA_SPUR_TYPE_ENUM_UINT16	16		0
+UCOM_NV_XO_TYPE_ENUM_UINT16             16        	0
+
+UCOM_NV_RX_AGC_CTRL_UNION               32              0
+UCOM_NV_PHY_SW_CFG_DRX_SYSCLK_STRU	32 		0
+UCOM_NV_GUPHY_FUNC_CTRL_STRU		16		0
+UCOM_NV_LP_RFIC_REGTHD_STRU		16		0
+UCOM_NV_LP_RFIC_REGOPT_STRU		16		0
+UCOM_NV_LP_RFIC_REGDEFAULT_STRU		16		0
+/* DSP End */
+
+
+PS_BOOL_ENUM_UINT8              8               0
+
+MODEM_ID_ENUM_UINT16		16		0

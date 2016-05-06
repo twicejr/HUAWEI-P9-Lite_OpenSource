@@ -1,0 +1,22 @@
+ / {
+    coul_core:coul_core{
+        compatible = "hisi,coul_core";
+	    r_pcb = <26000>;	
+	    current_offset_a = <1000000>;						
+	    status = "disabled";
+   };
+   pmic: pmic@FFF34000 {  
+        hi6421v500_coul: hi6421v500_coul@1 {
+              compatible = "hisilicon,hi6421v500_coul";
+	          interrupt-parent = <&pmic>;
+              interrupts = <9 0>;
+              interrupt-names = "coulirq";						
+	          status = "disabled";
+        };
+   };
+   hisi_coul_drv_test:hisi_coul_test {
+   	    compatible = "hisi_coul_drv_test";
+	    status = "disabled";
+   };
+	
+};

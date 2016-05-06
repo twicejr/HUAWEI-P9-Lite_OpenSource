@@ -1,0 +1,4 @@
+config HI3650_PMU_DUMP
+       bool "hisi hi3650 pmu dump tool"
+       depends on ARCH_HI3650
+       default n

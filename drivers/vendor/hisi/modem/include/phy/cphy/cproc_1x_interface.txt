@@ -1,0 +1,6 @@
+  include_directories(
+    ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_1x
+    ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_cm
+    ${TOP_DIR}/modem/include/phy/cphy/cproc/cproc_sm
+    ${TOP_DIR}/modem/include/phy/cphy/cproc
+  )

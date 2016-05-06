@@ -1,0 +1,4 @@
+config HUAWEI_BOOT_LOG
+	bool "huawei boot log feature support"
+	default n
+

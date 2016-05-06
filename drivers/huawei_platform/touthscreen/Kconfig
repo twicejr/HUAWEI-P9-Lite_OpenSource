@@ -1,0 +1,68 @@
+#
+# huawei touchscreen driver configuration
+#
+
+config HUAWEI_TS
+	bool "huawei touchscreen"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+	  
+config HUAWEI_TS_TEST
+	bool "huawei touchscreen test"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+
+source "drivers/huawei_platform/touthscreen/panel/Kconfig"
+source "drivers/huawei_platform/touthscreen/panel/cyttsp5/Kconfig"
+
+#sensor unification for differ platform
+menu "huawei linux device driver support package"
+config HUAWEI_TP_COLOR_INFO
+	bool "huawei tp color info"
+	default n
+	help
+		get the huawei tp color information.
+endmenu
+#different product firmware
+config VIE_TOUCH_FW
+	bool "vie touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config EVA_TOUCH_FW
+	bool "eva touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config NEXT_TOUCH_FW
+	bool "next touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config KNIGHT_TOUCH_FW
+	bool "knight touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config NEMO_TOUCH_FW
+        bool "nemo touchscreen firmware"
+        default n
+        help
+          If you say yes here you get support for huawei touchscreen.
+config VENUS_TOUCH_FW
+        bool "venus touchscreen firmware"
+        default n
+        help
+          If you say yes here you get support for huawei touchscreen.
+config FRD_TOUCH_FW
+	bool "frd touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config EDISON_TOUCH_FW
+	bool "edison touchscreen firmware"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.

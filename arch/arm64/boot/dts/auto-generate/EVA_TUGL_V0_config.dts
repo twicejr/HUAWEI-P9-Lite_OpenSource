@@ -1,0 +1,30 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_TUCL_V0_config.dtsi"
+/include/ "EVA_TUGL_V0_pin.dtsi"
+/include/ "EVA_TUGL_V0_modem_pin.dtsi"
+/include/ "EVA_TUGL_V0_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C010400>;
+	hisi,boardid = <3 5 6 0>;
+	hisi,boardname = "EVA_TUGL_V0";
+	viacbp82d_power:viacbp82d_power {
+		status = "disabled";
+	};
+	viacbp82d_cbp_spi:viacbp82d_cbp_spi {
+		status = "disabled";
+	};
+	dwmmc3: dwmmc3@FF37D000{
+		status = "disabled";
+	};
+	bcm_wifi{
+		wifi_nvram_name = "/vendor/firmware/nvram43455_hw_eva_TUGL.txt";
+	};
+};

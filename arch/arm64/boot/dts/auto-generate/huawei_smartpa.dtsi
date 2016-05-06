@@ -1,0 +1,27 @@
+/ {
+	maxim_ioctl {
+		compatible = "huawei,maxim_ioctl";
+		status = "disabled";
+	};
+
+	amba {
+		i2c4: i2c@FDF0D000 {
+			max98925_smartpa_l:smartpa@31 {
+				compatible = "huawei,max98925";
+				smartpa_type = <0>; //left smartPA
+				reg = <0x31>;
+				gain = <0x14>;
+				gain_incall = <0x14>; //spk's is same as gain
+				status = "disabled";
+			};
+			max98925_smartpa_r:smartpa@34 {
+				compatible = "huawei,max98925";
+				smartpa_type = <1>; //right smartPA
+				reg = <0x34>;
+				gain = <0x34>;
+				gain_incall = <0x36>;
+				status = "disabled";
+			};
+		};
+	};
+};

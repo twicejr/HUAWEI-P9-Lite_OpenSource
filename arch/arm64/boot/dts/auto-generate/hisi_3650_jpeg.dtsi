@@ -1,0 +1,14 @@
+/ {
+  jpu{
+        compatible = "hisilicon,k3jpeg";
+        reg = <0xE8960000 0x7FFF>;
+        interrupts = <0 140 4>;
+        //clock
+        clocks = <&clk_gate_jpeg>;
+        clock-names = "clk_jpeg";		
+        //these are for ldo resources
+       // ldo_jpu-supply = <&jpegip>;
+        status = "disabled";
+    };
+};
+

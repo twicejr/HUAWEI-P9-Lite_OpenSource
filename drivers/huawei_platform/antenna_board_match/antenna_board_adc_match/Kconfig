@@ -1,0 +1,3 @@
+config HW_ANTENNA_BOARD_ADC_MATCH
+     bool "antenna_board_adc_match support"
+	 default n

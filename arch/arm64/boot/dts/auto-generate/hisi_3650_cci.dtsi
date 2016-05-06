@@ -1,0 +1,42 @@
+
+
+/{
+	cci@e8290000 {
+		compatible = "arm,cci-400";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8290000 0x0 0x9000>;
+	};
+
+	cci_extra@e8290000 {
+		compatible = "hisilicon,cci400-extra";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8290000 0x0 0x9000>;
+		ranges = <0x0 0x4000 0x0 0xe8294000 0x0 0x1000>,
+			<0x0 0x5000 0x0 0xe8295000 0x0 0x1000>;
+
+		speculative-disable = <0x70001>;
+
+		/*A53 Interface*/
+		cci_extra_control3: slave-if@4000 {
+			compatible = "hisilicon,cci400-extra-if";
+			interface-type = "ace";
+			reg = <0x0 0x4000 0x0 0x1000>;
+			qos-control = <0x310003>;
+			regulator-target = <0x80007>;
+			scalar = <0x707>;
+			qos-range = <0x3010301>;
+		};
+		/*Maia Interface*/
+		cci_extra_control4: slave-if@5000 {
+			compatible = "hisilicon,cci400-extra-if";
+			interface-type = "ace";
+			reg = <0x0 0x5000 0x0 0x1000>;
+			qos-control = <0x310003>;
+			regulator-target = <0x70006>;
+			scalar = <0x707>;
+			qos-range = <0x3010301>;
+		};
+	};
+};

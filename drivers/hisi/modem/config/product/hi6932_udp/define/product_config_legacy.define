@@ -1,0 +1,330 @@
+#####################################################################
+# Copyright (C) 2011 Huawei Tech. Co., Ltd.
+# obuild product define file
+#
+# Author : Jeffery.zhai/00199916, 2011-12-14
+#####################################################################
+# [version]:1.0
+CFG_BALONG_OBUILD_VERSION=10
+
+# build
+
+# [base_info]: name, version, build_type
+#####################################################################
+# NAME
+
+# define when Binary obj compare
+CFG_FEATURE_OBJ_CMP 				=NO
+CFG_FEATURE_OBJ_DUMP				=NO
+
+# [pkg_info]: iso,dload, app.img
+#####################################################################
+# bootrom usb merge tools
+
+# dynamic_load should be set to NO in released version	307
+CFG_CONFIG_DYNAMIC_LOAD = YES
+
+# FEATURE_MULTIMODE:LTE/TDS/GTL/GUL/GUTL
+
+
+# [gu_platform]
+####################################################################
+CFG_GU_INC_PATH =COMM_CODE_GU/Balong_GU_Inc/GUL_CS
+CFG_GU_PRODUCT_VERSION =VERSION_V7R1
+CFG_RAT_GU=0
+CFG_RAT_GUL=1
+
+CFG_RAT_MODE =RAT_GUL
+CFG_GU_RAT_MODE =RAT_GUL
+CFG_TTF_SKB_EXP = NO
+
+# [gu_feature_config]
+####################################################################
+
+####################################################################
+# gu hifi dir
+CFG_HIFI_INCLUDE                        = YES
+CFG_HIFI_LINK_DIR_NAME =hifi_ld_V7R2_SFT
+CFG_XTENSA_CORE_HIFI            =v7r2_hifi
+
+#modem ccpu小系统调试宏，CFG_CONFIG_OF要关闭
+
+#####################################################################
+
+#####################################################################
+# GU COMMON FEATURE CONFIG                                          #
+#####################################################################
+# 开关特性变量
+CFG_FEATURE_ON                                  = 1
+CFG_FEATURE_OFF                                 = 0
+
+CFG_MEMORY_SIZE_32M                             = 1
+CFG_MEMORY_SIZE_64M                             = 2
+CFG_MEMORY_SIZE_128M                            = 3
+CFG_MEMORY_SIZE_256M                            = 4
+CFG_MEMORY_SIZE_512M                            = 5
+# 协议栈版本
+CFG_PS_PTL_VER_DANAMIC                          = 20
+
+
+
+# 支持CS语音业务
+CFG_FEATURE_CS                                  = FEATURE_ON
+
+# G模传真支持
+CFG_FEATURE_GFAX                                = FEATURE_OFF
+
+# W模传真支持
+CFG_FEATURE_WFAX                                = FEATURE_OFF
+
+
+
+# 支持BALONG_UDP_V1R1
+CFG_BALONG_UDP_V1R1                             = FEATURE_OFF
+
+# 支持BALONG_UDP_V1R2
+CFG_BALONG_UDP_V1R2                             = FEATURE_OFF
+
+# 支持 PTABLE UDP
+CFG_FEATURE_PTABLE_UDP                          = FEATURE_ON
+
+# 支持STICK
+CFG_FEATURE_STICK				= FEATURE_OFF
+
+
+# 支持E5_UDP
+CFG_FEATURE_E5_UDP                              = FEATURE_OFF
+
+
+# Lighting Card
+CFG_FEATURE_HILINK                              = FEATURE_OFF
+
+# Security Boot
+CFG_FEATURE_SEC_BOOT                            = FEATURE_OFF
+
+
+
+
+CFG_FEATURE_PPPOE                               = FEATURE_OFF
+
+
+
+#OM CHAN MERGE
+CFG_FEATURE_MERGE_OM_CHAN						= FEATURE_ON
+
+#RTT 多通道特性开关
+CFG_FEATURE_MULTI_CHANNEL			            = FEATURE_OFF
+
+# Update OnLine
+CFG_FEATURE_UPDATEONLINE                        = FEATURE_OFF
+
+
+# sdio
+CFG_FEATURE_SDIO                                = FEATURE_OFF
+
+# keyboard
+CFG_FEATURE_KEYBOARD                            = FEATURE_OFF
+
+#charge
+CFG_FEATURE_CHARGE                              = FEATURE_OFF
+
+#ICC可维可测测试打桩
+CFG_FEATURE_ICC_DEBUG                           = FEATURE_ON
+
+
+#OLED
+CFG_FEATURE_OLED                                = FEATURE_OFF
+
+#TFT
+CFG_FEATURE_TFT                                 = FEATURE_OFF
+
+#MMI_TEST
+CFG_FEATURE_MMI_TEST                            = FEATURE_OFF
+
+
+#interpeak
+CFG_FEATURE_INTERPEAK                           = FEATURE_OFF
+
+#interpeak_mini 该宏定义依赖于FEATURE_INTERPEAK，仅在FEATURE_INTERPEAK为ON时生效所
+CFG_FEATURE_INTERPEAK_MINI                      = FEATURE_OFF
+
+#ipwebs_feature_e5
+CFG_IPWEBS_FEATURE_E5                           = FEATURE_OFF
+
+#ipwebs_feature_wireless_dongle
+CFG_IPWEBS_FEATURE_WIRELESS_DONGLE              = FEATURE_OFF
+
+#ipwebs_feature_lightning_card
+CFG_IPWEBS_FEATURE_LIGHTNING_CARD               = FEATURE_OFF
+
+#feature_webnas
+CFG_FEATURE_WEBNAS                              = FEATURE_OFF
+
+# E355
+CFG_FEATURE_WIRELESS_DONGLE                     = FEATURE_OFF
+
+# PMU current overflow and high-temperature protection
+CFG_FEATURE_PMU_PROTECT                         = FEATURE_OFF
+
+# VxWorks TCPIP protocol stack
+CFG_FEATURE_VXWORKS_TCPIP                       = FEATURE_OFF
+
+CFG_FEATURE_M2                                  = FEATURE_OFF
+
+#memory size
+CFG_FEATURE_MEMORY_SIZE                         = MEMORY_SIZE_64M
+
+CFG_FEATURE_ECM_RNDIS                           = FEATURE_OFF
+
+#E5 呼吸灯
+CFG_FEATURE_BREATH_LIGHT                        = FEATURE_OFF
+# 三色灯使能开关
+CFG_FEATURE_LEDSTATUS                           = FEATURE_OFF
+#E5 LED
+CFG_FEATURE_E5_LED                              = FEATURE_OFF
+#RTC特性开关
+CFG_FEATURE_RTC                                 = FEATURE_OFF
+
+CFG_FEATURE_RECONFIG                            = FEATURE_ON
+
+# 硬加密版本改制特性宏，E5 上打开，stick 等版本关闭。参见 matao00151948 的邮件
+CFG_FEATURE_HWENCRY_REWORK                      = FEATURE_OFF
+
+# 内存池管理单元
+CFG_FEATURE_MMU_BIG                             = FEATURE_OFF
+
+
+CFG_FEATURE_TTFMEM_CACHE                        = FEATURE_OFF
+
+CFG_FEATURE_SDUPDATE                            = FEATURE_OFF
+
+
+CFG_FEATURE_EPAD                                = FEATURE_OFF
+
+CFG_FEATURE_HSIC_SLAVE                          = FEATURE_OFF
+
+# 烧片版本打开LOG
+CFG_FEATURE_MANUFACTURE_LOG                     = FEATURE_OFF
+
+CFG_FEATURE_MEM_MONITOR                         = FEATURE_ON
+
+CFG_FEATURE_DRV_REPLAY_DUMP						= FEATURE_OFF
+
+# SKB是否为扩展结构开关
+CFG_FEATURE_SKB_EXP                             = FEATURE_OFF
+
+
+# socp通道裁剪
+CFG_FEATURE_SOCP_CHANNEL_REDUCE                 = FEATURE_OFF
+
+#RTOSck 操作系统
+CFG_FEATURE_RTOSCK                              = FEATURE_ON
+
+
+CFG_CONFIG_HISI_PTM                             = FEATURE_OFF
+
+#可维可测Log压缩写文件
+CFG_FEATURE_COMPRESS_WRITE_LOG_FILE             = FEATURE_OFF
+
+#V9R1支持CBT抓取LOG
+CFG_FEATURE_CBT_LOG                             = FEATURE_OFF
+
+#SAMPLE OF LTE FOR V8&V9
+CFG_FEATURE_SAMPLE_LTE_CHAN 			= FEATURE_OFF
+
+#####################################################################
+# GU NAS FEATURE CONFIG                                             #
+#####################################################################
+
+
+
+#####################################################################
+# MBB->FEATURE_ON:eth_x          PHONE->FEATURE_OFF:rmnet           #
+#####################################################################
+
+
+
+
+#####################################################################
+# GU WAS FEATURE CONFIG                                             #
+#####################################################################
+
+
+#####################################################################
+# GU TTF FEATURE CONFIG                                             #
+#####################################################################
+
+
+
+# 是否支持 Piggybacked 功能
+CFG_FEATURE_TTF_RLC_PIGGY_BACKED                = FEATURE_OFF
+
+# 是否支持使用R99译码双邮箱
+CFG_FEATURE_W_R99_DL_DUAL_MAILBOX               = FEATURE_ON
+
+# 是否支持汇编memcpy
+CFG_FEATURE_ASSEMBLY_MEM_CPY                    = FEATURE_ON
+
+# HSPA性能优化
+CFG_FEATURE_HSPA_PERF_IMP                       = FEATURE_ON
+
+# RACH No-Ack ABB debug
+CFG_FEATURE_RACH_NO_ACK_DEBUG                   = FEATURE_OFF
+
+# RLC重组优化
+CFG_FEATURE_RLC_REASSEMBLE                      = FEATURE_ON
+
+# 是否支持Cipher芯片的Master模式
+CFG_FEATURE_CIPHER_MASTER                       = FEATURE_ON
+
+# SOC HDLC
+CFG_FEATURE_HDLC_ENHANCE                        = FEATURE_ON
+
+
+
+CFG_FEATURE_EDMAC                               = FEATURE_OFF
+
+
+
+#L分集和G副卡共天线
+CFG_FEATURE_ANT_SHARE				= FEATURE_OFF
+
+
+# AUSTIN 前段多通道特性开关
+CFG_FEATURE_MODE_FEM_CHAN_EXT           = FEATURE_ON
+
+#####################################################################
+# GU DRV FEATURE CONFIG                                             #
+#####################################################################
+CFG_FEATURE_POWER_DRV                           = FEATURE_OFF
+
+CFG_FEATURE_SIM_NOTIFY                          = FEATURE_OFF
+
+CFG_FEATURE_HW_CODEC                            = FEATURE_OFF
+
+
+#####################################################################
+# K3V3 FEATURE CONFIG                                             #
+#####################################################################
+
+CFG_FEATURE_BSP_LCH_OM                       = FEATURE_ON
+
+
+CFG_FEATURE_UE_MODE_CDMA						= FEATURE_OFF
+# NV分区是否复用
+CFG_FEATURE_NV_PARTRION_MULTIPLEX               = FEATURE_ON
+
+
+#####################################################################
+#                        V7R5                                      #
+#####################################################################
+
+# MBMS在R11基础上开发，MBMS宏打开时请确保CFG_FEATURE_LTE_R11是FEATURE_ON状态
+
+
+CFG_FEATURE_DCX0_TLHPA_WRITE_PHY_NV        = FEATURE_ON
+
+CFG_FEATURE_VERSION_V8                     = FEATURE_OFF
+
+CFG_FEATURE_DFS_SYNC                       = FEATURE_OFF
+

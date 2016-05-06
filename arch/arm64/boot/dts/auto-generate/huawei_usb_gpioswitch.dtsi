@@ -1,0 +1,10 @@
+
+
+/{
+	otg_gpio_switch:otg_gpio_switch {
+		compatible = "huawei,gpio_switch_otg";
+		otg_int_gpio = <&gpio22 6 0>;
+		status = "disable";
+	};
+};
+

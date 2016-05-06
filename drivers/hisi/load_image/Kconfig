@@ -1,0 +1,13 @@
+config LOAD_IMAGE
+	bool "Support HiSilicon load image"
+	default n
+	depends on TZDRIVER
+	help
+	  This driver supports HiSilicon LOAD IMAGE
+
+config MODEMID_HI3650
+	bool "Support HiSilicon GET MODEM ID"
+	default n
+	help
+	  This driver supports HiSilicon GET MODEM ID
+

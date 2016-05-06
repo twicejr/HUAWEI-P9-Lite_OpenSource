@@ -1,0 +1,403 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2013-2014 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/{
+	amba{
+		gpio0: gpio@e8a0b000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell0";
+			reg = <0 0xe8a0b000 0 0x1000>;
+			interrupts = <0 84 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 1 0 3 &pmx0 6 3 2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio0 &pclk>;
+			clock-names = "pclk_gpio0", "apb_pclk";
+			gpio,hwspinlock;
+			status = "ok";
+		};
+
+		gpio1: gpio@e8a0c000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell1";
+			reg = <0 0xe8a0c000 0 0x1000>;
+			interrupts = <0 85 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 5 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio1 &pclk>;
+			clock-names = "pclk_gpio1", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio2: gpio@e8a0d000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell2";
+			reg = <0 0xe8a0d000 0 0x1000>;
+			interrupts = <0 86 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 13 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio2 &pclk>;
+			clock-names = "pclk_gpio2", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio3: gpio@e8a0e000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell3";
+			reg = <0 0xe8a0e000 0 0x1000>;
+			interrupts = <0 87 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 21 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio3 &pclk>;
+			clock-names = "pclk_gpio3", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio4: gpio@e8a0f000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell4";
+			reg = <0 0xe8a0f000 0 0x1000>;
+			interrupts = <0 88 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 29 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio4 &pclk>;
+			clock-names = "pclk_gpio4", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio5: gpio@e8a10000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell5";
+			reg = <0 0xe8a10000 0 0x1000>;
+			interrupts = <0 89 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 37 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio5 &pclk>;
+			clock-names = "pclk_gpio5", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio6: gpio@e8a11000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell6";
+			reg = <0 0xe8a11000 0 0x1000>;
+			interrupts = <0 90 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 45 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio6 &pclk>;
+			clock-names = "pclk_gpio6", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio7: gpio@e8a12000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell7";
+			reg = <0 0xe8a12000 0 0x1000>;
+			interrupts = <0 91 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 53 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio7 &pclk>;
+			clock-names = "pclk_gpio7", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio8: gpio@e8a13000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell8";
+			reg = <0 0xe8a13000 0 0x1000>;
+			interrupts = <0 92 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 61 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio8 &pclk>;
+			clock-names = "pclk_gpio8", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio9: gpio@e8a14000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell9";
+			reg = <0 0xe8a14000 0 0x1000>;
+			interrupts = <0 93 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 69 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio9 &pclk>;
+			clock-names = "pclk_gpio9", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio10: gpio@e8a15000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell10";
+			reg = <0 0xe8a15000 0 0x1000>;
+			interrupts = <0 94 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 77 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio10 &pclk>;
+			clock-names = "pclk_gpio10", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio11: gpio@e8a16000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell11";
+			reg = <0 0xe8a16000 0 0x1000>;
+			interrupts = <0 95 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 85 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio11 &pclk>;
+			clock-names = "pclk_gpio11", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio12: gpio@e8a17000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell12";
+			reg = <0 0xe8a17000 0 0x1000>;
+			interrupts = <0 96 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 93 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio12 &pclk>;
+			clock-names = "pclk_gpio12", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio13: gpio@e8a18000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell13";
+			reg = <0 0xe8a18000 0 0x1000>;
+			interrupts = <0 97 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 101 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio13 &pclk>;
+			clock-names = "pclk_gpio13", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio14: gpio@e8a19000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell14";
+			reg = <0 0xe8a19000 0 0x1000>;
+			interrupts = <0 98 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 109 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio14 &pclk>;
+			clock-names = "pclk_gpio14", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio15: gpio@e8a1a000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell15";
+			reg = <0 0xe8a1a000 0 0x1000>;
+			interrupts = <0 99 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 117 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio15 &pclk>;
+			clock-names = "pclk_gpio15", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio16: gpio@e8a1b000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell16";
+			reg = <0 0xe8a1b000 0 0x1000>;
+			interrupts = <0 100 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 125 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio16 &pclk>;
+			clock-names = "pclk_gpio16", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio17: gpio@e8a1c000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell17";
+			reg = <0 0xe8a1c000 0 0x1000>;
+			interrupts = <0 101 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx0 0 133 5>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio17 &pclk>;
+			clock-names = "pclk_gpio17", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio18: gpio@e8a1d000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell18";
+			reg = <0 0xe8a1d000 0 0x1000>;
+			interrupts = <0 102 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio18 &pclk>;
+			clock-names = "pclk_gpio18", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio19: gpio@e8a1e000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell19";
+			reg = <0 0xe8a1e000 0 0x1000>;
+			interrupts = <0 103 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio19 &pclk>;
+			clock-names = "pclk_gpio19", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio20: gpio@e8a1f000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell20";
+			reg = <0 0xe8a1f000 0 0x1000>;
+			interrupts = <0 104 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio20 &pclk>;
+			clock-names = "pclk_gpio20", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio21: gpio@e8a20000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell21";
+			reg = <0 0xe8a20000 0 0x1000>;
+			interrupts = <0 105 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_gpio21 &pclk>;
+			clock-names = "pclk_gpio21", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio22: gpio@fff0b000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell22";
+			reg = <0 0xfff0b000 0 0x1000>;
+			interrupts = <0 106 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 2 0 6>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_ao_gpio0 &pclk>;
+			clock-names = "pclk_ao_gpio0", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio23: gpio@fff0c000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell23";
+			reg = <0 0xfff0c000 0 0x1000>;
+			interrupts = <0 107 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 0 6 7>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_ao_gpio1 &pclk>;
+			clock-names = "pclk_ao_gpio1", "apb_pclk";
+			status = "ok";
+		};
+
+		 gpio24: gpio@fff0d000 {
+			compatible = "arm,pl061", "arm,primecell", "hisi,poweroff", "arm,primecell24";
+			reg = <0 0xfff0d000 0 0x1000>;
+			interrupts = <0 108 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 0 13 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_ao_gpio2 &pclk>;
+			clock-names = "pclk_ao_gpio2", "apb_pclk";
+			sec-controller;
+			status = "ok";
+		};
+
+		gpio25: gpio@fff0e000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell25";
+			reg = <0 0xfff0e000 0 0x1000>;
+			interrupts = <0 109 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 0 21 4 &pmx1 5 25 3>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_ao_gpio3 &pclk>;
+			clock-names = "pclk_ao_gpio3", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio26: gpio@fff0f000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell26";
+			reg = <0 0xfff0f000 0 0x1000>;
+			interrupts = <0 110 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 0 28 8>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk_ao_gpio4 &pclk>;
+			clock-names = "pclk_ao_gpio4", "apb_pclk";
+			status = "ok";
+		};
+
+		gpio27: gpio@fff10000 {
+			compatible = "arm,pl061", "arm,primecell", "arm,primecell27";
+			reg = <0 0xfff10000 0 0x1000>;
+			interrupts = <0 111 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <&pmx1 0 36 7>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&pclk>;
+			clock-names = "apb_pclk";
+			status = "ok";
+		};
+	};
+};

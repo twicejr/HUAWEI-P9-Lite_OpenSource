@@ -1,0 +1,23 @@
+menu "Hisilicon IVP"
+
+config HISI_IVP
+     bool "hisilicon ivp support"
+     default n
+     help
+          ivp driver for hi3650.
+
+config IVP_SMMU
+	bool "Hisilicon IVP SMMU Support"
+	depends on IOMMU_API
+	depends on HISI_IODOMAIN_API
+	help
+	  Hisilicon IVP IOMMU Support.
+
+config IVP_SMMU_TEST
+	bool "Hisilicon IVP SMMU TEST Support"
+	depends on IVP_SMMU
+	help
+	  Hisilicon IVP IOMMU TEST Support.
+
+endmenu
+

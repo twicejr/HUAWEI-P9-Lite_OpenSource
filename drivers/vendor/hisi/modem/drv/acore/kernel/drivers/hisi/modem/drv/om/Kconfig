@@ -1,0 +1,15 @@
+#
+# Balong dump configuration
+#
+
+config HISI_DUMP
+	tristate "hisi dump"
+	default n
+	help
+		balong dump for kernel
+	  
+config BALONG_EASY_SHELL
+	bool "balong easy shell(ecall) support"
+	default n
+	help
+		Support for the Hisilicon Balong easy shell.

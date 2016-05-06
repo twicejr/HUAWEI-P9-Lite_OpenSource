@@ -1,0 +1,12 @@
+menuconfig BCMGPS
+    tristate "Bcm gps support"
+    default n
+    help
+      Say Y here to enable bcm47531 gps support. This allows
+      ap to control this module.
+
+source "drivers/huawei_platform/connectivity/bcm/gps/bcm4752/Kconfig"
+source "drivers/huawei_platform/connectivity/bcm/gps/bcm47531/Kconfig"
+source "drivers/huawei_platform/connectivity/bcm/gps/bcm4774/Kconfig"
+
+

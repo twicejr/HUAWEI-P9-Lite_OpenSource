@@ -1,0 +1,2778 @@
+Document file - DO NOT EDIT
+
+<BEGIN> BSP_DIR
+$(PRJ_DIR)/../../
+<END>
+
+<BEGIN> BUILD_RULE_bootrom.bin
+{bootrom.bin: bootrom} {- @ $(RM) $@} {$(EXTRACT_BIN) -O binary bootrom $@}
+<END>
+
+<BEGIN> BUILD_RULE_bootrom_res.bin
+{bootrom_res.bin: \
+	bootrom_res} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	bootrom_res \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_bootrom_uncmp.bin
+{bootrom_uncmp.bin: \
+	bootrom_uncmp} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	bootrom_uncmp \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_linkSyms.o
+{linkSyms.o \
+	: \
+	$(PRJ_DIR)/linkSyms.c} \
+	{$(CC) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS) \
+	$(CFLAGS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(PRJ_DIR)/linkSyms.c \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_prjConfig.o
+{prjConfig.o \
+	: \
+	$(PRJ_DIR)/prjConfig.c} \
+	{$(CC) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS) \
+	$(CFLAGS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(PRJ_DIR)/prjConfig.c \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_romInit.o
+{romInit.o \
+	: \
+	$(PRJ_DIR)/romInit.s \
+	} \
+	{$(CC) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS_AS) \
+	$(CFLAGS_AS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(ROM_FLAGS_EXTRA) \
+	$< \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_romStart.o
+{romStart.o \
+	: \
+	$(TGT_DIR)/config/comps/src/romStart.c \
+	} \
+	{$(CC) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS) \
+	$(CFLAGS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(ROM_FLAGS_EXTRA) \
+	$< \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_sysALib.o
+{sysALib.o \
+	: \
+	$(PRJ_DIR)/sysALib.s} \
+	{$(AS) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS_AS) \
+	$(CFLAGS_AS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(PRJ_DIR)/sysALib.s \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_sysLib.o
+{sysLib.o \
+	: \
+	$(PRJ_DIR)/sysLib.c} \
+	{$(CC) \
+	$(OPTION_OBJECT_ONLY) \
+	$(CFLAGS) \
+	$(CFLAGS_OPTIONS_ALL) \
+	$(PROJECT_BSP_FLAGS_EXTRA) \
+	$(PRJ_DIR)/sysLib.c \
+	-o \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_vxWorks.res_rom.bin
+{vxWorks.res_rom.bin: \
+	vxWorks.res_rom} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	vxWorks.res_rom \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_vxWorks.res_rom_nosym.bin
+{vxWorks.res_rom_nosym.bin: \
+	vxWorks.res_rom_nosym} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	vxWorks.res_rom_nosym \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_vxWorks.st_rom.bin
+{vxWorks.st_rom.bin: \
+	vxWorks.st_rom} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	vxWorks.st_rom \
+	$@}
+<END>
+
+<BEGIN> BUILD_RULE_vxWorks_rom.bin
+{vxWorks_rom.bin: \
+	vxWorks_rom} \
+	{- \
+	@ \
+	$(RM) \
+	$@} \
+	{$(EXTRACT_BIN) \
+	-O \
+	binary \
+	vxWorks_rom \
+	$@}
+<END>
+
+<BEGIN> BUILD_SOURCE_ENABLE
+0
+<END>
+
+<BEGIN> BUILD__CURRENT
+default
+<END>
+
+<BEGIN> BUILD__LIST
+default default_rom default_romCompress default_romResident
+<END>
+
+<BEGIN> BUILD_default_MACRO_AR
+dar
+<END>
+
+<BEGIN> BUILD_default_MACRO_AS
+dcc
+<END>
+
+<BEGIN> BUILD_default_MACRO_BOOT_EXTRA
+
+<END>
+
+<BEGIN> BUILD_default_MACRO_CC
+dcc
+<END>
+
+<BEGIN> BUILD_default_MACRO_CC_ARCH_SPEC
+-tARMV7LS:vxworks68
+<END>
+
+<BEGIN> BUILD_default_MACRO_CFLAGS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-DARMEL \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-Xlint=0x08 \
+	-I \
+	$(PRJ_DIR) \
+	-I \
+	$(PRJ_DIR) \
+	-I \
+	$(TGT_DIR)/h \
+	-I \
+	$(TGT_DIR)/config/comps/src \
+	-I \
+	$(TGT_DIR)/h/wrn/coreip \
+	-I \
+	$(TGT_DIR)/src/drv \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/h \
+	-I \
+	$(WIND_HOME)/components/webservices-1.7/h \
+	-I \
+	$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I \
+	$(WIND_HOME)/components/opc-3.2/h \
+	-I \
+	$(WIND_HOME)/components/dcom-2.3/h \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I \
+	$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I \
+	$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I \
+	$(TGT_DIR)/src/hwif \
+	-I \
+	$(TGT_DIR)/src/hwif/h \
+	-I \
+	.
+<END>
+
+<BEGIN> BUILD_default_MACRO_CFLAGS_AS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I \
+	$(PRJ_DIR) \
+	-I \
+	$(PRJ_DIR)/arm_pbxa9 \
+	-I \
+	$(TGT_DIR)/h \
+	-I \
+	$(TGT_DIR)/config/comps/src \
+	-I \
+	$(TGT_DIR)/h/wrn/coreip \
+	-I \
+	$(TGT_DIR)/src/drv \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/h \
+	-I \
+	$(WIND_HOME)/components/webservices-1.7/h \
+	-I \
+	$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I \
+	$(WIND_HOME)/components/opc-3.2/h \
+	-I \
+	$(WIND_HOME)/components/dcom-2.3/h \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I \
+	$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I \
+	$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I \
+	$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I \
+	$(TGT_DIR)/src/hwif \
+	-I \
+	$(TGT_DIR)/src/hwif/h \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_MACRO_CFLAGS_AS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_MACRO_CFLAGS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_MACRO_CPP
+dcc -E -Xpreprocessor-lineno-off
+<END>
+
+<BEGIN> BUILD_default_MACRO_EXTRA_MODULES
+$(SUB_TARGETS)
+<END>
+
+<BEGIN> BUILD_default_MACRO_HEX_FLAGS
+
+<END>
+
+<BEGIN> BUILD_default_MACRO_LD
+dld
+<END>
+
+<BEGIN> BUILD_default_MACRO_LD_LINK_PATH
+-L$(VSB_DIR)/arm/ARMARCH7/diab_standard \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common
+<END>
+
+<BEGIN> BUILD_default_MACRO_LD_PARTIAL
+dld -tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_MACRO_LD_PARTIAL_FLAGS
+-tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_MACRO_LIBS
+$(VX_OS_LIBS)
+<END>
+
+<BEGIN> BUILD_default_MACRO_NM
+ddump -Ng -g
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_DEFINE_MACRO
+-D
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_DEPEND
+-Xmake-dependency -w
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_GENERATE_DEPENDENCY_FILE
+-MD
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_INCLUDE_DIR
+-I
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_LANG_C
+-xc
+<END>
+
+<BEGIN> BUILD_default_MACRO_OPTION_UNDEFINE_MACRO
+-U
+<END>
+
+<BEGIN> BUILD_default_MACRO_POST_HEX_BUILD_RULE
+
+<END>
+
+<BEGIN> BUILD_default_MACRO_RAM_HIGH_ADRS
+33700000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_MACRO_RAM_LOW_ADRS
+30004000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_MACRO_RELEASE_CMD
+bootrom.bin
+<END>
+
+<BEGIN> BUILD_default_MACRO_ROM_SIZE
+00100000 # number of bytes of ROM space
+<END>
+
+<BEGIN> BUILD_default_MACRO_ROM_TEXT_ADRS
+41000000 # ROM entry address
+<END>
+
+<BEGIN> BUILD_default_MACRO_SIZE
+ddump -Z
+<END>
+
+<BEGIN> BUILD_default_MACRO_TOOL_FAMILY
+diab
+<END>
+
+<BEGIN> BUILD_default_MACRO_VFPVARIANT
+VFPv3
+<END>
+
+<BEGIN> BUILD_default_MACRO_VMA_START
+0x$(ROM_TEXT_ADRS)
+<END>
+
+<BEGIN> BUILD_default_RO_DEPEND_PATH
+{$(TGT_DIR)/h/} \
+	{$(TGT_DIR)/src/} \
+	{$(TGT_DIR)/config/} \
+	{$(TGT_DIR)/h/wrn/coreip/}
+<END>
+
+<BEGIN> BUILD_default_TC
+::tc_ARMARCH7diab
+<END>
+
+<BEGIN> BUILD_default_romCompress_BUILDRULE
+vxWorks_romCompress
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_AR
+dar
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_AS
+dcc
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_BOOT_EXTRA
+
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CC
+dcc
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CC_ARCH_SPEC
+-tARMV7LS:vxworks68
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CFLAGS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-DARMEL \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CFLAGS_AS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CFLAGS_AS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CFLAGS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_CPP
+dcc -E -Xpreprocessor-lineno-off
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_EXTRA_MODULES
+$(SUB_TARGETS)
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_HEX_FLAGS
+
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_LD
+dld
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_LD_LINK_PATH
+-L$(VSB_DIR)/arm/ARMARCH7/diab_standard \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_LD_PARTIAL
+dld -tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_LD_PARTIAL_FLAGS
+-tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_LIBS
+$(VX_OS_LIBS)
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_NM
+ddump -Ng -g
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_DEFINE_MACRO
+-D
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_DEPEND
+-Xmake-dependency -w
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_GENERATE_DEPENDENCY_FILE
+-MD
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_INCLUDE_DIR
+-I
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_LANG_C
+-xc
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_OPTION_UNDEFINE_MACRO
+-U
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_RAM_HIGH_ADRS
+01000000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_RAM_LOW_ADRS
+00100000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_RELEASE_CMD
+bootrom.bin
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_ROM_SIZE
+00100000 # number of bytes of ROM space
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_ROM_TEXT_ADRS
+41000000 # ROM entry address
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_SIZE
+ddump -Z
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_TOOL_FAMILY
+diab
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_VFPVARIANT
+VFPv3
+<END>
+
+<BEGIN> BUILD_default_romCompress_MACRO_VMA_START
+0x$(ROM_TEXT_ADRS)
+<END>
+
+<BEGIN> BUILD_default_romCompress_RO_DEPEND_PATH
+{$(TGT_DIR)/h/} \
+	{$(TGT_DIR)/src/} \
+	{$(TGT_DIR)/config/} \
+	{$(TGT_DIR)/h/wrn/coreip/}
+<END>
+
+<BEGIN> BUILD_default_romCompress_TC
+::tc_ARMARCH7diab
+<END>
+
+<BEGIN> BUILD_default_romResident_BUILDRULE
+vxWorks_romResident
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_AR
+dar
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_AS
+dcc
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_BOOT_EXTRA
+
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CC
+dcc
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CC_ARCH_SPEC
+-tARMV7LS:vxworks68
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CFLAGS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-DARMEL \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CFLAGS_AS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CFLAGS_AS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CFLAGS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_CPP
+dcc -E -Xpreprocessor-lineno-off
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_EXTRA_MODULES
+$(SUB_TARGETS)
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_HEX_FLAGS
+
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_LD
+dld
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_LD_LINK_PATH
+-L$(VSB_DIR)/arm/ARMARCH7/diab_standard \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_LD_PARTIAL
+dld -tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_LD_PARTIAL_FLAGS
+-tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_LIBS
+$(VX_OS_LIBS)
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_NM
+ddump -Ng -g
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_DEFINE_MACRO
+-D
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_DEPEND
+-Xmake-dependency -w
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_GENERATE_DEPENDENCY_FILE
+-MD
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_INCLUDE_DIR
+-I
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_LANG_C
+-xc
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_OPTION_UNDEFINE_MACRO
+-U
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_RAM_HIGH_ADRS
+01000000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_RAM_LOW_ADRS
+00100000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_RELEASE_CMD
+bootrom.bin
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_ROM_SIZE
+00100000 # number of bytes of ROM space
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_ROM_TEXT_ADRS
+41000000 # ROM entry address
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_SIZE
+ddump -Z
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_TOOL_FAMILY
+diab
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_VFPVARIANT
+VFPv3
+<END>
+
+<BEGIN> BUILD_default_romResident_MACRO_VMA_START
+0x$(ROM_TEXT_ADRS)
+<END>
+
+<BEGIN> BUILD_default_romResident_RO_DEPEND_PATH
+{$(TGT_DIR)/h/} \
+	{$(TGT_DIR)/src/} \
+	{$(TGT_DIR)/config/} \
+	{$(TGT_DIR)/h/wrn/coreip/}
+<END>
+
+<BEGIN> BUILD_default_romResident_TC
+::tc_ARMARCH7diab
+<END>
+
+<BEGIN> BUILD_default_rom_BUILDRULE
+vxWorks_rom
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_AR
+dar
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_AS
+dcc
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_BOOT_EXTRA
+
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CC
+dcc
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CC_ARCH_SPEC
+-tARMV7LS:vxworks68
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CFLAGS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-DARMEL \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CFLAGS_AS
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\" \
+	-I$(PRJ_DIR) \
+	-I$(PRJ_DIR) \
+	-I$(TGT_DIR)/h \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/drv \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-DPRJ_BUILD \
+	-D_WRS_KERNEL \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-I.
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CFLAGS_AS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-Xpreprocess-assembly \
+	-Xcpp-no-space \
+	-Wa,-Xlit-auto-off \
+	-Wa,-Xenable-coprocessor-vfp \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CFLAGS_PROJECT
+-g \
+	-tARMV7LS:vxworks68 \
+	-Xansi \
+	-Xlocal-data-area-static-only \
+	-Xfp-fast \
+	-Xsize-opt \
+	-W:c:,-Xmismatch-warning=2 \
+	-ew1554,1551,1552,1086,1047,1547 \
+	-ei1516,1643,1604 \
+	-Xlint \
+	-I$(TGT_DIR)/config/all \
+	-I$(TGT_DIR)/h \
+	-I$(WIND_HOME)/components/windml-5.3/h \
+	-I$(WIND_HOME)/components/webservices-1.7/h \
+	-I$(WIND_HOME)/components/webcli-4.8/target/h \
+	-I$(WIND_HOME)/components/opc-3.2/h \
+	-I$(WIND_HOME)/components/dcom-2.3/h \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/src \
+	-I$(WIND_HOME)/components/windml-5.3/osconfig/vxworks/h \
+	-I$(WIND_HOME)/components/ip_net2-6.8/osconfig/vxworks/h \
+	-I$(TGT_DIR)/src/hwif \
+	-I$(TGT_DIR)/src/hwif/h \
+	@./ipcom_ipdomain \
+	-I. \
+	-I$(TGT_DIR)/h/wrn/coreip \
+	-I$(TGT_DIR)/src/config \
+	-I$(TGT_DIR)/config/comps/src \
+	-I$(TGT_DIR)/config/comps/src/dosfs2 \
+	-I$(TGT_DIR)/src/drv \
+	-I$(TGT_DIR)/src/hwif/h \
+	-DCPU=ARMARCH7 \
+	-DTOOL_FAMILY=diab \
+	-DTOOL=diab \
+	-D_WRS_KERNEL \
+	-DARMEL \
+	-DCPU_CORTEXA8 \
+	-DARMMMU=ARMMMU_CORTEXA8 \
+	-DARMCACHE=ARMCACHE_CORTEXA8 \
+	-DIP_PORT_VXWORKS=68 \
+	-DINET \
+	-D_VSB_CONFIG_FILE=\"$(VSB_CONFIG_FILE)\"
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_CPP
+dcc -E -Xpreprocessor-lineno-off
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_EXTRA_MODULES
+$(SUB_TARGETS)
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_HEX_FLAGS
+
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_LD
+dld
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_LD_LINK_PATH
+-L$(VSB_DIR)/arm/ARMARCH7/diab_standard \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(VSB_DIR)/arm/ARMARCH7/diab \
+	-L$(VSB_DIR)/arm/ARMARCH7/common \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WS_ROOT_DIR)/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/diab \
+	-L$(WIND_HOME)/components/obj/vxworks-6.8/krnl/lib/arm/ARMARCH7/common
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_LD_PARTIAL
+dld -tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_LD_PARTIAL_FLAGS
+-tARMV7LS:vxworks68 -X -r5
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_LIBS
+$(VX_OS_LIBS)
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_NM
+ddump -Ng -g
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_DEFINE_MACRO
+-D
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_DEPEND
+-Xmake-dependency -w
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_GENERATE_DEPENDENCY_FILE
+-MD
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_INCLUDE_DIR
+-I
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_LANG_C
+-xc
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_OPTION_UNDEFINE_MACRO
+-U
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_RAM_HIGH_ADRS
+01000000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_RAM_LOW_ADRS
+00100000 # RAM text/data address
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_RELEASE_CMD
+bootrom.bin
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_ROM_SIZE
+00100000 # number of bytes of ROM space
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_ROM_TEXT_ADRS
+41000000 # ROM entry address
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_SIZE
+ddump -Z
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_TOOL_FAMILY
+diab
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_VFPVARIANT
+VFPv3
+<END>
+
+<BEGIN> BUILD_default_rom_MACRO_VMA_START
+0x$(ROM_TEXT_ADRS)
+<END>
+
+<BEGIN> BUILD_default_rom_RO_DEPEND_PATH
+{$(TGT_DIR)/h/} \
+	{$(TGT_DIR)/src/} \
+	{$(TGT_DIR)/config/} \
+	{$(TGT_DIR)/h/wrn/coreip/}
+<END>
+
+<BEGIN> BUILD_default_rom_TC
+::tc_ARMARCH7diab
+<END>
+
+<BEGIN> COMPONENT_ERROR_STATUS
+0
+<END>
+
+<BEGIN> CORE_INFO_TYPE
+::prj_vxWorks
+<END>
+
+<BEGIN> CORE_INFO_VERSION
+4.1
+<END>
+
+<BEGIN> FILE_$(TGT_DIR)/config/comps/src/romStart.c_BOOT_FILE
+TRUE
+<END>
+
+<BEGIN> FILE_$(TGT_DIR)/config/comps/src/romStart.c_customRule
+romStart.o
+<END>
+
+<BEGIN> FILE_$(TGT_DIR)/config/comps/src/romStart.c_objects
+romStart.o
+<END>
+
+<BEGIN> FILE_$(TGT_DIR)/config/comps/src/romStart.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/romInit.s_BOOT_FILE
+TRUE
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/romInit.s_customRule
+romInit.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/romInit.s_objects
+romInit.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/romInit.s_tool
+assembler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysALib.s_customRule
+sysALib.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysALib.s_objects
+sysALib.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysALib.s_tool
+assembler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysLib.c_customRule
+sysLib.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysLib.c_objects
+sysLib.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/sysLib.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/linkSyms.c_customRule
+linkSyms.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/linkSyms.c_objects
+linkSyms.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/linkSyms.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/prjConfig.c_customRule
+prjConfig.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/prjConfig.c_objects
+prjConfig.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/prjConfig.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/usrAppInit.c_objects
+usrAppInit.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/usrAppInit.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/usrRtpAppInit.c_objects
+usrRtpAppInit.o
+<END>
+
+<BEGIN> FILE_$(PRJ_DIR)/usrRtpAppInit.c_tool
+C/C++ compiler
+<END>
+
+<BEGIN> MAKEFILE
+Makefile.mk
+<END>
+
+<BEGIN> OS_NAME
+vxworks-6.0
+<END>
+
+<BEGIN> PROJECT_FILES
+$(BSP_DIR)/sysALib.s \
+	$(PRJ_DIR)/sysLib.c \
+	$(PRJ_DIR)/romInit.s \
+	$(TGT_DIR)/config/comps/src/romStart.c \
+	$(PRJ_DIR)/usrAppInit.c \
+	$(PRJ_DIR)/usrRtpAppInit.c \
+	$(PRJ_DIR)/prjConfig.c \
+	$(PRJ_DIR)/linkSyms.c
+<END>
+
+<BEGIN> VSB_DIR
+BALONGV7R2.LIB.RELEASE
+<END>
+
+<BEGIN> VX_WIND_PLATFORM
+vxworks-6.8
+<END>
+
+<BEGIN> WCC__CDF_PATH
+$(TGT_DIR)/config/comps/vxWorks \
+	$(TGT_DIR)/config/comps/vxWorks/arch/arm \
+	$(TGT_DIR)/config/comps/vxWorks/tool/diab \
+	$(PRJ_DIR) \
+	$(PRJ_DIR)
+<END>
+
+<BEGIN> WCC__CURRENT
+BALONGV7R2
+<END>
+
+<BEGIN> WCC__LIST
+BALONGV7R2
+<END>
+
+<BEGIN> WCC__MXR_LIBS
+$(VSB_DIR)/arm/$(CPU)/common/libspl.a
+<END>
+
+<BEGIN> WCC_BALONGV7R2_COMPONENTS
+INCLUDE_CACHE_SUPPORT \
+	INCLUDE_MMU_BASIC \
+	INCLUDE_SYSCLK_INIT \
+	INCLUDE_AUX_CLK \
+	INCLUDE_TIMESTAMP \
+	INCLUDE_SIO \
+	INCLUDE_PAGE_SIZE_OPTIMIZATION \
+	INCLUDE_TTY_DEV \
+	INCLUDE_SEM_BINARY_CREATE \
+	INCLUDE_SEM_COUNTING_CREATE \
+	INCLUDE_MSG_Q_CREATE_DELETE \
+	INCLUDE_IO_REMOVABLE \
+	INCLUDE_XBD_BLK_DEV \
+	INCLUDE_XBD_RAMDRV \
+	INCLUDE_XBD_PART_LIB \
+	INCLUDE_IO_FILE_SYSTEM \
+	INCLUDE_SYS_START \
+	INCLUDE_SYSHW_INIT \
+	INCLUDE_EDR_STUB \
+	INCLUDE_BASE_KERNEL \
+	INCLUDE_SEM_LIB \
+	INCLUDE_ANSI_ASSERT \
+	INCLUDE_ANSI_CTYPE \
+	INCLUDE_ANSI_LOCALE \
+	INCLUDE_ANSI_MATH \
+	INCLUDE_ANSI_STDIO \
+	INCLUDE_ANSI_STDLIB \
+	INCLUDE_ANSI_STRING \
+	INCLUDE_ANSI_TIME \
+	INCLUDE_ANSI_STDIO_EXTRA \
+	INCLUDE_FORMATTED_IO \
+	INCLUDE_KERNEL \
+	INCLUDE_IO_BASIC \
+	INCLUDE_STDIO \
+	INCLUDE_MEM_MGR_BASIC \
+	INCLUDE_TASK_CREATE_DELETE \
+	INCLUDE_ENV_VARS \
+	INCLUDE_SIGNALS \
+	INCLUDE_FORMATTED_OUT_BASIC \
+	INCLUDE_CTORS_DTORS \
+	INCLUDE_PIPES \
+	INCLUDE_IO_SYSTEM \
+	INCLUDE_SHELL \
+	INCLUDE_MEM_SHOW \
+	INCLUDE_TASK_HOOKS_SHOW \
+	INCLUDE_EXC_SHOW \
+	INCLUDE_MSG_Q \
+	INCLUDE_SEM_BINARY \
+	INCLUDE_TASK_HOOKS \
+	INCLUDE_WATCHDOGS \
+	INCLUDE_MEM_MGR_INFO \
+	INCLUDE_OBJ_LIB \
+	INCLUDE_TIMEX \
+	INCLUDE_USER_APPL \
+	INCLUDE_BOOT_LINE_INIT \
+	INCLUDE_EXC_HANDLING \
+	INCLUDE_MEM_MGR_FULL \
+	INCLUDE_VXMEMPROBE_INIT \
+	INCLUDE_SEM_MUTEX \
+	INCLUDE_SEM_COUNTING \
+	INCLUDE_SEM_DELETE \
+	INCLUDE_SEM_MUTEX_CREATE \
+	INCLUDE_WATCHDOGS_CREATE_DELETE \
+	INCLUDE_JOB_TASK \
+	INCLUDE_REBOOT_HOOKS \
+	INCLUDE_EXC_TASK \
+	INCLUDE_TASK_RESTART \
+	INCLUDE_HOOKS \
+	INCLUDE_LOGGING \
+	INCLUDE_VX_TRADITIONAL_SCHEDULER \
+	INCLUDE_TASK_VARS \
+	INCLUDE_CPLUS_DEMANGLER \
+	INCLUDE_KERNEL_HARDENING \
+	INCLUDE_FLOATING_POINT \
+	INCLUDE_SELECT \
+	INCLUDE_DISK_UTIL \
+	INCLUDE_TYLIB \
+	INCLUDE_POOL \
+	INCLUDE_IO_POSIX \
+	INCLUDE_IO_RTP \
+	INCLUDE_IO_MISC \
+	INCLUDE_DOSFS_MAIN \
+	INCLUDE_DOSFS_CACHE \
+	INCLUDE_DOSFS_SHOW \
+	INCLUDE_SOCKLIB \
+	INCLUDE_DEBUG \
+	INCLUDE_IPNET_LOOPBACK_CONFIG \
+	INCLUDE_NET_BOOT \
+	INCLUDE_SHELL_VI_MODE \
+	INCLUDE_CACHE_COMPACT_DMA_SUPPORT \
+	INCLUDE_UNLOADER \
+	INCLUDE_IPCOM \
+	INCLUDE_IPNET \
+	INCLUDE_IPNET_IFCONFIG_1 \
+	INCLUDE_JOB_QUEUE \
+	INCLUDE_NETWORK \
+	INCLUDE_NET_DRV \
+	INCLUDE_NET_HOST_SETUP \
+	INCLUDE_END \
+	INCLUDE_INETLIB \
+	INCLUDE_LINKBUFPOOL \
+	INCLUDE_MUX \
+	INCLUDE_NETBUFPOOL \
+	INCLUDE_NETMASK_GET \
+	INCLUDE_NET_DAEMON \
+	INCLUDE_NET_POOL \
+	INCLUDE_NET_REM_IO \
+	INCLUDE_REMLIB \
+	INCLUDE_GETSERVBYNAME \
+	INCLUDE_SHELL_INTERP_C \
+	INCLUDE_ARP_API \
+	INCLUDE_IFCONFIG \
+	INCLUDE_NET_SYSCTL \
+	INCLUDE_SHELL_BANNER \
+	INCLUDE_PING \
+	INCLUDE_TASK_SHELL_CMD \
+	INCLUDE_DOSFS_FAT \
+	INCLUDE_DOSFS_PRTMSG_LEVEL \
+	INCLUDE_DOSFS_VOL_BIO_BUFFER_SIZE \
+	INCLUDE_DOSFS_DIR_VFAT \
+	INCLUDE_END_COMMON \
+	INCLUDE_IPCOM_USE_ETHERNET \
+	INCLUDE_IPNET_USE_LOOPBACK \
+	INCLUDE_IPAIP \
+	INCLUDE_IPAIP_GLOBAL_CONFIGS \
+	INCLUDE_IPCOM_USE_INET \
+	INCLUDE_IPNET_USE_NAT \
+	INCLUDE_IPTCP \
+	INCLUDE_IPPING_CMD \
+	INCLUDE_MUX_COMMON \
+	INCLUDE_MUX2 \
+	INCLUDE_MUXTK \
+	INCLUDE_VXMUX_MBLK \
+	INCLUDE_VXMUX_NULLBUFPOOL \
+	INCLUDE_NETPOOLSHOW \
+	INCLUDE_REMLIB_SYSCTL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_IMPLICIT_COMPONENTS
+INCLUDE_MEMORY_CONFIG \
+	INCLUDE_CACHE_ENABLE \
+	INCLUDE_PROTECT_TEXT \
+	INCLUDE_PROTECT_VEC_TABLE \
+	INCLUDE_MMU_GLOBAL_MAP \
+	INCLUDE_BSP_MACROS \
+	INCLUDE_MMU_OPTIMIZE \
+	INCLUDE_SW_FP \
+	INCLUDE_FS_EVENT_UTIL \
+	INCLUDE_RAWFS \
+	INCLUDE_ERF \
+	INCLUDE_FS_MONITOR \
+	INCLUDE_XBD \
+	INCLUDE_DEVICE_MANAGER \
+	INCLUDE_XBD_RAMDRV \
+	INCLUDE_SYSHW_INIT2 \
+	INCLUDE_OFFSET_SYMBOLS \
+	INCLUDE_SELECT_SUPPORT \
+	INCLUDE_CLASS_LIB \
+	INCLUDE_CLASS_LIST \
+	INCLUDE_TASK_SWAP_HOOKS \
+	INCLUDE_ANSI_STRDUP \
+	INCLUDE_ANSI_STRERROR \
+	INCLUDE_ANSI_ABS \
+	INCLUDE_ANSI_ABORT \
+	INCLUDE_ANSI_STRCMP \
+	INCLUDE_ANSI_LONGJMP \
+	INCLUDE_SIGNAL_ARCH \
+	INCLUDE_ANSI_STRLEN \
+	INCLUDE_ANSI_BSEARCH \
+	INCLUDE_ANSI_STRCPY \
+	INCLUDE_ANSI_ATOF \
+	INCLUDE_ANSI_STRTOD \
+	INCLUDE_ANSI_STDLIB_NUMBERS \
+	INCLUDE_BLIB \
+	INCLUDE_ANSI_MEMCHR \
+	INCLUDE_ANSI_MEMCPY \
+	INCLUDE_ANSI_MEMSET \
+	INCLUDE_ANSI_MEMCMP \
+	INCLUDE_ANSI_MEMMOVE \
+	INCLUDE_ANSI_STRCAT \
+	INCLUDE_ANSI_STRNCAT \
+	INCLUDE_ANSI_STRNCMP \
+	INCLUDE_ANSI_STRCASECMP \
+	INCLUDE_ANSI_STRNCASECMP \
+	INCLUDE_ANSI_STRNCPY \
+	INCLUDE_ANSI_STRLCPY \
+	INCLUDE_POSIX_CLOCKS \
+	INCLUDE_DIAB_INTRINSICS \
+	INCLUDE_POSIX_DIRLIB \
+	INCLUDE_OBJ_INFO \
+	INCLUDE_TASK_SHOW \
+	INCLUDE_HANDLE_SHOW \
+	INCLUDE_MSG_Q_INFO \
+	INCLUDE_SEM_INFO \
+	INCLUDE_TASK_LIST \
+	INCLUDE_VXEVENTS \
+	INCLUDE_TASK_CREATE_HOOKS \
+	INCLUDE_TASK_SWITCH_HOOKS \
+	INCLUDE_TASK_INFO \
+	INCLUDE_DLL \
+	INCLUDE_KERNEL_ARCH \
+	INCLUDE_Q_LIB \
+	INCLUDE_Q_FIFO \
+	INCLUDE_Q_PRI_LIST \
+	INCLUDE_Q_PRI_BMAP \
+	INCLUDE_Q_PRI_DELTA \
+	INCLUDE_ATOMIC_OPERATORS \
+	INCLUDE_EDR_SYSDBG_FLAG \
+	INCLUDE_LSTLIB \
+	INCLUDE_SLL \
+	INCLUDE_MSG_Q_EVENTS \
+	INCLUDE_SEM_EVENTS \
+	INCLUDE_HOOK_SHOW \
+	INCLUDE_AVL_UINT_TREES \
+	INCLUDE_PROTECT_TASK_STACK \
+	INCLUDE_TASK_STACK_NO_EXEC \
+	INCLUDE_NBIO_LOG \
+	INCLUDE_PTYDRV \
+	INCLUDE_FP_TYPE \
+	INCLUDE_POSIX_FS \
+	INCLUDE_RNG_BUF \
+	INCLUDE_HASH \
+	INCLUDE_EVENTPOINT_STUB \
+	INCLUDE_PROTECT_INTERRUPT_STACK \
+	INCLUDE_LOADER \
+	INCLUDE_GETOPT \
+	INCLUDE_SPINLOCK \
+	INCLUDE_COPROCESSOR \
+	INCLUDE_STANDALONE_SYM_TBL \
+	INCLUDE_SYM_TBL_SHOW \
+	INCLUDE_MODULE_MANAGER \
+	INCLUDE_LOADER_CODE \
+	INCLUDE_SYM_TBL \
+	INCLUDE_SYM_TBL_INIT \
+	INCLUDE_APPL_LOG_UTIL \
+	INCLUDE_FTP \
+	INCLUDE_HOST_TBL \
+	INCLUDE_IPV4 \
+	INCLUDE_NETBUFLIB \
+	INCLUDE_SYSCTL \
+	INCLUDE_SHELL_INTERP_CMD \
+	INCLUDE_SHELL_CORE \
+	INCLUDE_DISK_UTIL_SHELL_CMD \
+	INCLUDE_DEBUG_SHELL_CMD \
+	INCLUDE_SYM_SHELL_CMD \
+	INCLUDE_MODULE_SHELL_CMD \
+	INCLUDE_UNLOADER_SHELL_CMD \
+	INCLUDE_IPCOM_SHELL_CMD \
+	INCLUDE_OSM \
+	INCLUDE_DLL_ARCH \
+	INCLUDE_BLIB_ARCH \
+	INCLUDE_OBJ_LIB_ARCH \
+	INCLUDE_COMMON_NET \
+	INCLUDE_IPNET_STACK \
+	INCLUDE_IPNET_CLASSIFIER \
+	INCLUDE_IPNET_DIFFSERV \
+	INCLUDE_IPNET_DS_SM \
+	INCLUDE_IPNET_DS_SRTCM \
+	INCLUDE_IPNET_USE_SOCK_COMPAT \
+	INCLUDE_IPARP_CMD \
+	INCLUDE_IPIFCONFIG_CMD \
+	INCLUDE_IPNET_USE_ROUTESOCK \
+	INCLUDE_IPSYSCTL_CMD \
+	INCLUDE_IPNET_SOCKET \
+	INCLUDE_IPWRAP_ARP \
+	INCLUDE_END_ETHER_HDR \
+	INCLUDE_GETSERVBYPORT \
+	INCLUDE_IPWRAP_GETSERVBYNAME \
+	INCLUDE_IPWRAP_GETSERVBYPORT \
+	INCLUDE_IPWRAP_IFCONFIG \
+	INCLUDE_IPWRAP_INETLIB \
+	INCLUDE_MUX2_OVER_END \
+	INCLUDE_MUXTK_OVER_END \
+	INCLUDE_MBUF_UTIL1 \
+	INCLUDE_IPWRAP_PING \
+	INCLUDE_IPNET_SYSCTL \
+	INCLUDE_IPNET_USE_MCAST_ROUTING \
+	INCLUDE_IPNET_USE_TUNNEL \
+	INCLUDE_IPNET_USE_VLAN
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_AIO_TASK_PRIORITY
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_AIO_TASK_STACK_SIZE
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_AUX_CLK_RATE_MAX
+6000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_AUX_CLK_RATE_MIN
+1
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_DISABLE_MMU_BEFORE_ENTRY
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_LINE_ADRS
+((char *) (LOCAL_MEM_LOCAL_ADRS+BOOT_LINE_OFFSET))
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_LINE_OFFSET
+0x1100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_LINE_SIZE
+255
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_USB_ATTEMPT_DELAY
+60
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BOOT_USB_OPEN_ATTEMPTS
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BSP_REV
+"/0"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_BSP_VERSION
+"2.0"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CDROM_COM_BUF_SIZE
+3
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CONSOLE_BAUD_RATE
+115200
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CONSOLE_TTY
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_CKSUM_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_COMPRESSION_LEVEL
+9
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_MAX_HOOKS
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_MEM_FILTER_MAX
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_MEM_POOL_PAGE_SIZE
+0x8000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_MEM_POOL_PROTECTION_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_REGION_SIZE
+pmFreeSpace(pmDefaultArena)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_RTP_FS_PATH
+"/tgtsvr"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_RTP_ZLIB_COMPRESSION_LEVEL
+9
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_SKIP_TEXT_SECTION
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_SKIP_USER_RESERVED_MEM
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_CORE_DUMP_STACK_SIZE
+8192
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DEBUG_KWRITE_USR_RTN
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DEFAULT_BOOT_LINE
+"HiLteFe(0,0) \
+	host:vxWorks \
+	" \
+	"h=192.168.255.2 \
+	e=192.168.255.1:ffffff00 \
+	u=anonymous \
+	pw= \
+	tn=targetname"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DEVICE_MANAGER_MAX_NUM_DEVICES
+255
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DOSFS_CACHE_BACKGROUND_FLUSH_TASK_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DOSFS_DEFAULT_CREATE_OPTIONS
+0x04
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DOSFS_DEFAULT_DATA_DIR_CACHE_SIZE
+0x800000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DOSFS_DEFAULT_FAT_CACHE_SIZE
+0x100000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_DOSFS_DEFAULT_MAX_FILES
+20
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_EDR_ERRLOG_SIZE
+(pmFreeSpace(EDR_PM_ARENA)/2)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_EDR_RECORD_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ENV_VAR_USE_HOOKS
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ERF_MAX_USR_CATEGORIES
+16
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ERF_MAX_USR_TYPES
+16
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_EXC_MSG_ADRS
+((char *) (LOCAL_MEM_LOCAL_ADRS+EXC_MSG_OFFSET))
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_EXC_MSG_OFFSET
+0x1200
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FATAL_SYSTEM_CORE_DUMP_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FD_0_TYPE
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FD_1_TYPE
+-1
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FD_DEV_NAME
+"/fd"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FREE_RAM_ADRS
+(end)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FS_NAMES_ATA_PRIMARY_MASTER
+"/ata0a"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FS_NAMES_ATA_PRIMARY_SLAVE
+""
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FS_NAMES_ATA_SECONDARY_MASTER
+""
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_FS_NAMES_ATA_SECONDARY_SLAVE
+""
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_HRFS_DEFAULT_MAX_BUFFERS
+16
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_HRFS_DEFAULT_MAX_FILES
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_HWMEM_POOL_SIZE
+50000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_INCLUDE_WDB_TTY_TEST
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_INIT_NBIO_MSGS
+32
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_INTERRUPT_STACK_OVERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_INTERRUPT_STACK_UNDERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_INT_LOCK_LEVEL
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ISR_STACK_SIZE
+0x2000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_JOB_TASK_STACK_SIZE
+8000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_KERNEL_APPL_CORE_DUMP_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_KERNEL_HEAP_SIZE
+((unsigned int)(sysMemTop() - FREE_RAM_ADRS) / 3 * 2)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_LOCAL_MEM_LOCAL_ADRS
+0x30000000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_LOCAL_MEM_SIZE
+0x3700000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_LOGIN_PASSWORD
+"XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg="
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_LOGIN_USER_NAME
+"target"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MAX_AIO_SYS_TASKS
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MAX_ISR_JOBS
+16
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MAX_LIO_CALLS
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MAX_LOG_MSGS
+50
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MAX_REBOOT_HOOKS
+8
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEDR_BLOCK_GUARD_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEDR_EXTENDED_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEDR_FILL_FREE_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEDR_FREE_QUEUE_LEN
+64
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEDR_POOL_SIZE
+0x100000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MEM_PART_DEFAULT_OPTIONS
+(MEM_ALLOC_ERROR_LOG_FLAG \
+	| \
+	MEM_ALLOC_ERROR_EDR_WARN_FLAG \
+	| \
+	MEM_BLOCK_ERROR_LOG_FLAG \
+	| \
+	MEM_BLOCK_ERROR_EDR_WARN_FLAG \
+	| \
+	MEM_BLOCK_ERROR_SUSPEND_FLAG \
+	| \
+	MEM_BLOCK_CHECK)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_MQ_HASH_SIZE
+0
+<END>
+
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_DOSFS_FILES
+20
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_DRIVERS
+20
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_FILES
+50
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_RAWFS_FILES
+5
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_SIGNAL_QUEUES
+16
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NUM_TTY
+N_SIO_CHANNELS
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NV_BOOT_OFFSET
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_NV_RAM_SIZE
+NONE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_OBJ_LIBRARY_OPTIONS
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_PM_RESERVED_MEM
+(6 * VM_PAGE_SIZE)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_POSIX_PTHREAD_RR_TIMESLICE
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_RAM_DISK_SIZE
+0x300000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_RAM_HIGH_ADRS
+0x33700000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_RAM_LOW_ADRS
+0x30004000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_RESERVED
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ROM_BASE_ADRS
+0x30000000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ROM_SIZE
+0x00100000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ROM_TEXT_ADRS
+ROM_BASE_ADRS
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_ROOT_STACK_SIZE
+0x4000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_RTP_HEAP_INIT_SIZE
+0x10000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SEM_RW_MAX_CONCURRENT_READERS
+32
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_COMPATIBLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_DEFAULT_CONFIG
+"LINE_EDIT_MODE=,LINE_LENGTH=256,STRING_FREE=manual,INTERPRETER=,VXE_PATH=.;/romfs"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_FIRST_CONFIG
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_MAX_SESSIONS
+-1
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_REMOTE_CONFIG
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_SECURE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_STACK_SIZE
+0x10000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_START_AT_BOOT
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_TASK_NAME_BASE
+"tShell"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_TASK_OPTIONS
+(VX_FP_TASK | VX_UNBREAKABLE | COPROCS_ALL | VX_PRIVATE_ENV)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHELL_TASK_PRIORITY
+1
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SHM_DEV_NAME
+"/shm"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_ANCHOR_ADRS
+((char *) (SM_BASE_ADRS + SM_ANCHOR_OFFSET))
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_ANCHOR_OFFSET
+0x1000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_BASE_ADRS
+LOCAL_MEM_LOCAL_ADRS
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_CPUS_MAX
+DEFAULT_CPUS_MAX
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_MASTER
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_MAX_PKTS
+200
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_MAX_WAIT
+3000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_MEM_PART
+4
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_MSG_Q
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_NAME
+100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_SEM
+60
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_TASK
+40
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_MAX_TRIES
+5000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_TASK_OPTIONS
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_OBJ_TASK_PRIORITY
+40
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_PKTS_SIZE
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SM_TAS_TYPE
+SM_TAS_HARD
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SPY_TASKS_MAX
+200
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_STACK_SAVE
+512
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_STAT_TBL_HASH_SIZE_LOG2
+6
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_STORE_ABS_SYMBOLS
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SW_MMU_ENABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SYM_TBL_HASH_SIZE_LOG2
+8
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SYS_CLK_RATE
+100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SYS_CLK_RATE_MAX
+(8000)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SYS_CLK_RATE_MIN
+(10)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_SYS_MODEL
+"ARM RealView PBX-A9"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_KERNEL_EXEC_STACK_OVERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_KERNEL_EXEC_STACK_UNDERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_PRIORITY_SET_COMPATIBLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_USER_EXC_STACK_OVERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_USER_EXC_STACK_SIZE
+8192
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_USER_EXEC_STACK_OVERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TASK_USER_EXEC_STACK_UNDERFLOW_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TFFS_DRIVE_NUMBER
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TFFS_MOUNT_POINT
+"/tffs0"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TFFS_REMOVABLE
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TIP_CONFIG_STRING
+""
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TIP_ESCAPE_CHARACTER
+"~"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TYLIB_WRT_THRESHLD
+20
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TYLIB_XOFF_PCNT
+85
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_TYLIB_XON_PCNT
+50
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_D_CACHE_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_D_CACHE_MODE
+(CACHE_COPYBACK)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_D_MMU_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_I_CACHE_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_I_CACHE_MODE
+(CACHE_COPYBACK)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_I_MMU_ENABLE
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_USER_RESERVED_MEM
+0x100000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VEC_BASE_ADRS
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VM_PAGE_SIZE
+4096
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VXEVENTS_OPTIONS
+EVENTS_NONINTERRUPTIBLE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VX_GLOBAL_NO_STACK_FILL
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VX_NATIVE_SCHED_CONSTANT_RDY_Q
+VX_TRAD_SCHED_CONSTANT_RDY_Q
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_VX_TRAD_SCHED_CONSTANT_RDY_Q
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_BP_MAX
+25
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_COMM_PORT
+0x4321
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_COMM_VTMD
+8
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_DPRINTF_MAX_MSGS
+100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_DPRINTF_MAX_MSG_LENGTH
+100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_END_DEVICE_ADDRESS
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_END_DEVICE_NAME
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_END_DEVICE_UNIT
+0
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_GOPHER_TAPE_LEN
+1400
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_GOPHER_TAPE_NB
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_MAX_RESTARTS
+5
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_MIPC_BUS_NAME
+"main"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_MIPC_PORT
+2
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_MTU
+1500
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_POOL_SIZE
+((unsigned int) (sysMemTop() - FREE_RAM_ADRS)/16)
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_HAS_CONTROL_PORT
+TRUE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_INIT_STRING
+NULL
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_PORT
+0x4444
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_TASK_OPTIONS
+VX_UNBREAKABLE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_TASK_PRIORITY
+55
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_PROXY_TASK_STACK_SIZE
+10000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_REGS_SIZE
+512
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_RESTART_TIME
+10
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_RTP_PRIORITY
+200
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_SPAWN_OPTS
+VX_FP_TASK
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_SPAWN_PRI
+100
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_SPAWN_STACK_SIZE
+0x5000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_STACK_SIZE
+0x2000
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TASK_OPTIONS
+VX_UNBREAKABLE | VX_FP_TASK
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TASK_PRIORITY
+3
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TIPC_PORT_INSTANCE
+71
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TIPC_PORT_TYPE
+70
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TTY_BAUD
+9600
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TTY_CHANNEL
+1
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TTY_DEV_NAME
+"/tyCo/1"
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WDB_TTY_ECHO
+FALSE
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_WIND_JOBS_MAX
+64
+<END>
+
+<BEGIN> WCC_BALONGV7R2_PARAM_XBD_BLK_DEV_TASK_PRIORITY
+50
+<END>
+
+<BEGIN> WCC_BALONGV7R2_SOFT_EXCLUDE_COMPONENTS
+INCLUDE_TIP
+<END>
+
+<BEGIN> userComments
+
+<END>
+
+

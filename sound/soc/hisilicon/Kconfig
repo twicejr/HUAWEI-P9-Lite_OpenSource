@@ -1,0 +1,81 @@
+menu "SoC Audio support for HI3630"
+
+config SND_SOC_PCM_HI3630
+	tristate "SoC Audio support for HI3630"
+	help
+	  Say y to enable this option for HI3630 I2S audio support.
+
+config SND_SOC_PCM_HI3650
+	tristate "SoC Audio support for HI3630"
+	help
+	  Say y to enable this option for HI3630 I2S audio support.
+
+config SND_SOC_PCM_HI3660
+	tristate "SoC Audio support for HI3660"
+	help
+	  Say y to enable this option for HI3660 I2S audio support.
+
+config SND_HI3630_HI6401
+	tristate "Hi3630-Hi6401 sound support"
+	help
+	  Say y to enable sound support for Hi3630-Hi6401
+
+config SND_HI3630_HI6402
+	tristate "Hi3630-Hi6402 sound support"
+	help
+	  Say y to enable sound support for Hi3630-Hi6402
+
+config SND_HI6250_HI6402
+	tristate "Hi6250-Hi6402 sound support"
+	help
+	  Say y to enable sound support for Hi6250-Hi6402
+
+config SND_HI6250_HI6555C
+	tristate "Hi6250-Hi6555c sound support"
+	help
+	  Say y to enable sound support for Hi6250-Hi6555c
+
+config SND_HI3650_HI6402
+	tristate "Hi3650-Hi6402 sound support"
+	select HI6402_CODEC
+	select SND_SOC_HI6402
+	help
+	  Say y to enable sound support for Hi3630-Hi6402
+
+config SND_HI3650_HI6403
+	tristate "Hi3650-Hi6403 sound support"
+	select HI6403_CODEC
+	select SND_SOC_HI6403
+	help
+	  Say y to enable sound support for Hi3630-Hi6402
+
+config SND_HI3660_HI6402
+	tristate "Hi3660-Hi6402 sound support"
+	select HI6402_CODEC
+	select SND_SOC_HI6402
+	help
+	  Say y to enable sound support for Hi3660-Hi64xx
+
+config SND_HI3660_HI6403
+	tristate "Hi3660-Hi6403 sound support"
+	select HI6403_CODEC
+	select SND_SOC_HI6403
+	help
+	  Say y to enable sound support for Hi3660-Hi6403
+
+config SND_SOC_PCM_HI6210
+	tristate "SoC Audio support for HI6210"
+	help
+		Enable this option for HI6210 APB audio support.
+config SND_HI6210_HISSC
+	tristate "Hi6210-Hissc sound support"
+	help
+		This option enables sound support for Hi6210-Hissc.
+		ssc mean Soc-Smartstar Codec.
+
+config SND_AUTO_TEST
+	tristate "Auto test sound support"
+	help
+		This option enables sound auto tesrt.
+endmenu
+

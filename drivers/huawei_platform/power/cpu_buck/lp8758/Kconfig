@@ -1,0 +1,3 @@
+config HUAWEI_LP8758
+	bool "huawei lp8758"
+	default n

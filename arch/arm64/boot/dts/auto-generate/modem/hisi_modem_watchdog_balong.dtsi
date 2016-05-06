@@ -1,0 +1,14 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	watchdog_app@0 {
+		compatible = "hisilicon,watchdog_app";
+		interrupts = <0 209 4>;
+		flag = <1>;
+		status = "ok";
+	};
+};

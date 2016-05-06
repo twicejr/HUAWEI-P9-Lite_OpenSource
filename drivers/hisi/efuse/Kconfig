@@ -1,0 +1,15 @@
+
+config HI6XXX_EFUSE
+	bool "Support HiSilicon Hi6XXX EFUSE"
+	default n
+	help
+	  This driver supports HiSilicon Kirin620 EFUSE,
+	  including hisilicon efuse, etc.
+
+config HI3XXX_EFUSE
+	bool "Support Hisilicon Hi3XXX efuse"
+    depends on ATFDRIVER
+	default n
+	help
+	Hi3630 efuse driver support
+

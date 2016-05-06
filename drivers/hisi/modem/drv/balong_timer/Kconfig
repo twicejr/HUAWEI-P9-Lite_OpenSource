@@ -1,0 +1,49 @@
+#
+# timer driver
+#
+comment "timer driver"
+
+config PRINTK_USE_HARDTIMER
+	bool "use hardtimer stamp for printk"
+	default n
+	help
+	  hard timer interface
+
+config HARD_TIMER
+	tristate "hard timer"
+	select PRINTK_USE_HARDTIMER
+	default n
+	help
+	  hard timer interface
+
+config HARD_TIMER_TEST
+	tristate "hard timer test"
+	default n
+	help
+	  hard timer test
+	  
+config TIMER_ADP
+	tristate "timer adaption"
+	default n
+	help
+	  timer adaption for v7r1
+	  
+config SOFT_TIMER
+	tristate "soft timer"
+	default n
+	help
+	  soft timer interface
+	   
+config SOFT_TIMER_TEST
+	tristate "soft timer test"
+	default n
+	help
+	  soft timer test
+	  
+config BBP_TIMER
+	tristate "bbp timer"
+	default n
+	help
+	  bbp timer interface
+	  
+	  

@@ -1,0 +1,690 @@
+--/*********************************************************************************/
+--/* FileName:      csdrhrpdsm.asn                                                 */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2016.1.28 16:56:3                                              */
+--
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Csdrhrpdsm-definitions.Csdrhrpdsm-MSG                                              
+--PROTOCOL: Csdrhrpdsm                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Csdrhrpdsm-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-INT32  ::= <V,V|LEN-32>INTEGER(-2147483648..2147483647) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+PHY-INT32  ::= <V,V|LEN-32>VOS-INT32 
+
+PHY-UINT32  ::= <V,V|LEN-32>VOS-UINT32 
+
+PHY-INT16  ::= <V,V|LEN-16>VOS-INT16 
+
+PHY-UINT16  ::= <V,V|LEN-16>VOS-UINT16 
+
+CSDR-HRPD-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-BOOL-FALSE(0), 
+    cSDR-HRPD-BOOL-TRUE(1), 
+    cSDR-HRPD-BOOL-BUTT(2) 
+} 
+
+CSDR-HRPD-CELL-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CELL-TYPE-AS(0), 
+    cSDR-HRPD-CELL-TYPE-AS-IC(1), 
+    cSDR-HRPD-CELL-TYPE-IC(2), 
+    cSDR-HRPD-CELL-TYPE-MEAS(3), 
+    cSDR-HRPD-CELL-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwBandClass    PHY-UINT16, 
+ 
+    --/**< CDMA band class */ 
+    uhwFreq    PHY-UINT16 
+    --/**< CDMA frequency */ 
+} 
+
+CSDR-HRPD-MPS-PN-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< The PN Offset of the pilot to be measured. 0..511, */ 
+    enCellType    CSDR-HRPD-CELL-TYPE-ENUM , 
+ 
+    uwFramePos    PHY-UINT32, 
+ 
+    --/**< 0-(32768*4-1), 1 4chip in base cnt */ 
+    uhwWindowPosition    PHY-UINT32 
+    --/**< Tail of the search window, unit 1 4 chips in base cnt */ 
+} 
+
+CSDRHRPDSM-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CPROC-CSDR-HRPD-PILOT-SEARCH-REQ(16640),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-PILOT-SEARCH-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-PILOT-SEARCH-IND(16641),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-PILOT-SEARCH-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-PILOT-SEARCH-STOP-REQ(16642),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-PILOT-SEARCH-STOP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-PILOT-SEARCH-STOP-CNF(16643),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-PILOT-SEARCH-STOP-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SIGNAL-LEVEL-REQ(16644),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SIGNAL-LEVEL-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SIGNAL-LEVEL-IND(16645),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SIGNAL-LEVEL-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-MEAS-REQ(16646),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-MEAS-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-STOP-MEAS-REQ(16647),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-STOP-MEAS-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-MEAS-IND(16648),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-MEAS-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-MEAS-REPORT-IND(16649),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-MEAS-REPORT-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-MPS-REQ(16650),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-MPS-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-MPS-IND(16651),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-MPS-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-STOP-MPS-REQ(16652),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-STOP-MPS-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-STOP-MPS-CNF(16653),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-STOP-MPS-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SM-RESET-REQ(16654),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SM-RESET-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SM-RESET-CNF(16655),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SM-RESET-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SLAVE-TIMING-REQ(16656),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SLAVE-TIMING-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SLAVE-TIMING-CNF(16657),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SLAVE-TIMING-CNF-STRU */ 
+    iD-CSDRHRPDSM-MSG-TYPE-ENUM-BUTT(16658) 
+} 
+
+CSDRHRPDSM-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCPROC-CSDR-HRPD-PILOT-SEARCH-REQ-STRU   CPROC-CSDR-HRPD-PILOT-SEARCH-REQ-STRU   WHEN(usChoice1.v==16640), 
+   struCSDR-CPROC-HRPD-PILOT-SEARCH-IND-STRU   CSDR-CPROC-HRPD-PILOT-SEARCH-IND-STRU   WHEN(usChoice1.v==16641), 
+   struCPROC-CSDR-HRPD-PILOT-SEARCH-STOP-REQ-STRU   CPROC-CSDR-HRPD-PILOT-SEARCH-STOP-REQ-STRU   WHEN(usChoice1.v==16642), 
+   struCSDR-CPROC-HRPD-PILOT-SEARCH-STOP-CNF-STRU   CSDR-CPROC-HRPD-PILOT-SEARCH-STOP-CNF-STRU   WHEN(usChoice1.v==16643), 
+   struCPROC-CSDR-HRPD-SIGNAL-LEVEL-REQ-STRU   CPROC-CSDR-HRPD-SIGNAL-LEVEL-REQ-STRU   WHEN(usChoice1.v==16644), 
+   struCSDR-CPROC-HRPD-SIGNAL-LEVEL-IND-STRU   CSDR-CPROC-HRPD-SIGNAL-LEVEL-IND-STRU   WHEN(usChoice1.v==16645), 
+   struCPROC-CSDR-HRPD-MEAS-REQ-STRU   CPROC-CSDR-HRPD-MEAS-REQ-STRU   WHEN(usChoice1.v==16646), 
+   struCPROC-CSDR-HRPD-STOP-MEAS-REQ-STRU   CPROC-CSDR-HRPD-STOP-MEAS-REQ-STRU   WHEN(usChoice1.v==16647), 
+   struCSDR-CPROC-HRPD-MEAS-IND-STRU   CSDR-CPROC-HRPD-MEAS-IND-STRU   WHEN(usChoice1.v==16648), 
+   struCSDR-CPROC-HRPD-MEAS-REPORT-IND-STRU   CSDR-CPROC-HRPD-MEAS-REPORT-IND-STRU   WHEN(usChoice1.v==16649), 
+   struCPROC-CSDR-HRPD-MPS-REQ-STRU   CPROC-CSDR-HRPD-MPS-REQ-STRU   WHEN(usChoice1.v==16650), 
+   struCSDR-CPROC-HRPD-MPS-IND-STRU   CSDR-CPROC-HRPD-MPS-IND-STRU   WHEN(usChoice1.v==16651), 
+   struCPROC-CSDR-HRPD-STOP-MPS-REQ-STRU   CPROC-CSDR-HRPD-STOP-MPS-REQ-STRU   WHEN(usChoice1.v==16652), 
+   struCSDR-CPROC-HRPD-STOP-MPS-CNF-STRU   CSDR-CPROC-HRPD-STOP-MPS-CNF-STRU   WHEN(usChoice1.v==16653), 
+   struCPROC-CSDR-HRPD-SM-RESET-REQ-STRU   CPROC-CSDR-HRPD-SM-RESET-REQ-STRU   WHEN(usChoice1.v==16654), 
+   struCSDR-CPROC-HRPD-SM-RESET-CNF-STRU   CSDR-CPROC-HRPD-SM-RESET-CNF-STRU   WHEN(usChoice1.v==16655), 
+   struCPROC-CSDR-HRPD-SLAVE-TIMING-REQ-STRU   CPROC-CSDR-HRPD-SLAVE-TIMING-REQ-STRU   WHEN(usChoice1.v==16656), 
+   struCSDR-CPROC-HRPD-SLAVE-TIMING-CNF-STRU   CSDR-CPROC-HRPD-SLAVE-TIMING-CNF-STRU   WHEN(usChoice1.v==16657) 
+} 
+
+CSDR-HRPD-ANTENNA-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-ANT1(0), 
+    cSDR-HRPD-ANT2(1), 
+    cSDR-HRPD-ANTENNA-BUTT(2) 
+} 
+
+CSDR-HRPD-MPS-STOP-REASON-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-MPS-STOP-REASON-FINISHED(0), 
+    cSDR-HRPD-MPS-STOP-REASON-UNFINISHED(1), 
+    cSDR-HRPD-MPS-STOP-REASON-CPROC(2), 
+    cSDR-HRPD-MPS-STOP-REASON-BUTT(3) 
+} 
+
+CSDR-HRPD-PILOT-SEARCH-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-PILOT-SEARCH-NO-TIMING(0), 
+    cSDR-HRPD-PILOT-SEARCH-1X-TIMING(1), 
+    cSDR-HRPD-PILOT-SEARCH-LTE-TIMING(2), 
+    cSDR-HRPD-PILOT-SEARCH-HRPD-TIMING(3), 
+    cSDR-HRPD-PILOT-SEARCH-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-LTE-CDMA-TIME-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-LTE-CDMA-TIME-NOT-PRESENT(0), 
+    cSDR-HRPD-LTE-CDMA-TIME-PRESENT(1), 
+    cSDR-HRPD-LTE-CDMA-TIME-BUTT(2) 
+} 
+
+CSDR-HRPD-STOP-REASON-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-STOP-REASON-FINISHED(0), 
+    cSDR-HRPD-STOP-REASON-CPROC(1), 
+    cSDR-HRPD-STOP-REASON-MASTER(2), 
+    cSDR-HRPD-STOP-REASON-NOT-STOPPED(3), 
+    cSDR-HRPD-STOP-REASON-BUTT(4) 
+} 
+
+CSDR-HRPD-MEAS-FREQ-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-MEAS-FREQ-CF-FREQ(0), 
+    cSDR-HRPD-MEAS-FREQ-SF-FREQ(1), 
+    cSDR-HRPD-MEAS-FREQ-BUTT(2) 
+} 
+
+CSDR-HRPD-PILOT-SEARCH-RES-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-PILOT-SEARCH-RES-NOT-FOUND(0), 
+    cSDR-HRPD-PILOT-SEARCH-RES-FOUND(1), 
+    cSDR-HRPD-PILOT-SEARCH-RES-BUTT(2) 
+} 
+
+CSDR-HRPD-TIMING-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TIMING-HRPD(0), 
+    cSDR-HRPD-TIMING-1X(1), 
+    cSDR-HRPD-TIMING-BUTT(2) 
+} 
+
+CSDR-HRPD-MPS-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-MPS-TYPE-CONTINUOUS(0), 
+    cSDR-HRPD-MPS-TYPE-QUICK(1), 
+    cSDR-HRPD-MPS-TYPE-ONE-SHOT(2), 
+    cSDR-HRPD-MPS-TYPE-WINDOW-UPDATE(3), 
+    cSDR-HRPD-MPS-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-MEAS-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-MEAS-TYPE-MEAS-AFTER-ONGOING(0), 
+    cSDR-HRPD-MEAS-TYPE-BUFFER-MEAS(1), 
+    cSDR-HRPD-MEAS-TYPE-BUFFER-MEAS-BUFFER(2), 
+    cSDR-HRPD-MEAS-TYPE-MEAS-BUFFER-AFTER-ONGOING(3), 
+    cSDR-HRPD-MEAS-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-CDMA-EUTRA-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CDMA-EUTRA-SYNCHRONIZED(0), 
+    cSDR-HRPD-CDMA-EUTRA-NOT-SYNCHRONIZED(1), 
+    cSDR-HRPD-CDMA-EUTRA-BUTT(2) 
+} 
+
+CSDR-HRPD-FRAM-HEAD-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-FRAME-HEAD-NOT-PRESENT(0), 
+    cSDR-HRPD-FRAME-HEAD-PRESENT(1), 
+    cSDR-HRPD-FRAME-HEAD-BUTT(2) 
+} 
+
+CSDR-HRPD-PILOT-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< the PN Offset of the pilot. Note: If the system time is not known the PN Offset might not be correct. Range 0..511 */ 
+    uhwEnergy    PHY-UINT16, 
+ 
+    --/**< 0..65535, correlation energy */ 
+    uwFirstPathFramePos    PHY-UINT32 
+    --/**< 0-(32768*4-1), 1 4chip for base cnt */ 
+} 
+
+CSDR-HRPD-MEASUREMENT-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< PN Offset */ 
+    shwRscp    PHY-INT16, 
+ 
+    --/**< -1080..-8, resolution 1 8dBm, RSCP or if cell is not found CSDR-HRPD-NOT-VALID-SHW */ 
+    shwEcN0    PHY-INT16, 
+ 
+    --/**< -200..0, resolution 1 8dB, EcN0 */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    uwFirstPathFramePos    PHY-UINT32 
+    --/**< 0-(32768*4-1), 1 4chip for base cnt , use the strong path but not change the name */ 
+} 
+
+CSDR-HRPD-SIGNAL-LEVEL-STRU    ::= <V> SEQUENCE  
+{ 
+    shwFreqRssi    PHY-INT16, 
+ 
+    --/**< -880..0, resolution 0.125dBm. Measured RSSI on the frequency */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-HRPD-MPS-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< PN Offset 0..511 */ 
+    shwRscp    PHY-INT16, 
+ 
+    --/**< -1080..-8, resolution 1 8dBm, RSCP, or if cell is not found CSDR-HRPD-NOT-VALID-SHW */ 
+    shwRscpFilter    PHY-INT16, 
+ 
+    --/**< -1080..-8, resolution 1 8dBm, RSCP, or if cell is not found CSDR-HRPD-NOT-VALID-SHW */ 
+    shwEcN0    PHY-INT16, 
+ 
+    --/**< -252..0, resolution 1 8dB. EcN0 , or if cell is not found CSDR-HRPD-NOT-VALID-SHW */ 
+    uwDelaySpreadRMS    PHY-UINT32, 
+ 
+    --/**< The RMS of the delay spread in 1 4 chips. Used for window placement. */ 
+    uwFirstPathFramePos    PHY-UINT32, 
+ 
+    --/**< Frame Pos of the first used path. Used for timing maintenance and window placement. In 1 4 chips 0-(32768*4-1) in base cnt */ 
+    uwLastPathFramePos    PHY-UINT32, 
+ 
+    --/**< Frame Pos of the last used path. Used for window placement. In 1 4 chips 0-(32768*4-1) in base cnt */ 
+    uwNoiseEnergy    PHY-UINT32, 
+ 
+    --/**< The sum energy of noise */ 
+    shwRelativeStrength    PHY-INT16, 
+ 
+    --/**< -200..0, resolution 1 8dB, or . Relative strength of the pilot. */ 
+    shwEcN0Filter    PHY-INT16 
+    --/**< -252..0, resolution 1 8dB. EcN0 , or if cell is not found CSDR-HRPD-NOT-VALID-SHW */ 
+} 
+
+CSDR-HRPD-PN-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< the PN Offset of the pilot to be measured. Range 0..511 */ 
+    uhwDataOffset    PHY-UINT16, 
+ 
+    --/**< Range 0..1787, unit 1 4 chips */ 
+    uwWindowPosition    PHY-UINT32 
+    --/**< Tail of the search window, unit 1 4 chips in base cnt, PICH frame head */ 
+} 
+
+CSDR-HRPD-CDMA-TIME-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwSystemTimeType    CSDR-HRPD-CDMA-EUTRA-ENUM, 
+ 
+    --/**< Sync or Async asynchronousSystemTime The CDMA2000 system time corresponding to the SFN boundary at or after the ending boundary of the SI-Window in which SystemInformationBlockType8 is transmitted. If not synchronized then the size is 49 bits and the unit is [8 CDMA2000 chips based on 1.2288 Mcps].  
+    --synchronousSystemTime CDMA2000 system time corresponding to the SFN boundary at or after the ending boundary of the SI-window in which SystemInformationBlockType8 is transmitted. If synchronized to CDMA2000 system time then the size is 39 bits and the unit is 10 ms based on a 1.2288 Mcps chip rate.  
+    -- */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    uwSystemTimeLow32BitsValue    PHY-UINT32, 
+ 
+    --/**< The lower 32 bits value of system time */ 
+    uwSystemTimeHighBitsValue    PHY-UINT32 
+    --/**< The higher bits value of system time */ 
+} 
+
+CSDR-HRPD-LTE-CDMA-TIME-STRU    ::= <V> SEQUENCE  
+{ 
+    stSystemTimeInfoCDMA    CSDR-HRPD-CDMA-TIME-STRU, 
+ 
+    --/**< absolute time in the current cell */ 
+    uhwLteSfn    PHY-UINT16, 
+ 
+    --/**< SFN boundary at or after the ending boundary of the SI-Window in which SystemInformationBlockType8 is transmitted */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    auwTimeStamp    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32 
+    --/**< the time stamp when Lrrc proc sib8 was received  auwTimeStamp[0]:LET timing;auwTimeStamp[1]:32K comm timing */ 
+} 
+
+CPROC-CSDR-HRPD-PILOT-SEARCH-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    swInitialPpm    PHY-INT32, 
+ 
+    --/**< initial ppm value or CSDR-HRPD-NOT-VALID-SW */ 
+    enPilotSearchType    CSDR-HRPD-PILOT-SEARCH-TYPE-ENUM, 
+ 
+    --/**< the timing type for pilot search */ 
+    shwThreshold    PHY-INT16, 
+ 
+    --/**< unit is dbm,  the threshold  of RSSI,  if RSSI is less than this threshold, report search fail */ 
+    stFreq    CSDR-HRPD-FREQ-INFO-STRU 
+    --/**< Pilot search Frequency */ 
+} 
+
+CSDR-CPROC-HRPD-PILOT-SEARCH-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+     
+    stResult    <V>SEQUENCE(SIZE(32)) OF CSDR-HRPD-PILOT-STRU, 
+ 
+    --/**< results in decreasing energy order */ 
+    uhwNumPilots    PHY-UINT16, 
+ 
+    --/**< number of pilots, 0..32 */ 
+    enStopReason    CSDR-HRPD-STOP-REASON-ENUM 
+    --/**< Indicates why meas was reported */ 
+} 
+
+CPROC-CSDR-HRPD-PILOT-SEARCH-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-PILOT-SEARCH-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SIGNAL-LEVEL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-SIGNAL-LEVEL-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enStopReason    CSDR-HRPD-STOP-REASON-ENUM, 
+ 
+    --/**< finished or stopped by master */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    stResult    CSDR-HRPD-SIGNAL-LEVEL-STRU 
+    --/**< results */ 
+} 
+
+CPROC-CSDR-HRPD-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enBufferMeas    CSDR-HRPD-MEAS-TYPE-ENUM, 
+ 
+    --/**< buffer before and or after meas  or no buffering */ 
+    uhwCorrelatorNum    PHY-UINT16, 
+ 
+    --/**< Number of correlators to be used */ 
+    uwBufferWindow    PHY-UINT32, 
+ 
+    --/**< head of buffer window, unit 1 4 chip 0..4095. Buffering shall start when (base-cnt - uwBufferWindow % 4*1024 = 0 */ 
+    enSFFlag    CSDR-HRPD-MEAS-FREQ-ENUM, 
+ 
+    --/**< Candidate Frequency, Serving Frequency */ 
+    enAntSel    CSDR-HRPD-ANTENNA-ENUM, 
+ 
+    --/**< Measure using samples from Ant1 or Ant2 */ 
+    stFreq    CSDR-HRPD-FREQ-INFO-STRU, 
+ 
+    --/**< Meas Frequency */ 
+    uhwRsv    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    uhwPNNum    PHY-UINT16, 
+ 
+    --/**< Number of pilots to measure. */ 
+     
+    astPNList    <V>SEQUENCE(SIZE(108)) OF CSDR-HRPD-PN-CFG-STRU 
+    --/**< Cells to be measured */ 
+} 
+
+CPROC-CSDR-HRPD-STOP-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enSFFlag    CSDR-HRPD-MEAS-FREQ-ENUM, 
+ 
+    --/**< Candidate Frequency, Serving Frequency */ 
+    uhwPNNum    PHY-UINT16, 
+ 
+    --/**< Number of measured PNs in this indication */ 
+    enStopReason    CSDR-HRPD-STOP-REASON-ENUM, 
+ 
+    --/**< Indicates why meas was reported */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    stFreq    CSDR-HRPD-FREQ-INFO-STRU, 
+ 
+    --/**< CDMA frequency */ 
+     
+    astMeasurement    <V>SEQUENCE(SIZE(36)) OF CSDR-HRPD-MEASUREMENT-STRU 
+    --/**< PN list */ 
+} 
+
+CSDR-CPROC-HRPD-MEAS-REPORT-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-MPS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uhwUnitNum    PHY-UINT16, 
+ 
+    --/**< number of correlator units to be used for MPS 1..2 */ 
+    enMPSType    CSDR-HRPD-MPS-TYPE-ENUM, 
+ 
+    --/**< Continuous, Continuous with quick MPS, One shot, Window Position Update */ 
+    uhwUseDiversityAntenna    PHY-UINT16, 
+ 
+    --/**< diversity antenna enable disable */ 
+    uhwMPSPNNum    PHY-UINT16, 
+ 
+    --/**< Number of cells sectors on which to perform MPS. 1..CSDR-HRPD-MAX-AS-SIZE */ 
+     
+    astMPSList    <V>SEQUENCE(SIZE(6)) OF CSDR-HRPD-MPS-PN-CFG-STRU, 
+ 
+    --/**< MPS list */ 
+    stFreq    CSDR-HRPD-FREQ-INFO-STRU 
+    --/**< MPS Frequency */ 
+} 
+
+CSDR-CPROC-HRPD-MPS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwFramePos    PHY-UINT32, 
+ 
+    --/**< the base cnt of Frame head  0..512*64*16-1 resolution 1 16chip */ 
+    shwFreqRssi    PHY-INT16, 
+ 
+    --/**< -880..0, resolution 0.125dBm. Measured RSSI on the frequency */ 
+    shwAsTotalEcIo    PHY-INT16, 
+ 
+    --/**< -25..15, CSDR-HRPD-NOT-VALID-SHW resolution 0.125dBm. Total EcIo of the Active set, from main antenna */ 
+    shwAsTotalEc    PHY-INT16, 
+ 
+    --/**< -, CSDR-HRPD-NOT-VALID-SHW resolution 0.125dBm. total Ec of the Active set */ 
+    enStopReason    CSDR-HRPD-MPS-STOP-REASON-ENUM, 
+ 
+    --/**< stop reason */ 
+    uhwReserve    PHY-UINT16 , 
+ 
+    uhwNumOfPilots    PHY-UINT16, 
+ 
+    --/**< Number of pilots in MPS result [1..CSDR-HRPD-MAX-AS-SIZE-MPS-IND] */ 
+     
+    astMPSResultMain    <V>SEQUENCE(SIZE(4)) OF CSDR-HRPD-MPS-STRU, 
+ 
+    --/**< MPS result main antenna */ 
+     
+    astMPSResultDiv    <V>SEQUENCE(SIZE(4)) OF CSDR-HRPD-MPS-STRU 
+    --/**< MPS result diversity antenna */ 
+} 
+
+CPROC-CSDR-HRPD-STOP-MPS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-STOP-MPS-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SM-RESET-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-SM-RESET-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SLAVE-TIMING-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uhwRsv    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enSystimePresent    CSDR-HRPD-LTE-CDMA-TIME-ENUM, 
+ 
+    --/**< valid flag for stLteCdmaTime */ 
+    stLteCdmaTime    CSDR-HRPD-LTE-CDMA-TIME-STRU 
+    --/**< LTE - CDMA system time relation */ 
+} 
+
+CSDR-CPROC-HRPD-SLAVE-TIMING-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uhwRsv    PHY-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enHrpdFrameHeadPresent    CSDR-HRPD-FRAM-HEAD-ENUM, 
+ 
+    --/**< valid flag for uwBaseCnt of HRPD frame head */ 
+    uwBaseCnt    PHY-UINT32 
+    --/**< HRPD frame head in basecnt 1 4 chips 0-(32768*4-1) */ 
+} 
+
+Csdrhrpdsm-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CSDRHRPDSM-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 */ 
+    --CSDRHRPDSM-DummySignalUnion    dummySignalUnion 
+    struMsgChoice    CSDRHRPDSM-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CSDRHRPDSM-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Csdrhrpdsm-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Csdrhrpdsm-msg-data  
+} 
+
+Csdrhrpdsm-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

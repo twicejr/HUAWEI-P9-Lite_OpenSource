@@ -1,0 +1,34 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only a demo for hisilicon balong modem board. You should change the
+ * address of each node according to datasheet.
+ */
+
+
+/* basic system --- bsp3 */
+/include/ "hisi_modem_timer_balong.dtsi"
+/include/ "hisi_modem_ipc.dtsi"
+/include/ "hisi_modem_icc_balong.dtsi"
+/include/ "hisi_modem_sysctrl.dtsi"
+/include/ "hisi_modem_hwadp_drv.dtsi"
+/include/ "hisi_modem_hwadp_gups.dtsi"
+/include/ "hisi_modem_hwadp_guphy.dtsi"
+/include/ "hisi_modem_watchdog_balong.dtsi"
+/include/ "hisi_modem_reset.dtsi"
+
+/* peripheral --- bsp2 */
+/include/ "hisi_modem_pmic_ocp.dtsi"
+/include/ "hisi_modem_dsp_balong.dtsi"
+
+
+/* debug system --- bsp1 */
+/include/ "hisi_modem_socp_balong.dtsi"
+/include/ "hisi_modem_dump.dtsi"
+/include/ "hisi_modem_coresight.dtsi"
+/include/ "hisi_modem_log.dtsi"
+/include/ "hisi_modem_apr.dtsi"
+
+/* data transfer --- bsp4 */
+/include/ "hisi_modem_ipf_balong.dtsi"
+

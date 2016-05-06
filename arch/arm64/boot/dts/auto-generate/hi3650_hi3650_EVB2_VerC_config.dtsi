@@ -1,0 +1,16 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "hi3650_hi3650_udp_3001_config.dtsi"
+
+/ {
+	hisi,boardid = <3 0 1 0>;
+	hisi,boardname = "hi3650_hi3650_EVB2_VerC";
+	hisi,product_id = <0x3CF5FC10>;
+};

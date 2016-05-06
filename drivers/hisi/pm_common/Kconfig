@@ -1,0 +1,11 @@
+#
+#Hisilicon suspend optimization support.
+#
+comment "kernel/driver/hisi/pm_common/suspend.c"
+config HISI_SR_SYNC
+	bool "Hisilicon suspend optimization"
+	depends on SUSPEND
+	default n
+	help
+	  Driver for suspend optimization
+

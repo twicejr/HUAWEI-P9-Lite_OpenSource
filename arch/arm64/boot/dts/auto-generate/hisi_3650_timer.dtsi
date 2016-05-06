@@ -1,0 +1,27 @@
+/{
+	timer {
+		compatible = "arm,armv8-timer";
+        interrupt-parent = <&gic>;
+		interrupts = <1 13 0xff08>,
+			     <1 14 0xff08>,
+			     <1 11 0xff08>,
+			     <1 10 0xff08>;
+		clock-frequency = <1920000>;
+	};
+
+	hisi_prktimer: prktimer@fff0a000 {
+		compatible = "hisilicon,prktimer";
+		fpga_flag = <0>;
+		reg = <0x0 0xfff0a000 0x0 0x1000>;
+		status = "disabled";
+	};
+
+	timer0: timer@fff14000 {
+		compatible = "arm,sp804", "arm,primecell";
+		reg = <0x0 0xfff14000 0x0 0x1000>;
+		interrupts = <0 48 4>, <0 49 4>;
+		clocks = <&osc32k &osc32k &pclk>;
+		clock-names = "osc32khz", "osc32khz", "apb_pclk";
+		status = "ok";
+	};
+};

@@ -1,0 +1,33 @@
+ /*
+  *  Copyright (C) 2013 Huawei co Ltd.
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License version 2 as
+  *  publishhed by the Free Software Foundation.
+  */
+
+ / {
+    bcm_wifi {
+                         compatible = "hisilicon,bcm_wifi";
+                         clocks = <&clk_pmu32kb>;
+                         clock-names = "apb_pclk";
+                         /*
+                         pinctrl-names = "default", "idle";
+                         pinctrl-0 = <&gpio160_cfg_func &gpio212_cfg_func >;
+                         pinctrl-1 = <&gpio160_cfg_idle &gpio212_cfg_idle>;
+                         */
+                         pinctrl-names = "default", "idle";
+                         pinctrl-0 = <&gpio077_cfg_func &gpio078_cfg_func
+                                      &gpio079_cfg_func &gpio080_cfg_func
+                                      &gpio081_cfg_func &gpio082_cfg_func
+                                      &gpio077_pmx_func &gpio080_pmx_func>;
+                         pinctrl-1 = <&gpio077_cfg_idle &gpio078_cfg_idle
+                                      &gpio079_cfg_idle &gpio080_cfg_idle
+                                      &gpio081_cfg_idle &gpio082_cfg_idle
+                                      &gpio077_pmx_idle &gpio080_pmx_idle>;
+                         wlan-on,gpio-enable= <&gpio14 1 0>;
+                         wlan-irq,gpio-irq = <&gpio26 4 0>;
+                         wifi_nvram_name = "/vendor/firmware/nvram4334_hw.txt";
+                         wifi_fw_name = "/vendor/firmware/fw_bcm4334_hw.bin";
+         };
+ };

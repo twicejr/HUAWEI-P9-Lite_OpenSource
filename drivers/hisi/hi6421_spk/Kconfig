@@ -1,0 +1,5 @@
+config HI6421_SPK
+	tristate "Spk support for HI6421"
+	default n
+	---help---
+	 Say Y here if you want to support HI6421's speaker

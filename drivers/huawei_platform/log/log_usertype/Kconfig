@@ -1,0 +1,6 @@
+config PROC_LOGUSERTYPE
+       bool "/proc/log-usertype support"
+       default y
+       help
+       set beta or commercial version to kernel.
+

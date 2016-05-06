@@ -1,0 +1,15 @@
+comment "HISI ISP"
+
+choice
+	prompt "HISP Version"
+	default HUAWEI_CAMERA_USE_HISP110
+	depends on HUAWEI_CAMERA
+	help
+        Select ISP version.
+
+config HUAWEI_CAMERA_USE_HISP110
+	bool "HISP110"
+	depends on HUAWEI_CAMERA
+
+endchoice
+

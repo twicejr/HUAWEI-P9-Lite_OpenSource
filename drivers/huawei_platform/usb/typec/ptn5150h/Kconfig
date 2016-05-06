@@ -1,0 +1,8 @@
+# Nxp Type C Connector
+
+config HUAWEI_TYPEC_PTN5150H
+	tristate "ptn5150h typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable ptn5150h Type C Connector support.

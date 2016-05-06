@@ -1,0 +1,9 @@
+#
+# via cbp 8.2 driver configuration
+#
+config VIACBP82D_3RD_MODEM
+	bool "misc via Support"
+	default n
+	help
+	  This allows misc via.
+	  If unsure, say n.

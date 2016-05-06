@@ -1,0 +1,235 @@
+// options4AS.lnt
+
+// 业务与软件质量管理部制定的标准选项文件
+// 根据产品实际使用情况可以定制，但要参照业软通过准则进行
+
+// version: 2006-12-28，参照公司质量部PC-lint指导书调整
+// version: 2007-01-24，增加473、474告警
+// version: 2007-06-07，优化告警
+// version: 2008-08-26，补充类printf函数相关告警
+
+// 如果新增加的告警项级别为4，需要注意-wLevel参数
+//                       C          C++     Warning Level
+// Syntax Errors      1 - 199   1001 - 1199     1
+// Internal Errors  200 - 299                   0
+// Fatal Errors     300 - 399                   0
+// Warnings         400 - 699   1400 - 1699     2
+// Informational    700 - 899   1700 - 1899     3
+// Elective Notes   900 - 999   1900 - 1999     4
+
+-w2
+
+// 不允许出现的告警：连续区间的1-199，200-299，300-399，1001-1199
+//  导致Syntax Errors多是因为配置不对（头文件包含、预编译开关）引起的，
+//  这类告警很多时候有关联性，需要正确配置后再执行检查，
+//  否则会导致检查不精确、增加问题确认量、还可能导致真实问题被屏蔽。
+
++e0??
++e1??
++e2??
++e3??
+
++e10??
++e11??
+
+// 不允许出现的告警：定制
++e530	// Symbol 'Symbol' (Location) not initialized
++e533	// function 'Symbol' should (not) return a value (see Location)
++e568	// nonnegative quantity is never less than zero.
++e578	// Declaration of symbol 'Symbol' hides symbol 'Symbol' (Location)
++e644	// Variable 'Symbol' (Location) may not have been initialized
++e645	// Symbol 'Symbol' (Location) may not have been initialized
++e650	// Constant out of range for operator String
++e701 //Shift left of signed quantity (int)
++e702 //Shift right of signed quantity (int)
++e703 //Shift left of signed quantity (long)
++e704 //Shift right of signed quantity (long)
++e712 //Loss of precision (Context) (Type to Type)
++e713 //Loss of precision (Context) (Type to Type)
++e716 // while(1) ...  -- A construct of the form while(1) ... was found（确认后去掉）
++e717 //do ... while(0)
++e718 //Symbol undeclared, assumed to return int
++e720
++e721
++e722
++e723 //Suspicious use of =  -- A preprocessor definition began with an = sign
++e727	// Symbol 'Symbol' (Location) not explicitly initialized
++e728	// Symbol 'Symbol' (Location) not explicitly initialized
++e729	// Symbol 'Symbol' (Location) not explicitly initialized
++e730
++e731
++e732 // Loss of sign (Context) (Type to Type)
++e733 //Assigning address of auto (Symbol) to outer scope symbol (Symbol)
++e734 //Loss of precision (Context) (Integer bits to Integer bits)
++e735 //Loss of precision (Context) (Integer bits to Integer bits)
++e736 //Loss of precision (Context) (Integer bits to Integer bits)
++e737 //Loss of sign in promotion from Type to Type
++e738 //Symbol (Location) not explicitly initialized
++e740 //Unusual pointer cast (incompatible indirect types)
++e744 //switch statement has no default
++e745 // function Symbol has no explicit type or class, int assumed
++e746 //call to Symbol not made in the presence of a prototype
++e747 //Significant prototype coercion (Context) Type to Type
++e752
++e759 //检查不必要的头文件包含
++e760
++e761
++e762
++e763
++e764
++e766 //检查不必要的头文件包含
++e767 //macro Symbol was defined differently in another module (Location)
++e771 //Symbol (Location) conceivably not initialized
++e772 //Symbol (Location) conceivably not initialized
++e773 //Expression-like macro 'Symbol' not parenthesized
++e775 //non-negative quantity cannot be less than zero
++e777 //Testing float's for equality
++e778 //Constant expression evaluates to 0 in operation
++e779 //String constant in comparison operator
++e780
++e781 //Inconsistent use of tag Symbol conflicts with Location
++e782 //Line exceeds Integer characters
+
++e1401	// member symbol 'Symbol' (Location) not initialized by constructor
++e1402	// member 'Symbol' (Location) not initialized
++e1403	// member 'Symbol' (Location) not initialized
++e1404	// deleting an object of type 'Symbol' before type is defined
++e1546	// throw() called within destructor 'Symbol'
+
+// 需要确认的告警
++e413	// Likely use of null pointer 'Symbol' in [left/right] argument to operator 'String' Reference
++e415	// access of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e416	// creation of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e418	// Passing null pointer to function 'Symbol', Context Reference
++e419	// Apparent data overrun for function 'Symbol', argument Integer exceeds argument Integer
++e420	// Apparent access beyond array for function 'Symbol', argument Integer exceeds Integer Reference
++e421	// Caution -- function 'Symbol' is considered dangerous
++e422	// Passing to function 'Symbol' a negative value (Integer), Context Reference
++e423	// Creation of memory leak in assignment to variable ' Symbol'
++e424	// Inappropriate deallocation (Name1) for 'Name2' data.
++e428	// negative subscript (Integer) in operator 'String'
++e429	// Custodial pointer 'Symbol' (Location) has not been freed or returned
++e433	// Allocated area not large enough for pointer
++e502   // Expected unsigned type
++e524   // Loss of precision (Context) (Type to Type)
++e527	// Unreachable
++e540	// Excessive size
++e564	// variable 'Symbol' depends on order of evaluation
++e569	// Loss of information (Context) (Integer bits to Integer bits)
++e570	// Loss of sign (Context) (Type to Type)
++e573   // Signed-unsigned mix with divide
++e574   // Signed-unsigned mix with relational
++e603	// Symbol 'Symbol' (Location) not initialized
++e604	// Returning address of auto variable 'Symbol'
++e605	// Increase in pointer capability (Context)
++e613	// Possible use of null pointer 'Symbol' in [left/right] argument to operator 'String' Reference
++e616	// control flows into case/default
++e619   // Loss of precision (Context) (Pointer to Pointer)
++e643   // Loss of precision in pointer cast
++e661	// possible access of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e662	// possible creation of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e666	// Expression with side effects passed to repeated parameter Integer of macro 'Symbol'
++e668	// Possibly passing a null pointer to function ' Symbol'
++e669	// Possible data overrun for function 'Symbol', argument Integer exceeds argument Integer Reference
++e670   // Possible access beyond array for function 'Symbol', argument Integer exceeds Integer Reference
++e672	// Possible memory leak in assignment to pointer 'Symbol'
++e674   // Returning address of auto through variable 'Symbol'
++e679   // Suspicious Truncation in arithmetic expression combining with pointer
++e682   // sizeof applied to a parameter 'Symbol' whose type is a sized array
++e684   // Passing address of auto variable 'Symbol' into caller space
++e732	// Loss of sign (Context) (Type to Type)
++e733   // Assigning address of auto variable 'Symbol' to outer scope symbol 'Symbol'
++e734	// Loss of precision (Context) (Integer bits to Integer bits)
++e744	// switch statement has no default
++e773	// Expression-like macro 'Symbol' not parenthesized
++e774	// Boolean within 'String' always evaluates to [True/False]
++e784   // Nul character truncated from string
++e786   //String concatenation within initializer
++e787	// enum constant 'Symbol' not used within switch
++e789   // Assigning address of auto variable 'Symbol' to static
++e794	// Conceivable use of null pointer 'Symbol' in [left/right] argument to operator 'String’ Reference
++e795   //Conceivable division by 0
++e796	// Conceivable access of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e797	// Conceivable creation of out-of-bounds pointer ('Integer' beyond end of data) by operator 'String'
++e798
++e799   //numerical constant 'Integer' larger than unsigned long
++e801	// Use of goto is deprecated
++e802	// Conceivably passing a null pointer to function 'Symbol', Context Reference
++e803	// Conceivable data overrun for function 'Symbol', argument Integer exceeds argument Integer Reference
++e804   // Conceivable access beyond array for function 'Symbol', argument Integer exceeds Integer Reference
++e806   //Small bit field is signed rather than unsigned
++e808   // No explicit type given, assumed int
++e809   //Possible return of address of auto through variable 'Symbol'
++e810   //Arithmetic modification of custodial variable 'Symbol'
++e811   //Possible deallocation of pointer alias
++e812
++e813   // auto variable 'Symbol' in function 'Symbol' has size 'Integer'
++e826	// Suspicious pointer-to-pointer conversion (area too small)
+
++e1507	// attempting to 'delete' an array
++e1532	// Symbol 'Symbol' not checking argument for NULL
++e1540	// pointer member 'Symbol' (Location) neither freed nor zero'ed by destructor
++e1541	// member 'Symbol' (Location) possibly not initialized by constructor
++e1740	// pointer member 'Symbol' (Location) not directly freed or zero'ed by destructor
++e1741	// member 'Symbol' (Location) conceivably not initialized by constructor
++e1742	// member 'Symbol' (Location) conceivably not initialized
++e1743  // member 'Symbol' (Location) conceivably not initialized
++e1744  // member 'Symbol' (Location) possibly not initialized by private constructor
+
+// 类printf函数相关告警
++e26    // Expected an expression, found 'String'
++e154   // Could not evaluate type 'String', int assumed
++e557   // unrecognized format
++e558   // number of arguments inconsistent with format
++e559   // size of argument number Integer inconsistent with format
++e560   // argument no. Integer should be a pointer
++e561   // (arg. no. Integer) indirect object inconsistent with format
++e566   // Inconsistent or redundant format char 'Char'
++e567   // Expected a numeric field before char 'Char'
++e626   // argument no. Integer inconsistent with format
++e627   // (arg. no. Integer) indirect object inconsistent with format
++e719   // Too many arguments for format (Integer too many)
++e816   //Non-ANSI format specification
++e817   //Conceivably negative subscript (Integer) in operator 'String'
++e958   //Padding of Integer byte(s) is required to align member on Integer byte boundary
++e959   //struct size (Integer bytes) is not an even multiple of the maximum member alignment(Integer bytes)
++e960   //Note -- Violates MISRA Advisory
++e961   //Note -- Violates MISRA Advisory Rule 47, dependence placed on C's operator precedence
+
+// 允许忽略的告警
+-e46    // Field type should be int
+-e534   // Ignoring return value of Symbol (compare with Location)
+-e537   //Repeated include file: 'FileName'
+-e641   //Converting enum to int
+-e785   //Too few initializers for aggregate.
+-e740
+-e611
+-e826   // 消息结构指针转换，暂时关闭
+-e831   // 消息结构指针转换，暂时关闭
+-e1904	// Old-style C comment
+
+-esym(960,32)
+-esym(960,54)
+-esym(960,57)
+-esym(960,58)
+-esym(960,110)
+-esym(961,18)
+-esym(961,44)
+-esym(961,47)
+
+-size(a,1024) //局部变量不超过1K
+-sc1 //char型size为1
+-ss2 //short型size为2
+-si4 //int型size为4
+-sl4 //long型size为4
+-sp4 //指针型的size为4
+-sf4 //float型size为4
+-sd8 //double型size为8
+
+-ac1 //char从1字节对齐位开始
+-as2 //short型从2字节位开始
+-ai4 //int型从4字节对齐位开始
+-al4 //long型从4字节对齐位开始
+-ap4 //指针型从4字节对齐位开始
+-af4 //float从4字节对齐位开始
+-ad8 //double从8字节对齐位开始

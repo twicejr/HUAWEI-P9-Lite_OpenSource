@@ -1,0 +1,5 @@
+config HISI_HILOG
+	bool "Hisilicon platform hisi log support"
+	default n
+	help
+	Say yes here to support the hisilicon platform hisi log module

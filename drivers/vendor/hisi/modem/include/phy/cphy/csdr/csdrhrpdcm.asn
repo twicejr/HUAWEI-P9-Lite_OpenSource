@@ -1,0 +1,1727 @@
+--/*********************************************************************************/
+--/* FileName:      csdrhrpdcm.asn                                                 */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2016.1.30 14:9:14                                              */
+--
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Csdrhrpdcm-definitions.Csdrhrpdcm-MSG                                              
+--PROTOCOL: Csdrhrpdcm                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Csdrhrpdcm-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-INT32  ::= <V,V|LEN-32>INTEGER(-2147483648..2147483647) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+PHY-INT32  ::= <V,V|LEN-32>VOS-INT32 
+
+PHY-UINT32  ::= <V,V|LEN-32>VOS-UINT32 
+
+PHY-INT16  ::= <V,V|LEN-16>VOS-INT16 
+
+PHY-UINT16  ::= <V,V|LEN-16>VOS-UINT16 
+
+CSDR-HRPD-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-BOOL-FALSE(0), 
+    cSDR-HRPD-BOOL-TRUE(1), 
+    cSDR-HRPD-BOOL-BUTT(2) 
+} 
+
+CSDR-HRPD-CELL-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CELL-TYPE-AS(0), 
+    cSDR-HRPD-CELL-TYPE-AS-IC(1), 
+    cSDR-HRPD-CELL-TYPE-IC(2), 
+    cSDR-HRPD-CELL-TYPE-MEAS(3), 
+    cSDR-HRPD-CELL-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwBandClass    PHY-UINT16, 
+ 
+    --/**< CDMA band class */ 
+    uhwFreq    PHY-UINT16 
+    --/**< CDMA frequency */ 
+} 
+
+CSDR-HRPD-MPS-PN-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< The PN Offset of the pilot to be measured. 0..511, */ 
+    enCellType    CSDR-HRPD-CELL-TYPE-ENUM , 
+ 
+    uwFramePos    PHY-UINT32, 
+ 
+    --/**< 0-(32768*4-1), 1 4chip in base cnt */ 
+    uhwWindowPosition    PHY-UINT32 
+    --/**< Tail of the search window, unit 1 4 chips in base cnt */ 
+} 
+
+CSDRHRPDCM-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CPROC-CSDR-HRPD-ACTIVE-REQ(16384),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-ACTIVE-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-ACTIVE-CNF(16385),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-ACTIVE-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SLEEP-REQ(16386),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SLEEP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SLEEP-CNF(16387),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SLEEP-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SET-MODE-REQ(16388),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SET-MODE-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SET-MODE-CNF(16389),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SET-MODE-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-CM-RESET-REQ(16390),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-CM-RESET-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-CM-RESET-CNF(16391),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-CM-RESET-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-RXON-REQ(16392),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-RXON-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-RXON-CNF(16393),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-RXON-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-RXOFF-REQ(16394),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-RXOFF-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-RXOFF-CNF(16395),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-RXOFF-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-CC-START-REQ(16396),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-CC-START-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-CC-START-CNF(16397),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-CC-START-CNF-STRU */ 
+    iD-CSDR-CPROC-HRPD-CC-DONE-IND(16398),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-CC-DONE-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-CC-STOP-REQ(16399),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-CC-STOP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-CC-STOP-CNF(16400),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-CC-STOP-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-AC-START-REQ(16401),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-AC-START-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-AC-START-CNF(16402),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-AC-START-CNF-STRU */ 
+    iD-CSDR-CPROC-HRPD-AC-START-IND(16403),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-AC-START-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-AC-STOP-REQ(16404),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-AC-STOP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-AC-STOP-CNF(16405),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-AC-STOP-CNF-STRU */ 
+    iD-CSDR-CPROC-HRPD-AC-ERROR-IND(16406),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-AC-ERROR-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-TCH-START-REQ(16407),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TCH-START-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-TCH-START-CNF(16408),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-TCH-START-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-TCH-MAINTAIN-REQ(16409),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TCH-MAINTAIN-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-TCH-MAINTAIN-IND(16410),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-TCH-MAINTAIN-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-TCH-RECONFIG-REQ(16411),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TCH-RECONFIG-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-TCH-RECONFIG-CNF(16412),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-TCH-RECONFIG-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-TCH-STOP-REQ(16413),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TCH-STOP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-TCH-STOP-CNF(16414),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-TCH-STOP-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SET-SYSTIME-REQ(16415),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SET-SYSTIME-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SET-SYSTIME-CNF(16416),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SET-SYSTIME-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-TIME-REFERENCE-REQ(16417),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TIME-REFERENCE-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-DRCLOCK-IND(16418),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-DRCLOCK-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-DRC-IND(16419),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-DRC-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-SUSPEND-REQ(16420),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SUSPEND-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-SUSPEND-CNF(16421),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-SUSPEND-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-RESUME-REQ(16422),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-RESUME-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-RESUME-CNF(16423),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-RESUME-CNF-STRU */ 
+    iD-CSDR-CPROC-HRPD-GAP-START-IND(16424),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-GAP-START-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-GAP-END-IND(16425),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-GAP-END-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-WAKEUP-IND(16426),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-WAKEUP-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-INT-REQ(16427),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-INT-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-INT2-IND(16428),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-INT2-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-INT3-IND(16429),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-INT3-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-AFC-PPM-REQ(16430),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-AFC-PPM-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-AFC-PPM-IND(16431),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-AFC-PPM-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-ERROR-IND(16432),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-ERROR-IND-STRU */ 
+    iD-CSDR-CPROC-HRPD-FRAME-HEAD-IND(16433),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-FRAME-HEAD-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-REL-ALL-REQ(16434),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-REL-ALL-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-REL-ALL-CNF(16435),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-REL-ALL-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-TIME-SYNC-REQ(16436),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TIME-SYNC-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-TIME-SYNC-IND(16437),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-TIME-SYNC-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-CONNECTION-STATUS-REQ(16438),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-CONNECTION-STATUS-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-CC-RECONFIG-REQ(16439),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-CC-RECONFIG-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-LPHY-WAKEUP-REQ(16440),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-LPHY-WAKEUP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-LPHY-WAKEUP-CNF(16441),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-LPHY-WAKEUP-CNF-STRU */ 
+    iD-CSDR-CPROC-HRPD-LPHY-WAKEUP-IND(16442),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-LPHY-WAKEUP-IND-STRU */ 
+    iD-CPROC-CSDR-HRPD-LPHY-SLEEP-REQ(16443),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-LPHY-SLEEP-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-LPHY-CANCEL-WAKEUP-REQ(16444),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-LPHY-CANCEL-WAKEUP-REQ-STRU */ 
+    iD-CSDR-CPROC-HRPD-LPHY-CANCEL-WAKEUP-CNF(16445),    --/* -H2ASN-MsgChoice CSDR-CPROC-HRPD-LPHY-CANCEL-WAKEUP-CNF-STRU */ 
+    iD-CPROC-CSDR-HRPD-SAR-CTRL-REQ(16446),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SAR-CTRL-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-SET-TEMPERATURE-REQ(16447),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-SET-TEMPERATURE-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-WAKEUP-REQ(16448),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-WAKEUP-REQ-STRU */ 
+    iD-CPROC-CSDR-HRPD-TCH-FLOW-STATUS-NTF(16449),    --/* -H2ASN-MsgChoice CPROC-CSDR-HRPD-TCH-FLOW-STATUS-NTF-STRU */ 
+    iD-CSDRHRPDCM-MSG-TYPE-ENUM-BUTT(16450) 
+} 
+
+CSDRHRPDCM-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCPROC-CSDR-HRPD-ACTIVE-REQ-STRU   CPROC-CSDR-HRPD-ACTIVE-REQ-STRU   WHEN(usChoice1.v==16384), 
+   struCSDR-CPROC-HRPD-ACTIVE-CNF-STRU   CSDR-CPROC-HRPD-ACTIVE-CNF-STRU   WHEN(usChoice1.v==16385), 
+   struCPROC-CSDR-HRPD-SLEEP-REQ-STRU   CPROC-CSDR-HRPD-SLEEP-REQ-STRU   WHEN(usChoice1.v==16386), 
+   struCSDR-CPROC-HRPD-SLEEP-CNF-STRU   CSDR-CPROC-HRPD-SLEEP-CNF-STRU   WHEN(usChoice1.v==16387), 
+   struCPROC-CSDR-HRPD-SET-MODE-REQ-STRU   CPROC-CSDR-HRPD-SET-MODE-REQ-STRU   WHEN(usChoice1.v==16388), 
+   struCSDR-CPROC-HRPD-SET-MODE-CNF-STRU   CSDR-CPROC-HRPD-SET-MODE-CNF-STRU   WHEN(usChoice1.v==16389), 
+   struCPROC-CSDR-HRPD-CM-RESET-REQ-STRU   CPROC-CSDR-HRPD-CM-RESET-REQ-STRU   WHEN(usChoice1.v==16390), 
+   struCSDR-CPROC-HRPD-CM-RESET-CNF-STRU   CSDR-CPROC-HRPD-CM-RESET-CNF-STRU   WHEN(usChoice1.v==16391), 
+   struCPROC-CSDR-HRPD-RXON-REQ-STRU   CPROC-CSDR-HRPD-RXON-REQ-STRU   WHEN(usChoice1.v==16392), 
+   struCSDR-CPROC-HRPD-RXON-CNF-STRU   CSDR-CPROC-HRPD-RXON-CNF-STRU   WHEN(usChoice1.v==16393), 
+   struCPROC-CSDR-HRPD-RXOFF-REQ-STRU   CPROC-CSDR-HRPD-RXOFF-REQ-STRU   WHEN(usChoice1.v==16394), 
+   struCSDR-CPROC-HRPD-RXOFF-CNF-STRU   CSDR-CPROC-HRPD-RXOFF-CNF-STRU   WHEN(usChoice1.v==16395), 
+   struCPROC-CSDR-HRPD-CC-START-REQ-STRU   CPROC-CSDR-HRPD-CC-START-REQ-STRU   WHEN(usChoice1.v==16396), 
+   struCSDR-CPROC-HRPD-CC-START-CNF-STRU   CSDR-CPROC-HRPD-CC-START-CNF-STRU   WHEN(usChoice1.v==16397), 
+   struCSDR-CPROC-HRPD-CC-DONE-IND-STRU   CSDR-CPROC-HRPD-CC-DONE-IND-STRU   WHEN(usChoice1.v==16398), 
+   struCPROC-CSDR-HRPD-CC-STOP-REQ-STRU   CPROC-CSDR-HRPD-CC-STOP-REQ-STRU   WHEN(usChoice1.v==16399), 
+   struCSDR-CPROC-HRPD-CC-STOP-CNF-STRU   CSDR-CPROC-HRPD-CC-STOP-CNF-STRU   WHEN(usChoice1.v==16400), 
+   struCPROC-CSDR-HRPD-AC-START-REQ-STRU   CPROC-CSDR-HRPD-AC-START-REQ-STRU   WHEN(usChoice1.v==16401), 
+   struCSDR-CPROC-HRPD-AC-START-CNF-STRU   CSDR-CPROC-HRPD-AC-START-CNF-STRU   WHEN(usChoice1.v==16402), 
+   struCSDR-CPROC-HRPD-AC-START-IND-STRU   CSDR-CPROC-HRPD-AC-START-IND-STRU   WHEN(usChoice1.v==16403), 
+   struCPROC-CSDR-HRPD-AC-STOP-REQ-STRU   CPROC-CSDR-HRPD-AC-STOP-REQ-STRU   WHEN(usChoice1.v==16404), 
+   struCSDR-CPROC-HRPD-AC-STOP-CNF-STRU   CSDR-CPROC-HRPD-AC-STOP-CNF-STRU   WHEN(usChoice1.v==16405), 
+   struCSDR-CPROC-HRPD-AC-ERROR-IND-STRU   CSDR-CPROC-HRPD-AC-ERROR-IND-STRU   WHEN(usChoice1.v==16406), 
+   struCPROC-CSDR-HRPD-TCH-START-REQ-STRU   CPROC-CSDR-HRPD-TCH-START-REQ-STRU   WHEN(usChoice1.v==16407), 
+   struCSDR-CPROC-HRPD-TCH-START-CNF-STRU   CSDR-CPROC-HRPD-TCH-START-CNF-STRU   WHEN(usChoice1.v==16408), 
+   struCPROC-CSDR-HRPD-TCH-MAINTAIN-REQ-STRU   CPROC-CSDR-HRPD-TCH-MAINTAIN-REQ-STRU   WHEN(usChoice1.v==16409), 
+   struCSDR-CPROC-HRPD-TCH-MAINTAIN-IND-STRU   CSDR-CPROC-HRPD-TCH-MAINTAIN-IND-STRU   WHEN(usChoice1.v==16410), 
+   struCPROC-CSDR-HRPD-TCH-RECONFIG-REQ-STRU   CPROC-CSDR-HRPD-TCH-RECONFIG-REQ-STRU   WHEN(usChoice1.v==16411), 
+   struCSDR-CPROC-HRPD-TCH-RECONFIG-CNF-STRU   CSDR-CPROC-HRPD-TCH-RECONFIG-CNF-STRU   WHEN(usChoice1.v==16412), 
+   struCPROC-CSDR-HRPD-TCH-STOP-REQ-STRU   CPROC-CSDR-HRPD-TCH-STOP-REQ-STRU   WHEN(usChoice1.v==16413), 
+   struCSDR-CPROC-HRPD-TCH-STOP-CNF-STRU   CSDR-CPROC-HRPD-TCH-STOP-CNF-STRU   WHEN(usChoice1.v==16414), 
+   struCPROC-CSDR-HRPD-SET-SYSTIME-REQ-STRU   CPROC-CSDR-HRPD-SET-SYSTIME-REQ-STRU   WHEN(usChoice1.v==16415), 
+   struCSDR-CPROC-HRPD-SET-SYSTIME-CNF-STRU   CSDR-CPROC-HRPD-SET-SYSTIME-CNF-STRU   WHEN(usChoice1.v==16416), 
+   struCPROC-CSDR-HRPD-TIME-REFERENCE-REQ-STRU   CPROC-CSDR-HRPD-TIME-REFERENCE-REQ-STRU   WHEN(usChoice1.v==16417), 
+   struCSDR-CPROC-HRPD-DRCLOCK-IND-STRU   CSDR-CPROC-HRPD-DRCLOCK-IND-STRU   WHEN(usChoice1.v==16418), 
+   struCSDR-CPROC-HRPD-DRC-IND-STRU   CSDR-CPROC-HRPD-DRC-IND-STRU   WHEN(usChoice1.v==16419), 
+   struCPROC-CSDR-HRPD-SUSPEND-REQ-STRU   CPROC-CSDR-HRPD-SUSPEND-REQ-STRU   WHEN(usChoice1.v==16420), 
+   struCSDR-CPROC-HRPD-SUSPEND-CNF-STRU   CSDR-CPROC-HRPD-SUSPEND-CNF-STRU   WHEN(usChoice1.v==16421), 
+   struCPROC-CSDR-HRPD-RESUME-REQ-STRU   CPROC-CSDR-HRPD-RESUME-REQ-STRU   WHEN(usChoice1.v==16422), 
+   struCSDR-CPROC-HRPD-RESUME-CNF-STRU   CSDR-CPROC-HRPD-RESUME-CNF-STRU   WHEN(usChoice1.v==16423), 
+   struCSDR-CPROC-HRPD-GAP-START-IND-STRU   CSDR-CPROC-HRPD-GAP-START-IND-STRU   WHEN(usChoice1.v==16424), 
+   struCSDR-CPROC-HRPD-GAP-END-IND-STRU   CSDR-CPROC-HRPD-GAP-END-IND-STRU   WHEN(usChoice1.v==16425), 
+   struCSDR-CPROC-HRPD-WAKEUP-IND-STRU   CSDR-CPROC-HRPD-WAKEUP-IND-STRU   WHEN(usChoice1.v==16426), 
+   struCPROC-CSDR-HRPD-INT-REQ-STRU   CPROC-CSDR-HRPD-INT-REQ-STRU   WHEN(usChoice1.v==16427), 
+   struCSDR-CPROC-HRPD-INT2-IND-STRU   CSDR-CPROC-HRPD-INT2-IND-STRU   WHEN(usChoice1.v==16428), 
+   struCSDR-CPROC-HRPD-INT3-IND-STRU   CSDR-CPROC-HRPD-INT3-IND-STRU   WHEN(usChoice1.v==16429), 
+   struCPROC-CSDR-HRPD-AFC-PPM-REQ-STRU   CPROC-CSDR-HRPD-AFC-PPM-REQ-STRU   WHEN(usChoice1.v==16430), 
+   struCSDR-CPROC-HRPD-AFC-PPM-IND-STRU   CSDR-CPROC-HRPD-AFC-PPM-IND-STRU   WHEN(usChoice1.v==16431), 
+   struCSDR-CPROC-HRPD-ERROR-IND-STRU   CSDR-CPROC-HRPD-ERROR-IND-STRU   WHEN(usChoice1.v==16432), 
+   struCSDR-CPROC-HRPD-FRAME-HEAD-IND-STRU   CSDR-CPROC-HRPD-FRAME-HEAD-IND-STRU   WHEN(usChoice1.v==16433), 
+   struCPROC-CSDR-HRPD-REL-ALL-REQ-STRU   CPROC-CSDR-HRPD-REL-ALL-REQ-STRU   WHEN(usChoice1.v==16434), 
+   struCSDR-CPROC-HRPD-REL-ALL-CNF-STRU   CSDR-CPROC-HRPD-REL-ALL-CNF-STRU   WHEN(usChoice1.v==16435), 
+   struCPROC-CSDR-HRPD-TIME-SYNC-REQ-STRU   CPROC-CSDR-HRPD-TIME-SYNC-REQ-STRU   WHEN(usChoice1.v==16436), 
+   struCSDR-CPROC-HRPD-TIME-SYNC-IND-STRU   CSDR-CPROC-HRPD-TIME-SYNC-IND-STRU   WHEN(usChoice1.v==16437), 
+   struCPROC-CSDR-HRPD-CONNECTION-STATUS-REQ-STRU   CPROC-CSDR-HRPD-CONNECTION-STATUS-REQ-STRU   WHEN(usChoice1.v==16438), 
+   struCPROC-CSDR-HRPD-CC-RECONFIG-REQ-STRU   CPROC-CSDR-HRPD-CC-RECONFIG-REQ-STRU   WHEN(usChoice1.v==16439), 
+   struCPROC-CSDR-HRPD-LPHY-WAKEUP-REQ-STRU   CPROC-CSDR-HRPD-LPHY-WAKEUP-REQ-STRU   WHEN(usChoice1.v==16440), 
+   struCSDR-CPROC-HRPD-LPHY-WAKEUP-CNF-STRU   CSDR-CPROC-HRPD-LPHY-WAKEUP-CNF-STRU   WHEN(usChoice1.v==16441), 
+   struCSDR-CPROC-HRPD-LPHY-WAKEUP-IND-STRU   CSDR-CPROC-HRPD-LPHY-WAKEUP-IND-STRU   WHEN(usChoice1.v==16442), 
+   struCPROC-CSDR-HRPD-LPHY-SLEEP-REQ-STRU   CPROC-CSDR-HRPD-LPHY-SLEEP-REQ-STRU   WHEN(usChoice1.v==16443), 
+   struCPROC-CSDR-HRPD-LPHY-CANCEL-WAKEUP-REQ-STRU   CPROC-CSDR-HRPD-LPHY-CANCEL-WAKEUP-REQ-STRU   WHEN(usChoice1.v==16444), 
+   struCSDR-CPROC-HRPD-LPHY-CANCEL-WAKEUP-CNF-STRU   CSDR-CPROC-HRPD-LPHY-CANCEL-WAKEUP-CNF-STRU   WHEN(usChoice1.v==16445), 
+   struCPROC-CSDR-HRPD-SAR-CTRL-REQ-STRU   CPROC-CSDR-HRPD-SAR-CTRL-REQ-STRU   WHEN(usChoice1.v==16446), 
+   struCPROC-CSDR-HRPD-SET-TEMPERATURE-REQ-STRU   CPROC-CSDR-HRPD-SET-TEMPERATURE-REQ-STRU   WHEN(usChoice1.v==16447), 
+   struCPROC-CSDR-HRPD-WAKEUP-REQ-STRU   CPROC-CSDR-HRPD-WAKEUP-REQ-STRU   WHEN(usChoice1.v==16448), 
+   struCPROC-CSDR-HRPD-TCH-FLOW-STATUS-NTF-STRU   CPROC-CSDR-HRPD-TCH-FLOW-STATUS-NTF-STRU   WHEN(usChoice1.v==16449) 
+} 
+
+CSDR-HRPD-MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-MODEM-ID-0(0), 
+    cSDR-HRPD-MODEM-ID-1(1), 
+    cSDR-HRPD-MODEM-ID-BUTT(2) 
+} 
+
+CSDR-HRPD-TCH-FLOW-STATUS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TCH-FLOW-TCA-RECEIVED(0), 
+    cSDR-HRPD-TCH-FLOW-TCH-RECONFIG(1), 
+    cSDR-HRPD-TCH-FLOW-TCC-FINISHED(2), 
+    cSDR-HRPD-TCH-FLOW-STATUS-BUTT(3) 
+} 
+
+CSDR-HRPD-WAKEUP-RESULT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-WAKEUP-RESULT-SUCCESS(0), 
+    cSDR-HRPD-WAKEUP-RESULT-FAIL(1), 
+    cSDR-HRPD-WAKEUP-RESULT-BUTT(2) 
+} 
+
+CSDR-HRPD-CONNECTION-STATUS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CONNECTION-OPEN(0), 
+    cSDR-HRPD-CONNECTION-CLOSE(1), 
+    cSDR-HRPD-CONNECTION-BUTT(2) 
+} 
+
+CSDR-HRPD-TIME-RESULT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TIME-INVALID(0), 
+    cSDR-HRPD-TIME-VALID(1), 
+    cSDR-HRPD-TIME-BUTT(2) 
+} 
+
+CSDR-HRPD-AC-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-AC-TYPE-DEFAULT(0), 
+    cSDR-HRPD-AC-TYPE-ENHANCED(1), 
+    cSDR-HRPD-AC-TYPE-BUTT(2) 
+} 
+
+CSDR-HRPD-RXON-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-RXON-SLAVE-MEAS(0), 
+    cSDR-HRPD-RXON-SLAVE-BSR(1), 
+    cSDR-HRPD-RXON-SLAVE-MEAS-AND-BSR(2), 
+    cSDR-HRPD-RXON-MASTER-SF(3), 
+    cSDR-HRPD-RXON-MASTER-SF-TO-NSF(4), 
+    cSDR-HRPD-RXON-MASTER-NSF-TO-SF(5), 
+    cSDR-HRPD-RXON-MASTER-RESUME-SF(6), 
+    cSDR-HRPD-RXON-MASTER-DRX-WAKEUP(7), 
+    cSDR-HRPD-RXON-BUTT(8) 
+} 
+
+CSDR-HRPD-GAP-PURPOSE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-GAP-PURPOSE-MEASURE(0), 
+    cSDR-HRPD-GAP-PURPOSE-BSR(1), 
+    cSDR-HRPD-GAP-PURPOSE-UNDEF(2), 
+    cSDR-HRPD-GAP-PURPOSE-BUTT(3) 
+} 
+
+CSDR-HRPD-WORKMODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-WORKMODE-SLAVE(0), 
+    cSDR-HRPD-WORKMODE-MASTER(1), 
+    cSDR-HRPD-WORKMODE-BUTT(2) 
+} 
+
+CSDR-HRPD-DRC-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-DRC-MODE-VARIABLE(0), 
+    cSDR-HRPD-DRC-MODE-FIXED(1), 
+    cSDR-HRPD-DRC-MODE-EXTEND-FIXED(2), 
+    cSDR-HRPD-DRC-MODE-BUTT(3) 
+} 
+
+CSDR-HRPD-TIME-ADJUST-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TIME-ADJUST-FAST(0), 
+    cSDR-HRPD-TIME-ADJUST-SLOW(1), 
+    cSDR-HRPD-TIME-ADJUST-BUTT(2) 
+} 
+
+CSDR-HRPD-CC-STATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CC-STATE-INITIAL(0), 
+    cSDR-HRPD-CC-STATE-IDLE-DRX(1), 
+    cSDR-HRPD-CC-STATE-CONTINUOUS(2), 
+    cSDR-HRPD-CC-STATE-GET-TIMING(3), 
+    cSDR-HRPD-CC-STATE-BUTT(4) 
+} 
+
+CSDR-HRPD-INT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-INT-1-AND-INT-2(0), 
+    cSDR-HRPD-INT-4(1), 
+    cSDR-HRPD-INT-5(2), 
+    cSDR-HRPD-INT-BUTT(3) 
+} 
+
+CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-DEFAULT(0),    --/* -H2ASN-MsgChoice CSDR-HRPD-TCH-START-CFG-DEFAULT-STRU */ 
+    cSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-SUBTYPE2(1),    --/* -H2ASN-MsgChoice CSDR-HRPD-TCH-START-CFG-SUBTYPE2-STRU */ 
+    cSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-BUTT(2) 
+} 
+
+CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-CHOICE-STRU    ::= <V|WHEN,V|UNION-1>CHOICE 
+{ 
+   struCSDR-HRPD-TCH-START-CFG-DEFAULT-STRU   CSDR-HRPD-TCH-START-CFG-DEFAULT-STRU   WHEN(usChoice2.v==0), 
+   struCSDR-HRPD-TCH-START-CFG-SUBTYPE2-STRU   CSDR-HRPD-TCH-START-CFG-SUBTYPE2-STRU   WHEN(usChoice2.v==1) 
+} 
+
+CSDR-HRPD-DRC-TENTATIVE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-DRC-TENTATIVE-NULL(0), 
+    cSDR-HRPD-DRC-TENTATIVE-NOT-NULL(1), 
+    cSDR-HRPD-DRC-TENTATIVE-BUTT(2) 
+} 
+
+CSDR-HRPD-AC-DATA-SPEED-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-AC-DATA-SPEED-9K6(0), 
+    cSDR-HRPD-AC-DATA-SPEED-19K2(1), 
+    cSDR-HRPD-AC-DATA-SPEED-38K4(2), 
+    cSDR-HRPD-AC-DATA-SPEED-BUTT(3) 
+} 
+
+CSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-128(0), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-256(1), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-512(2), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-768(3), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-1024(4), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-1536(5), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-2048(6), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-3072(7), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-4096(8), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-6144(9), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-8192(10), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-12288(11), 
+    cSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-BUTT(12) 
+} 
+
+CSDR-HRPD-RAB-LENGTH-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-RAB-LENGTH-8-SLOTS(0), 
+    cSDR-HRPD-RAB-LENGTH-16-SLOTS(1), 
+    cSDR-HRPD-RAB-LENGTH-32-SLOTS(2), 
+    cSDR-HRPD-RAB-LENGTH-64-SLOTS(3), 
+    cSDR-HRPD-RAB-LENGTH-BUTT(4) 
+} 
+
+CSDR-HRPD-RPC-STEP-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-RPC-STEP-HALF-DB(0), 
+    cSDR-HRPD-RPC-STEP-1-DB(1), 
+    cSDR-HRPD-RPC-STEP-BUTT(2) 
+} 
+
+CSDR-HRPD-DRC-LENGTH-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-DRC-LENGTH-1-SLOT(0), 
+    cSDR-HRPD-DRC-LENGTH-2-SLOTS(1), 
+    cSDR-HRPD-DRC-LENGTH-4-SLOTS(2), 
+    cSDR-HRPD-DRC-LENGTH-8-SLOTS(3), 
+    cSDR-HRPD-DRC-LENGTH-BUTT(4) 
+} 
+
+CSDR-HRPD-RA-CHANNEL-GAIN-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-RA-CHANNEL-GAIN-NEG-6-DB(0), 
+    cSDR-HRPD-RA-CHANNEL-GAIN-NEG-9-DB(1), 
+    cSDR-HRPD-RA-CHANNEL-GAIN-NEG-12-DB(2), 
+    cSDR-HRPD-RA-CHANNEL-GAIN-NEG-15-DB(3), 
+    cSDR-HRPD-RA-CHANNEL-GAIN-BUTT(4) 
+} 
+
+CSDR-HRPD-SHORT-PACKET-EN-THRESH-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-SHORT-PACKET-EN-THRESH-1024-BITS(0), 
+    cSDR-HRPD-SHORT-PACKET-EN-THRESH-2048-BITS(1), 
+    cSDR-HRPD-SHORT-PACKET-EN-THRESH-3072-BITS(2), 
+    cSDR-HRPD-SHORT-PACKET-EN-THRESH-4096-BITS(3), 
+    cSDR-HRPD-SHORT-PACKET-EN-THRESH-BUTT(4) 
+} 
+
+CSDR-HRPD-TL-ACKCH-MOD-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TL-ACKCH-MOD-DISABLED(0), 
+    cSDR-HRPD-TL-ACKCH-MOD-BPSK(1), 
+    cSDR-HRPD-TL-ACKCH-MOD-OOK(2), 
+    cSDR-HRPD-TL-ACKCH-MOD-BUTT(3) 
+} 
+
+CSDR-HRPD-TL-ACKCH-FIXED-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TL-ACKCH-FIXED-0(0), 
+    cSDR-HRPD-TL-ACKCH-FIXED-1(1), 
+    cSDR-HRPD-TL-ACKCH-FIXED-DISABLED(2), 
+    cSDR-HRPD-TL-ACKCH-FIXED-BUTT(3) 
+} 
+
+CSDR-HRPD-TL-DRCVALUE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-TL-DRCVALUE-0x0(0), 
+    cSDR-HRPD-TL-DRCVALUE-0x1(1), 
+    cSDR-HRPD-TL-DRCVALUE-0x2(2), 
+    cSDR-HRPD-TL-DRCVALUE-0x3(3), 
+    cSDR-HRPD-TL-DRCVALUE-0x4(4), 
+    cSDR-HRPD-TL-DRCVALUE-0x5(5), 
+    cSDR-HRPD-TL-DRCVALUE-0x6(6), 
+    cSDR-HRPD-TL-DRCVALUE-0x7(7), 
+    cSDR-HRPD-TL-DRCVALUE-0x8(8), 
+    cSDR-HRPD-TL-DRCVALUE-0x9(9), 
+    cSDR-HRPD-TL-DRCVALUE-0xA(10), 
+    cSDR-HRPD-TL-DRCVALUE-0xB(11), 
+    cSDR-HRPD-TL-DRCVALUE-0xC(12), 
+    cSDR-HRPD-TL-DRCVALUE-0xD(13), 
+    cSDR-HRPD-TL-DRCVALUE-0xE(14), 
+    cSDR-HRPD-TL-DRCVALUE-FIXED-DISABLED(15), 
+    cSDR-HRPD-TL-DRCVALUE-BUTT(16) 
+} 
+
+CSDR-HRPD-INT3-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-INT3-DONT-GENERATE(0), 
+    cSDR-HRPD-INT3-GENERATE(1), 
+    cSDR-HRPD-INT3-BUTT(2) 
+} 
+
+CSDR-HRPD-AFC-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-AFC-NOT-LOCKED(0), 
+    cSDR-HRPD-AFC-LOCKED(1), 
+    cSDR-HRPD-AFC-BUTT(2) 
+} 
+
+CSDR-HRPD-NULL-RATE-DRC-38K4-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-NULL-RATE-DRC-38K4-DISABLED(0), 
+    cSDR-HRPD-NULL-RATE-DRC-38K4-ENABLED(1), 
+    cSDR-HRPD-NULL-RATE-DRC-38K4-BUTT(2) 
+} 
+
+CSDR-HRPD-BASECNT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-BASECNT-OFFSET(0), 
+    cSDR-HRPD-BASECNT-FRAME-HEAD(1), 
+    cSDR-HRPD-BASECNT-NOT-VALID(2), 
+    cSDR-HRPD-BASECNT-BUTT(3) 
+} 
+
+CSDR-HRPD-RADIO-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-RADIO-SRLTE(0), 
+    cSDR-HRPD-RADIO-SVLTE(1), 
+    cSDR-HRPD-RADIO-BUTT(2) 
+} 
+
+CSDR-HRPD-ENH-AC-POWER-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    shwProbeInitialAdjustEACMAC    PHY-INT16, 
+ 
+    --/**< units of 1 dB */ 
+    uhwPilotStrengthCorrectionMax    PHY-UINT16, 
+ 
+    --/**< units of 1 dB */ 
+    shwPilotStrengthNominal    PHY-INT16, 
+ 
+    --/**< units of 1 dB */ 
+    shwPilotStrengthCorrectionMin    PHY-INT16 
+    --/**< units of 1 dB */ 
+} 
+
+CSDR-HRPD-FTC-START-CFG-DEFAULT-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwDRCCoverInitial    PHY-UINT16, 
+ 
+    --/**< initial value of DRCCover */ 
+    uhwDRCLockPeriod    PHY-UINT16 
+    --/**< 8 or 16 */ 
+} 
+
+CSDR-HRPD-RTC-DATA-OFFSET-STRU    ::= <V> SEQUENCE  
+{ 
+    shwRtcDataOffsetNom    PHY-INT16, 
+ 
+    --/**< range -8..7 in unit of 0.5 dB, logical power -4 to +3.5 dB in steps of 0.5 dB */ 
+    shwRtcDataOffset9k6    PHY-INT16, 
+ 
+    --/**< range -8..7 in unit of 0.25 dB, logical power -2 to + 1.75 dB in steps of 0.25 dB */ 
+    shwRtcDataOffset19k2    PHY-INT16, 
+ 
+    --/**< range -8..7 in unit of 0.25 dB, logical power -2 to + 1.75 dB in steps of 0.25 dB */ 
+    shwRtcDataOffset38k4    PHY-INT16, 
+ 
+    --/**< range -8..7 in unit of 0.25 dB, logical power -2 to + 1.75 dB in steps of 0.25 dB */ 
+    shwRtcDataOffset76k8    PHY-INT16, 
+ 
+    --/**< range -8..7 in unit of 0.25 dB, logical power -2 to + 1.75 dB in steps of 0.25 dB */ 
+    shwRtcDataOffset153k6    PHY-INT16 
+    --/**< range -8..7 in unit of 0.25 dB, logical power -2 to + 1.75 dB in steps of 0.25 dB */ 
+} 
+
+CSDR-HRPD-FTC-START-CFG-SUBTYPE2-STRU    ::= <V> SEQUENCE  
+{ 
+    enMultiUserPacketsEnabled    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< MAC Index 66-70 */ 
+    enShortPacketsEnabledThresh    CSDR-HRPD-SHORT-PACKET-EN-THRESH-ENUM, 
+ 
+    --/**< Short packets enabled threshold */ 
+    uhwDRCCoverInitial    PHY-UINT16, 
+ 
+    --/**< initial value of DRCCover */ 
+    uhwDSCInitial    PHY-UINT16, 
+ 
+    --/**< Initial value of DSC */ 
+    bARQMode    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< true**** ARQ Mode 0 Bi-Polar keying, false**- ARQ Mode 1 ACK-oriented On-Off keying */ 
+    uhwReserved    PHY-UINT16 , 
+ 
+     
+    auhwDRC-TranslationOffsetTable    <V>SEQUENCE(SIZE(14)) OF PHY-UINT16 
+    --/**< Used when computing DRC value from Tentative DRCs */ 
+} 
+
+CSDR-HRPD-RTC-START-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+     
+    auwMIRTCMAC    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< [0]:31..0 [1]:41..32 */ 
+     
+    auwMQRTCMAC    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< [0]:31..0 [1]:41..32 */ 
+    shwACKChannelGain    PHY-INT16, 
+ 
+    --/**< -3 to +6 dB in steps of 0.5 dB */ 
+    enRPCStep    CSDR-HRPD-RPC-STEP-ENUM, 
+ 
+    --/**< Reverse Power control step */ 
+    bDRCGatingEnabled    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< DRC Gating Enabled */ 
+    uhwSilenceDuration    PHY-UINT16, 
+ 
+    --/**< Reverse link silence duration in frames [1..3] */ 
+    uhwSilencePeriod    PHY-UINT16, 
+ 
+    --/**< Reverse link silence period, silence period starts at T mod (2048*2^usSilencePeriod - 1) = 0. */ 
+    uhwFrameOffset    PHY-UINT16 
+    --/**< RTC frame offset, the unit is slot,   0**-15 */ 
+} 
+
+CSDR-HRPD-RTC-START-CFG-DEFAULT-STRU    ::= <V> SEQUENCE  
+{ 
+    stRTCDataOffset    CSDR-HRPD-RTC-DATA-OFFSET-STRU, 
+ 
+    --/**< RTC Data Offset values */ 
+    shwDRCChannelGainBase    PHY-INT16, 
+ 
+    --/**< -9 dB to +6 dB in steps of 0.5 dB */ 
+    enNullRateDrc38k4    CSDR-HRPD-NULL-RATE-DRC-38K4-ENUM 
+    --/**< Enable disable, see section 10.6 in 0024 */ 
+} 
+
+CSDR-HRPD-RTC-START-CFG-SUBTYPE2-STRU    ::= <V> SEQUENCE  
+{ 
+     
+    auhwMaxNumSubPacket    <V>SEQUENCE(SIZE(3)) OF PHY-UINT16, 
+ 
+    shwDRCChannelGainBase    PHY-INT16, 
+ 
+    --/**< -9 to +6 dB in steps of 0.5 dB */ 
+    uhwDRCChannelGainBoost    PHY-UINT16, 
+ 
+    --/**< 0 to 6 dB in steps of 1 dB */ 
+    uhwDRCBoostLength    PHY-UINT16, 
+ 
+    --/**< 0x00 - 0x20, DRC shall be boosted in (2 * uhwDRCBoostLength) slots */ 
+    uhwDSCChannelGainBase    PHY-UINT16, 
+ 
+    --/**< 0 to -15.5 dB in steps of 0.5 dB */ 
+    uhwDSCChannelGainBoost    PHY-UINT16, 
+ 
+    --/**< 0 to 6 dB in steps of 1 dB */ 
+    uhwDSCBoostLength    PHY-UINT16, 
+ 
+    --/**< 0x00 - 0x40, DSC shall be boosted in (8 * uhwDRCBoostLength) slots */ 
+    uhwDSCLength    PHY-UINT16, 
+ 
+    --/**< 8 to 160 slots in steps of 8 slots */ 
+    uhwDeltaACKChannelGainMUP    PHY-UINT16, 
+ 
+    --/**< 0 to 9 dB in steps of 0.5 dB */ 
+    enAuxiliaryPilotChannelMinPayload    CSDR-HRPD-AUX-PILOT-MIN-PAYLOAD-ENUM, 
+ 
+    --/**< Payload required for triggering of Aux pilot transmission */ 
+    uhwAuxiliaryPilotChannelGain    PHY-UINT16, 
+ 
+    --/**< 0 to -15 dB in steps of -1 dB */ 
+    uhwTxT2Pmin    PHY-UINT16, 
+ 
+    --/**< 0 to 63.75 dB in steps of 0.25 dB */ 
+    shwRRIChannelGainPreTransition3    PHY-INT16, 
+ 
+    --/**< -8 dB to +7 dB, unit 1 dB */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-HRPD-ACTIVE-SET-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPilotPN-Offset    PHY-UINT16, 
+ 
+    --/**< 0 to 32704 chips in steps of 64 chips */ 
+    uhwDRCCover    PHY-UINT16, 
+ 
+    --/**< 1..6 */ 
+    enRA-ChannelGain    CSDR-HRPD-RA-CHANNEL-GAIN-ENUM, 
+ 
+    --/**< RA Channel gain */ 
+    enRAB-Length    CSDR-HRPD-RAB-LENGTH-ENUM, 
+ 
+    --/**< RAB Length */ 
+    enSofterHandoff    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< if set, this sector shall be combined with the prev sector in the list */ 
+    uhwRAB-Offset    PHY-UINT16, 
+ 
+    --/**< 1..7 */ 
+    uhwMACIndex    PHY-UINT16, 
+ 
+    --/**< 5-63 (default),  5-63, 66-70, 72-127 subtype 2 */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-HRPD-CC-STRU    ::= <V> SEQUENCE  
+{ 
+    enSubtype    CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM, 
+ 
+    --/**< Phy layer subtype */ 
+    uhwCCShortPacketsMACIndex    PHY-UINT16, 
+ 
+    --/**< only valid if enSubtype = CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-SUBTYPE2 , 0  means invalid */ 
+    uhwPilotPN-Offset    PHY-UINT16 , 
+ 
+    enCCstate    CSDR-HRPD-CC-STATE-ENUM, 
+ 
+    --/**< Initial, Idle DRX or cont */ 
+    uhwCCcycleOffset    PHY-UINT16, 
+ 
+    --/**< to identify HARQ process to be monitored, 0..3 only valid for DRX , the unit is slot */ 
+    uhwPpmReportPeriod    PHY-UINT16 
+    --/**< The period for sending CSDR-CPROC-HRPD-AFC-PPM-IND. Unit: ms. If set to 0 no sending. */ 
+} 
+
+CSDR-HRPD-FTC-START-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+     
+    astActiveSet    <V>SEQUENCE(SIZE(6)) OF CSDR-HRPD-ACTIVE-SET-STRU, 
+ 
+    --/**< Active Set */ 
+    uhwID-ActiveSet    PHY-UINT16, 
+ 
+    --/**< Id for active set, echo back to CTTF-HRPD. */ 
+    uhwSizeOfActiveSet    PHY-UINT16, 
+ 
+    --/**< Active Set, 1..CSDR-HRPD-MAX-SIZE-ACTIVE-SET */ 
+    enDRCLength    CSDR-HRPD-DRC-LENGTH-ENUM, 
+ 
+    --/**< DRC Length */ 
+    uhwDRCLockLength    PHY-UINT16 
+    --/**< DRC Lock Length */ 
+} 
+
+CSDR-HRPD-TCH-START-CFG-DEFAULT-STRU    ::= <V> SEQUENCE  
+{ 
+    stRtc    CSDR-HRPD-RTC-START-CFG-DEFAULT-STRU, 
+ 
+    --/**< RTC parameters, default */ 
+    stFtc    CSDR-HRPD-FTC-START-CFG-DEFAULT-STRU 
+    --/**< FTC parameters default */ 
+} 
+
+CSDR-HRPD-TCH-START-CFG-SUBTYPE2-STRU    ::= <V> SEQUENCE  
+{ 
+    stRtc    CSDR-HRPD-RTC-START-CFG-SUBTYPE2-STRU, 
+ 
+    --/**< RTC parameters, subtype 2 */ 
+    stFtc    CSDR-HRPD-FTC-START-CFG-SUBTYPE2-STRU 
+    --/**< FTC parameters subtype 2 */ 
+} 
+
+CPROC-CSDR-HRPD-ACTIVE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enRadioConfig    CSDR-HRPD-RADIO-ENUM, 
+ 
+    --/**< Radio configuration */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-CPROC-HRPD-ACTIVE-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SLEEP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    auwWakeUpTime    PHY-UINT32 
+    --/**< bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s) */ 
+} 
+
+CSDR-CPROC-HRPD-SLEEP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SET-MODE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enWorkMode    CSDR-HRPD-WORKMODE-ENUM , 
+ 
+    enModemId    CSDR-HRPD-MODEM-ID-ENUM 
+    --/**< modem ID */ 
+} 
+
+CSDR-CPROC-HRPD-SET-MODE-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-CM-RESET-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-CM-RESET-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-RXON-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwRX-OnTime    PHY-UINT32, 
+ 
+    --/**< bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s), or CSDR-HRPD-NOW or CSDR-HRPD-INT-1 */ 
+    enFreqValid    CSDR-HRPD-RXON-ENUM, 
+ 
+    --/**< Valid flag for frequency */ 
+    enSendInt3    CSDR-HRPD-INT3-ENUM, 
+ 
+    --/**< Indicates if CSDR shall send INT-3 to LTE, only valid if enFreqValid = CSDR-HRPD-RXON-SLAVE-MEAS, CSDR-HRPD-RXON-SLAVE-BSR or CSDR-HRPD-RXON-SLAVE-MEAS-AND-BSR */ 
+    stFreq    CSDR-HRPD-FREQ-INFO-STRU, 
+ 
+    --/**< Master or Slave Measurement Frequency (not valid if enFreqValid == CSDR-HRPD-RXON-SLAVE-BSR */ 
+    stFreqBSR    CSDR-HRPD-FREQ-INFO-STRU 
+    --/**< Slave BSR Frequency (only valid if enFreqValid == CSDR-HRPD-RXON-SLAVE-BSR or CSDR-HRPD-RXON-SLAVE-MEAS-AND-BSR */ 
+} 
+
+CSDR-CPROC-HRPD-RXON-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-RXOFF-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwRX-OffTime    PHY-UINT32 
+    --/**< bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s), or CSDR-HRPD-NOW */ 
+} 
+
+CSDR-CPROC-HRPD-RXOFF-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-CC-START-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    stCCparameters    CSDR-HRPD-CC-STRU 
+    --/**< parameters for control channel reception */ 
+} 
+
+CSDR-CPROC-HRPD-CC-START-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-CC-DONE-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    bSleepStateCapsuleDone    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< if true, the complete sleep state capsule is received and ready for sleep. */ 
+    bLastPacket    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< if true, the complete capsule is received and ready for sleep. */ 
+    bFirstPacket    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< useless for sleep judge */ 
+    bSynchronousCapsule    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< if false, means async capsule is received, ready for sleep. */ 
+    uhwNextSyncCapsuleSlot    PHY-UINT16, 
+ 
+    --/**< the first slot of the next sync Capsule , the slot number is in 5.12s, 0-3071 */ 
+    bCrcErr    CSDR-HRPD-BOOL-ENUM 
+    --/**< true**** crc err,  if preamble is not detect, csdr should report crc error to cproc immediately and if csdr failed to decode cc packet for the last slot, it will also report crc error */ 
+} 
+
+CPROC-CSDR-HRPD-CC-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+     
+    auwStopTime    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32 
+    --/**< CDMA System time, unit HRPD slots [0] low, [1] high, or if immediate [0] = CSDR-HRPD-NOW, [1] = CSDR-HRPD-NOW */ 
+} 
+
+CSDR-CPROC-HRPD-CC-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-AC-START-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enAccessType    CSDR-HRPD-AC-TYPE-ENUM, 
+ 
+    --/**< default or enhanced */ 
+    enAcDataSpeed    CSDR-HRPD-AC-DATA-SPEED-ENUM, 
+ 
+    --/**< Data speed */ 
+     
+    auwMiAcmac    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< auwMiAcmac[0] 0..31, auwMiAcmac[1] 32...41 */ 
+     
+    auwMqAcmac    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< auwMqAcmac[0] 0..31, auwMqAcmac[1] 32...41 */ 
+     
+    auwACstartTime    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< CDMA System time, unit HRPD slots [0] low, [1] high */ 
+    uhwPreambleLength    PHY-UINT16, 
+ 
+    --/**< Preamble length (default: frames [1..7], enhanced: slots [4 or 16], [1..7]*16 */ 
+    uhwCapsuleLength    PHY-UINT16, 
+ 
+    --/**< 2..15 frames, number of MAC Packets */ 
+    shwDataOffsetNorm    PHY-INT16, 
+ 
+    --/**< unit 0.5dB  [-4dB..3.5dB],  magnitude format */ 
+    shwDataOffset9k6    PHY-INT16, 
+ 
+    --/**< unit 0.25dB [-2dB..1,75dB],  magnitude format */ 
+    shwDataOffset19k2    PHY-INT16, 
+ 
+    --/**< unit 0.25dB [-2dB..1,75dB],  magnitude format */ 
+    shwDataOffset38k4    PHY-INT16, 
+ 
+    --/**< unit 0.25dB [-2dB..1,75dB],  magnitude format */ 
+    uhwOpenLoopAdjust    PHY-UINT16, 
+ 
+    --/**< units of 1 dB, The value used by the access terminal is -1 times the value */ 
+    uhwPowerStep    PHY-UINT16, 
+ 
+    --/**< units of 0.5 dB, it used in (i-1)*powerStep */ 
+    uhwProbeIndex    PHY-UINT16, 
+ 
+    --/**< the i-th probe in a probe sequence, [1..15], it corresponde to i */ 
+    shwProbeInitialAdjust    PHY-INT16, 
+ 
+    --/**< unit 1dB,  magnitude format, only for default access */ 
+    stEnhAcPwrPars    CSDR-HRPD-ENH-AC-POWER-PARA-STRU 
+    --/**< Power parameter related to Enhanced Access */ 
+} 
+
+CSDR-CPROC-HRPD-AC-START-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-AC-START-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-AC-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-AC-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-AC-ERROR-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TCH-START-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enSubtype    <V,V|LEN-16>CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM  EXPORT(usChoice2), 
+ 
+    --/* -H2ASN-MsgChoice-Export CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-UINT16 */ 
+    --/**< Phy layer subtype */ 
+    uhwConfigId    PHY-UINT16, 
+ 
+    --/**< Configuration ID for this configuration, echo back to CTTF-HRPD */ 
+    stFtc    CSDR-HRPD-FTC-START-CFG-STRU, 
+ 
+    --/**< subtype independent RTC paramters */ 
+    stRtc    CSDR-HRPD-RTC-START-CFG-STRU, 
+ 
+    --/**< subtype independent RTC paramters */ 
+    --CSDR-HRPD-TCH-START-CFG-UNION    unTchStartCfg 
+    struMsgChoice    CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-CHOICE-STRU, 
+ 
+    --/* -H2ASN-MsgChoice-When-Comment CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-UINT16 */ 
+    --/**< FTC and RTC parameters, default or subtype 2 */ 
+    bTAPValidFlg    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< true****** the next TAP is valid,   false******invalid */ 
+    enTLDrcValue    CSDR-HRPD-TL-DRCVALUE-ENUM, 
+ 
+    --/**< Test loop parameter */ 
+    enTLAckChFixed    CSDR-HRPD-TL-ACKCH-FIXED-ENUM, 
+ 
+    --/**< Test loop parameter */ 
+    enTlAckChModulation    CSDR-HRPD-TL-ACKCH-MOD-ENUM, 
+ 
+    --/**< Test loop parameter */ 
+    bARQMode    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< Test loop parameter, subtype 2 true**** ARQ Mode 0 Bi-Polar keying, false**- ARQ Mode 1 ACK-oriented On-Off keying */ 
+    uhwReserved    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-TCH-START-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TCH-MAINTAIN-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enFixMode    CSDR-HRPD-DRC-MODE-ENUM, 
+ 
+    --/**< Fixed   variable rate mode */ 
+    uhwDRCCover    PHY-UINT16, 
+ 
+    --/**< DRC Cover */ 
+    uhwDSC    PHY-UINT16, 
+ 
+    --/**< DSC, only for Subtype 2 */ 
+    uhwReserve    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-CPROC-HRPD-TCH-MAINTAIN-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uhwDRCCover-DSC    PHY-UINT16, 
+ 
+    --/**< the final DRC Cover or DSC */ 
+    uhwDRCValue    PHY-UINT16 
+    --/**< the final DRCValue */ 
+} 
+
+CPROC-CSDR-HRPD-TCH-RECONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uhwReconfigPurpose    PHY-UINT16, 
+ 
+    --/**< Bitmask; CSDR-HRPD-ACTIVE-SET-UPDATE, CSDR-HRPD-NON-AS-UPDATE, CSDR-HRPD-TESTLOOP-UPDATE */ 
+    uhwSizeOfActiveSet    PHY-UINT16, 
+ 
+    --/**< 1..CSDR-HRPD-MAX-SIZE-ACTIVE-SET, only valid if CSDR-HRPD-ACTIVE-SET-UPDATE&uhwReconfigPurpose */ 
+     
+    astActiveSet    <V>SEQUENCE(SIZE(6)) OF CSDR-HRPD-ACTIVE-SET-STRU, 
+ 
+    uhwID-ActiveSet    PHY-UINT16, 
+ 
+    --/**< Id for active set, echo back to CTTF-HRPD, only valid if CSDR-HRPD-ACTIVE-SET-UPDATE&uhwReconfigPurpose */ 
+    uhwConfigId    PHY-UINT16, 
+ 
+    --/**< Configuration ID for this configuration, echo back to CTTF-HRPD */ 
+    enDRCLength    CSDR-HRPD-DRC-LENGTH-ENUM, 
+ 
+    --/**< DRC Length, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    uhwDRCLockLength    PHY-UINT16, 
+ 
+    --/**< DRC Lock Length, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+     
+    auwMIRTCMAC    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< [0]:31..0 [1]:41..32 */ 
+     
+    auwMQRTCMAC    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< [0]:31..0 [1]:41..32 */ 
+    shwACKChannelGain    PHY-INT16, 
+ 
+    --/**< -3 to +6 dB in steps of 0.5 dB, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    enRPCStep    CSDR-HRPD-RPC-STEP-ENUM, 
+ 
+    --/**< Reverse Power control step, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    bDRCGatingEnabled    CSDR-HRPD-BOOL-ENUM, 
+ 
+    --/**< DRC Gating Enabled, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    uhwSilenceDuration    PHY-UINT16, 
+ 
+    --/**< Reverse link silence duration in frames [1..3], only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    uhwSilencePeriod    PHY-UINT16, 
+ 
+    --/**< Reverse link silence period, silence period starts at T mod (2048*2^usSilencePeriod - 1) = 0, only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    enSubtype    <V,V|LEN-16>CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM  EXPORT(usChoice2), 
+ 
+    --/* -H2ASN-MsgChoice-Export CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-UINT16 */ 
+    --/**< Phy layer subtype */ 
+    --CSDR-HRPD-TCH-START-CFG-UNION    unTchStartCfg 
+    struMsgChoice    CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-CHOICE-STRU, 
+ 
+    --/* -H2ASN-MsgChoice-When-Comment CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM-UINT16 */ 
+    --/**< FTC and RTC parameters, default or subtype 2 , only valid if CSDR-HRPD-NON-AS-UPDATE&uhwReconfigPurpose */ 
+    enTLDrcValue    CSDR-HRPD-TL-DRCVALUE-ENUM, 
+ 
+    --/**< Test loop parameter, only valid if CSDR-HRPD-TESTLOOP-UPDATE&uhwReconfigPurpose */ 
+    enTLAckChFixed    CSDR-HRPD-TL-ACKCH-FIXED-ENUM, 
+ 
+    --/**< Test loop parameter, only valid if CSDR-HRPD-TESTLOOP-UPDATE&uhwReconfigPurpose */ 
+    enTlAckChModulation    CSDR-HRPD-TL-ACKCH-MOD-ENUM, 
+ 
+    --/**< Test loop parameter, only valid if CSDR-HRPD-TESTLOOP-UPDATE&uhwReconfigPurpose */ 
+    bARQMode    CSDR-HRPD-BOOL-ENUM 
+    --/**< Test loop parameter, only valid if CSDR-HRPD-TESTLOOP-UPDATE&uhwReconfigPurpose && subtype 2  true**** ARQ Mode 0 Bi-Polar keying, false**- ARQ Mode 1 ACK-oriented On-Off keying */ 
+} 
+
+CSDR-CPROC-HRPD-TCH-RECONFIG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TCH-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-TCH-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SET-SYSTIME-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+     
+    auwSystemTime    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32, 
+ 
+    --/**< SystemTime from sync message,  auwSystemTime[0] bit[31:0] = systemTime bit[31:0], auwSystemTime[1] bit[4:0] = systemTime bit[36:32] (unit 26.67 ms) */ 
+    uwBaseCountOfSyncMsg    PHY-UINT32, 
+ 
+    --/**< Base count of the sync channel message */ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< Pn Offset received in sync msg */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CSDR-CPROC-HRPD-SET-SYSTIME-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TIME-REFERENCE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enUpdateSpeed    CSDR-HRPD-TIME-ADJUST-ENUM, 
+ 
+    --/**< Slow in continuous states, fast in DRX */ 
+    uhwPNIndex    PHY-UINT16, 
+ 
+    --/**< 0..511:The PNOffset of the timing reference pilot */ 
+    uwPNPhase    PHY-UINT32 
+    --/**< The timing reference path of the timing reference pilot. In 1 4 chip */ 
+} 
+
+CSDR-CPROC-HRPD-DRCLOCK-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+     
+    auhwDRCLock    <V>SEQUENCE(SIZE(6)) OF PHY-UINT16 
+    --/**< one per sector in active set. */ 
+} 
+
+CSDR-CPROC-HRPD-DRC-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enDRCTentative    CSDR-HRPD-DRC-TENTATIVE-ENUM, 
+ 
+    --/**< DRC tentative */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32-bit alignment */ 
+} 
+
+CPROC-CSDR-HRPD-SUSPEND-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    auwTime    PHY-UINT32 
+    --/**< bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s), or CSDR-HRPD-NOW */ 
+} 
+
+CSDR-CPROC-HRPD-SUSPEND-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-RESUME-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    auwTime    PHY-UINT32 
+    --/**< bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s), or CSDR-HRPD-NOW or CSDR-HRPD-INT-1 */ 
+} 
+
+CSDR-CPROC-HRPD-RESUME-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-GAP-START-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enGapPurpose    CSDR-HRPD-GAP-PURPOSE-ENUM, 
+ 
+    --/**< Purpose of gap */ 
+    enBaseCntType    CSDR-HRPD-BASECNT-ENUM, 
+ 
+    --/**< Type of base cnt, either offset to last basecnt value or to HRPD frame head. */ 
+    uwBaseCnt    PHY-UINT32 
+    --/**< 1 4 chips 0-(32768*4-1) */ 
+} 
+
+CSDR-CPROC-HRPD-GAP-END-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-WAKEUP-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-INT-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enInterrupt    CSDR-HRPD-INT-ENUM, 
+ 
+    --/**< INT 1 and 2, 4 or 5 */ 
+    enPurpose    CSDR-HRPD-GAP-PURPOSE-ENUM, 
+ 
+    --/**< BSR or meas */ 
+    auwTime    PHY-UINT32, 
+ 
+    --/**< HRPD time to generate interrupt, bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s), or CSDR-HRPD-NOW */ 
+    auwTime-INT-2    PHY-UINT32 
+    --/**< HRPD time to generate INT-2, bit 0-16 unit chips [0..98303], bit 17-23 unit 80ms [0..127] (period 10.24s). Only valid when enInterrupt == CSDR-HRPD-INT-1-AND-INT-2. */ 
+} 
+
+CSDR-CPROC-HRPD-INT2-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-INT3-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-AFC-PPM-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    swInitialPpm    PHY-INT32, 
+ 
+    --/**< Initial PPM value to be used by AFC */ 
+    shwCurrentTemperature    PHY-INT16, 
+ 
+    --/**< Resolution 0.1 degree C */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32-bit alignment */ 
+} 
+
+CSDR-CPROC-HRPD-AFC-PPM-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    swCurrentPpm    PHY-INT32, 
+ 
+    --/**< current PPM used by AFC */ 
+    enAfcStatus    CSDR-HRPD-AFC-ENUM, 
+ 
+    --/**< locked or not locked */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32-bit alignment */ 
+} 
+
+CSDR-CPROC-HRPD-ERROR-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    ulEventId    PHY-UINT32 
+    --/**< Signal ID or Event ID that triggered sending of CSDR-CPROC-HRPD-ERROR-IND */ 
+} 
+
+CSDR-CPROC-HRPD-FRAME-HEAD-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwFramePos    PHY-UINT32 
+    --/**< 0-(32768*4-1), 1 4chip for base cnt */ 
+} 
+
+CPROC-CSDR-HRPD-REL-ALL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-REL-ALL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TIME-SYNC-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-TIME-SYNC-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enTimeResult    CSDR-HRPD-TIME-RESULT-ENUM, 
+ 
+    --/**< the time valid flag */ 
+    uhwReserved    PHY-UINT16, 
+ 
+    --/**< 32-bit alignment */ 
+     
+    auwPulseTime    <V>SEQUENCE(SIZE(2)) OF PHY-UINT32 
+    --/**< System time in 1 16chip */ 
+} 
+
+CPROC-CSDR-HRPD-CONNECTION-STATUS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enStatus    CSDR-HRPD-CONNECTION-STATUS-ENUM, 
+ 
+    --/**< Connection status */ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CSDR-HRPD-CC-RECONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enSubtype    CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-ENUM, 
+ 
+    --/**< Phy layer subtype */ 
+    uhwCCShortPacketsMACIndex    PHY-UINT16 
+    --/**< only valid if enSubtype = CSDR-HRPD-PHYSICAL-LAYER-SUBTYPE-SUBTYPE2 ,  0  means invalid */ 
+} 
+
+CPROC-CSDR-HRPD-LPHY-WAKEUP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-LPHY-WAKEUP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-LPHY-WAKEUP-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enWakeupResult    CSDR-HRPD-WAKEUP-RESULT-ENUM , 
+ 
+    uhwReserved    PHY-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CSDR-HRPD-LPHY-SLEEP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-LPHY-CANCEL-WAKEUP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CSDR-CPROC-HRPD-LPHY-CANCEL-WAKEUP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-SAR-CTRL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    uwMask    PHY-UINT32, 
+ 
+    --/**< change type,1:uwAntennaStatus valid,2: uwSarReduction valid,other :invalid */ 
+    swAntennaStatus    PHY-INT32, 
+ 
+    --/**< current anntena connect status, 0:wireless,1:wire,valid when uwMask = 1 */ 
+    uwSarReduction    PHY-UINT32 
+    --/**< power back off level,range [0..5],SAR power step ,valid when uwMask = 2 */ 
+} 
+
+CPROC-CSDR-HRPD-SET-TEMPERATURE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    shwPaTemperature    PHY-INT16, 
+ 
+    --/**< [-25,125] */ 
+    shwTemperatureProtect    PHY-INT16, 
+ 
+    --/**< [-25,125] */ 
+     
+    ashwReserve    <V>SEQUENCE(SIZE(2)) OF PHY-INT16 
+} 
+
+CPROC-CSDR-HRPD-WAKEUP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16  
+} 
+
+CPROC-CSDR-HRPD-TCH-FLOW-STATUS-NTF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    uhwOpId    PHY-UINT16 , 
+ 
+    enStatus    CSDR-HRPD-TCH-FLOW-STATUS-ENUM, 
+ 
+    --/**< tch flow status */ 
+    uhwReserved    PHY-UINT16  
+} 
+
+Csdrhrpdcm-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CSDRHRPDCM-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 */ 
+    --CSDRHRPDCM-DummySignalUnion    dummySignalUnion 
+    struMsgChoice    CSDRHRPDCM-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CSDRHRPDCM-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Csdrhrpdcm-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Csdrhrpdcm-msg-data  
+} 
+
+Csdrhrpdcm-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

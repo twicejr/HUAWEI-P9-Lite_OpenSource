@@ -1,0 +1,22 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_L09_VN1_config.dtsi"
+/include/ "EVA_L09_VN2_pin.dtsi"
+/include/ "EVA_L09_VN2_modem_pin.dtsi"
+/include/ "EVA_L09_VN2_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C014000>;
+	hisi,boardid = <3 5 8 8>;
+	hisi,boardname = "EVA_L09_VN2";
+	hisi,config_profile = "normalhigh";
+	target-cpu {
+		target_cpu = "Kirin 955";
+	};
+};

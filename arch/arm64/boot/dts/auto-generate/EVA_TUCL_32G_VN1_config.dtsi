@@ -1,0 +1,38 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+
+/include/ "EVA_TUCL_32G_V4_config.dtsi"
+
+/{
+	hisi,modem_id = <0x3C011800>;
+	hisi,boardid = <3 5 8 4>;
+	hisi,boardname = "EVA_TUCL_32G_VN1";
+	hisi,config_profile = "highnormal";
+	target-cpu {
+		target_cpu = "Kirin 955";
+	};
+
+	amba{
+		spi0: spi@ffd70000{
+			depth_isp: depth_isp@0 {
+				/*chip-type 1:dummy  2:Al6045  4:Al6610*/
+				depth_isp,chip_type = <4>;
+			};
+		};
+	};
+
+	panel_lcd_lg_R69006_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_sharp_NT35695_5P5{
+		new_lcd_supported = <1>;
+	};
+
+	panel_lcd_jdi_R63452_5P5{
+		new_lcd_supported = <1>;
+	};
+};

@@ -1,0 +1,1 @@
+obj-$(CONFIG_HW_GADGET)        += hw_gadget/

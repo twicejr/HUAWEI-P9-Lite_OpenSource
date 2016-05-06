@@ -1,0 +1,45 @@
+//这个文件放要进行检查的*.c文件，pclint检查的结果放在编译log相同的文件夹下，名称为pclint_bsp_(相应核).txt
+//shell命令为：./obuild.py product=product_name separate=true maction maction=pclint
+//添加头文件路径方法
+//-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/dpm
+
+/*******************************************bsp1   begin*******************************************/
+/*m3_dump,bsp_trace*/
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/om
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/om/m3_dump.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/om/om_balong.c
+
+/*axi monitor*/
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/aximonitor
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/aximonitor/amon_balong.c
+
+/* socp */
+-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/socp/
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/socp/socp_balong.c
+
+/*nvim*/
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/nvim/nv_base.c
+BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/nvim/nv_comm.c
+/*******************************************bsp1   end*******************************************/
+/*******************************************bsp2   begin*****************************************/
+// bsp-2 liuwenhui begin
+// tem
+//BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/temperature/temperature.c
+// bsp-2 liuwenhui end
+
+// bsp-2 zuofenghua begin
+//mipi
+//-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/mipi
+//BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/mipi/bbp_mipi_balong.c
+//pastar
+//-IBALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pmu/hi6561
+//BALONG_TOPDIR/modem/drv/mcore/kernel/drivers/pmu/hi6561/pmu_hi6561.c
+// bsp-2 zuofenghua end
+
+//bsp-2 zhangjingyuan begin
+//bsp-2 zhangjingyuan end
+
+//bsp-2 xuwenfang begin
+//bsp-2 xuwenfang end
+/*******************************************bsp2   end*******************************************/
+

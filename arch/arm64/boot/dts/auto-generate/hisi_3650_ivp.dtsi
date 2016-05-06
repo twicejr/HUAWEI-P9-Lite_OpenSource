@@ -1,0 +1,54 @@
+/{
+	ivp_smmu:ivp_smmu@e8dc0000 {
+		compatible = "hisi,ivp-smmu";
+		reg = <0x00000000 0xe8dc0000 0x0 0x20000>;
+		interrupts = <0 254 4>;		//254:NS irq; 4: active high level-sensitive
+		status = "ok";
+		hisi,smmu-version = <0x2>;
+		iommu_info {
+			start-addr = <0x0>;
+			size = <0xE0000000>;
+		};
+	};
+
+    hisi_ivp:hisi_ivp {
+        compatible = "hisilicon,hisi-ivp";
+        reg = <0x0 0xe8d80000 0x0 0x80000>,    //cfg reg
+              <0x0 0xe8a09000 0x0 0x1000>,    //pctrl reg
+              <0x0 0xfff35000 0x0 0x1000>,    //peri_crg reg
+              <0x0 0xe82b0000 0x0 0x1000>;    //gic reg
+	      
+        interrupts = <0 255 4>, <0 275 4>;
+        interrupt-names = "ivp_irq", "ivp_dwaxi";
+        hisi-ivp-supply = <&ivp>;
+	    clocks = <&clk_gate_ivp32dsp_core>;
+	    clock-names = "hisi-ivp-clk";
+        ivp-clk-rate = <500000000>;
+        status = "ok";
+
+        ivp_mem_section {
+            /* core-addr phy-addr size */
+            /* phy-addr 0x1 means 0x10 */
+            dram0_mem {
+                section_mem = <0xe8c00000 0xe8c0000 0x10000>;
+            };
+            dram1_mem {
+                section_mem = <0xe8c80000 0xe8c8000 0x10000>;
+            };
+            iram_mem {
+                section_mem = <0xe8d00000 0xe8d0000 0x10000>;
+            };
+            ddr_mem {
+                section_mem = <0xe0000000 0x34E0000 0xE0000>;
+            };
+            log_mem {
+                section_mem = <0xe00e0000 0x34EE000 0x20000>;
+            };
+        };
+    };
+
+    hisi_ivp_ipc:hisi_ivp_ipc {
+        compatible = "hisilicon,hisi-ivp-ipc";
+        status = "ok";
+    };
+};

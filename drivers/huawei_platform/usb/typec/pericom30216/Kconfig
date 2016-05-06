@@ -1,0 +1,9 @@
+# Pericom Type C Connector
+
+config HUAWEI_TYPEC_PERICOM30216
+	tristate "pericom30216 typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable Pericom30216 Type C Connector support.
+

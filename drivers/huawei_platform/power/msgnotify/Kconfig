@@ -1,0 +1,5 @@
+config HUAWEI_MSG_POLICY
+	bool "Huawei msg policy"
+	default n
+	help
+	   huawei msg policy

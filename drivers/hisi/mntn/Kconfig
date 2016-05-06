@@ -1,0 +1,37 @@
+config HISILICON_PLATFORM_MAINTAIN
+	bool "Hisilicon platform maintain module support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform maintain module 
+
+config HISILICON_PLATFORM_HISI_EASYSHELL
+	bool "Support HiSilicon Hi6XXX Easy Shell"
+	default n
+	help
+	  This driver supports HiSilicon HiXXX SOC,
+	  including easy shell, etc.
+source "drivers/hisi/mntn/blackbox/Kconfig"
+
+config HISI_VIRT_TO_PHYS
+	bool "support converting virtual address to physical address"
+	default n
+	help
+	  Say 'Y' here if you want to support virtual address to physical address enable.
+
+config HISI_BOOT_TIME
+	bool "support print all boot slice"
+	default n
+	help
+	  Say 'Y' here if you want to print all boot slice.
+
+config HISI_LOWMEM_DBG
+	bool "Hisilicon Low Memory Killer debug"
+	default n
+	help
+	  print processes info when lmk happen per several seconds
+
+config HISI_BB_SYSCALL
+     	bool "support print system call trace "
+     	default n        
+	help
+    	  Say 'Y' here if you want to print system call trace.

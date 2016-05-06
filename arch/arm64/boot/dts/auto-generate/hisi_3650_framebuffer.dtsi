@@ -1,0 +1,56 @@
+/*
+ * Hisilicon Ltd. hi3xxxASIC SoC
+ *
+ * Copyright (C) 2013 Hisilicon Technologies CO., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+/ {
+	framebuffer@E8600000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,hisifb";
+		fastboot_enable_flag = <0>;
+		fake_lcd_flag = <0>;
+		dss_base_phy = <0xE8600000>;
+		// DSS, PERI_CRG, SCTRL, PCTRL, NOC_DSS_Service_Target, MMBUF_CFG
+		reg = <0 0xE8600000 0 0x80000>, <0 0xFFF35000 0 0x1000>, <0 0xFFF0A000 0 0x1000>, <0 0xE8A09000 0 0x1000>,
+			<0 0xE86C0000 0 0x10000>, <0 0xFFF02000 0 0x1000>;
+		// dss-pdp, dss-sdp, dss-adp, dss-dsi0, dss-dsi1 irq
+		interrupts = <0 245 4>, <0 246 4>, <0 247 4>, <0 251 4>, <0 252 4>;
+		regulator_dsssubsys-supply = <&dsssubsys>;
+		regulator_mmbuf-supply = <&mmbuf>;
+		clocks = <&aclk_gate_dss>, <&pclk_gate_dss>, <&clk_gate_edc0>, <&clk_gate_ldi0>, <&clk_gate_ldi1>,
+			<&clk_gate_dss_axi_mm>, <&pclk_gate_mmbuf>,
+			<&clk_gate_txdphy0_ref>, <&clk_gate_txdphy1_ref>, <&clk_gate_txdphy0_cfg>, <&clk_gate_txdphy1_cfg>,
+			<&pclk_gate_dsi0>, <&pclk_gate_dsi1>, <&pclk_gate_pctrl>;
+		clock-names = "aclk_dss", "pclk_dss", "clk_edc0", "clk_ldi0", "clk_ldi1",
+			"clk_dss_axi_mm", "pclk_mmbuf",
+			"clk_txdphy0_ref", "clk_txdphy1_ref", "clk_txdphy0_cfg", "clk_txdphy1_cfg",
+			"pclk_dsi0", "pclk_dsi1", "pclk_pctrl";
+		status = "ok";
+
+		iommu_info {
+			start-addr = <0x8000>;
+			size = <0xbfff8000>;
+		};
+	};
+
+	/*panel_hdmi_fake {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,hdmi_fake_panel";
+		fake_hdmi = <1>;
+		status = "ok";
+	};*/
+
+	panel_offlinecomposer {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,offlinecomposer_panel";
+		status = "ok";
+	};
+};
+

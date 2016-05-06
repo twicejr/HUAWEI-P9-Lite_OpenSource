@@ -1,0 +1,96 @@
+--/*********************************************************************************/
+--/* FileName:      csdr_hrpd.asn                                                  */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2015.8.27 16:47:57                                             */
+--
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Csdr-hrpd-definitions.Csdr-hrpd-MSG                                              
+--PROTOCOL: Csdr-hrpd                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Csdr-hrpd-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-INT32  ::= <V,V|LEN-32>INTEGER(-2147483648..2147483647) 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+PHY-UINT32  ::= <V,V|LEN-32>VOS-UINT32 
+
+PHY-UINT16  ::= <V,V|LEN-16>VOS-UINT16 
+
+CSDR-HRPD-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-BOOL-FALSE(0), 
+    cSDR-HRPD-BOOL-TRUE(1), 
+    cSDR-HRPD-BOOL-BUTT(2) 
+} 
+
+CSDR-HRPD-CELL-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cSDR-HRPD-CELL-TYPE-AS(0), 
+    cSDR-HRPD-CELL-TYPE-AS-IC(1), 
+    cSDR-HRPD-CELL-TYPE-IC(2), 
+    cSDR-HRPD-CELL-TYPE-MEAS(3), 
+    cSDR-HRPD-CELL-TYPE-BUTT(4) 
+} 
+
+CSDR-HRPD-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwBandClass    PHY-UINT16, 
+ 
+    --/**< CDMA band class */ 
+    uhwFreq    PHY-UINT16 
+    --/**< CDMA frequency */ 
+} 
+
+CSDR-HRPD-MPS-PN-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    uhwPNOffset    PHY-UINT16, 
+ 
+    --/**< The PN Offset of the pilot to be measured. 0..511, */ 
+    enCellType    CSDR-HRPD-CELL-TYPE-ENUM , 
+ 
+    uwFramePos    PHY-UINT32, 
+ 
+    --/**< 0-(32768*4-1), 1 4chip in base cnt */ 
+    uhwWindowPosition    PHY-UINT32 
+    --/**< Tail of the search window, unit 1 4 chips in base cnt */ 
+} 
+
+END

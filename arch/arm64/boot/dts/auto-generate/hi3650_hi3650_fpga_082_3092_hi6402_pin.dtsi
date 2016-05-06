@@ -1,0 +1,249 @@
+/ {
+	codec_controller@e82b9000 {
+		hi64xx_irq: hi64xx_irq@0 {
+			hi6402_pinctrl {
+			gpio000_hi6402_pinctrl_func: gpio000_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <4>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x210>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio000_hi6402_pinctrl_idle: gpio000_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <4>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x210>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio001_hi6402_pinctrl_func: gpio001_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <5>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x25c>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio001_hi6402_pinctrl_idle: gpio001_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <5>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x25c>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio002_hi6402_pinctrl_func: gpio002_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <6>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x260>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio002_hi6402_pinctrl_idle: gpio002_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <6>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x260>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio003_hi6402_pinctrl_func: gpio003_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <7>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x264>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio003_hi6402_pinctrl_idle: gpio003_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <7>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x264>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio004_hi6402_pinctrl_func: gpio004_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <8>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x268>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio004_hi6402_pinctrl_idle: gpio004_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <8>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x268>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio005_hi6402_pinctrl_func: gpio005_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <9>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x214>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio005_hi6402_pinctrl_idle: gpio005_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <9>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x214>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio009_hi6402_pinctrl_func: gpio009_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <13>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x224>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio009_hi6402_pinctrl_idle: gpio009_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <13>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x224>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio010_hi6402_pinctrl_func: gpio010_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <14>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x228>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio010_hi6402_pinctrl_idle: gpio010_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <14>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x228>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio023_hi6402_pinctrl_func: gpio023_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <27>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x26C>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio023_hi6402_pinctrl_idle: gpio023_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <27>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x26C>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio024_hi6402_pinctrl_func: gpio024_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <28>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x270>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio024_hi6402_pinctrl_idle: gpio024_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <28>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x270>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio025_hi6402_pinctrl_func: gpio025_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <29>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x274>;
+				pinconf-hi6402,bias-pulldown = <0x40 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio025_hi6402_pinctrl_idle: gpio025_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <29>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x274>;
+				pinconf-hi6402,bias-pulldown = <0x40 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio028_hi6402_pinctrl_func: gpio028_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <32>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x280>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio028_hi6402_pinctrl_idle: gpio028_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <32>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x280>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio029_hi6402_pinctrl_func: gpio029_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <33>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x284>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio029_hi6402_pinctrl_idle: gpio029_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <33>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x284>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			gpio030_hi6402_pinctrl_func: gpio030_hi6402_pinctrl_func {
+				pinctrl-hi6402,pins = <34>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x288>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+			gpio030_hi6402_pinctrl_idle: gpio030_hi6402_pinctrl_idle {
+				pinctrl-hi6402,pins = <34>;
+				pinmux-hi6402,func-sel = <3>;
+				pinconf-hi6402,ios-ctrl-conf = <0x288>;
+				pinconf-hi6402,bias-pulldown = <0 0x40>;
+				pinconf-hi6402,bias-pullup = <0 0x20>;
+				pinconf-hi6402,drive-strength = <0x04 0x1c>;
+			};
+
+			};
+
+		};
+
+	};
+
+};

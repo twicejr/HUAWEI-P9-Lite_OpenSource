@@ -1,0 +1,5 @@
+config TPS65133
+	tristate "Support for TPS65133"
+	default n
+	---help---
+	 Say Y here if you want to support TPS65133

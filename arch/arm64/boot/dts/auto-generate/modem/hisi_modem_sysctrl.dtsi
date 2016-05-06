@@ -1,0 +1,16 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only a demo for hisilicon balong modem board. You show change the
+ * address of each node according to datasheet.
+ */
+
+/ {
+	sysctrl_app:sysctrl_app{
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,sysctrl_app";
+		reg = <0x0 0xFFF0A000 0x0 0x1000>,<0x0 0xFFF0A000 0x0 0x1000>,<0x0 0xE0200000 0x0 0x1000>;
+		reg_sum = <3>; /*Don't Move!*/
+	};
+};

@@ -1,0 +1,12 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	smntn_type {
+		compatible = "hisilicon,smntn_type";
+		product_type = "PHONE";
+	};
+};

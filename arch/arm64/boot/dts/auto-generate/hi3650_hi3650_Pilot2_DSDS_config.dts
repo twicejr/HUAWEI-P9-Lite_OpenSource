@@ -1,0 +1,21 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hi3650_hi3650_udp_3001_config.dtsi"
+/include/ "hi3650_hi3650_Pilot2_DSDS_pin.dtsi"
+/include/ "hi3650_hi3650_Pilot2_DSDS_modem_pin.dtsi"
+/include/ "hi3650_hi3650_Pilot2_DSDS_hi6402_pin.dtsi"
+
+/ {
+	hisi,boardid = <3 0 0 6>;
+	hisi,boardname = "hi3650_hi3650_Pilot2_DSDS";
+	hisi,product_id = <0x3CF5FC06>;
+};

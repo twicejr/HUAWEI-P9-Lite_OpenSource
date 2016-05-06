@@ -1,0 +1,43 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_TUCL_V0_config.dtsi"
+/include/ "EVA_TUCL_V1_pin.dtsi"
+/include/ "EVA_TUCL_V1_modem_pin.dtsi"
+/include/ "EVA_TUCL_V1_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C010000>;
+	hisi,boardid = <3 5 5 1>;
+	hisi,boardname = "EVA_TUCL_V1";
+	amba{
+		i2c4: i2c@FDF0D000{
+			pericom30216_typec: typec@1d {
+				pericom30216_gpio_enb = <1>;
+				status = "ok";
+			};
+			tusb320_typec: typec@47 {
+				tusb320_gpio_enb = <1>;
+				tusb320_mdelay = <100>;
+				status = "ok";
+			};
+			fusb301_typec: typec@21 {
+				fusb301_gpio_enb = <1>;
+				status = "ok";
+			};
+			ptn5150h_typec: typec@1E {
+				ptn5150h_gpio_enb = <1>;
+				status = "ok";
+			};
+		};
+	};
+	huawei,lcd_panel{
+		lcd_id_match_tab = <0 1 10 4 9>;
+		support_lcd_type = "JDI_R63452_5P5_LCD","SHARP_NT35695_5P5_LCD","SHARP_NT35695_5P5_LCD","LG_R69006_5P5_LCD","LG_R69006_5P5_LCD";
+	};
+};

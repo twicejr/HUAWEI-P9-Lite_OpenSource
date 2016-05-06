@@ -1,0 +1,74 @@
+#
+# MMC subsystem configuration
+#
+
+menuconfig MMC
+	tristate "MMC/SD/SDIO card support"
+	depends on HAS_IOMEM
+	help
+	  This selects MultiMediaCard, Secure Digital and Secure
+	  Digital I/O support.
+
+	  If you want MMC/SD/SDIO support, you should say Y here and
+	  also to your specific host controller driver.
+
+config MMC_DEBUG
+	bool "MMC debugging"
+	depends on MMC != n
+	help
+	  This is an option for use by developers; most people should
+	  say N here.  This enables MMC core and driver debugging.
+
+config HISI_MMC_SECURE_RPMB
+       bool "MMC RPMB Security Solution"
+       depends on MMC != n
+       help
+         Enable this config will change the default behavior of RPMB
+         HMAC calucation will be done in secure wolrd.
+ config HUAWEI_SDCARD_DSM
+	bool "Listen sdcard kernel err"
+	depends on MMC != n
+	default n
+	help
+	   use huawei sdcard log radar
+config HUAWEI_EMMC_DSM
+	bool "Listen eMMC kernel err"
+	depends on MMC != n
+	default n
+	help
+	   use huawei emmc log radar
+
+config HUAWEI_EMMC_DSM_ONLY_VDET
+	bool "Listen eMMC low voltage err"
+	depends on MMC != n
+	default n
+	help
+	   use device radar only to record emmc vdet log
+
+config HISI_PARTITION_HI3650
+	bool "hi3650 partition"
+	default n
+	help
+	   config partition for hi3650 platform
+
+config HISI_PARTITION_HI6250
+	bool "hi6250 partition"
+	default n
+	help
+	   config partition for hi6250 platform
+
+config HISI_PARTITION_HI3660
+	bool "hi3660 partition"
+	default n
+	help
+	   config partition for hi3660 platform
+
+if MMC
+
+source "drivers/mmc/core/Kconfig"
+
+source "drivers/mmc/card/Kconfig"
+
+source "drivers/mmc/host/Kconfig"
+
+endif # MMC

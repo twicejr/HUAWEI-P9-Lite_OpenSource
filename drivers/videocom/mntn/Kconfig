@@ -1,0 +1,12 @@
+#
+# Video configuration
+#
+
+config MEDIA_VIDEO_MNTN
+    tristate "Balong Media Video Mntn"
+    default n
+    ---help---
+      This module adds support for mntn
+
+
+

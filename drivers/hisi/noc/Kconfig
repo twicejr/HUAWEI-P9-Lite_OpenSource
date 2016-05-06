@@ -1,0 +1,28 @@
+config HISI_NOC
+	bool "Support HiSilicon NOC"
+	default n
+	help
+	  This driver supports HiSilicon HiXXX NOC,
+	  including hisilicon noc driver.
+	   
+config HISI_NOC_HI3650_PLATFORM
+	depends on HISI_NOC
+	bool "Support HiSilicon Hi3650 NOC"
+	default n
+	help
+	   NoC platform Define -Hi3650(Austin)
+
+config HISI_NOC_HI3660_PLATFORM
+	depends on HISI_NOC
+	bool "Support HiSilicon Hi3660 NOC"
+	default n
+	help
+	   NoC platform Define -Hi3660(Chicago)
+	   
+config HISI_NOC_HI6250_PLATFORM
+	depends on HISI_NOC
+	bool "Support HiSilicon Hi6250 NOC"
+	default n
+	help
+	   NoC platform Define -Hi6250(Dallas)	   
+

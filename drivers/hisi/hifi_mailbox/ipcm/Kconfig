@@ -1,0 +1,23 @@
+menu "Hifi mailbox driver"
+
+config HIFI_IPC
+     bool "k3 multicore ipc driver"
+     default n
+     help
+          k3 multicore ipc driver.
+config HIFI_IPC_3650
+     bool "hifi 3650 mailbox driver base on ipc"
+     default n
+     help
+          transplant 3650 mailbox driver.
+config HIFI_IPC_3660
+     bool "hifi 3660 mailbox driver base on ipc"
+     default n
+     help
+          transplant 3660 mailbox driver.
+config HIFI_IPC_6250
+     bool "hifi 6250 mailbox driver base on ipc"
+     default n
+     help
+          transplant 6250 mailbox driver.
+endmenu

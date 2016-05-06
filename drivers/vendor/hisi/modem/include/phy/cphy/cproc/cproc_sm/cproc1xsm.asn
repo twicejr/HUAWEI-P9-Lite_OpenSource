@@ -1,0 +1,556 @@
+--/*********************************************************************************/
+--/* FileName:      cproc1xsm.asn                                                  */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2016.1.15 15:31:55                                             */
+--/* Create Option: H2ASN C:\Users\m73115\AppData\Local\Temp\Huawei\Daisy\CPROC1XSM_ASNfile\cproc1xsm.h C:\Users\m73115\AppData\Local\Temp\Huawei\Daisy\CPROC1XSM_ASNfile\cproc1xsm.asn*/
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Cproc1xsm-definitions.Cproc1xsm-MSG                                              
+--PROTOCOL: Cproc1xsm                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Cproc1xsm-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+CPROC-1X-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-BOOL-INVALID(0), 
+    cPROC-1X-BOOL-VALID(1), 
+    cPROC-1X-BOOL-BUTT(2) 
+} 
+
+CPROC-1X-RSLT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-RSLT-SUCC(0), 
+    cPROC-1X-RSLT-FAIL(1), 
+    cPROC-1X-RSLT-BUTT(2) 
+} 
+
+CPROC1XSM-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CAS-CPROC-1X-IDLEACCESS-MEAS-REQ(8448),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-IDLEACCESS-MEAS-REQ-STRU */ 
+    iD-CPROC-CAS-1X-IDLEACCESS-MEAS-CNF(8449),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-IDLEACCESS-MEAS-CNF-STRU */ 
+    iD-CPROC-CAS-1X-IDLEACCESS-MEAS-IND(8450),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-IDLEACCESS-MEAS-IND-STRU */ 
+    iD-CAS-CPROC-1X-TCH-MEAS-REQ(8451),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-TCH-MEAS-REQ-STRU */ 
+    iD-CPROC-CAS-1X-TCH-MEAS-CNF(8452),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-TCH-MEAS-CNF-STRU */ 
+    iD-CPROC-CAS-1X-TCH-MEAS-IND(8453),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-TCH-MEAS-IND-STRU */ 
+    iD-CAS-CPROC-1X-AGPS-MEAS-REQ(8454),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-AGPS-MEAS-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SLOT-MODE-MEAS-IND(8455),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SLOT-MODE-MEAS-IND-STRU */ 
+    iD-CPROC1XSM-MSG-TYPE-ENUM-BUTT(8456) 
+} 
+
+CPROC1XSM-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCAS-CPROC-1X-IDLEACCESS-MEAS-REQ-STRU   CAS-CPROC-1X-IDLEACCESS-MEAS-REQ-STRU   WHEN(usChoice1.v==8448), 
+   struCPROC-CAS-1X-IDLEACCESS-MEAS-CNF-STRU   CPROC-CAS-1X-IDLEACCESS-MEAS-CNF-STRU   WHEN(usChoice1.v==8449), 
+   struCPROC-CAS-1X-IDLEACCESS-MEAS-IND-STRU   CPROC-CAS-1X-IDLEACCESS-MEAS-IND-STRU   WHEN(usChoice1.v==8450), 
+   struCAS-CPROC-1X-TCH-MEAS-REQ-STRU   CAS-CPROC-1X-TCH-MEAS-REQ-STRU   WHEN(usChoice1.v==8451), 
+   struCPROC-CAS-1X-TCH-MEAS-CNF-STRU   CPROC-CAS-1X-TCH-MEAS-CNF-STRU   WHEN(usChoice1.v==8452), 
+   struCPROC-CAS-1X-TCH-MEAS-IND-STRU   CPROC-CAS-1X-TCH-MEAS-IND-STRU   WHEN(usChoice1.v==8453), 
+   struCAS-CPROC-1X-AGPS-MEAS-REQ-STRU   CAS-CPROC-1X-AGPS-MEAS-REQ-STRU   WHEN(usChoice1.v==8454), 
+   struCPROC-CAS-1X-SLOT-MODE-MEAS-IND-STRU   CPROC-CAS-1X-SLOT-MODE-MEAS-IND-STRU   WHEN(usChoice1.v==8455) 
+} 
+
+CPROC-1X-MEAS-CFG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-MEAS-CFG-TYPE-ONCE(0), 
+    cPROC-1X-MEAS-CFG-TYPE-PERIOD(1), 
+    cPROC-1X-MEAS-CFG-TYPE-BUTT(2) 
+} 
+
+CPROC-1X-NEIGH-SRCH-PRIORITY-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-NEIGH-SRCH-PRIORITY-LOW(0), 
+    cPROC-1X-NEIGH-SRCH-PRIORITY-MEDIUM(1), 
+    cPROC-1X-NEIGH-SRCH-PRIORITY-HIGH(2), 
+    cPROC-1X-NEIGH-SRCH-PRIORITY-VERY-HIGH(3), 
+    cPROC-1X-NEIGH-SRCH-PRIORITY-BUTT(4) 
+} 
+
+CPROC-1X-NEIGH-SRCH-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-NEIGH-SRCH-MODE-NONE(0), 
+    cPROC-1X-NEIGH-SRCH-MODE-SRCH-PRIORITY(1), 
+    cPROC-1X-NEIGH-SRCH-MODE-SRCH-WIN(2), 
+    cPROC-1X-NEIGH-SRCH-MODE-ALL(3), 
+    cPROC-1X-NEIGH-SRCH-MODE-BUTT(4) 
+} 
+
+CPROC-1X-MEAS-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-MEAS-TYPE-SETUP(0), 
+    cPROC-1X-MEAS-TYPE-RECFG(1), 
+    cPROC-1X-MEAS-TYPE-REL(2), 
+    cPROC-1X-MEAS-TYPE-BUTT(3) 
+} 
+
+CPROC-1X-NEIGH-MEAS-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, Band Class on which the pilot is */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, Frequency on which the pilot is */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32bit alignment */ 
+    usPNOffset    VOS-UINT16, 
+ 
+    --/**< 0..511. PN Offset of the pilot. */ 
+    uPnPhase    VOS-UINT32, 
+ 
+    --/**< 0..524287. PN Phase in 1 16 chips of the first used path. */ 
+    sPilotStrength    VOS-INT16, 
+ 
+    --/**< -200..-8, resolution 1 8dB, Ec Io of the pilot */ 
+    sEc    VOS-INT16, 
+ 
+    --/**< -1080..-8, resolution 1 8dB. Measured Ec (RSCP)of the pilot */ 
+    sTotalRxPower    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 1 8dB. RSSI of the serving frequency */ 
+    sRelativeStrength    VOS-INT16 
+    --/**< -200..-8, Resolution 1 8dB. Sum of pilot strength of AS pilots stronger than this pilot. See c:s0005Av6.0, 2.6.6.2.3. */ 
+} 
+
+CPROC-1X-NEIGH-MEAS-INFO-LIST-STRU    ::= <V> SEQUENCE  
+{ 
+    usNeighNum    VOS-UINT16 , 
+ 
+    usReserv    VOS-UINT16 , 
+ 
+     
+    astNeighMeasInd    <V>SEQUENCE(SIZE(50)) OF CPROC-1X-NEIGH-MEAS-INFO-STRU 
+} 
+
+CPROC-1X-SLOT-NEIGH-MEAS-INFO-LIST-STRU    ::= <V> SEQUENCE  
+{ 
+    usNeighNum    VOS-UINT16 , 
+ 
+    usReserv    VOS-UINT16 , 
+ 
+     
+    astNeighMeasInd    <V>SEQUENCE(SIZE(5)) OF CPROC-1X-NEIGH-MEAS-INFO-STRU 
+} 
+
+CPROC-1X-NEIGH-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    enOpSearchPriority    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is enSearchPriority included */ 
+    enSrchWinNeigh    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is enSrchWinNeigh included */ 
+    enSrchWinOffsetNeigh    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is enSrchWinOffsetNeigh included */ 
+    usNeighPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PN offset of the pilot */ 
+    enSearchPriority    CPROC-1X-NEIGH-SRCH-PRIORITY-ENUM , 
+ 
+    usSrchWinNeigh    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1 SRCH-WIN-NGHBR */ 
+    usSrchWinOffsetNeigh    VOS-UINT16, 
+ 
+    --/**< 0..6, see table 2.6.6.2.1-2 SRCH-OFFSET-NGHBR */ 
+    usFreq    VOS-UINT16, 
+ 
+    --/**< NGHBR-FREQ */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< NGHBR-BAND */ 
+    usReseved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-SF-NEIGH-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< Band class of the SF cells */ 
+    usFreq    VOS-UINT16, 
+ 
+    --/**< Frequency of the SF cells */ 
+    usRefPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PNOffset of the reference pilot */ 
+    sSfTotalRxPower    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB, RSSI of the frequency */ 
+    sTotalAsEc    VOS-INT16, 
+ 
+    --/**< Range TBD, total Ec of the active set. Valid in TCH only. */ 
+    sTotalSfEcIo    VOS-INT16, 
+ 
+    --/**< Range TBD, Total Ec No of the serving frequency.  Valid in TCH only. */ 
+    stSfNeighMeasInfoList    CPROC-1X-NEIGH-MEAS-INFO-LIST-STRU  
+} 
+
+CPROC-1X-CF-NEIGH-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< Band class of the CF cells */ 
+    usFreq    VOS-UINT16, 
+ 
+    --/**< Frequency of the CF cells */ 
+    sSFTotalRxPower    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB, RSSI of the serving frequency */ 
+    sCFTotalRxPower    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB, RSSI of the candidate frequency */ 
+    sCFTotalEcIo    VOS-INT16, 
+ 
+    --/**< -25..20, Total EcIo of the candidate frequency */ 
+    usReserved1    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    stCfNeighMeasInfoList    CPROC-1X-NEIGH-MEAS-INFO-LIST-STRU  
+} 
+
+CPROC-1X-NEIGH-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    usSrchWinA    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for Active and Candidate set. SRCH-WIN-A */ 
+    usSrchWinN    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for neighbor set. SRCH-WIN-N */ 
+    usSrchWinR    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for remaining set. SRCH-WIN-R */ 
+    usPilotIncrement    VOS-UINT16, 
+ 
+    --/**< 1..15 for remaining set search, PILOT-INC */ 
+    enNeighSearchMode    CPROC-1X-NEIGH-SRCH-MODE-ENUM, 
+ 
+    --/**< use window size and or offsets? NGHBR-SRCH-MODE */ 
+    enRemainingSetSearchFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usNeighNum    VOS-UINT16, 
+ 
+    --/**< Number of configured pilots in the astNeighInfo array */ 
+     
+    astNeighInfo    <V>SEQUENCE(SIZE(40)) OF CPROC-1X-NEIGH-INFO-STRU 
+} 
+
+CPROC-1X-SF-NEIGH-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    enMeasmentType    CPROC-1X-MEAS-TYPE-ENUM, 
+ 
+    --/**< setup ,config, release */ 
+    usSrchWinA    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for Active and Candidate set.  SRCH-WIN-A */ 
+    usSrchWinN    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for neighbor set. SRCH-WIN-N */ 
+    usSrchWinR    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for remaining set. SRCH-WIN-R */ 
+    usPilotIncrement    VOS-UINT16, 
+ 
+    --/**< 1..15 for remaining set search, PILOT-INC */ 
+    enRemainingSetSearchFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enNeighSearchMode    CPROC-1X-NEIGH-SRCH-MODE-ENUM, 
+ 
+    --/**< Use win size and or offset, NGHBR-SRCH-MODE */ 
+    usNeighNum    VOS-UINT16, 
+ 
+    --/**< Number of pilots in astSFNeighInfo array */ 
+     
+    astSFNeighInfo    <V>SEQUENCE(SIZE(40)) OF CPROC-1X-NEIGH-INFO-STRU 
+} 
+
+CPROC-1X-CF-NEIGH-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    enMeasmentType    CPROC-1X-MEAS-TYPE-ENUM, 
+ 
+    --/**< setup ,config, release */ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< 0..63, in increments of 80ms, ACTION-TIME */ 
+    enSearchType    CPROC-1X-MEAS-CFG-TYPE-ENUM, 
+ 
+    --/**< one time or period search */ 
+    usSearchPeriod    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.8.3.2-1, SEARCH-PERIOD */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFreq    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usSFTotalEcThresh    VOS-UINT16, 
+ 
+    --/**< 0..31, 31 = do not use threshold. Total Ec threshold over which no CF meas needs to be done. SF-TOTAL-EC-THRESH */ 
+    usSFTotalEcIoThresh    VOS-UINT16, 
+ 
+    --/**< 0..31, 31 = do not use threshold. Total Ec Io threshold over which no CF meas shall be done. SF-TOTAL-EC-IO-THRESH */ 
+    usDiffRxPowerThresh    VOS-UINT16, 
+ 
+    --/**< 0..31, DIFF-RX-PWR-THRESH */ 
+    usMinCFTotalEcIoThresh    VOS-UINT16, 
+ 
+    --/**< 0..31. Threshold for handoff fail, see MIN-TOTAL-PILOT-EC-IO */ 
+    usCFPilotIncrement    VOS-UINT16, 
+ 
+    --/**< 1..15, CF-PILOT-INC */ 
+    usCFSearchWinN    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for CF neighbor set. CF-SRCH-WIN-N */ 
+    usCFSearchWinR    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 2.6.6.2.1-1. Search window size for CF remaining set.CF-SRCH-WIN-R */ 
+    usCFNeighNum    VOS-UINT16, 
+ 
+    --/**< Number of configured pilots in astCFNeighInfo array. NUM-PILOTS */ 
+    enAlignTimingInd    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< ALIGN-TIMING */ 
+    usSearchOffset    VOS-UINT16, 
+ 
+    --/**< 0..63, in 1.25ms, valid only if enAlignTimingInd is set. SEARCH-OFFSET */ 
+    usCfTAdd    VOS-UINT16, 
+ 
+    --/**< 0..63, threshold for including pilots in the calculation of CF Total EcIo, CF-T-ADD */ 
+    enNeighSearchMode    CPROC-1X-NEIGH-SRCH-MODE-ENUM, 
+ 
+    --/**< Use win size and or priority CF-NGHBR-SRCH-MODE */ 
+     
+    astCFNeighInfo    <V>SEQUENCE(SIZE(40)) OF CPROC-1X-NEIGH-INFO-STRU 
+} 
+
+CAS-CPROC-1X-IDLEACCESS-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enMeasmentType    CPROC-1X-MEAS-TYPE-ENUM, 
+ 
+    --/**< setup, reconfig or release */ 
+    usReserved1    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    stNeighConfig    CPROC-1X-NEIGH-CFG-STRU  
+} 
+
+CPROC-CAS-1X-IDLEACCESS-MEAS-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enResult    CPROC-1X-RSLT-ENUM , 
+ 
+    enMeasmentType    CPROC-1X-MEAS-TYPE-ENUM 
+    --/**< Setup, reconfig or release */ 
+} 
+
+CPROC-CAS-1X-IDLEACCESS-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    uwTimeRefMs    VOS-UINT32, 
+ 
+    --/**< 0..14399999, resolution 1ms. System time mode 14400000, CS0022 TIME-REF-MS */ 
+    shwMobSysTOffset    VOS-INT16, 
+ 
+    --/**< -512..511.9375, resolution 1 16chip CS0022 MOB-SYS-T-OFFSET */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    stNeighMeasInfoList    CPROC-1X-NEIGH-MEAS-INFO-LIST-STRU  
+} 
+
+CAS-CPROC-1X-TCH-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enServNeighConfigFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is the SF Neighbor configuration included */ 
+    enCandidateNeighConfigFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is the CF Neighbor configuration included */ 
+    stServNeighConfig    CPROC-1X-SF-NEIGH-CFG-STRU, 
+ 
+    --/**< SF neighbor configuration */ 
+    stCandidateNeighConfig    CPROC-1X-CF-NEIGH-CFG-STRU 
+    --/**< CF neighbor configuration */ 
+} 
+
+CPROC-CAS-1X-TCH-MEAS-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enResult    CPROC-1X-RSLT-ENUM , 
+ 
+    enCandidateNeighConfigFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    usForwardTotalOffTime    VOS-UINT16, 
+ 
+    --/**< 0..63, in PCG or 20ms, see enPCGOffTimeInd. Sum of the time off, TOTAL-OFF-TIME-FWD */ 
+    usForwardMaxOffTime    VOS-UINT16, 
+ 
+    --/**< 0..63,  in PCG or 20ms, see enPCGOffTimeInd. Time off per visit to CF, MAX-OFF-TIME-FWD */ 
+    usReverseTotalOffTime    VOS-UINT16, 
+ 
+    --/**< 0..63,  in PCG or 20ms, see enPCGOffTimeInd. Sum of the time off, TOTAL-OFF-TIME-REV */ 
+    usReverseMaxOffTime    VOS-UINT16, 
+ 
+    --/**< 0..63,  in PCG or 20ms, see enPCGOffTimeInd. Time off per visit to CF, MAX-OFF-TIME-REV */ 
+    enPCGOffTimeInd    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< 0 => time off in 20ms, 1 => time off in PCG, PCG-OFF-TIMES */ 
+    enAlignUsedInd    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< ALIGN-TIMING-USED */ 
+    usVisitNum    VOS-UINT16, 
+ 
+    --/**< 0..31, max number of visits to CF per measurement period -1 , MAX-NUM-VISITS */ 
+    usInterVisitTime    VOS-UINT16 
+    --/**< INTER-VISIT-TIME */ 
+} 
+
+CPROC-CAS-1X-TCH-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    uwTimeRefMs    VOS-UINT32, 
+ 
+    --/**< 0..14399999, resolution 1ms. System time mode 14400000, CS0022 TIME-REF-MS */ 
+    shwMobSysTOffset    VOS-INT16, 
+ 
+    --/**< -512..511.9375, resolution 1 16chip CS0022 MOB-SYS-T-OFFSET */ 
+    enSfNeighMeasIndFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    stSfNeighMeasInd    CPROC-1X-SF-NEIGH-MEAS-IND-STRU , 
+ 
+    enCfNeighMeasIndFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    usReserve1    VOS-UINT16 , 
+ 
+    stCfNeighMeasInd    CPROC-1X-CF-NEIGH-MEAS-IND-STRU  
+} 
+
+CAS-CPROC-1X-AGPS-MEAS-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    uwAgpsRptType    VOS-UINT32 
+    --/**< 0:stop  1:start */ 
+} 
+
+CPROC-CAS-1X-SLOT-MODE-MEAS-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XSM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    stNeighMeasInfoList    CPROC-1X-SLOT-NEIGH-MEAS-INFO-LIST-STRU  
+} 
+
+Cproc1xsm-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CPROC1XSM-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CPROC1XSM-MSG-TYPE-ENUM-UINT16 */ 
+    --CPROC1XSM-DummySignalUnion    dummySignalUnion 
+    struMsgChoice    CPROC1XSM-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CPROC1XSM-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Cproc1xsm-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Cproc1xsm-msg-data  
+} 
+
+Cproc1xsm-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

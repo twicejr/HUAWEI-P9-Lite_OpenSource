@@ -1,0 +1,8 @@
+ / {
+    hisi_bci_battery:battery {
+        compatible = "huawei,hisi_bci_battery";
+        battery_is_removable = <0>;
+        battery_board_type = <2>; /*0:sft 1:udp 2:asic*/
+        status = "disabled";
+    };
+};

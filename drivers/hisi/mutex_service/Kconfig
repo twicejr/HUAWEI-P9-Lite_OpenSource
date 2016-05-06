@@ -1,0 +1,5 @@
+config HISILICON_PLATFORM_MUTEX_SERVICE
+	bool "Hisilicon platform mutex service support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform mutex service

@@ -1,0 +1,14 @@
+if HISI_CAMERA_LASER
+
+menu "st camera laser driver support"
+
+config HISI_CAMERA_VL53L0
+    tristate "vl53l0 camera laser driver"
+    depends on HISI_CAMERA_LASER
+    default n
+    ---help---
+        vl53l0 camera laser driver
+
+endmenu
+
+endif

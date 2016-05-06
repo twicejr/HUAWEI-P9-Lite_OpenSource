@@ -1,0 +1,21 @@
+
+menu "Bluetooth device drivers"
+	depends on BT
+
+config BT_POWER
+    tristate "BCM4334 Bluetooth Power Control"
+    depends on RFKILL
+    default n
+    help
+      Provides a parameter to switch on/off power from PMIC
+      to Bluetooth device.
+
+config BT_SLEEP
+	tristate "BCM4334 Bluesleep driver"
+	depends on BT_HCIUART
+	default n
+	help
+	  BCM4334 bluesleep driver.
+	  This driver provides support for BTS sleep.
+
+endmenu

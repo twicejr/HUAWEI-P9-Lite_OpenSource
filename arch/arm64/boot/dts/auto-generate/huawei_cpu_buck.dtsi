@@ -1,0 +1,14 @@
+/ {
+	huawei_cpu_buck: huawei_cpu_buck {
+		compatible = "huawei,cpu_buck";
+		status = "disabled";
+	};
+	huawei_hi6422v100: huawei_hi6422v100 {
+		compatible = "huawei,hi6422v100";
+		status = "disabled";
+	};
+	huawei_lp8754: huawei_lp8758 {
+		compatible = "huawei,lp8758";
+		status = "disabled";
+	};
+};

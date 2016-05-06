@@ -1,0 +1,2456 @@
+--/*********************************************************************************/
+--/* FileName:      cproc1xcm.asn                                                  */
+--/* Description:   H2ASN TOOLS Generate ASN.1 file                                */
+--/* CopyRight:     Huawei Technologies Co., Ltd.                                  */
+--/* Created By:                                                                   */
+--/* HISTORY VER:   NULL                                                           */
+--/* VERSION:       1.0                                                            */
+--/* Create Time:   2016.1.15 15:31:20                                             */
+--/* Create Option: H2ASN C:\Users\m73115\AppData\Local\Temp\Huawei\Daisy\CPROC1XCM_ASNfile\cproc1xcm.h C:\Users\m73115\AppData\Local\Temp\Huawei\Daisy\CPROC1XCM_ASNfile\cproc1xcm.asn*/
+--/*********************************************************************************/
+                                                                                   
+--ROOT    : Cproc1xcm-definitions.Cproc1xcm-MSG                                              
+--PROTOCOL: Cproc1xcm                                                                     
+--ENDIAN  : LITTLE                                                                   
+--BOUNDARY: ALIGN                                                                    
+--THREAD  : MULTI                                                                    
+                                                                                     
+Cproc1xcm-definitions DEFINITIONS ::=                                                             
+BEGIN                                                                                
+                                                                                   
+VOS-UINT8  ::= <V,V|LEN-8>INTEGER(0..255) 
+
+VOS-UINT16 ::= <V,V|LEN-16>INTEGER(0..65535) 
+
+VOS-INT16  ::= <V,V|LEN-16>INTEGER(-32768..32767) 
+
+VOS-UINT32 ::= <V,V|LEN-32>INTEGER(0..4294967295) 
+
+VOS-MSG-HEADER  ::= <V>SEQUENCE 
+{ 
+    ulSenderCpuId    VOS-UINT32, 
+    ulSenderPid      VOS-UINT32, 
+    ulReceiverCpuId  VOS-UINT32, 
+    ulReceiverPid    VOS-UINT32 
+} 
+
+VOS-RATMODE-ENUM    ::= <V,V|LEN-32> ENUMERATED  
+{ 
+    vOS-RATMODE-GSM(0), 
+    vOS-RATMODE-WCDMA(1), 
+    vOS-RATMODE-LTE(2), 
+    vOS-RATMODE-TDS(3), 
+    vOS-RATMODE-1X(4), 
+    vOS-RATMODE-EVDO(5), 
+    vOS-RATMODE-BUTT(6) 
+} 
+
+MODEM-ID-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    mODEM-ID-BUTT(0) 
+} 
+
+MsgBlock    ::= <V> SEQUENCE  
+{ 
+     
+    dummy    <V>SEQUENCE(SIZE(4)) OF VOS-UINT8 
+} 
+
+CPROC-1X-BOOL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-BOOL-INVALID(0), 
+    cPROC-1X-BOOL-VALID(1), 
+    cPROC-1X-BOOL-BUTT(2) 
+} 
+
+CPROC-1X-RSLT-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-RSLT-SUCC(0), 
+    cPROC-1X-RSLT-FAIL(1), 
+    cPROC-1X-RSLT-BUTT(2) 
+} 
+
+CPROC1XCM-MSG-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    iD-CAS-CPROC-1X-LONG-CODE-CFG-REQ(8192),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-LONG-CODE-CFG-REQ-STRU */ 
+    iD-CPROC-CAS-1X-LONG-CODE-CFG-CNF(8193),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-LONG-CODE-CFG-CNF-STRU */ 
+    iD-CAS-CPROC-1X-REL-ALL-REQ(8194),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-REL-ALL-REQ-STRU */ 
+    iD-CPROC-CAS-1X-REL-ALL-CNF(8195),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-REL-ALL-CNF-STRU */ 
+    iD-CAS-CPROC-1X-SET-WORK-MODE-REQ(8200),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SET-WORK-MODE-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SET-WORK-MODE-CNF(8201),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SET-WORK-MODE-CNF-STRU */ 
+    iD-CPROC-CAS-1X-GOOD-FRAME-IND(8202),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-GOOD-FRAME-IND-STRU */ 
+    iD-CPROC-CAS-1X-HANDOFF-FAIL-IND(8203),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-HANDOFF-FAIL-IND-STRU */ 
+    iD-CPROC-CAS-1X-TCH-LOST-IND(8204),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-TCH-LOST-IND-STRU */ 
+    iD-CAS-CPROC-1X-SIGNAL-LEVEL-REQ(8256),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SIGNAL-LEVEL-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SIGNAL-LEVEL-CNF(8257),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SIGNAL-LEVEL-CNF-STRU */ 
+    iD-CAS-CPROC-1X-SIGNAL-LEVEL-STOP-REQ(8258),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SIGNAL-LEVEL-STOP-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SIGNAL-LEVEL-STOP-CNF(8259),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SIGNAL-LEVEL-STOP-CNF-STRU */ 
+    iD-CAS-CPROC-1X-SIGNAL-LEVEL-SUSPEND-REQ(8260),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SIGNAL-LEVEL-SUSPEND-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SIGNAL-LEVEL-SUSPEND-CNF(8261),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SIGNAL-LEVEL-SUSPEND-CNF-STRU */ 
+    iD-CAS-CPROC-1X-SIGNAL-LEVEL-RESUME-REQ(8262),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SIGNAL-LEVEL-RESUME-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SIGNAL-LEVEL-RESUME-CNF(8263),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SIGNAL-LEVEL-RESUME-CNF-STRU */ 
+    iD-CAS-CPROC-1X-PILOT-SEARCH-RESUME-REQ(8264),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-PILOT-SEARCH-RESUME-REQ-STRU */ 
+    iD-CPROC-CAS-1X-PILOT-SEARCH-RESUME-CNF(8265),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PILOT-SEARCH-RESUME-CNF-STRU */ 
+    iD-CAS-CPROC-1X-PILOT-SEARCH-STOP-REQ(8266),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-PILOT-SEARCH-STOP-REQ-STRU */ 
+    iD-CPROC-CAS-1X-PILOT-SEARCH-STOP-CNF(8267),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PILOT-SEARCH-STOP-CNF-STRU */ 
+    iD-CAS-CPROC-1X-PILOT-SEARCH-SUSPEND-REQ(8268),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-PILOT-SEARCH-SUSPEND-REQ-STRU */ 
+    iD-CPROC-CAS-1X-PILOT-SEARCH-SUSPEND-CNF(8269),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PILOT-SEARCH-SUSPEND-CNF-STRU */ 
+    iD-CAS-CPROC-1X-PILOT-SEARCH-REQ(8270),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-PILOT-SEARCH-REQ-STRU */ 
+    iD-CPROC-CAS-1X-PILOT-SEARCH-IND(8271),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PILOT-SEARCH-IND-STRU */ 
+    iD-CPROC-CAS-1X-PILOT-SEARCH-DONE-IND(8272),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PILOT-SEARCH-DONE-IND-STRU */ 
+    iD-CPROC-CAS-1X-ACTION-IND(8273),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-ACTION-IND-STRU */ 
+    iD-CAS-CPROC-1X-CCI-REQ(8274),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-CCI-REQ-STRU */ 
+    iD-CPROC-CAS-1X-CCI-CNF(8275),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-CCI-CNF-STRU */ 
+    iD-CPROC-CAS-1X-CCI-IND(8276),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-CCI-IND-STRU */ 
+    iD-CAS-CPROC-1X-FSYNC-START-REQ(8277),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-FSYNC-START-REQ-STRU */ 
+    iD-CPROC-CAS-1X-FSYNC-START-CNF(8278),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-FSYNC-START-CNF-STRU */ 
+    iD-CAS-CPROC-1X-FSYNC-STOP-REQ(8279),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-FSYNC-STOP-REQ-STRU */ 
+    iD-CPROC-CAS-1X-FSYNC-STOP-CNF(8280),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-FSYNC-STOP-CNF-STRU */ 
+    iD-CAS-CPROC-1X-TCH-CONFIG-REQ(8281),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-TCH-CONFIG-REQ-STRU */ 
+    iD-CPROC-CAS-1X-TCH-CONFIG-CNF(8282),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-TCH-CONFIG-CNF-STRU */ 
+    iD-CAS-CPROC-1X-COMMON-CH-CONFIG-REQ(8285),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-COMMON-CH-CONFIG-REQ-STRU */ 
+    iD-CPROC-CAS-1X-COMMON-CH-CONFIG-CNF(8286),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-COMMON-CH-CONFIG-CNF-STRU */ 
+    iD-CAS-CPROC-1X-CHANNEL-REL-REQ(8287),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-CHANNEL-REL-REQ-STRU */ 
+    iD-CPROC-CAS-1X-CHANNEL-REL-CNF(8288),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-CHANNEL-REL-CNF-STRU */ 
+    iD-CAS-CPROC-1X-STOP-COMMON-CH-MONITOR-REQ(8289),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-STOP-COMMON-CH-MONITOR-REQ-STRU */ 
+    iD-CPROC-CAS-1X-STOP-COMMON-CH-MONITOR-CNF(8290),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-STOP-COMMON-CH-MONITOR-CNF-STRU */ 
+    iD-CPROC-CAS-1X-SET-TIMING-CNF(8291),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SET-TIMING-CNF-STRU */ 
+    iD-CAS-CPROC-1X-SET-TIMING-REQ(8292),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SET-TIMING-REQ-STRU */ 
+    iD-CAS-CPROC-1X-PWRCTRL-CONFIG-REQ(8293),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-PWRCTRL-CONFIG-REQ-STRU */ 
+    iD-CPROC-CAS-1X-PWRCTRL-CONFIG-CNF(8294),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PWRCTRL-CONFIG-CNF-STRU */ 
+    iD-CPROC-CAS-1X-PWRCTRL-IND(8295),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-PWRCTRL-IND-STRU */ 
+    iD-CAS-CPROC-1X-OLPC-RSLT-RPT-REQ(8296),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-OLPC-RSLT-RPT-REQ-STRU */ 
+    iD-CPROC-CAS-1X-ERROR-IND(8297),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-ERROR-IND-STRU */ 
+    iD-CAS-CPROC-1X-START-COMMON-CH-MONITOR-REQ(8298),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-START-COMMON-CH-MONITOR-REQ-STRU */ 
+    iD-CPROC-CAS-1X-START-COMMON-CH-MONITOR-CNF(8299),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-START-COMMON-CH-MONITOR-CNF-STRU */ 
+    iD-CPROC-CAS-1X-RF-IND(8300),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-RF-IND-STRU */ 
+    iD-CPROC-CAS-1X-NO-RF-IND(8301),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-NO-RF-IND-STRU */ 
+    iD-CAS-CPROC-1X-TIME-SYNC-REQ(8302),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-TIME-SYNC-REQ-STRU */ 
+    iD-CPROC-CAS-1X-TIME-SYNC-IND(8303),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-TIME-SYNC-IND-STRU */ 
+    iD-CAS-CPROC-1X-TRAFFIC-INFO-REQ(8304),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-TRAFFIC-INFO-REQ-STRU */ 
+    iD-CAS-CPROC-1X-SLOTTED-MODE-CONTINUE-REQ(8305),    --/* -H2ASN-MsgChoice CAS-CPROC-1X-SLOTTED-MODE-CONTINUE-REQ-STRU */ 
+    iD-CPROC-CAS-1X-SLOTTED-MODE-CONTINUE-CNF(8306),    --/* -H2ASN-MsgChoice CPROC-CAS-1X-SLOTTED-MODE-CONTINUE-CNF-STRU */ 
+    iD-CPROC1XCM-MSG-TYPE-ENUM-BUTT(8307) 
+} 
+
+CPROC1XCM-MSG-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN>CHOICE 
+{ 
+   struCAS-CPROC-1X-LONG-CODE-CFG-REQ-STRU   CAS-CPROC-1X-LONG-CODE-CFG-REQ-STRU   WHEN(usChoice1.v==8192), 
+   struCPROC-CAS-1X-LONG-CODE-CFG-CNF-STRU   CPROC-CAS-1X-LONG-CODE-CFG-CNF-STRU   WHEN(usChoice1.v==8193), 
+   struCAS-CPROC-1X-REL-ALL-REQ-STRU   CAS-CPROC-1X-REL-ALL-REQ-STRU   WHEN(usChoice1.v==8194), 
+   struCPROC-CAS-1X-REL-ALL-CNF-STRU   CPROC-CAS-1X-REL-ALL-CNF-STRU   WHEN(usChoice1.v==8195), 
+   struCAS-CPROC-1X-SET-WORK-MODE-REQ-STRU   CAS-CPROC-1X-SET-WORK-MODE-REQ-STRU   WHEN(usChoice1.v==8200), 
+   struCPROC-CAS-1X-SET-WORK-MODE-CNF-STRU   CPROC-CAS-1X-SET-WORK-MODE-CNF-STRU   WHEN(usChoice1.v==8201), 
+   struCPROC-CAS-1X-GOOD-FRAME-IND-STRU   CPROC-CAS-1X-GOOD-FRAME-IND-STRU   WHEN(usChoice1.v==8202), 
+   struCPROC-CAS-1X-HANDOFF-FAIL-IND-STRU   CPROC-CAS-1X-HANDOFF-FAIL-IND-STRU   WHEN(usChoice1.v==8203), 
+   struCPROC-CAS-1X-TCH-LOST-IND-STRU   CPROC-CAS-1X-TCH-LOST-IND-STRU   WHEN(usChoice1.v==8204), 
+   struCAS-CPROC-1X-SIGNAL-LEVEL-REQ-STRU   CAS-CPROC-1X-SIGNAL-LEVEL-REQ-STRU   WHEN(usChoice1.v==8256), 
+   struCPROC-CAS-1X-SIGNAL-LEVEL-CNF-STRU   CPROC-CAS-1X-SIGNAL-LEVEL-CNF-STRU   WHEN(usChoice1.v==8257), 
+   struCAS-CPROC-1X-SIGNAL-LEVEL-STOP-REQ-STRU   CAS-CPROC-1X-SIGNAL-LEVEL-STOP-REQ-STRU   WHEN(usChoice1.v==8258), 
+   struCPROC-CAS-1X-SIGNAL-LEVEL-STOP-CNF-STRU   CPROC-CAS-1X-SIGNAL-LEVEL-STOP-CNF-STRU   WHEN(usChoice1.v==8259), 
+   struCAS-CPROC-1X-SIGNAL-LEVEL-SUSPEND-REQ-STRU   CAS-CPROC-1X-SIGNAL-LEVEL-SUSPEND-REQ-STRU   WHEN(usChoice1.v==8260), 
+   struCPROC-CAS-1X-SIGNAL-LEVEL-SUSPEND-CNF-STRU   CPROC-CAS-1X-SIGNAL-LEVEL-SUSPEND-CNF-STRU   WHEN(usChoice1.v==8261), 
+   struCAS-CPROC-1X-SIGNAL-LEVEL-RESUME-REQ-STRU   CAS-CPROC-1X-SIGNAL-LEVEL-RESUME-REQ-STRU   WHEN(usChoice1.v==8262), 
+   struCPROC-CAS-1X-SIGNAL-LEVEL-RESUME-CNF-STRU   CPROC-CAS-1X-SIGNAL-LEVEL-RESUME-CNF-STRU   WHEN(usChoice1.v==8263), 
+   struCAS-CPROC-1X-PILOT-SEARCH-RESUME-REQ-STRU   CAS-CPROC-1X-PILOT-SEARCH-RESUME-REQ-STRU   WHEN(usChoice1.v==8264), 
+   struCPROC-CAS-1X-PILOT-SEARCH-RESUME-CNF-STRU   CPROC-CAS-1X-PILOT-SEARCH-RESUME-CNF-STRU   WHEN(usChoice1.v==8265), 
+   struCAS-CPROC-1X-PILOT-SEARCH-STOP-REQ-STRU   CAS-CPROC-1X-PILOT-SEARCH-STOP-REQ-STRU   WHEN(usChoice1.v==8266), 
+   struCPROC-CAS-1X-PILOT-SEARCH-STOP-CNF-STRU   CPROC-CAS-1X-PILOT-SEARCH-STOP-CNF-STRU   WHEN(usChoice1.v==8267), 
+   struCAS-CPROC-1X-PILOT-SEARCH-SUSPEND-REQ-STRU   CAS-CPROC-1X-PILOT-SEARCH-SUSPEND-REQ-STRU   WHEN(usChoice1.v==8268), 
+   struCPROC-CAS-1X-PILOT-SEARCH-SUSPEND-CNF-STRU   CPROC-CAS-1X-PILOT-SEARCH-SUSPEND-CNF-STRU   WHEN(usChoice1.v==8269), 
+   struCAS-CPROC-1X-PILOT-SEARCH-REQ-STRU   CAS-CPROC-1X-PILOT-SEARCH-REQ-STRU   WHEN(usChoice1.v==8270), 
+   struCPROC-CAS-1X-PILOT-SEARCH-IND-STRU   CPROC-CAS-1X-PILOT-SEARCH-IND-STRU   WHEN(usChoice1.v==8271), 
+   struCPROC-CAS-1X-PILOT-SEARCH-DONE-IND-STRU   CPROC-CAS-1X-PILOT-SEARCH-DONE-IND-STRU   WHEN(usChoice1.v==8272), 
+   struCPROC-CAS-1X-ACTION-IND-STRU   CPROC-CAS-1X-ACTION-IND-STRU   WHEN(usChoice1.v==8273), 
+   struCAS-CPROC-1X-CCI-REQ-STRU   CAS-CPROC-1X-CCI-REQ-STRU   WHEN(usChoice1.v==8274), 
+   struCPROC-CAS-1X-CCI-CNF-STRU   CPROC-CAS-1X-CCI-CNF-STRU   WHEN(usChoice1.v==8275), 
+   struCPROC-CAS-1X-CCI-IND-STRU   CPROC-CAS-1X-CCI-IND-STRU   WHEN(usChoice1.v==8276), 
+   struCAS-CPROC-1X-FSYNC-START-REQ-STRU   CAS-CPROC-1X-FSYNC-START-REQ-STRU   WHEN(usChoice1.v==8277), 
+   struCPROC-CAS-1X-FSYNC-START-CNF-STRU   CPROC-CAS-1X-FSYNC-START-CNF-STRU   WHEN(usChoice1.v==8278), 
+   struCAS-CPROC-1X-FSYNC-STOP-REQ-STRU   CAS-CPROC-1X-FSYNC-STOP-REQ-STRU   WHEN(usChoice1.v==8279), 
+   struCPROC-CAS-1X-FSYNC-STOP-CNF-STRU   CPROC-CAS-1X-FSYNC-STOP-CNF-STRU   WHEN(usChoice1.v==8280), 
+   struCAS-CPROC-1X-TCH-CONFIG-REQ-STRU   CAS-CPROC-1X-TCH-CONFIG-REQ-STRU   WHEN(usChoice1.v==8281), 
+   struCPROC-CAS-1X-TCH-CONFIG-CNF-STRU   CPROC-CAS-1X-TCH-CONFIG-CNF-STRU   WHEN(usChoice1.v==8282), 
+   struCAS-CPROC-1X-COMMON-CH-CONFIG-REQ-STRU   CAS-CPROC-1X-COMMON-CH-CONFIG-REQ-STRU   WHEN(usChoice1.v==8285), 
+   struCPROC-CAS-1X-COMMON-CH-CONFIG-CNF-STRU   CPROC-CAS-1X-COMMON-CH-CONFIG-CNF-STRU   WHEN(usChoice1.v==8286), 
+   struCAS-CPROC-1X-CHANNEL-REL-REQ-STRU   CAS-CPROC-1X-CHANNEL-REL-REQ-STRU   WHEN(usChoice1.v==8287), 
+   struCPROC-CAS-1X-CHANNEL-REL-CNF-STRU   CPROC-CAS-1X-CHANNEL-REL-CNF-STRU   WHEN(usChoice1.v==8288), 
+   struCAS-CPROC-1X-STOP-COMMON-CH-MONITOR-REQ-STRU   CAS-CPROC-1X-STOP-COMMON-CH-MONITOR-REQ-STRU   WHEN(usChoice1.v==8289), 
+   struCPROC-CAS-1X-STOP-COMMON-CH-MONITOR-CNF-STRU   CPROC-CAS-1X-STOP-COMMON-CH-MONITOR-CNF-STRU   WHEN(usChoice1.v==8290), 
+   struCPROC-CAS-1X-SET-TIMING-CNF-STRU   CPROC-CAS-1X-SET-TIMING-CNF-STRU   WHEN(usChoice1.v==8291), 
+   struCAS-CPROC-1X-SET-TIMING-REQ-STRU   CAS-CPROC-1X-SET-TIMING-REQ-STRU   WHEN(usChoice1.v==8292), 
+   struCAS-CPROC-1X-PWRCTRL-CONFIG-REQ-STRU   CAS-CPROC-1X-PWRCTRL-CONFIG-REQ-STRU   WHEN(usChoice1.v==8293), 
+   struCPROC-CAS-1X-PWRCTRL-CONFIG-CNF-STRU   CPROC-CAS-1X-PWRCTRL-CONFIG-CNF-STRU   WHEN(usChoice1.v==8294), 
+   struCPROC-CAS-1X-PWRCTRL-IND-STRU   CPROC-CAS-1X-PWRCTRL-IND-STRU   WHEN(usChoice1.v==8295), 
+   struCAS-CPROC-1X-OLPC-RSLT-RPT-REQ-STRU   CAS-CPROC-1X-OLPC-RSLT-RPT-REQ-STRU   WHEN(usChoice1.v==8296), 
+   struCPROC-CAS-1X-ERROR-IND-STRU   CPROC-CAS-1X-ERROR-IND-STRU   WHEN(usChoice1.v==8297), 
+   struCAS-CPROC-1X-START-COMMON-CH-MONITOR-REQ-STRU   CAS-CPROC-1X-START-COMMON-CH-MONITOR-REQ-STRU   WHEN(usChoice1.v==8298), 
+   struCPROC-CAS-1X-START-COMMON-CH-MONITOR-CNF-STRU   CPROC-CAS-1X-START-COMMON-CH-MONITOR-CNF-STRU   WHEN(usChoice1.v==8299), 
+   struCPROC-CAS-1X-RF-IND-STRU   CPROC-CAS-1X-RF-IND-STRU   WHEN(usChoice1.v==8300), 
+   struCPROC-CAS-1X-NO-RF-IND-STRU   CPROC-CAS-1X-NO-RF-IND-STRU   WHEN(usChoice1.v==8301), 
+   struCAS-CPROC-1X-TIME-SYNC-REQ-STRU   CAS-CPROC-1X-TIME-SYNC-REQ-STRU   WHEN(usChoice1.v==8302), 
+   struCPROC-CAS-1X-TIME-SYNC-IND-STRU   CPROC-CAS-1X-TIME-SYNC-IND-STRU   WHEN(usChoice1.v==8303), 
+   struCAS-CPROC-1X-TRAFFIC-INFO-REQ-STRU   CAS-CPROC-1X-TRAFFIC-INFO-REQ-STRU   WHEN(usChoice1.v==8304), 
+   struCAS-CPROC-1X-SLOTTED-MODE-CONTINUE-REQ-STRU   CAS-CPROC-1X-SLOTTED-MODE-CONTINUE-REQ-STRU   WHEN(usChoice1.v==8305), 
+   struCPROC-CAS-1X-SLOTTED-MODE-CONTINUE-CNF-STRU   CPROC-CAS-1X-SLOTTED-MODE-CONTINUE-CNF-STRU   WHEN(usChoice1.v==8306) 
+} 
+
+CPROC-1X-OLPC-REPORT-REQ-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-OLPC-REPORT-REQ-ONCE(0), 
+    cPROC-1X-OLPC-REPORT-REQ-PERIODIC(1), 
+    cPROC-1X-OLPC-REPORT-REQ-NORMAL(2), 
+    cPROC-1X-OLPC-REPORT-REQ-BUTT(3) 
+} 
+
+CPROC-1X-BLANKING-DUTYCYCLE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-BLANKING-DUTYCYCLE-1(0), 
+    cPROC-1X-BLANKING-DUTYCYCLE-4(1), 
+    cPROC-1X-BLANKING-DUTYCYCLE-8(2), 
+    cPROC-1X-BLANKING-DUTYCYCLE-BUTT(3) 
+} 
+
+CPROC-1X-FOR-N2M-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-FOR-N2M-2(0), 
+    cPROC-1X-FOR-N2M-4(1), 
+    cPROC-1X-FOR-N2M-6(2), 
+    cPROC-1X-FOR-N2M-8(3), 
+    cPROC-1X-FOR-N2M-BUTT(4) 
+} 
+
+CPROC-1X-RPC-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-RPC-MODE-200-400(0), 
+    cPROC-1X-RPC-MODE-200(1), 
+    cPROC-1X-RPC-MODE-BUTT(2) 
+} 
+
+CPROC-1X-PHYCH-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-PHYCH-NONE(0), 
+    cPROC-1X-PHYCH-F-QPCH(1), 
+    cPROC-1X-PHYCH-F-PCH(2), 
+    cPROC-1X-PHYCH-F-FCCCH(3), 
+    cPROC-1X-PHYCH-F-BCCH(4), 
+    cPROC-1X-PHYCH-F-FCH(5), 
+    cPROC-1X-PHYCH-F-SCCH(6), 
+    cPROC-1X-PHYCH-F-SCH(7), 
+    cPROC-1X-PHYCH-F-DCCH(8), 
+    cPROC-1X-PHYCH-R-ACH(9), 
+    cPROC-1X-PHYCH-R-EACH(10), 
+    cPROC-1X-PHYCH-R-FCH(11), 
+    cPROC-1X-PHYCH-R-SCCH(12), 
+    cPROC-1X-PHYCH-R-SCH(13), 
+    cPROC-1X-PHYCH-R-DCCH(14), 
+    cPROC-1X-PHYCH-BUTT(15) 
+} 
+
+CPROC-1X-GATING-RATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-GATING-RATE-1(0), 
+    cPROC-1X-GATING-RATE-1-2(1), 
+    cPROC-1X-GATING-RATE-1-4(2), 
+    cPROC-1X-GATING-RATE-BUTT(3) 
+} 
+
+CPROC-1X-WORK-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-WORK-MODE-SLAVE(0), 
+    cPROC-1X-WORK-MODE-MASTER(1), 
+    cPROC-1X-WORK-MODE-BUTT(2) 
+} 
+
+CPROC-1X-CCI-INFO-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-CCI-INFO-ON(0), 
+    cPROC-1X-CCI-INFO-OFF(1), 
+    cPROC-1X-CCI-INFO-BUTT(2) 
+} 
+
+CPROC-1X-FCH-FRAME-SIZE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-FCH-FRAME-SIZE-20MS(0), 
+    cPROC-1X-FCH-FRAME-SIZE-5MS-20MS(1), 
+    cPROC-1X-FCH-FRAME-SIZE-BUTT(2) 
+} 
+
+CPROC-1X-DCCH-FRAME-SIZE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-DCCH-FRAME-SIZE-5MS(0), 
+    cPROC-1X-DCCH-FRAME-SIZE-20MS(1), 
+    cPROC-1X-DCCH-FRAME-SIZE-5MS-20MS(2), 
+    cPROC-1X-DCCH-FRAME-SIZE-BUTT(3) 
+} 
+
+CPROC-1X-SCH-FRAME-SIZE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-SCH-FRAME-SIZE-20MS(0), 
+    cPROC-1X-SCH-FRAME-SIZE-40MS(1), 
+    cPROC-1X-SCH-FRAME-SIZE-80MS(2), 
+    cPROC-1X-SCH-FRAME-SIZE-BUTT(3) 
+} 
+
+CPROC-1X-SCH-CODING-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-SCH-CODING-CONVOLUTION(0), 
+    cPROC-1X-SCH-CODING-CONVOLUTION-OR-TURBO(1), 
+    cPROC-1X-SCH-CODING-BUTT(2) 
+} 
+
+CPROC-1X-TCH-PROCESS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-TCH-PROCESS-INIT(0), 
+    cPROC-1X-TCH-PROCESS-HANDOFF-WITH-JUDGEMENT(1), 
+    cPROC-1X-TCH-PROCESS-HANDOFF-WITHOUT-JUDGEMENT(2), 
+    cPROC-1X-TCH-PROCESS-HANDOFF-REVERT(3), 
+    cPROC-1X-TCH-PROCESS-OTHER(4), 
+    cPROC-1X-TCH-PROCESS-BUTT(5) 
+} 
+
+CPROC-1X-TCH-CHANNEL-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-TCH-CHANNEL-NONE(0), 
+    cPROC-1X-TCH-CHANNEL-FCH(1), 
+    cPROC-1X-TCH-CHANNEL-DCCH(2), 
+    cPROC-1X-TCH-CHANNEL-FCH-DCCH(3), 
+    cPROC-1X-TCH-CHANNEL-BUTT(4) 
+} 
+
+CPROC-1X-DATA-RATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-DATA-RATE-4800(0), 
+    cPROC-1X-DATA-RATE-9600(1), 
+    cPROC-1X-DATA-RATE-19200(2), 
+    cPROC-1X-DATA-RATE-BUTT(3) 
+} 
+
+CPROC-1X-SLOTTED-MODE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-SLOTTED-MODE-SLOTTED(0), 
+    cPROC-1X-SLOTTED-MODE-NON-SLOTTED(1), 
+    cPROC-1X-SLOTTED-MODE-BUTT(2) 
+} 
+
+CPROC-1X-FCCCH-DATA-RATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-FCCCH-DATA-RATE-9600-20MS(0), 
+    cPROC-1X-FCCCH-DATA-RATE-19200-20MS(1), 
+    cPROC-1X-FCCCH-DATA-RATE-19200-10MS(2), 
+    cPROC-1X-FCCCH-DATA-RATE-38400-20MS(3), 
+    cPROC-1X-FCCCH-DATA-RATE-38400-10MS(4), 
+    cPROC-1X-FCCCH-DATA-RATE-38400-5MS(5), 
+    cPROC-1X-FCCCH-DATA-RATE-BUTT(6) 
+} 
+
+CPROC-1X-CODE-RATE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-CODE-RATE-QUARTER(0), 
+    cPROC-1X-CODE-RATE-HALF(1), 
+    cPROC-1X-CODE-RATE-BUTT(2) 
+} 
+
+CPROC-1X-SLOTTED-PROCESS-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-SLOTTED-PROCESS-PAGE(0), 
+    cPROC-1X-SLOTTED-PROCESS-BC(1), 
+    cPROC-1X-SLOTTED-PROCESS-PAGE-BC(2), 
+    cPROC-1X-SLOTTED-PROCESS-BUTT(3) 
+} 
+
+CPROC-1X-FPC-PRI-CH-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-FPC-PRI-CH-FCH(0), 
+    cPROC-1X-FPC-PRI-CH-DCCH(1), 
+    cPROC-1X-FPC-PRI-CH-BUTT(2) 
+} 
+
+CPROC-1X-CODE-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-CODE-TYPE-CONVOLUTION(0), 
+    cPROC-1X-CODE-TYPE-TURBO(1), 
+    cPROC-1X-CODE-TYPE-BUTT(2) 
+} 
+
+CPROC-1X-ATT-ADJ-GAIN-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-ATT-ADJ-GAIN-NOM-ATT-GAIN(0), 
+    cPROC-1X-ATT-ADJ-GAIN-PILOT-REF-LEVEL(1), 
+    cPROC-1X-ATT-ADJ-GAIN-BUTT(2) 
+} 
+
+CPROC-1X-RPC-ADJ-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-RPC-ADJ-TYPE-REV-CH-ADJ-GAIN(0),    --/* -H2ASN-MsgChoice CPROC-1X-REV-CH-ADJ-GAIN-STRU */ 
+    cPROC-1X-RPC-ADJ-TYPE-ATT-ADJ-GAIN-BASIC-RATE(1),    --/* -H2ASN-MsgChoice CPROC-1X-RL-ATT-ADJ-GAIN-BASIC-RATE-STRU */ 
+    cPROC-1X-RPC-ADJ-TYPE-ATT-ADJ-GAIN-HIGH-RATE(2),    --/* -H2ASN-MsgChoice CPROC-1X-RL-ATT-ADJ-GAIN-HIGH-RATE-STRU */ 
+    cPROC-1X-RPC-ADJ-TYPE-BUTT(3) 
+} 
+
+CPROC-1X-RPC-ADJ-TYPE-ENUM-CHOICE-STRU    ::= <V|WHEN,V|UNION-1>CHOICE 
+{ 
+   struCPROC-1X-REV-CH-ADJ-GAIN-STRU   CPROC-1X-REV-CH-ADJ-GAIN-STRU   WHEN(usChoice2.v==0), 
+   struCPROC-1X-RL-ATT-ADJ-GAIN-BASIC-RATE-STRU   CPROC-1X-RL-ATT-ADJ-GAIN-BASIC-RATE-STRU   WHEN(usChoice2.v==1), 
+   struCPROC-1X-RL-ATT-ADJ-GAIN-HIGH-RATE-STRU   CPROC-1X-RL-ATT-ADJ-GAIN-HIGH-RATE-STRU   WHEN(usChoice2.v==2) 
+} 
+
+CPROC-1X-PC-STEP-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-PC-STEP-1(0), 
+    cPROC-1X-PC-STEP-05(1), 
+    cPROC-1X-PC-STEP-025(2), 
+    cPROC-1X-PC-STEP-15(3), 
+    cPROC-1X-PC-STEP-2(4), 
+    cPROC-1X-PC-STEP-BUTT(5) 
+} 
+
+CPROC-1X-ACTION-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-ACTION-TYPE-START(0), 
+    cPROC-1X-ACTION-TYPE-STOP(1), 
+    cPROC-1X-ACTION-TYPE-BUTT(2) 
+} 
+
+CPROC-1X-TRAFFIC-TYPE-ENUM    ::= <V,V|LEN-16> ENUMERATED  
+{ 
+    cPROC-1X-TRAFFIC-TYPE-VOICE(0), 
+    cPROC-1X-TRAFFIC-TYPE-DATA(1), 
+    cPROC-1X-TRAFFIC-TYPE-SMS(2), 
+    cPROC-1X-TRAFFIC-TYPE-LOCATION(3), 
+    cPROC-1X-TRAFFIC-TYPE-TESTMODE(4), 
+    cPROC-1X-TRAFFIC-TYPE-BUTT(5) 
+} 
+
+CPROC-1X-SYSTEM-TIME-STRU    ::= <V> SEQUENCE  
+{ 
+    ulFirstSegment    VOS-UINT32, 
+ 
+    --/**< 32 least significant bits of system time from F-SYNC message */ 
+    ulLastSegment    VOS-UINT32 
+    --/**< 4 most significant bits of system time from F-SYNC message */ 
+} 
+
+CPROC-1X-PILOT-SEARCH-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usPNOffset    VOS-UINT16, 
+ 
+    --/**< 0..511, CPROC-1X-PN-OFFSET-NOT-KNOWN. */ 
+    sPilotStrength    VOS-INT16  
+} 
+
+CPROC-1X-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFreq    VOS-UINT16 
+    --/**< 0..2047, CDMA-FREQ */ 
+} 
+
+CPROC-1X-BITS-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usInformationBitsNum    VOS-UINT16, 
+ 
+    --/**< 0..65535, NUM-BITS */ 
+    usCrcBitsNum    VOS-UINT16 
+    --/**< 0..5, see table 3.7.5.20-4, CRC-LEN-IDX */ 
+} 
+
+CPROC-1X-SCH-ACT-SET-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usSchId    VOS-UINT16, 
+ 
+    --/**< 0..1, FOR-SCH-ID */ 
+    usCodeChannelSch    VOS-UINT16, 
+ 
+    --/**< 0..2047, CODE-CHAN-SCH */ 
+    usQofMaskIdSch    VOS-UINT16, 
+ 
+    --/**< 0..3, QOF-MASK-ID-SCH */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-MODE-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    usParamId    VOS-UINT16, 
+ 
+    --/**< 0~8 */ 
+    sNomPwr    VOS-INT16, 
+ 
+    --/**< -16 .. 15. EACH-NOM-PWR */ 
+    sInitPwr    VOS-INT16, 
+ 
+    --/**< -16 .. 15. EACH-INIT-PWR */ 
+    usPwrStep    VOS-UINT16, 
+ 
+    --/**< 0 .. 7. EACH-PWR-STEP */ 
+    usProbeNum    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. EACH-NUM-STEP */ 
+    enPreambleFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< yes,no, EACH-PREAMBLE-ENABLED */ 
+    usFracPreambleNum    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. EACH-PREAMBLE-NUM-FRAC */ 
+    usFracPreambleDuration    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. EACH-PREAMBLE-FRAC-DURATION */ 
+    usFracPreambleOffDuration    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. EACH-PREAMBLE-OFF-DURATION */ 
+    usFracPreambleAddDuration    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. EACH-PREAMBLE-ADD-DURATION */ 
+    usEachSlot    VOS-UINT16, 
+ 
+    --/**< 0.. 63. EACH-SLOT */ 
+    usEachSlotOffset1    VOS-UINT16, 
+ 
+    --/**< 0.. 63. EACH-SLOT-OFFSET1 */ 
+    usEachSlotOffset2    VOS-UINT16, 
+ 
+    --/**< 0.. 63. EACH-SLOT-OFFSET2 */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-FWD-TCH-POWER-MEAS-STRU    ::= <V> SEQUENCE  
+{ 
+    enPowerRptThreshFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Use threshold to generate reports. PWR-THRESH-ENABLE */ 
+    enPowerRptPeriodFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Generate periodic reports. PWR-PERIOD-ENABLE */ 
+    enResetFpc    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Reset counters?, RESET-FPC */ 
+    usPowerRptThresh    VOS-UINT16, 
+ 
+    --/**< 1..31,in frames. PWR-REP-THRESH */ 
+    usPowerRptPeriod    VOS-UINT16, 
+ 
+    --/**< 0..15, PWR-REP-FRAMES */ 
+    usPowerRptDelay    VOS-UINT16 
+    --/**< 0..31, resolution 4 frames, PWR-REP-DELAY */ 
+} 
+
+CPROC-1X-OLPC-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    usFER    VOS-UINT16, 
+ 
+    --/**< 0..30, see Table 3.7.3.3.2.25-2, FPC-xxx-FER */ 
+    sInitSetpoint    VOS-INT16, 
+ 
+    --/**< 0..255 or -128..127 resolution 0.125dB. FPC-xxx-INIT-SETPT. */ 
+    usMaxSetpoint    VOS-UINT16, 
+ 
+    --/**< 0..254, resolution 0.125dB. 255=set current. FPC-xxx-MAX-SETP */ 
+    usMinSetpoint    VOS-UINT16 
+    --/**< 0..254, resolution 0.125dB. 255=set current. FPC-xxx-MIN-SETP */ 
+} 
+
+CPROC-1X-REV-CH-ADJ-GAIN-STRU    ::= <V> SEQUENCE  
+{ 
+    enFchAdjFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enDcchAdjFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enSch0AdjFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enSch1AdjFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    sFchAdjGain    VOS-INT16, 
+ 
+    --/**< -48..48, resolution 0.125dB. FCH-CHAN-ADJ-GAIN */ 
+    sDcchAdjGain    VOS-INT16, 
+ 
+    --/**< -48..48, resolution 0.125dB. DCCH-CHAN-ADJ-GAIN */ 
+    sSch0AdjGain    VOS-INT16, 
+ 
+    --/**< -48..48, resolution 0.125dB. SCH0-CHAN-ADJ-GAIN */ 
+    sSch1AdjGain    VOS-INT16 
+    --/**< -48..48, resolution 0.125dB. SCH1-CHAN-ADJ-GAIN */ 
+} 
+
+CPROC-1X-POWER-MEAS-STRU    ::= <V> SEQUENCE  
+{ 
+    usPowerMeasFrames    VOS-UINT16, 
+ 
+    --/**< 0..1023. 0..65535. PWR-MEAS-FRAMES, DCCH-PWR-MEAS-FRAMES, SCH-PWR-MEAS-FRAMES , */ 
+    usErrorFrames    VOS-UINT16 
+    --/**< 0..1023, 0..65535. ERRORS-DETECTED, DCCH-ERRORS-DETECTED, SCH-ERRORS-DETECTED */ 
+} 
+
+CPROC-1X-SCH-CUR-SETPOINT-STRU    ::= <V> SEQUENCE  
+{ 
+    usSchInd    VOS-UINT16, 
+ 
+    --/**< 0..1, SCH-ID */ 
+    usSchCurSetpoint    VOS-UINT16 
+    --/**< 0..254, resolution 0.125dB. FPC-SCH-CURR-SETPT */ 
+} 
+
+CPROC-1X-PILOT-SEARCH-FREQ-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    stFreq    CPROC-1X-FREQ-INFO-STRU , 
+ 
+    sFreqRssiThresh    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-CHANNEL-RESULT-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    enConfigRslt    CPROC-1X-RSLT-ENUM  
+} 
+
+CPROC-1X-ACT-SET-INFO-PILOT-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-TCH-CHANNEL-ENUM , 
+ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< PN Offset, 0..511. PILOT-PN */ 
+    enPwrCombinInd    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Combine pwr ctrl with previous pilot? PWR-COMB-IND */ 
+    usCodeChannelFch    VOS-UINT16, 
+ 
+    --/**< 0..255, CODE-CHAN-FCH */ 
+    usQofMaskIdFch    VOS-UINT16, 
+ 
+    --/**< 0..3, QOF-MASK-ID-FCH */ 
+    usCodeChannelDcch    VOS-UINT16, 
+ 
+    --/**< 0..255, CODE-CHAN-DCCH */ 
+    usQofMaskIdDcch    VOS-UINT16, 
+ 
+    --/**< 0..3, QOF-MASK-ID-DCCH */ 
+    usSchActSetNum    VOS-UINT16 , 
+ 
+     
+    astSchActSetIfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-SCH-ACT-SET-INFO-STRU 
+} 
+
+CPROC-1X-1XADV-FCH-STRU    ::= <V> SEQUENCE  
+{ 
+    enForFchAckMaskRlBlankingFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is usForFchAckMaskRlBlanking included ? */ 
+    usForFchAckMaskRlBlanking    VOS-UINT16, 
+ 
+    --/**< 0..0xffff, FOR-FCH-ACK-MASK-RL-BLANKING */ 
+    enForFchAckMaskNoRlBlankingFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is usForFchAckMaskNoRlBlanking included ? */ 
+    usForFchAckMaskNoRlBlanking    VOS-UINT16, 
+ 
+    --/**< 0..0xffff, FOR-FCH-ACK-MASK-NO-RL-BLANKING */ 
+    enRevFchAckMaskFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is usRevFchAckMask included ? */ 
+    usRevFchAckMask    VOS-UINT16, 
+ 
+    --/**< 0..0xffff, REV-FCH-ACK-MASK */ 
+    enForN2m    CPROC-1X-FOR-N2M-ENUM, 
+ 
+    --/**< The N2m value to use, FOR-N2M-IND */ 
+    enForFchBlankingDutycycle    CPROC-1X-BLANKING-DUTYCYCLE-ENUM, 
+ 
+    --/**< FOR-FCH-BLANKING-DUTYCYCLE */ 
+    enRevFchBlankingDutycycle    CPROC-1X-BLANKING-DUTYCYCLE-ENUM, 
+ 
+    --/**< REV-FCH-BLANKING-DUTYCYCLE */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-DCCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enFrameSize    CPROC-1X-DCCH-FRAME-SIZE-ENUM, 
+ 
+    --/**< 5, 20 , 5 or 20, DCCH-FRAME-SIZE */ 
+    usRC    VOS-UINT16, 
+ 
+    --/**< Radio configuration number */ 
+    usNumBitsInfo    VOS-UINT16, 
+ 
+    --/**< 1, Number of rates included */ 
+     
+    ausInformationBitsNum    <V>SEQUENCE(SIZE(1)) OF VOS-UINT16 
+    --/**< 0..65535, NUM-BITS */ 
+} 
+
+CPROC-1X-FWD-SCH-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usSchId    VOS-UINT16 , 
+ 
+    usForSchRc    VOS-UINT16, 
+ 
+    --/**< 3..5,11. RC of the forward SCH, SCH-RC */ 
+    enCodingType    CPROC-1X-SCH-CODING-ENUM, 
+ 
+    --/**< Convolution Coding, Convolution Coding and Turbo Coding. CODING */ 
+    enFrameSize    CPROC-1X-SCH-FRAME-SIZE-ENUM, 
+ 
+    --/**< 20, 40 or 80 ms */ 
+    usMaxRate    VOS-UINT16, 
+ 
+    --/**< 0..8, FOR-MAX-RATE, see Table 2.7.4.27.3-2 */ 
+    usSchDuration    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 3.7.3.3.2.37-3. FOR-SCH-DURATION */ 
+    enSchStartTimeFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< yes, no */ 
+    usSchStartTime    VOS-UINT16, 
+ 
+    --/**< 0..31,FOR-SCH-START-TIME */ 
+    usFwdSCHFrameOffset    VOS-UINT16, 
+ 
+    --/**< [0,3] */ 
+    usNumBitsInfo    VOS-UINT16 , 
+ 
+     
+    astBitsInfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-BITS-INFO-STRU 
+} 
+
+CPROC-1X-REV-SCH-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usSchId    VOS-UINT16, 
+ 
+    --/**< 0..1, REV-SCH-ID */ 
+    usWalshCode    VOS-UINT16, 
+ 
+    --/**< 0..1, REV-WALSH-ID, see table 3.7.3.3.2.37-1 */ 
+    enCodingType    CPROC-1X-SCH-CODING-ENUM, 
+ 
+    --/**< Convolution Coding, Convolution Coding and Turbo Coding. CODING */ 
+    usMaxRate    VOS-UINT16, 
+ 
+    --/**< 0..8, REV-MAX-RATE, see Table 2.7.4.27.3-2 */ 
+    enFrameSize    CPROC-1X-SCH-FRAME-SIZE-ENUM, 
+ 
+    --/**< 20, 40 or 80 ms */ 
+    usSchDuration    VOS-UINT16, 
+ 
+    --/**< 0..15, see table 3.7.3.3.2.37-3. REV-SCH-DURATION */ 
+    enSchStartTimeFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< yes, no */ 
+    usSchStartTime    VOS-UINT16, 
+ 
+    --/**< 0..31,REV-SCH-START-TIME */ 
+    usRevSCHFrameOffset    VOS-UINT16, 
+ 
+    --/**< 0..3, REV-SCH-FRAME-OFFSET */ 
+    usRevSchRc    VOS-UINT16, 
+ 
+    --/**< 3..4, 8. RC of the reverse SCH, SCH-RC */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usNumBitsInfo    VOS-UINT16 , 
+ 
+     
+    astBitsInfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-BITS-INFO-STRU 
+} 
+
+CPROC-1X-TCH-COMMON-STRU    ::= <V> SEQUENCE  
+{ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< 0..63, system time in 80ms MOD 64 = ActionTime => activate, or CPROC-1X-ACTIVATE-AT-ONCE. ACTION-TIME */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    enProcessFlag    CPROC-1X-TCH-PROCESS-ENUM, 
+ 
+    --/**< Trch Init;hard handoff with judgment,hard handoff without judgment,hard handoff Revert,other process */ 
+    usFrameOffset    VOS-UINT16, 
+ 
+    --/**< 0..15, resolution 1.25ms, FRAME-OFFSET */ 
+    enFpcPriChan    CPROC-1X-FPC-PRI-CH-ENUM, 
+ 
+    --/**< FCH or DCCH */ 
+    usHhoPreambleNum    VOS-UINT16, 
+ 
+    --/**< 0..7 RC1-2 => resolution 20ms. otherwise 0..6 in 2*1.25ms resolution and 7 =>16*1.25ms. See NUM-PREAMBLE */ 
+    enCompleteSearch    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Perform complete measurement before return on fail. COMPLETE-SEARCH */ 
+    enPilotGatingRateFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< TRUE: gating shall be used. FALSE: gating shall not be used. PILOT-GATING-USE-RATE */ 
+    enPilotGatingRate    CPROC-1X-GATING-RATE-ENUM, 
+ 
+    --/**< PILOT-GATING-RATE */ 
+    usTFWaitTime    VOS-UINT16, 
+ 
+    --/**< 0..15, max time to get good frame in target freq after Handoff. TF-WAIT-TIME,only valid when handoff */ 
+    usSrchWinBlind    VOS-UINT16 
+    --/**< 0..15, search window to use at blind hard handoff */ 
+} 
+
+CPROC-1X-QPCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usQPageCH    VOS-UINT16, 
+ 
+    --/**< 1..3, which QPCH Channel to receive */ 
+    usPgSlot    VOS-UINT16, 
+ 
+    --/**< 0..2047, Calculated from hash function. PGSLOT */ 
+    usSlotCycleIndex    VOS-UINT16, 
+ 
+    --/**< 0..7. slot cycle index "i" */ 
+    enRate    CPROC-1X-DATA-RATE-ENUM, 
+ 
+    --/**< QPCH data rate,9600bps,4800bps */ 
+    usQpchPiPwrLevel    VOS-UINT16, 
+ 
+    --/**< 0..7, resolution 1dB, offset -5dB, QPCH-POWER-LEVEL-PAGE see 3.7.2.3.2.13-3 */ 
+    enReceiveCci    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Indicate L1 to receive the CCI */ 
+    usQpchCciPwrLevel    VOS-UINT16, 
+ 
+    --/**< 0..7, resolution 1dB, offset -5dB, QPCH-POWER-LEVEL-CONFIG see  3.7.2.3.2.13-3 */ 
+    enReceiveBi    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Indicate L1 to receive the BI */ 
+    usQpchBiPwrLevel    VOS-UINT16, 
+ 
+    --/**< 0..7, resolution 1dB, offset -5dB, QPCH-POWER-LEVEL-BCAST see 3.7.2.3.2.31-3 */ 
+    enReceivePi    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Indicate L1 to receive the PI */ 
+    ulHashKey    VOS-UINT32 
+    --/**< Hash Key for calculating PI position */ 
+} 
+
+CPROC-1X-PCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    enSlotted    CPROC-1X-SLOTTED-MODE-ENUM, 
+ 
+    --/**< Channel in slotted mode ? */ 
+    usPagingCh    VOS-UINT16 , 
+ 
+    enPRate    CPROC-1X-DATA-RATE-ENUM, 
+ 
+    --/**< Paging Channel data rate,9600bps,4800bps */ 
+    usPagingCycleIndex    VOS-UINT16, 
+ 
+    --/**< Valid if enSlotted = yes, SLOT-CYCLE-INDEX */ 
+    usPGSLOT    VOS-UINT16, 
+ 
+    --/**< 0..2047 From hash function. Valid if enSlotted = yes */ 
+    usBcastIndex    VOS-UINT16 
+    --/**< Valid if enSlotted = yes */ 
+} 
+
+CPROC-1X-FCCCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    enSlotted    CPROC-1X-SLOTTED-MODE-ENUM , 
+ 
+    usFccchCodeChan    VOS-UINT16, 
+ 
+    --/**< 1..256, FCCCH-CODE-CHAN */ 
+    enFccchRate    CPROC-1X-FCCCH-DATA-RATE-ENUM, 
+ 
+    --/**< FCCCH-RATE */ 
+    enFccchCodeRate    CPROC-1X-CODE-RATE-ENUM, 
+ 
+    --/**< FCCCH-CODE-RATE */ 
+    usPagingCycleIndex    VOS-UINT16, 
+ 
+    --/**< Valid if enSlotted = yes */ 
+    usPGSLOT    VOS-UINT16, 
+ 
+    --/**< Valid if enSlotted = yes */ 
+    usBcastIndex    VOS-UINT16 
+    --/**< Valid if enSlotted = yes */ 
+} 
+
+CPROC-1X-BCCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usBCN    VOS-UINT16, 
+ 
+    --/**< 0..7, Broadcast Control Channel Number, BCN */ 
+    enUseStartTime    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Use the action time. If not set, start NOW */ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< BCCH start time. Valid when enUseStartTime = Yes */ 
+    enUseRepeat    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Yes No. Valid when enUseStartTime = Yes */ 
+    usRepeatTimeOffset    VOS-UINT16, 
+ 
+    --/**< BCCH offset of repeat. Valid if enUseRepeat = Yes, REPEAT-TIME-OFFSET */ 
+    enSR1BratNonTd    CPROC-1X-DATA-RATE-ENUM, 
+ 
+    --/**< BCCH data rate in non TD mode for SR1, SR1-BRAT-NON-TD */ 
+    enSR1CratNonTD    CPROC-1X-CODE-RATE-ENUM, 
+ 
+    --/**< Code rate, SR1-CRAT-NON-TD */ 
+    usSR1WalshCodeNonTD    VOS-UINT16 
+    --/**< 0..63 , SR1-BCCH-CODE-CHAN-NON-TD */ 
+} 
+
+CPROC-1X-ACH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usBaseId    VOS-UINT16, 
+ 
+    --/**< 16 bit value. BASE-ID */ 
+    sNomPwr    VOS-INT16, 
+ 
+    --/**< -8 .. 7. NOM-PWR */ 
+    sInitPwr    VOS-INT16, 
+ 
+    --/**< -16 .. 15. INIT-PWR */ 
+    usPwrStep    VOS-UINT16, 
+ 
+    --/**< 0 .. 7. PWR-STEP */ 
+    usNomPwrExt    VOS-UINT16 
+    --/**< 0 or 1. NOM-PWR-EXT */ 
+} 
+
+CPROC-1X-EACH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usBaseId    VOS-UINT16, 
+ 
+    --/**< 16 bit value. BASE-ID */ 
+    sRlGainCommonPilot    VOS-INT16, 
+ 
+    --/**< -32 .. 31. res. 0.125dB. RLGAIN-COMMON-PILOT */ 
+    usIcThresh    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. IC-THRESH. */ 
+    usIcMax    VOS-UINT16, 
+ 
+    --/**< 0 .. 15. IC-MAX. */ 
+    usNumModeParams    VOS-UINT16, 
+ 
+    --/**< 1 .. 8. NUM-MODE-PARM-REC + 1 */ 
+     
+    astModeParams    <V>SEQUENCE(SIZE(8)) OF CPROC-1X-MODE-PARA-STRU 
+} 
+
+CPROC-1X-OLPC-SCH-CFG-STRU    ::= <V> SEQUENCE  
+{ 
+    usSchInd    VOS-UINT16, 
+ 
+    --/**< 0..1, SCH-ID */ 
+    stOlpcInfo    CPROC-1X-OLPC-CFG-STRU  
+} 
+
+CPROC-1X-RL-ATT-ADJ-GAIN-BASIC-RATE-STRU    ::= <V> SEQUENCE  
+{ 
+    enAttAdjGainType    CPROC-1X-ATT-ADJ-GAIN-ENUM, 
+ 
+    --/**< Nominal-Attribute-Gain,Pilot-Reference-Level */ 
+    en20msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s20msAttAdjGain1500    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1500 */ 
+    s20msAttAdjGain2700    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-2700 */ 
+    s20msAttAdjGain4800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-4800 */ 
+    s20msAttAdjGain9600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-9600 */ 
+    en20msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s20msAttAdjGain1800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1800 */ 
+    s20msAttAdjGain3600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-3600 */ 
+    s20msAttAdjGain7200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-7200 */ 
+    s20msAttAdjGain14400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-14400 */ 
+    en5msFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is the below parameter included */ 
+    s5msAttAdjGain9600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-9600-5MS */ 
+    en40msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s40msAttAdjGain1350    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1350-40MS */ 
+    s40msAttAdjGain2400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-2400-40MS */ 
+    s40msAttAdjGain4800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-4800-40MS */ 
+    s40msAttAdjGain9600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-9600-40MS */ 
+    en40msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s40msAttAdjGain1800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1800-40MS */ 
+    s40msAttAdjGain3600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-3600-40MS */ 
+    s40msAttAdjGain7200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-7200-40MS */ 
+    s40msAttAdjGain14400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-14400-40MS */ 
+    en80msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s80msAttAdjGain1200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1200-80MS */ 
+    s80msAttAdjGain2400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-2400-80MS */ 
+    s80msAttAdjGain4800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-4800-80MS */ 
+    s80msAttAdjGain9600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-9600-80MS */ 
+    en80msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters included */ 
+    s80msAttAdjGain1800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1800-80MS */ 
+    s80msAttAdjGain3600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-3600-80MS */ 
+    s80msAttAdjGain7200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-7200-80MS */ 
+    s80msAttAdjGain14400    VOS-INT16 
+    --/**< RL-ATT-ADJ-GAIN-14400-80MS */ 
+} 
+
+CPROC-1X-RL-ATT-ADJ-GAIN-HIGH-RATE-STRU    ::= <V> SEQUENCE  
+{ 
+    enCodeType    CPROC-1X-CODE-TYPE-ENUM, 
+ 
+    --/**< convolutional orTurbo, CODE-TYPE */ 
+    enAttAdjGainType    CPROC-1X-ATT-ADJ-GAIN-ENUM, 
+ 
+    --/**< Nominal-Attribute-Gain,Pilot-Reference-Level */ 
+    en20msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 6 parameters valid */ 
+    s20msAttAdjGain19200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-19200 */ 
+    s20msAttAdjGain38400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-38400 */ 
+    s20msAttAdjGain76800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-76800 */ 
+    s20msAttAdjGain153600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-153600 */ 
+    s20msAttAdjGain307200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-307200 */ 
+    s20msAttAdjGain614400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-614400 */ 
+    en20msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 6 parameters valid */ 
+    s20msAttAdjGain28800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-28800 */ 
+    s20msAttAdjGain57600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-57600 */ 
+    s20msAttAdjGain115200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-115200 */ 
+    s20msAttAdjGain230400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-230400 */ 
+    s20msAttAdjGain460800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-460800 */ 
+    s20msAttAdjGain1036800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-1036800 */ 
+    en40msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 5 parameters valid */ 
+    s40msAttAdjGain19200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-19200-40MS */ 
+    s40msAttAdjGain38400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-38400-40MS */ 
+    s40msAttAdjGain76800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-76800-40MS */ 
+    s40msAttAdjGain153600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-153600-40MS */ 
+    s40msAttAdjGain307200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-307200-40MS */ 
+    en40msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 5 parameters valid */ 
+    s40msAttAdjGain28800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-28800-40MS */ 
+    s40msAttAdjGain57600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-57600-40MS */ 
+    s40msAttAdjGain115200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-115200-40MS */ 
+    s40msAttAdjGain230400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-230400-40MS */ 
+    s40msAttAdjGain518400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-518400-40MS */ 
+    en80msRc35Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters valid */ 
+    s80msAttAdjGain19200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-19200-80MS */ 
+    s80msAttAdjGain38400    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-38400-80MS */ 
+    s80msAttAdjGain76800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-76800-80MS */ 
+    s80msAttAdjGain153600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-153600-80MS */ 
+    en80msRc46Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the below 4 parameters valid */ 
+    s80msAttAdjGain28800    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-28800-80MS */ 
+    s80msAttAdjGain57600    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-57600-80MS */ 
+    s80msAttAdjGain115200    VOS-INT16, 
+ 
+    --/**< RL-ATT-ADJ-GAIN-115200-80MS */ 
+    s80msAttAdjGain259200    VOS-INT16 
+    --/**< RL-ATT-ADJ-GAIN-259200-80MS */ 
+} 
+
+CPROC-1X-1XADV-POWER-CTRL-STRU    ::= <V> SEQUENCE  
+{ 
+    enRpcMode    CPROC-1X-RPC-MODE-ENUM, 
+ 
+    --/**< RPC-MODE */ 
+    enRevAckChGainAdjACS1Flag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is sRevAckChGainAdjAcs1 included? REV-ACKCH-GAIN-ADJ-ACS1-INC */ 
+    sRevAckChGainAdjAcs1    VOS-INT16, 
+ 
+    --/**< -64..63, res 1 8dB.  REV-ACKCH-GAIN-ADJ-ACS1 */ 
+    enRevAckChGainAdjACS2PlusFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is is sRevAckChGainAdjAcs2Plus included? REV-ACKCH-GAIN-ADJ-ACS2PLUS-INC */ 
+    sRevAckChGainAdjACS2Plus    VOS-INT16, 
+ 
+    --/**< -64..63, res 1 8dB.  REV-ACKCH-GAIN-ADJ-ACS2PLUS */ 
+    sReserved    VOS-INT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-1X-POWER-UP-CTRL-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enAction    CPROC-1X-ACTION-TYPE-ENUM, 
+ 
+    --/**< start,stop */ 
+    usActionTimeFrame    VOS-UINT16, 
+ 
+    --/**< 0..3, resolution 20ms (offset within 80ms slot), ACTION-TIME-FRAME */ 
+    usPUFSetupSize    VOS-UINT16, 
+ 
+    --/**< 0..63,(offset = 1) PUF-SETUP-SIZE */ 
+    usPUFPulseSize    VOS-UINT16, 
+ 
+    --/**< 0..127, (offset = 1) PUF-PULSE-SIZE */ 
+    usPUFInterval    VOS-UINT16, 
+ 
+    --/**< 0..1023, PUF-INTERVAL */ 
+    usPUFInitPower    VOS-UINT16, 
+ 
+    --/**< 0..63, Resolution 1dB PUF-INIT-PWR */ 
+    usPUFPowerStep    VOS-UINT16, 
+ 
+    --/**< 0..31, Resolution 1dB, PUF-PWR-STEP */ 
+    usPUFTotalProbe    VOS-UINT16, 
+ 
+    --/**< 0..15, (offset = 1) TOTAL-PUF-PROBES */ 
+    usMaxPowerPUF    VOS-UINT16, 
+ 
+    --/**< 0..15, (offset = 1) MAX-PWR-PUF */ 
+    enPUFFreqFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< yes,no */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, PUF-BAND-CLASS */ 
+    usFrequency    VOS-UINT16 
+    --/**< 0..2047, PUF-CDMA-FREQ */ 
+} 
+
+CPROC-1X-POWER-MEAS-RPT-STRU    ::= <V> SEQUENCE  
+{ 
+    enFchPowerMeasExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enDcchPowerMeasExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enSchPowerMeasExist    CPROC-1X-BOOL-ENUM , 
+ 
+    usSchNum    VOS-UINT16 , 
+ 
+     
+    astSchPowerMeas    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-POWER-MEAS-STRU, 
+ 
+    stFchPowerMeas    CPROC-1X-POWER-MEAS-STRU , 
+ 
+    stDcchPowerMeas    CPROC-1X-POWER-MEAS-STRU  
+} 
+
+CPROC-1X-OLPC-RPT-STRU    ::= <V> SEQUENCE  
+{ 
+    enPeriodicReport    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< TRUE: the report is a requested oneshot or was sent due to an update of a setpt, FALSE: the report was triggered by configured thresholds */ 
+    enFchCurSetpointFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    usFchCurSetpoint    VOS-UINT16, 
+ 
+    --/**< 0..254, resolution 0.125dB. FPC-FCH-CURR-SETPT */ 
+    enDcchCurSetpointFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    usDcchCurSetpoint    VOS-UINT16, 
+ 
+    --/**< 0.254, resolution 0.125dB. FPC-DCCH-CURR-SETPT */ 
+    usSchNum    VOS-UINT16, 
+ 
+    --/**< 0..2, NUM-SUP */ 
+     
+    astSchCurSetpoint    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-SCH-CUR-SETPOINT-STRU 
+} 
+
+CPROC-1X-FREQ-SIGNAL-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    stFreqInfo    CPROC-1X-FREQ-INFO-STRU , 
+ 
+    sFreqRssi    VOS-INT16, 
+ 
+    --/**< -880..0, Resolution 0.125dB */ 
+    usReserve1    VOS-UINT16  
+} 
+
+CPROC-1X-FREQ-LIST-STRU    ::= <V> SEQUENCE  
+{ 
+    usFreqNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astFreq    <V>SEQUENCE(SIZE(32)) OF CPROC-1X-FREQ-INFO-STRU 
+} 
+
+CPROC-1X-PILOT-SEARCH-FREQ-LIST-STRU    ::= <V> SEQUENCE  
+{ 
+    usFreqNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astFreq    <V>SEQUENCE(SIZE(32)) OF CPROC-1X-PILOT-SEARCH-FREQ-INFO-STRU 
+} 
+
+CPROC-1X-ACT-SET-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usPilotNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    stActSetPilotInfo    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-ACT-SET-INFO-PILOT-STRU 
+} 
+
+CPROC-1X-FCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enFrameSize    CPROC-1X-FCH-FRAME-SIZE-ENUM, 
+ 
+    --/**< 20,5 or 20 FCH-FRAME-SIZE */ 
+    usRC    VOS-UINT16, 
+ 
+    --/**< Radio configuration number */ 
+    enstFchAdvancedParamsFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the 1xAdvanced parameters included? */ 
+    usNumBitsInfo    VOS-UINT16, 
+ 
+    --/**< 1 or 4 */ 
+     
+    ausInformationBitsNum    <V>SEQUENCE(SIZE(4)) OF VOS-UINT16, 
+ 
+    --/**< 0..65535, NUM-BITS */ 
+    stFchAdvancedParams    CPROC-1X-1XADV-FCH-STRU 
+    --/**< FCH parameters for 1x Advanced */ 
+} 
+
+CPROC-1X-FWD-SCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usStartTimeUnit    VOS-UINT16, 
+ 
+    --/**< 0..7 => 20ms..160ms START-TIME-UNIT */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usFwdSchNum    VOS-UINT16 , 
+ 
+     
+    astFwdSchInfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-FWD-SCH-INFO-STRU 
+} 
+
+CPROC-1X-REV-SCH-PARA-STRU    ::= <V> SEQUENCE  
+{ 
+    enChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usRevSCHTXDuration    VOS-UINT16, 
+ 
+    --/**< 0..14 in 20ms resolution. 15 = any time. REV-SCH-DTX-DURATION */ 
+    usStartTimeUnit    VOS-UINT16, 
+ 
+    --/**< 0..7 => 20ms..160ms START-TIME-UNIT */ 
+    usRevSchNum    VOS-UINT16 , 
+ 
+     
+    astRevSchInfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-REV-SCH-INFO-STRU 
+} 
+
+CPROC-1X-OLPC-SCH-INFO-STRU    ::= <V> SEQUENCE  
+{ 
+    usMasterSchInd    VOS-UINT16, 
+ 
+    --/**< 0..1, FPC-SEC-CHAN */ 
+    usSchNum    VOS-UINT16 , 
+ 
+    enFpcSchInitSetptOption    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< FALSE: The init setpoints are absolute: TRUE: init setpoints are offset to current setpoint, FCP:SCH-INIT-SETPT-OP */ 
+     
+    astOlpcSch    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-OLPC-SCH-CFG-STRU 
+} 
+
+CPROC-1X-FWD-POWER-CTRL-STRU    ::= <V> SEQUENCE  
+{ 
+    enOlpcFchExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enOlpcDcchExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enOlpcSchExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enFpcThreshExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enSchFpcThreshExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enFpcSubChanGainExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enFpcGainActionTimeExist    CPROC-1X-BOOL-ENUM , 
+ 
+    usFpcModeNoSch    VOS-UINT16, 
+ 
+    --/**< 0..7, FPC-MODE-NO-SCH in C.S0002 and C.S0005 */ 
+    usFpcModeSch    VOS-UINT16, 
+ 
+    --/**< 0..7, FPC-MODE-SCH */ 
+    enFpcPriChan    CPROC-1X-FPC-PRI-CH-ENUM , 
+ 
+    stOlpcFchConfig    CPROC-1X-OLPC-CFG-STRU , 
+ 
+    stOlpcDcchConfig    CPROC-1X-OLPC-CFG-STRU , 
+ 
+    stOlpcSchConfig    CPROC-1X-OLPC-SCH-INFO-STRU , 
+ 
+    usFpcSetpointThresh    VOS-UINT16, 
+ 
+    --/**< 0..255, in 0.125dB. FPC-SETPT-THRESH */ 
+    usSchFpcSetpointThresh    VOS-UINT16, 
+ 
+    --/**< 0..255, in 0.125dB. FPC-SETPT-THRESH-SCH */ 
+    usFpcSubChanGain    VOS-UINT16, 
+ 
+    --/**< 0..31, resolution 0.25dB. FPC-SUBCHAN-GAIN */ 
+    usFpcGainActionTime    VOS-UINT16 
+    --/**< 0..63, ACTION-TIME, or CPROC-1X-ACTIVATE-AT-ONCE */ 
+} 
+
+CPROC-1X-REV-POWER-CTRL-REC-STRU    ::= <V> SEQUENCE  
+{ 
+    usReserve1    VOS-UINT16 , 
+ 
+    enRpcAdjRecType    <V,V|LEN-16>CPROC-1X-RPC-ADJ-TYPE-ENUM  EXPORT(usChoice2), 
+ 
+    --/* -H2ASN-MsgChoice-Export CPROC-1X-RPC-ADJ-TYPE-ENUM-UINT16 */ 
+    --CPROC-1X-POWER-UNION    uU 
+    struMsgChoice    CPROC-1X-RPC-ADJ-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CPROC-1X-RPC-ADJ-TYPE-ENUM-UINT16 */ 
+} 
+
+CPROC-1X-REV-POWER-CTRL-STRU    ::= <V> SEQUENCE  
+{ 
+    enRlGainAdjTchPilotFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is sRlGainAdjTchPilot included */ 
+    enRlGainAdjSchPilotFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is sRlGainAdjSchPilo included */ 
+    enRevPwrCtrlDelayFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is usRevPwrCtrlDelay included */ 
+    sRlGainAdjToAccess    VOS-INT16, 
+ 
+    --/**< -8..7, RLGAIN-ADJ */ 
+    enNomPwrExtend    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< NOM-PWR-EXT */ 
+    sNomPwr    VOS-INT16, 
+ 
+    --/**< -8..7, resolution 1dB NOM-PWR */ 
+    sRlGainAdjTchPilot    VOS-INT16, 
+ 
+    --/**< -32..31, resolution 0.125dB RLGAIN-TRAFFIC-PILOT */ 
+    sRlGainAdjSchPilot    VOS-INT16, 
+ 
+    --/**< -32..31, resolution 0.125dB RLGAIN-SCH-PILOT */ 
+    enRevFchGatingMode    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Reverse eighth gating mode indicator, REV-FCH-GATING-MODE */ 
+    usRevPwrCtrlDelay    VOS-UINT16, 
+ 
+    --/**< 0..3, resolution 1 PCG. Offset -1. (0=>1PCG, 1=>2PCG etc) REV-PWR-CNTL-DELAY */ 
+    enDefaultRlAgFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Use default values after handoff, DEFAULT-RLAG */ 
+    usRevPcRecNum    VOS-UINT16 , 
+ 
+     
+    astRevPcRec    <V>SEQUENCE(SIZE(4)) OF CPROC-1X-REV-POWER-CTRL-REC-STRU, 
+ 
+    usReserved2    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enAdvancedPwrCntrlFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Are the 1x Advanced power control parameters included? */ 
+    stAdvPowerCtrl    CPROC-1X-1XADV-POWER-CTRL-STRU, 
+ 
+    --/**< Power control parameters used with 1x Advanced */ 
+    shwRtCNomPwr    VOS-INT16, 
+ 
+    --/**< -16..15, res 1dB. RTC-NOM-PWR */ 
+    enRtcNomPwrUseInd    CPROC-1X-BOOL-ENUM 
+    --/**< RTC-NOM-PWR-USE-IND */ 
+} 
+
+CPROC-1X-POWER-CTRL-STRU    ::= <V> SEQUENCE  
+{ 
+    enPowerControlStep    CPROC-1X-PC-STEP-ENUM, 
+ 
+    --/**< PWR-CNTL-STEP */ 
+    enFpcFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is FWD power control included */ 
+    enRpcFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is REV power control included */ 
+    usReserved1    VOS-UINT16 , 
+ 
+    stFpcConfig    CPROC-1X-FWD-POWER-CTRL-STRU , 
+ 
+    stRpcConfig    CPROC-1X-REV-POWER-CTRL-STRU  
+} 
+
+CAS-CPROC-1X-LONG-CODE-CFG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< 0..63, system time in 80ms MOD 64 = ActionTime => activate, or CPROC-1X-ACTIVATE-AT-ONCE. ACTION-TIME */ 
+    enBelongsToChannelCfg    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< FALSE: no channel config done at the same time, TRUE: channel config done at the same time. */ 
+     
+    auwLongCodeMask    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32 
+    --/**< The long code mask to use */ 
+} 
+
+CPROC-CAS-1X-LONG-CODE-CFG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-REL-ALL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-REL-ALL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SET-WORK-MODE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enWorkMode    CPROC-1X-WORK-MODE-ENUM, 
+ 
+    --/**< 0: Slave Mode, 1: MasterMode */ 
+    enModemId    MODEM-ID-ENUM  
+} 
+
+CPROC-CAS-1X-SET-WORK-MODE-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-GOOD-FRAME-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-HANDOFF-FAIL-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-TCH-LOST-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SIGNAL-LEVEL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    stFreqList    CPROC-1X-FREQ-LIST-STRU  
+} 
+
+CPROC-CAS-1X-SIGNAL-LEVEL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usFreqNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astFreq    <V>SEQUENCE(SIZE(50)) OF CPROC-1X-FREQ-SIGNAL-INFO-STRU 
+} 
+
+CAS-CPROC-1X-SIGNAL-LEVEL-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-SIGNAL-LEVEL-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SIGNAL-LEVEL-SUSPEND-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-SIGNAL-LEVEL-SUSPEND-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SIGNAL-LEVEL-RESUME-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-SIGNAL-LEVEL-RESUME-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-PILOT-SEARCH-RESUME-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-PILOT-SEARCH-RESUME-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-PILOT-SEARCH-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-PILOT-SEARCH-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-PILOT-SEARCH-SUSPEND-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-PILOT-SEARCH-SUSPEND-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-PILOT-SEARCH-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    stFreqList    CPROC-1X-PILOT-SEARCH-FREQ-LIST-STRU  
+} 
+
+CPROC-CAS-1X-PILOT-SEARCH-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usBandClass    VOS-UINT16 , 
+ 
+    usFrequency    VOS-UINT16 , 
+ 
+    sTotalRxPower    VOS-INT16, 
+ 
+    --/**< **880..0, Resolution 0.125dB */ 
+    usSearchedPilotNum    VOS-UINT16 , 
+ 
+     
+    astPilotInfo    <V>SEQUENCE(SIZE(1)) OF CPROC-1X-PILOT-SEARCH-INFO-STRU 
+} 
+
+CPROC-CAS-1X-PILOT-SEARCH-DONE-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-ACTION-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enPwrCtrl    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Set to VALID if the Action Indication is for power control configuration */ 
+    enLongCode    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Set to VALID if the Action Indication is for a long code change */ 
+    usChannelNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astChannelRslt    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-CHANNEL-RESULT-STRU 
+} 
+
+CAS-CPROC-1X-CCI-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usQPageCH    VOS-UINT16, 
+ 
+    --/**< Calculated from hash function */ 
+    enRAT    CPROC-1X-DATA-RATE-ENUM, 
+ 
+    --/**< QPCH data rate,9600bps,4800bps */ 
+    usQpchCciPwrLevel    VOS-UINT16 
+    --/**< 0..7, resolution 1dB, offset -5dB, QPCH-POWER-LEVEL-CONFIG see  3.7.2.3.2.13-3 */ 
+} 
+
+CPROC-CAS-1X-CCI-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-CCI-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enCCIInfo    CPROC-1X-CCI-INFO-ENUM, 
+ 
+    --/**< ON,OFF */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-1X-FSYNC-START-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usBandClass    VOS-UINT16, 
+ 
+    --/**< 0..31, BAND-CLASS */ 
+    usFrequency    VOS-UINT16, 
+ 
+    --/**< 0..2047, CDMA-FREQ */ 
+    usPilotPN    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usCfgId    VOS-UINT16 
+    --/**< 0..255, Configuration identity */ 
+} 
+
+CPROC-CAS-1X-FSYNC-START-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enRslt    CPROC-1X-RSLT-ENUM , 
+ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-1X-FSYNC-STOP-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-FSYNC-STOP-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enRslt    CPROC-1X-RSLT-ENUM , 
+ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-1X-TCH-CONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enOpstTchCommon    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is the TCH common part included ? */ 
+    enOpstActSetInfo    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< Is the active set info included ? */ 
+    usCfgId    VOS-UINT16, 
+ 
+    --/**< 0..255, Configuration identity */ 
+    stTchCommon    CPROC-1X-TCH-COMMON-STRU , 
+ 
+    stActSetInfo    CPROC-1X-ACT-SET-INFO-STRU , 
+ 
+    usCfgChannelNum    VOS-UINT16, 
+ 
+    --/**< 0..6? Number of affected channels */ 
+    enFwdFchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enRevFchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enFwdDcchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enRevDcchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enFwdSchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enRevSchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    stFwdFchPara    CPROC-1X-FCH-PARA-STRU , 
+ 
+    stRevFchPara    CPROC-1X-FCH-PARA-STRU , 
+ 
+    stFwdDcchPara    CPROC-1X-DCCH-PARA-STRU , 
+ 
+    stRevDcchPara    CPROC-1X-DCCH-PARA-STRU , 
+ 
+    stFwdSchPara    CPROC-1X-FWD-SCH-PARA-STRU , 
+ 
+    stRevSchPara    CPROC-1X-REV-SCH-PARA-STRU  
+} 
+
+CPROC-CAS-1X-TCH-CONFIG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usChannelNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astChannelRslt    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-CHANNEL-RESULT-STRU 
+} 
+
+CAS-CPROC-1X-COMMON-CH-CONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usCfgChannelNum    VOS-UINT16 , 
+ 
+    usCfgId    VOS-UINT16, 
+ 
+    --/**< 0..255, Configuration identity */ 
+    enPchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enFccchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enBcchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enQpchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enAchCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    enEachCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    stPchPara    CPROC-1X-PCH-PARA-STRU , 
+ 
+    stFccchPara    CPROC-1X-FCCCH-PARA-STRU , 
+ 
+    stBcchPara    CPROC-1X-BCCH-PARA-STRU , 
+ 
+    stQpchPara    CPROC-1X-QPCH-PARA-STRU , 
+ 
+    stAchPara    CPROC-1X-ACH-PARA-STRU , 
+ 
+    stEachPara    CPROC-1X-EACH-PARA-STRU  
+} 
+
+CPROC-CAS-1X-COMMON-CH-CONFIG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usChannelNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astChannelRslt    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-CHANNEL-RESULT-STRU 
+} 
+
+CAS-CPROC-1X-CHANNEL-REL-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< 0..63 in 80 ms or CPROC-1X-ACTIVATE-AT-ONCE */ 
+    enRelActiveChannels    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< When VALID, all active channels shall be released. CPROC will then ignore usRelChannelNum and ausRelChannelType */ 
+    usReserved1    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    usRelChannelNum    VOS-UINT16 , 
+ 
+     
+    aenRelChannelType    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-PHYCH-ENUM 
+} 
+
+CPROC-CAS-1X-CHANNEL-REL-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usChannelNum    VOS-UINT16 , 
+ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    astChannelRslt    <V>SEQUENCE(SIZE(6)) OF CPROC-1X-CHANNEL-RESULT-STRU 
+} 
+
+CAS-CPROC-1X-STOP-COMMON-CH-MONITOR-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enRelProcess    CPROC-1X-SLOTTED-PROCESS-ENUM, 
+ 
+    --/**< page, bc, or page-and-bc */ 
+    enRelChannelType    CPROC-1X-PHYCH-ENUM , 
+ 
+    usLastSlotSTopTime    VOS-UINT16, 
+ 
+    --/**< 0..63, in 80ms. System time of the slot which triggered the stop. */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit aligment */ 
+} 
+
+CPROC-CAS-1X-STOP-COMMON-CH-MONITOR-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-SET-TIMING-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enResult    CPROC-1X-RSLT-ENUM , 
+ 
+    usPNOffset    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SET-TIMING-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+     
+    aulLongCodeState    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32, 
+ 
+    --/**< Long code state, LC-STATE */ 
+    ulBaseTime    VOS-UINT32, 
+ 
+    --/**< System time of receiving the  F-SYNC message */ 
+     
+    aulSystimeOfSyncMsg    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32, 
+ 
+    --/**< System time extracted from the F-SYNC message, SYS-TIME */ 
+    usPNOffset    VOS-UINT16, 
+ 
+    --/**< 0..511, PILOT-PN */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CAS-CPROC-1X-PWRCTRL-CONFIG-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usActionTime    VOS-UINT16, 
+ 
+    --/**< 0..63, activate when time mod 80ms == ACTION-TIME, or CPROC-1X-ACTIVATE-AT-ONCE */ 
+    enBelongsToChannelCfg    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< FALSE: no channel config done at the same time, TRUE: channel config done at the same time. */ 
+    usReserved    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+    enFwdTchPowerMeasCfgExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enPowerControlCfgExist    CPROC-1X-BOOL-ENUM , 
+ 
+    enPowerUpControlParaCfgFlag    CPROC-1X-BOOL-ENUM , 
+ 
+    stFwdTchPowerMeasConfig    CPROC-1X-FWD-TCH-POWER-MEAS-STRU , 
+ 
+    stPowerControlConfig    CPROC-1X-POWER-CTRL-STRU , 
+ 
+    stPowerUpControlParaConfig    CPROC-1X-POWER-UP-CTRL-PARA-STRU  
+} 
+
+CPROC-CAS-1X-PWRCTRL-CONFIG-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enRslt    CPROC-1X-RSLT-ENUM , 
+ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-1X-PWRCTRL-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enPowerMeasRptFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is the power measurement report included ? */ 
+    enOLPCRptFlag    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is the open loop power control report included ? */ 
+    stPowerMeasRpt    CPROC-1X-POWER-MEAS-RPT-STRU , 
+ 
+    stOlpcRpt    CPROC-1X-OLPC-RPT-STRU  
+} 
+
+CAS-CPROC-1X-OLPC-RSLT-RPT-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enReportType    CPROC-1X-OLPC-REPORT-REQ-ENUM, 
+ 
+    --/**< once, periodic or normal report */ 
+    usReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-1X-ERROR-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-START-COMMON-CH-MONITOR-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    usNumActionTimes    VOS-UINT16, 
+ 
+    --/**< Number of Broadcast slots to be received */ 
+    usReserved1    VOS-UINT16, 
+ 
+    --/**< 32 bit alignment */ 
+     
+    ausActionTimes    <V>SEQUENCE(SIZE(4)) OF VOS-UINT16 
+    --/**< Array of ActionTimes for Broadcast Slots to be received. Range: 0..63 */ 
+} 
+
+CPROC-CAS-1X-START-COMMON-CH-MONITOR-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-RF-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-NO-RF-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-TIME-SYNC-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enForcePulse    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< TRUE => pulse is even if there is no system timing available */ 
+    uhwReserved    VOS-UINT16 
+    --/**< 32 bit alignment */ 
+} 
+
+CPROC-CAS-1X-TIME-SYNC-IND-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enResult    CPROC-1X-RSLT-ENUM , 
+ 
+    enTimeIncluded    CPROC-1X-BOOL-ENUM, 
+ 
+    --/**< is the auwPulseTime included or not */ 
+     
+    auwPulseTime    <V>SEQUENCE(SIZE(2)) OF VOS-UINT32 
+    --/**< System time in 1 16 chip */ 
+} 
+
+CAS-CPROC-1X-TRAFFIC-INFO-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16 , 
+ 
+    enTrafficType    CPROC-1X-TRAFFIC-TYPE-ENUM , 
+ 
+    usReserved    VOS-UINT16  
+} 
+
+CAS-CPROC-1X-SLOTTED-MODE-CONTINUE-REQ-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+CPROC-CAS-1X-SLOTTED-MODE-CONTINUE-CNF-STRU    ::= <V> SEQUENCE  
+{ 
+    --// VOS-MSG-HEADER 
+ 
+    --// CPROC1XCM-MSG-TYPE-ENUM-UINT16 enMsgId; 
+ 
+    usOpId    VOS-UINT16  
+} 
+
+Cproc1xcm-msg-data    ::= <LV,L|LEN-32> SEQUENCE  
+{ 
+    enMsgId    <V,V|LEN-16>CPROC1XCM-MSG-TYPE-ENUM  EXPORT(usChoice1), 
+ 
+    --/* -H2ASN-MsgChoice-Export CPROC1XCM-MSG-TYPE-ENUM-UINT16 */ 
+    --CPROC1XCM-DummySignalUnion    dummySignalUnion 
+    struMsgChoice    CPROC1XCM-MSG-TYPE-ENUM-CHOICE-STRU 
+    --/* -H2ASN-MsgChoice-When-Comment CPROC1XCM-MSG-TYPE-ENUM-UINT16 */ 
+} 
+
+Cproc1xcm-MSG    ::= <V> SEQUENCE  
+{ 
+    vOS-MSG-HEADER  VOS-MSG-HEADER, 
+ 
+    stMsgData    Cproc1xcm-msg-data  
+} 
+
+Cproc1xcm-DUMMY-STRUCT-TO-MAKE-H2ASN1-WORK    ::= <V> SEQUENCE  
+{ 
+    dummy    VOS-UINT32  
+} 
+
+END

@@ -1,0 +1,33 @@
+config SECURE_EXTENSION
+        bool "security extension support"
+        default n
+        help
+          Include Security Extension.
+
+config  TZDRIVER
+    tristate "Secure Execution Communicator driver"
+    default n
+    depends on SECURE_EXTENSION
+    help
+      Provides a communication interface between userspace and
+      TrustZone Operating Environment.
+
+config TEELOG
+       tristate "Secure Execution Communicator driver"
+       default n
+       depends on TZDRIVER
+       help
+       TEEOS log
+
+config TEE_TUI
+       tristate "Trusted user interface driver"
+       default n
+       depends on TZDRIVER
+       help
+       Trusted user interface diver
+config HISI_SPI_SMC
+	bool "hisi spi smc"
+	default n
+config HISI_SPI1_SMC
+	bool "hisi spi1 smc"
+	default n

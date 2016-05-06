@@ -1,0 +1,43 @@
+/ {
+	hisi_charger: hisi_charger{
+		compatible = "huawei,charger";
+		status = "disabled";
+	};
+	hisi_charging_core:hisi_charging_core{
+		compatible = "huawei,charging_core";
+		iin_ac = <2000>;
+		ichg_ac = <1900>;
+		iin_usb = <500>;
+		ichg_usb = <500>;
+		iin_bc_usb = <1500>;
+		ichg_bc_usb = <1400>;
+		iin_nonstd = <1200>;
+		ichg_nonstd = <1000>;
+		iterm = <100>;
+		otg_curr = <1300>;
+		ichrg_pre_limit = <128>;
+		vdpm_para =
+		    "-32767", "90", "4520", "0",
+		    "90", "32767", "4600", "0";
+		inductance_para =
+		    "-32767", "15", "1600", "0",
+		    "15", "32767", "1700", "0";
+		status = "disabled";
+	};
+	amba {
+		i2c4: i2c@FDF0D000 {
+			bq25892_charger: bq25892_charger@6B{
+                 		compatible = "huawei,bq25892_charger";
+                 		reg = <0x6B>;
+                 		gpio_cd = <&gpio22 1 0>;
+                 		gpio_int = <&gpio22 4 0>;
+                 		bat_comp = <80>;
+                 		vclamp = <224>;
+                 		rilim = <124>;
+				adc_channel_iin = <5>;
+                 		fcp_support = <0>;
+                 		status = "disabled";
+			};
+		};
+	};
+};

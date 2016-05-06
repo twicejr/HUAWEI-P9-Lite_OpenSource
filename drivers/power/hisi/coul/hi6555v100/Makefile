@@ -1,0 +1,1 @@
+obj-y += hisi_hi6555v100_coul.o

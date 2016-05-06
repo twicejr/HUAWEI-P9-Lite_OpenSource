@@ -1,0 +1,36 @@
+/*
+ *  Copyright (C) 2014 Hisilicon Ltd.
+ *  Author: Bintian Wang <bintian.wang@huawei.com>
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "hi3650_hi3650_udp_3001_config.dtsi"
+
+/ {
+	hisi,boardid = <3 0 8 3>;
+	hisi,boardname = "hi3650_hi3650_1102_FPGA";
+	hisi,product_id = <0x3CF5FC01>;
+
+	hw_connectivity {
+		chip_type = "hisi";
+	};
+
+	/*hisi wifi*/
+	dwmmc2: dwmmc2@ff3ff000 {
+	pinctrl-0 = <&gpio061_cfg_func &gpio062_cfg_func
+				&gpio063_cfg_func &gpio064_cfg_func
+				&gpio065_cfg_func &gpio066_cfg_func
+				&gpio061_pmx_func &gpio062_pmx_func
+				&gpio063_pmx_func &gpio064_pmx_func
+				&gpio065_pmx_func &gpio066_pmx_func>;
+	pinctrl-1 = <&gpio061_cfg_idle &gpio062_cfg_idle
+				&gpio063_cfg_idle &gpio064_cfg_idle
+				&gpio065_cfg_idle &gpio066_cfg_idle
+				&gpio061_pmx_idle &gpio062_pmx_idle
+				&gpio063_pmx_idle &gpio064_pmx_idle
+				&gpio065_pmx_idle &gpio066_pmx_idle>;
+	};
+};

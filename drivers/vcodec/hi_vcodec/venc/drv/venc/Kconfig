@@ -1,0 +1,9 @@
+menu "Driver test support"
+
+config DRIVER_TEST
+    #depends on ANDROID_PMEM
+    tristate "Support for venc"
+    default y
+    help
+        The decode device provides venc function
+endmenu

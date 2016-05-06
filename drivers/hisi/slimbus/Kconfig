@@ -1,0 +1,10 @@
+menu "hisilicon slimbus driver"
+
+config HISILICON_PLATFORM_SLIMBUS
+     bool "slimbus device support"
+     default y
+     help
+          slimbus driver.
+
+endmenu
+

@@ -1,0 +1,5 @@
+config TFA9895
+	tristate "tfa9895 i2c driver"
+	default n
+	help
+		Say Y to enable tfa9895 i2c driver support

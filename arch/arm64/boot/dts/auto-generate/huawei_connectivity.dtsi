@@ -1,0 +1,15 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    hw_connectivity {
+        compatible = "huawei,hw_connectivity";
+        /*huawei configuration*/
+        chip_type = "bcm43xx";
+    };
+};

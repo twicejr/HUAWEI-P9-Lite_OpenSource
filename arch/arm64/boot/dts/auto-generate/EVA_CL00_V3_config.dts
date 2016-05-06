@@ -1,0 +1,39 @@
+/**
+ * Huawei Ltd.
+ * PhosphorV660
+ */
+
+/dts-v1/;
+
+/include/ "fastboot.dtsi"
+/include/ "EVA_TUCL_V0_config.dtsi"
+/include/ "EVA_CL00_V3_pin.dtsi"
+/include/ "EVA_CL00_V3_modem_pin.dtsi"
+/include/ "EVA_CL00_V3_hi6402_pin.dtsi"
+
+/{
+	hisi,modem_id = <0x3C010000>;
+	hisi,boardid = <3 5 9 0>;
+	hisi,boardname = "EVA_CL00_V3";
+	amba{
+		i2c4: i2c@FDF0D000{
+			pericom30216_typec: typec@1d {
+				pericom30216_gpio_enb = <1>;
+				status = "ok";
+			};
+			tusb320_typec: typec@47 {
+				tusb320_gpio_enb = <1>;
+				tusb320_mdelay = <100>;
+				status = "ok";
+			};
+			fusb301_typec: typec@21 {
+				fusb301_gpio_enb = <1>;
+				status = "ok";
+			};
+			ptn5150h_typec: typec@1E {
+				ptn5150h_gpio_enb = <1>;
+				status = "ok";
+			};
+		};
+	};
+};

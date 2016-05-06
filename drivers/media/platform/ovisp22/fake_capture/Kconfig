@@ -1,0 +1,6 @@
+config VIDEO_HIK3_FAKE_CAMERA
+    tristate "Hisilicon K3 FAKE CAMERA"
+    depends on VIDEO_HI6210_CAMERA && VIDEO_HIK3_ISP_CAMERA
+    default m
+    ---help---
+        Hisilicon K3 Fake Camera driver.

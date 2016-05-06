@@ -1,0 +1,64 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+
+	ip_freq_autodown: ip_freq_autodown@0xFFF35000 {
+			compatible = "hisilicon,hisi-freq-autodown";
+			reg = <0x00 0xFFF35000 0x00 0x1000>;
+			hisilicon,freq-autodown-num = <9>;
+			hisilicon,freq-autodown-names = "vcodecbus","vdecbus","vencbus","emmc1bus","emmc0bus","dbgbus","dmabus","cfgbus","sysbus";
+			hisilicon,freq-autodown-state = <1>;
+
+			vcodecbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vcodecbus";
+				freq_autodown_disable_bypass 	= <0x374 0>;/*diable auto frequency modulation bypass*/
+				freq_autodown_enable_clock 	= <0x410 5>;/*auto frequency modulation monitor clk enable*/
+			};
+			vdecbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vdecbus";
+				freq_autodown_disable_bypass 	= <0x36C 0>;
+				freq_autodown_enable_clock 	= <0x410 3>;
+			};
+			vencbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vencbus";
+				freq_autodown_disable_bypass 	= <0x368 0>;
+				freq_autodown_enable_clock 	= <0x410 2>;
+			};
+			emmc1bus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-emmc1bus";
+				freq_autodown_disable_bypass 	= <0x404 0>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+			emmc0bus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-emmc0bus";
+				freq_autodown_disable_bypass 	= <0x404 1>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+			dbgbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-dbgbus";
+				freq_autodown_disable_bypass 	= <0x404 2>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+			dmabus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-dmabus";
+				freq_autodown_disable_bypass 	= <0x404 3>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+			cfgbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-cfgbus";
+				freq_autodown_disable_bypass 	= <0x404 4>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+			sysbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-sysbus";
+				freq_autodown_disable_bypass 	= <0x404 5>;
+				freq_autodown_enable_clock 	= <0xDEAD 0>;
+			};
+	};
+};

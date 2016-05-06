@@ -1,0 +1,1015 @@
+/*
+ * hi6403_regs.h -- HI6403 ALSA SoC HI6403 codec driver
+ *
+ * Copyright (c) 2015 Hisilicon Technologies CO., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+#ifndef __HI6403_REGS_H__
+#define __HI6403_REGS_H__
+#include "hi64xx_regs.h"
+
+/* page base addr def begin */
+#define BASE_ADDR_PAGE_ANA 0x70A1
+/* page base addr def end */
+
+#define HI6403_VERSION_VALUE 0x10
+
+/* vir mm reg begin */
+#define HI6403_VIRTUAL_REG (BASE_ADDR_PAGE_MM + 0x0)
+#define HI6403_S4_OL_SRC_EN_MM_BIT      (0)
+#define HI6403_S4_OR_SRC_EN_MM_BIT      (1)
+#define HI6403_AUDIOUP_BIT              (2)
+#define HI6403_VOICEUP_BIT              (3)
+#define HI6403_PLL48K_BIT               (4)
+#define HI6403_PLL44K1_BIT              (5)
+#define HI6403_PLLMAD_BIT               (6)
+#define HI6403_VOICE8K_BIT              (7)
+#define HI6403_VOICE16K_BIT             (8)
+#define HI6403_S3_OL_SRC_EN_MM_BIT      (9)
+#define HI6403_S3_OR_SRC_EN_MM_BIT      (10)
+#define HI6403_U3_OL_SRC_EN_MM_BIT      (11)
+#define HI6403_U4_OR_SRC_EN_MM_BIT      (12)
+#define HI6403_AUDIOUP_4MIC_BIT         (13)
+#define HI6403_S1_OL_SRC_EN_MM_BIT      (14)
+#define HI6403_S1_OR_SRC_EN_MM_BIT      (15)
+/* vir mm reg end */
+
+/* cfg reg begin */
+#define HI6403_PLL44K1_PLLMAD_STATE_REG (BASE_ADDR_PAGE_CFG + 0x01C)
+#define HI6403_PLL48K_STATE_REG         (BASE_ADDR_PAGE_CFG + 0x01D)
+#define HI6403_12M288_CLK_SEL_REG       (BASE_ADDR_PAGE_CFG + 0x04D)
+#define HI6403_PLL_LOCK_CFG_REG         (BASE_ADDR_PAGE_CFG + 0x0A0)
+#define HI6403_PLL_LOCK_CLR_BIT         3
+#define HI6403_PLL_LOCK_CHECK_BIT       2
+#define HI6403_AUDIO_CLK_CFG_REG (BASE_ADDR_PAGE_CFG + 0x040)
+#define HI6403_HPDN_44K1CLK_SEL_BIT     6
+#define HI6403_S4_44K1CLK_SEL_BIT       5
+#define HI6403_S1_44K1CLK_SEL_BIT       4
+#define HI6403_ADUIO_5M6448CLK_EN_BIT   3
+#define HI6403_ADUIO_6M144CLK_EN_BIT    2
+#define HI6403_ADUIO_11M2896CLK_EN_BIT  1
+#define HI6403_ADUIO_12M288CLK_EN_BIT   0
+#define HI6403_DIG_CLK_CFG_REG05    (BASE_ADDR_PAGE_CFG + 0x045)
+#define HI6403_HP_DET_CLKEN_BIT     5
+#define HI6403_CLASSH_CLKEN_BIT     4
+#define	HI6403_ANC_CLKEN_BIT        3
+#define HI6403_MAD_CLK_CFG_BIT      0
+
+#define HI6403_DIG_CLK_CFG_REG06    (BASE_ADDR_PAGE_CFG + 0x046)
+#define HI6403_ADC0R_PGA_CLKEN_BIT  7
+#define HI6403_ADC0L_PGA_CLKEN_BIT  6
+#define HI6403_DACRS_UP16_CLKEN_BIT 5
+#define HI6403_DACLS_UP16_CLKEN_BIT 4
+#define HI6403_DACR_UP16_CLKEN_BIT  1
+#define HI6403_DACL_UP16_CLKEN_BIT  0
+
+#define HI6403_DIG_CLK_CFG_REG07     (BASE_ADDR_PAGE_CFG + 0x047)
+#define HI6403_ADC1R_PGA_CLKEN_BIT   7
+#define HI6403_ADC1L_PGA_CLKEN_BIT   6
+#define HI6403_DACR_SRC_CLKEN_BIT    5
+#define HI6403_DACL_SRC_CLKEN_BIT    4
+#define HI6403_DACRS_MIXER_CLKEN_BIT 3
+#define HI6403_DACLS_MIXER_CLKEN_BIT 2
+#define HI6403_DACR_MIXER_CLKEN_BIT  1
+#define HI6403_DARL_MIXER_CLKEN_BIT  0
+
+#define HI6403_DIG_CLK_CFG_REG08     (BASE_ADDR_PAGE_CFG + 0x048)
+#define HI6403_DSDR_SDM_CLKEN_BIT    5
+#define HI6403_DSDL_SDM_CLKEN_BIT    4
+#define HI6403_DACRS_SDM_CLKEN_BIT   3
+#define HI6403_DACLS_SDM_CLKEN_BIT   2
+#define HI6403_DACR_SDM_CLKEN_BIT    1
+#define HI6403_DACL_SDM_CLKEN_BIT    0
+
+#define HI6403_DIG_CLK_CFG_REG09     (BASE_ADDR_PAGE_CFG + 0x049)
+#define HI6403_DACRS_CLKEN_BIT       7
+#define HI6403_DACLS_CLKEN_BIT       6
+#define HI6403_DACR_CLKEN_BIT        5
+#define HI6403_DACL_CLKEN_BIT        4
+#define HI6403_ADC1R_CLKEN_BIT       3
+#define HI6403_ADC1L_CLKEN_BIT       2
+#define HI6403_ADC0R_CLKEN_BIT       1
+#define HI6403_ADC0L_CLKEN_BIT       0
+
+#define HI6403_DIG_CLK_CFG_REG10     (BASE_ADDR_PAGE_CFG + 0x04A)
+#define HI6403_DACR_PGA_CLKEN_BIT    7
+#define HI6403_DACL_PGA_CLKEN_BIT    6
+#define HI6403_PDM_CLKEN_BIT         3
+#define HI6403_MDM_SRC_CLKEN_BIT     2
+#define HI6403_SIDE_PGA_CLKEN_BIT    1
+#define HI6403_SIDE_SRC_CLKEN_BIT    0
+
+#define HI6403_DIG_CLK_CFG_REG11     (BASE_ADDR_PAGE_CFG + 0x04B)
+#define HI6403_DACLS_PGA_CLKEN_BIT   7
+#define HI6403_DMIC0_CLK_CFG_BIT     4
+#define HI6403_DMIC1_IF_CLKEN_BIT    3
+#define HI6403_DMIC1_CLKEN_BIT       2
+#define HI6403_DMIC0_IF_CLKEN_BIT    1
+#define HI6403_DMIC0_CLKEN_BIT       0
+
+#define HI6403_DIG_CLK_CFG_REG12        (BASE_ADDR_PAGE_CFG + 0x04C)
+#define HI6403_DMIC01_CLK_CFG_BIT       4
+#define HI6403_DACR_FLT_MIXER_CLKEN_BIT 3
+#define HI6403_DACL_FLT_MIXER_CLKEN_BIT 2
+#define HI6403_DACR_SRC_MIXER_CLKEN_BIT 1
+#define HI6403_DACL_SRC_MIXER_CLKEN_BIT 0
+
+#define HI6403_SLIM_CLK_DIV_REG (BASE_ADDR_PAGE_CFG + 0x030)
+#define HI6403_S1_PORT_CLKEN_REG    (0x041 + BASE_ADDR_PAGE_CFG)
+#define HI6403_S1_OR_SRC_CLKEN_BIT  7
+#define HI6403_S1_OL_SRC_CLKEN_BIT  6
+#define HI6403_S1_OR_PGA_CLKEN_BIT  5
+#define HI6403_S1_OL_PGA_CLKEN_BIT  4
+#define HI6403_S1_IR_SRC_CLKEN_BIT  3
+#define HI6403_S1_IL_SRC_CLKEN_BIT  2
+#define HI6403_S1_IR_PGA_CLKEN_BIT  1
+#define HI6403_S1_IL_PGA_CLKEN_BIT  0
+
+#define HI6403_S2_PORT_CLKEN_REG    (0x042 + BASE_ADDR_PAGE_CFG)
+#define HI6403_S2_OR_SRC_CLKEN_BIT  7
+#define HI6403_S2_OL_SRC_CLKEN_BIT  6
+#define HI6403_S2_OR_PGA_CLKEN_BIT  5
+#define HI6403_S2_OL_PGA_CLKEN_BIT  4
+#define HI6403_S2_IR_SRC_CLKEN_BIT  3
+#define HI6403_S2_IL_SRC_CLKEN_BIT  2
+#define HI6403_S2_IR_PGA_CLKEN_BIT  1
+#define HI6403_S2_IL_PGA_CLKEN_BIT  0
+
+#define HI6403_S3_PORT_CLKEN_REG    (0x043 + BASE_ADDR_PAGE_CFG)
+#define HI6403_S3_OR_SRC_CLKEN_BIT  7
+#define HI6403_S3_OL_SRC_CLKEN_BIT  6
+#define HI6403_S3_OR_PGA_CLKEN_BIT  5
+#define HI6403_S3_OL_PGA_CLKEN_BIT  4
+#define HI6403_S3_IR_SRC_CLKEN_BIT  3
+#define HI6403_S3_IL_SRC_CLKEN_BIT  2
+#define HI6403_S3_IR_PGA_CLKEN_BIT  1
+#define HI6403_S3_IL_PGA_CLKEN_BIT  0
+
+#define HI6403_S4_PORT_CLKEN_REG    (0x044 + BASE_ADDR_PAGE_CFG)
+#define HI6403_S4_OR_SRC_CLKEN_BIT  7
+#define HI6403_S4_OL_SRC_CLKEN_BIT  6
+#define HI6403_S4_SMARTR_CLKEN_BIT  5
+#define HI6403_S4_SMARTL_CLKEN_BIT  4
+#define HI6403_DMIC_RST_BIT         3
+#define HI6403_S1_MAD_SRC_CLKEN_BIT 2
+#define HI6403_S1_SMARTR_CLKEN_BIT  1
+#define HI6403_S1_SMARTL_CLKEN_BIT  0
+
+/* MIXER CLK ENABLE */
+#define HI6403_DAC_MIXER_CLK_REG           (BASE_ADDR_PAGE_CFG + 0x047)
+#define HI6403_DACSR_MIXER_EN_BIT          3
+#define HI6403_DACSL_MIXER_EN_BIT          2
+#define HI6403_DACR_MIXER_EN_BIT           1
+#define HI6403_DACL_MIXER_EN_BIT           0
+
+#define HI6403_DAC_SRC_MIXER_CLK_REG       (BASE_ADDR_PAGE_CFG + 0x04C)
+#define HI6403_DACR_FLT_MIXER_EN_BIT       3
+#define HI6403_DACL_FLT_MIXER_EN_BIT       2
+#define HI6403_DACR_SRC_MIXER_EN_BIT       1
+#define HI6403_DACL_SRC_MIXER_EN_BIT       0
+
+/* hi_cdcctrl will use this addr,so it should be full addr */
+#define HI6403_REG_IRQM_4 (CODEC_BASE_ADDR + BASE_ADDR_PAGE_CFG + 0x070)
+#define HI6403_REG_IRQ_4 (CODEC_BASE_ADDR + BASE_ADDR_PAGE_CFG + 0x071)
+/* cfg reg end */
+
+/* io reg begin */
+#define HI6403_GPIO0_IOSHARE_REG        (BASE_ADDR_PAGE_IO + 0x000)
+#define HI6403_IOTEST0_EN_BIT           4
+#define HI6403_GPIO0_EN_BIT             3
+#define HI6403_I2C_SLV_CLK_EN_BIT       1
+#define HI6403_SSI_DATA_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x004)
+#define HI6403_GPIO5_EN_BIT             3
+#define HI6403_I2C_SLV_DATA_BIT         1
+#define HI6403_SSI_DATA_EN_BIT          0
+#define HI6403_IRQ_IOSHARE_REG          (BASE_ADDR_PAGE_IO + 0x008)
+#define HI6403_IOTEST1_EN_BIT           4
+#define HI6403_GPIO6_EN_BIT             3
+#define HI6403_IRQ_EN_BIT               0
+#define HI6403_I2S1_SYNC_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x00C)
+#define HI6403_GPIO7_EN_BIT             3
+#define HI6403_SLIM_DATA_EN_BIT         1
+#define HI6403_I2S1_SYNC_EN_BIT         0
+#define HI6403_I2S1_CLK_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x010)
+#define HI6403_GPIO8_EN_BIT             3
+#define HI6403_SLIM_CLK_EN_BIT          1
+#define HI6403_I2S1_CLK_EN_BIT          0
+#define HI6403_I2S1_SDI_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x014)
+#define HI6403_GPIO9_EN_BIT             3
+#define HI6403_I2S1_SDI_EN_BIT          0
+#define HI6403_I2S1_SDO_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x018)
+#define HI6403_IOTEST2_EN_BIT           4
+#define HI6403_GPIO10_EN_BIT            3
+#define HI6403_I2S1_SDO_EN_BIT          0
+#define HI6403_I2S2_SYNC_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x01C)
+#define HI6403_IOTEST3_EN_BIT           4
+#define HI6403_GPIO11_EN_BIT            3
+#define HI6403_I2S2_SYNC_EN_BIT         0
+#define HI6403_I2S2_CLK_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x020)
+#define HI6403_IOTEST4_EN_BIT           4
+#define HI6403_GPIO12_EN_BIT            3
+#define HI6403_I2S2_CLK_EN_BIT          0
+#define HI6403_I2S2_SDI_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x024)
+#define HI6403_IOTEST5_EN_BIT           4
+#define HI6403_GPIO13_EN_BIT            3
+#define HI6403_I2S2_SDI_EN_BIT          0
+#define HI6403_I2S2_SDO_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x028)
+#define HI6403_IOTEST6_EN_BIT           4
+#define HI6403_GPIO14_EN_BIT            3
+#define HI6403_I2S2_SDO_EN_BIT          0
+#define HI6403_I2S3_SYNC_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x02C)
+#define HI6403_IOTEST7_EN_BIT           4
+#define HI6403_GPIO15_EN_BIT            3
+#define HI6403_I2S3_SYNC_EN_BIT         0
+#define HI6403_I2S3_CLK_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x030)
+#define HI6403_IOTEST8_EN_BIT           4
+#define HI6403_GPIO16_EN_BIT            3
+#define HI6403_DSD_CLK_EN_BIT           2
+#define HI6403_I2S3_CLK_EN_BIT          0
+#define HI6403_I2S3_SDI_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x034)
+#define HI6403_IOTEST9_EN_BIT           4
+#define HI6403_GPIO17_EN_BIT            3
+#define HI6403_DSD_L_EN_BIT             2
+#define HI6403_I2S3_SDI_EN_BIT          0
+#define HI6403_I2S3_SDO_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x038)
+#define HI6403_IOTEST10_EN_BIT          4
+#define HI6403_GPIO18_EN_BIT            3
+#define HI6403_DSD_R_EN_BIT             2
+#define HI6403_I2S3_SDO_EN_BIT          0
+#define HI6403_I2S4_SYNC_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x03C)
+#define HI6403_IOTEST11_EN_BIT          4
+#define HI6403_GPIO19_EN_BIT            3
+#define HI6403_I2S4_SYNC_EN_BIT         0
+#define HI6403_I2S4_CLK_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x040)
+#define HI6403_IOTEST12_EN_BIT          4
+#define HI6403_GPIO20_EN_BIT            3
+#define HI6403_I2S4_CLK_EN_BIT          0
+#define HI6403_I2S4_SDI_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x044)
+#define HI6403_IOTEST13_EN_BIT          4
+#define HI6403_GPIO21_EN_BIT            3
+#define HI6403_I2S4_SDI_EN_BIT          0
+#define HI6403_I2S4_SDO_IOSHARE_REG     (BASE_ADDR_PAGE_IO + 0x048)
+#define HI6403_IOTEST14_EN_BIT          4
+#define HI6403_GPIO21_EN_BIT            3
+#define HI6403_I2S4_SDO_EN_BIT          0
+#define HI6403_DMIC0_CLK_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x04C)
+#define HI6403_IOTEST15_EN_BIT          4
+#define HI6403_GPIO1_EN_BIT             3
+#define HI6403_DMIC0_CLK_EN_BIT         0
+#define HI6403_DMIC0_DATA_IOSHARE_REG   (BASE_ADDR_PAGE_IO + 0x050)
+#define HI6403_IOTEST16_EN_BIT          4
+#define HI6403_GPIO2_EN_BIT             3
+#define HI6403_DMIC0_DATA_EN_BIT        0
+#define HI6403_DMIC1_CLK_IOSHARE_REG    (BASE_ADDR_PAGE_IO + 0x054)
+#define HI6403_IOTEST17_EN_BIT          4
+#define HI6403_GPIO3_EN_BIT             3
+#define HI6403_DMIC1_CLK_EN_BIT         0
+#define HI6403_DMIC1_DATA_IOSHARE_REG   (BASE_ADDR_PAGE_IO + 0x058)
+#define HI6403_IOTEST18_EN_BIT          4
+#define HI6403_GPIO4_EN_BIT             3
+#define HI6403_DMIC1_DATA_EN_BIT        0
+#define HI6403_GPIO0_IOCONFIG_REG       (BASE_ADDR_PAGE_IO + 0x210)
+#define HI6403_IRQN_IOCONFIG_REG        (BASE_ADDR_PAGE_IO + 0x218)
+#define HI6403_SLIM_DATA_IOCONFIG_REG   (BASE_ADDR_PAGE_IO + 0x21C)
+#define HI6403_SLIM_DATA_IO_CURRENT_BIT 2
+#define HI6403_SLIM_CLK_IOCONFIG_REG    (BASE_ADDR_PAGE_IO + 0x220)
+#define HI6403_SLIM_CLK_IO_CURRENT_BIT  2
+#define HI6403_SLIM_SCHMITT_BIT         0
+#define HI6403_I2S2_SDO_IOCONFIG_REG    (BASE_ADDR_PAGE_IO + 0x238)
+#define HI6403_I2S4_SDO_IOCONFIG_REG    (BASE_ADDR_PAGE_IO + 0x258)
+#define HI6403_I2S_SDO_INPUT_EN_BIT     8
+#define HI6403_I2S_SDO_OUTPUT_EN_BIT    7
+#define HI6403_SPK_CLK_IOCONFIG_REG     (BASE_ADDR_PAGE_IO + 0x26C)
+#define HI6403_12M288_IOCONFIG_REG      (BASE_ADDR_PAGE_IO + 0x274)
+/* io reg end */
+
+/* ana reg begin */
+#define HI6403_PATH_CLK_SEL_REG         (BASE_ADDR_PAGE_ANA + 0x010)
+#define HI6403_ANALOG_REG0              (BASE_ADDR_PAGE_ANA + 0x000)
+#define HI6403_IBIAS_PD_BIT             7
+#define HI6403_BG_PD_BIT                6
+#define HI6403_PTAT_PD_BIT              5
+#define HI6403_PD_OTP_BIT               4
+#define HI6403_VREFSEL_BIT              2
+#define HI6403_VREF_FAST_BIT            1
+#define HI6403_VREF_MUX_BIT             0
+
+#define HI6403_ANALOG_REG1              (BASE_ADDR_PAGE_ANA + 0x001)
+#define HI6403_MAIN_PGA_PD_BIT          7
+#define HI6403_AUX_PGA_PD_BIT           6
+#define HI6403_LINEINL_PGA_PD_BIT       5
+#define HI6403_LINEINR_PGA_PD_BIT       4
+#define HI6403_ADC0L_PD_BIT             3
+#define HI6403_ADC0R_PD_BIT             2
+#define HI6403_ADC1L_PD_BIT             1
+#define HI6403_ADC1R_PD_BIT             0
+
+#define HI6403_ANALOG_REG2              (BASE_ADDR_PAGE_ANA + 0x002)
+#define HI6403_HP_GEN_PD_BIT            6
+#define HI6403_DAC_HPR_PD_BIT           5
+#define HI6403_DAC_HPL_PD_BIT           4
+#define HI6403_DAC_HP_VB_PB_BIT         3
+#define HI6403_DAC_HP_VB_SEC_PB_BIT     2
+#define HI6403_DAC_HPR_MUTE_BIT         1
+#define HI6403_DAC_HPL_MUTE_BIT         0
+
+#define HI6403_ANALOG_REG3              (BASE_ADDR_PAGE_ANA + 0x003)
+#define HI6403_HPL_PD_BIT               4
+#define HI6403_HPR_PD_BIT               3
+#define HI6403_HPL_FD_PD_BIT            2
+#define HI6403_HPR_FD_PD_BIT            1
+#define HI6403_HP_RDET_PD_BIT           0
+
+#define HI6403_ANALOG_REG4              (BASE_ADDR_PAGE_ANA + 0x004)
+#define HI6403_DAC_EAR_PD_BIT           5
+#define HI6403_DAC_LOL_PD_BIT           4
+#define HI6403_DAC_LOR_PD_BIT           3
+#define HI6403_LOL_PD_BIT               2
+#define HI6403_LOR_PD_BIT               1
+#define HI6403_EAR_PD_BIT               0
+
+#define HI6403_ANALOG_REG5              (BASE_ADDR_PAGE_ANA + 0x005)
+#define HI6403_ANALOG_REG6              (BASE_ADDR_PAGE_ANA + 0x006)
+#define HI6403_ANALOG_REG7              (BASE_ADDR_PAGE_ANA + 0x007)
+#define HI6403_ANALOG_REG8              (BASE_ADDR_PAGE_ANA + 0x008)
+#define HI6403_ANALOG_REG9              (BASE_ADDR_PAGE_ANA + 0x009)
+#define HI6403_ANALOG_REG10             (BASE_ADDR_PAGE_ANA + 0x00A)
+#define HI6403_ANALOG_REG11             (BASE_ADDR_PAGE_ANA + 0x00B)
+
+#define HI6403_ANALOG_REG15             (BASE_ADDR_PAGE_ANA + 0x00F)
+#define HI6403_TXCHOP_BPS_BIT           5
+#define HI6403_DAC_LOUT_CHOP_BPS_BIT    4
+#define HI6403_LI_CHOP_BPS_BIT          3
+#define HI6403_MADPGA_CHOP_BPS_BIT      2
+#define HI6403_TX_DAC_CLK_BPS_BIT       1
+#define HI6403_POP_CLK_PD_BIT           0
+
+#define HI6403_ANALOG_REG20             (BASE_ADDR_PAGE_ANA + 0x014)
+#define HI6403_LINEINL_SEL_BIT          6
+#define HI6403_LINEINL_PGA_GAIN_BIT     1
+#define HI6403_LINEINL_MUTE2_BIT        0
+
+#define HI6403_ANALOG_REG21             (BASE_ADDR_PAGE_ANA + 0x015)
+#define HI6403_LINEINR_SEL_BIT          6
+#define HI6403_LINEINR_PGA_GAIN_BIT     1
+#define HI6403_LINEINR_MUTE2_BIT        0
+
+#define HI6403_ANALOG_REG22             (BASE_ADDR_PAGE_ANA + 0x016)
+#define HI6403_AUX_PGA_GAIN_BIT         3
+#define HI6403_AUX_MUTE1_BIT            2
+#define HI6403_AUX_MUTE2_BIT            1
+
+#define HI6403_ANALOG_REG23             (BASE_ADDR_PAGE_ANA + 0x017)
+#define HI6403_MAIN_PGA_GAIN_BIT        2
+#define HI6403_MAINMIC_SEL_BIT          1
+#define HI6403_MAIN_MUTE2_BIT           0
+
+#define HI6403_ANALOG_REG24             (BASE_ADDR_PAGE_ANA + 0x018)
+#define HI6403_LINEINL_MUTE1_BIT        5
+#define HI6403_LINEINR_MUTE1_BIT        3
+#define HI6403_MAIN_MUTE1_BIT           1
+
+#define HI6403_ANALOG_REG31             (BASE_ADDR_PAGE_ANA + 0x01F)
+#define HI6403_ADC0L_BOOST_1_BIT                              4
+#define HI6403_ADC0R_BOOST_1_BIT                              0
+
+#define HI6403_ANALOG_REG34             (BASE_ADDR_PAGE_ANA + 0x022)
+#define HI6403_ADC1L_BOOST_1_BIT        4
+#define HI6403_ADC1R_BOOST_1_BIT                              0
+
+#define HI6403_ANALOG_REG36             (BASE_ADDR_PAGE_ANA + 0x024)
+#define HI6403_ADC0L_BOOST_2_BIT        3
+#define HI6403_ADC0R_BOOST_2_BIT        2
+#define HI6403_ADC1L_BOOST_2_BIT        1
+#define HI6403_ADC1R_BOOST_2_BIT        0
+
+#define HI6403_ANALOG_REG38             (BASE_ADDR_PAGE_ANA + 0x026)
+#define HI6403_DAC_HP_PLAN_SEL_BIT      4
+#define HI6403_DAC_HP_VBR_SEL_BIT       1
+#define HI6403_DAC_HP_VBSWEN_BIT        0
+
+#define HI6403_ANALOG_REG43             (BASE_ADDR_PAGE_ANA + 0x02B)
+#define HI6403_HPL_POP_PULL_5_3_BIT     3
+#define HI6403_HPL_POP_PULL_2_0_BIT     0
+
+#define HI6403_ANALOG_REG44             (BASE_ADDR_PAGE_ANA + 0x02C)
+#define HI6403_HPR_POP_PULL_5_3_BIT     3
+#define HI6403_HPR_POP_PULL_2_0_BIT     0
+
+#define HI6403_ANALOG_REG47             (BASE_ADDR_PAGE_ANA + 0x02F)
+#define HI6403_HP_POP_RST_BIT           4
+#define HI6403_HP_POP_AUTO_EN_BIT       3
+#define HI6403_HP_POP_RAMP_FAST_BIT     2
+#define HI6403_HP_POP_RAMP_SPD_CFG_BIT  0
+
+#define HI6403_ANALOG_REG48             (BASE_ADDR_PAGE_ANA + 0x030)
+#define HI6403_HP_GND_CTR_BIT           7
+#define HI6403_HP_FB_EN_BIT             6
+#define HI6403_HP_IBCT_BIT              4
+#define HI6403_HP_SRB_CTRL_BIT          3
+#define HI6403_HP_RES_CT_BIT            0
+
+#define HI6403_ANALOG_REG49             (BASE_ADDR_PAGE_ANA + 0x031)
+#define HI6403_HP_FB_IBCT_BIT           4
+#define HI6403_HP_FB_STB_CTRL_BIT       3
+#define HI6403_HP_FB_RES_CT_BIT         0
+
+#define HI6403_ANALOG_REG62             (BASE_ADDR_PAGE_ANA + 0x03E)
+#define HI6403_EAR_CM_CTL_BIT           6
+#define HI6403_EAR_GAIN_BIT             1
+#define HI6403_EAR_MUTE_BIT             0
+
+#define HI6403_ANALOG_REG63             (BASE_ADDR_PAGE_ANA + 0x03F)
+#define HI6403_LOL_CM_CTL_BIT           6
+#define HI6403_LOL_GAIN_BIT             1
+#define HI6403_LOL_MUTE_BIT             0
+
+#define HI6403_ANALOG_REG64             (BASE_ADDR_PAGE_ANA + 0x040)
+#define HI6403_LOR_CM_CTL_BIT           6
+#define HI6403_LOR_GAIN_BIT             1
+#define HI6403_LOR_MUTE_BIT             0
+
+#define HI6403_ANALOG_REG65             (BASE_ADDR_PAGE_ANA + 0x041)
+#define HI6403_ADC_MUTE_ZCEN_BIT        4
+#define HI6403_DAC_MUTE_ZCEN_BIT        3
+#define HI6403_LOR_ZCEN_BIT             2
+#define HI6403_LOL_ZCEN_BIT             1
+#define HI6403_EAR_ZCEN_BIT             0
+
+#define HI6403_ANALOG_REG73             (BASE_ADDR_PAGE_ANA + 0x49)
+#define HI6403_IB05_DAC_HP_BIT          4
+#define HI6403_IB05_HP_BIT              0
+
+#define HI6403_ANALOG_REG77             (BASE_ADDR_PAGE_ANA + 0x4D)
+#define HI6403_IB05_HP_FB_BIT           0
+
+#define HI6403_ANALOG_REG82             (BASE_ADDR_PAGE_ANA + 0x52)
+#define HI6403_HP_IBIAS_EN_BIT          1
+
+#define HI6403_ANALOG_REG83             (BASE_ADDR_PAGE_ANA + 0x53)
+#define HI6403_MAD_PGA_PD_BIT           1
+#define HI6403_MAD_ADC_PD_BIT           0
+
+#define HI6403_ANALOG_REG84             (BASE_ADDR_PAGE_ANA + 0x54)
+#define HI6403_MAD_PGA_GAIN_BIT         3
+#define HI6403_MAD_MUTE1_BIT            2
+#define HI6403_MAD_MUTE2_BIT            1
+#define HI6403_MADMIC_SEL_BIT           0
+
+#define HI6403_ANALOG_REG088            (BASE_ADDR_PAGE_ANA + 0x058)
+#define HI6403_ADC_MAD_BOOST_2_BIT      5
+#define HI6403_ADC_MAD_BOOST_1_BIT      0
+
+#define HI6403_ANALOG_REG089            (BASE_ADDR_PAGE_ANA + 0x059)
+#define HI6403_HSMIC_PD_BIT             7
+#define HI6403_MBHD_SAR_PD_BIT          6
+#define HI6403_SARADC_START_BIT         5
+#define HI6403_MBHD_COMP_PD_BIT         4
+#define HI6403_MIC4_PD_BIT              3
+#define HI6403_MIC3_PD_BIT              2
+#define HI6403_AUXMIC_PD_BIT            1
+#define HI6403_MAINMIC_PD_BIT           0
+
+#define HI6403_HP_DET_CFG_REG           (BASE_ADDR_PAGE_ANA + 0x05A)
+#define HI6403_MBHD_COMP_CFG_REG        (BASE_ADDR_PAGE_ANA + 0x05C)
+
+#define HI6403_ANALOG_REG093            (BASE_ADDR_PAGE_ANA + 0x05D)
+#define HI6403_HSMIC_DISCHG_EN_BIT      5
+#define HI6403_MAINMIC_DISCHG_EN_BIT    4
+#define HI6403_AUXMIC_DISCHG_EN_BIT     3
+#define HI6403_MIC3_DISCHG_EN_BIT       2
+#define HI6403_MIC4_DISCHG_EN_BIT       1
+#define HI6403_HS_ECO_EN_BIT            0
+
+#define HI6403_MIC_3_4_CONFIG_REG       (BASE_ADDR_PAGE_ANA + 0x05E)
+#define HI6403_MIC_1_2_CONFIG_REG       (BASE_ADDR_PAGE_ANA + 0x05F)
+#define HI6403_HSMIC_CONFIG_REG         (BASE_ADDR_PAGE_ANA + 0x060)
+
+#define HI6403_ANALOG_REG97             (BASE_ADDR_PAGE_ANA + 0x061)
+#define HI6403_ISO_A18_BIT              1
+#define HI6403_ISO_A33_BIT              0
+
+#define HI6403_ANALOG_REG108            (BASE_ADDR_PAGE_ANA + 0x06C)
+#define HI6403_BUCK1_DOWN_TIME_BIT      4
+#define HI6403_CP1_EN_SEL_BIT           3
+#define HI6403_CP1_EN_CTL_BIT           2
+#define HI6403_BUCK1_PSL_TIME_BIT       0
+
+#define HI6403_ANALOG_REG111            (BASE_ADDR_PAGE_ANA + 0x06F)
+#define HI6403_ANALOG_REG121            (BASE_ADDR_PAGE_ANA + 0x079)
+#define HI6403_BUCK2_DOWN_TIME_BIT      4
+#define HI6403_CP2_EN_SEL_BIT           3
+#define HI6403_CP2_EN_CTL_BIT           2
+#define HI6403_BUCK2_PSL_TIME_BIT       0
+
+#define HI6403_ANALOG_REG129            (BASE_ADDR_PAGE_ANA + 0x081)
+#define HI6403_BUCK2_ENP_BIT            1
+#define HI6403_BUCK1_ENP_BIT            0
+
+#define HI6403_ANALOG_REG130            (BASE_ADDR_PAGE_ANA + 0x082)
+#define HI6403_BUCK2_PD_SINGLE_BIT      1
+#define HI6403_BUCK1_PD_SINGLE_BIT      0
+
+#define HI6403_MAIN1_PLL_CFG_REG1       (BASE_ADDR_PAGE_ANA + 0x095)
+#define HI6403_MAIN1_ISO_18_BIT         5
+#define HI6403_MAIN1_ISO_12_BIT         4
+#define HI6403_MAIN1_PLL_PD_BIT         3
+#define HI6403_MAIN1_PLL_BYPASS_BIT     2
+#define HI6403_MAIN1_PLL_RST_BIT        1
+#define HI6403_MAIN1_PLL_RUN_START_BIT  0
+
+#define HI6403_MAIN1_PLL_CFG_REG2       (BASE_ADDR_PAGE_ANA + 0x096)
+#define HI6403_MAIN1_PLL_DIV_REG        (BASE_ADDR_PAGE_ANA + 0x097)
+#define HI6403_MAIN1_PLL_CFG_REG3       (BASE_ADDR_PAGE_ANA + 0x098)
+#define HI6403_MAIN1_PLL_WORD_REG1      (BASE_ADDR_PAGE_ANA + 0x099)
+#define HI6403_MAIN1_PLL_WORF_REG2      (BASE_ADDR_PAGE_ANA + 0x09A)
+#define HI6403_MAIN1_PLL_FILTER_REG     (BASE_ADDR_PAGE_ANA + 0x09B)
+#define HI6403_MAIN1_PLL_CFG_REG4       (BASE_ADDR_PAGE_ANA + 0x09C)
+#define HI6403_MAIN1_PLL_CFG_REG5       (BASE_ADDR_PAGE_ANA + 0x09D)
+#define HI6403_MAIN1_PLL_CFG_REG6       (BASE_ADDR_PAGE_ANA + 0x09E)
+#define HI6403_MAIN1_PLL_TRACK_REG1     (BASE_ADDR_PAGE_ANA + 0x09F)
+#define HI6403_MAIN1_PLL_TRACK_REG2     (BASE_ADDR_PAGE_ANA + 0x0A0)
+#define HI6403_MAIN1_PLL_TRACK_REG3     (BASE_ADDR_PAGE_ANA + 0x0A1)
+#define HI6403_MAIN1_PLL_CFG_REG7       (BASE_ADDR_PAGE_ANA + 0x0A2)
+#define HI6403_MAIN1_PLL_CFG_REG8       (BASE_ADDR_PAGE_ANA + 0x0A3)
+#define HI6403_MAIN1_PLL_CFG_REG9       (BASE_ADDR_PAGE_ANA + 0x0A4)
+#define HI6403_MAIN1_PLL_LOCK_CFG_REG   (BASE_ADDR_PAGE_ANA + 0x0A5)
+#define HI6403_MAIN1_PLL_PHASE_CFG_REG  (BASE_ADDR_PAGE_ANA + 0x0A6)
+
+#define HI6403_MAIN2_PLL_CFG_REG1       (BASE_ADDR_PAGE_ANA + 0x0A7)
+#define HI6403_MAIN2_ISO_18_BIT         5
+#define HI6403_MAIN2_ISO_12_BIT         4
+#define HI6403_MAIN2_PLL_PD_BIT         3
+#define HI6403_MAIN2_PLL_BYPASS_BIT     2
+#define HI6403_MAIN2_PLL_RST_BIT        1
+#define HI6403_MAIN2_PLL_RUN_START_BIT  0
+
+#define HI6403_MAIN2_PLL_CFG_REG2       (BASE_ADDR_PAGE_ANA + 0x0A8)
+#define HI6403_MAIN2_PLL_DIV_REG        (BASE_ADDR_PAGE_ANA + 0x0A9)
+#define HI6403_MAIN2_PLL_CFG_REG3       (BASE_ADDR_PAGE_ANA + 0x0AA)
+#define HI6403_MAIN2_PLL_WORD_REG1      (BASE_ADDR_PAGE_ANA + 0x0AB)
+#define HI6403_MAIN2_PLL_WORF_REG2      (BASE_ADDR_PAGE_ANA + 0x0AC)
+#define HI6403_MAIN2_PLL_FILTER_REG     (BASE_ADDR_PAGE_ANA + 0x0AD)
+#define HI6403_MAIN2_PLL_CFG_REG4       (BASE_ADDR_PAGE_ANA + 0x0AE)
+#define HI6403_MAIN2_PLL_CFG_REG5       (BASE_ADDR_PAGE_ANA + 0x0AF)
+#define HI6403_MAIN2_PLL_CFG_REG6       (BASE_ADDR_PAGE_ANA + 0x0B0)
+#define HI6403_MAIN2_PLL_TRACK_REG1     (BASE_ADDR_PAGE_ANA + 0x0B1)
+#define HI6403_MAIN2_PLL_TRACK_REG2     (BASE_ADDR_PAGE_ANA + 0x0B2)
+#define HI6403_MAIN2_PLL_TRACK_REG3     (BASE_ADDR_PAGE_ANA + 0x0B3)
+#define HI6403_MAIN2_PLL_CFG_REG7       (BASE_ADDR_PAGE_ANA + 0x0B4)
+#define HI6403_MAIN2_PLL_CFG_REG8       (BASE_ADDR_PAGE_ANA + 0x0B5)
+#define HI6403_MAIN2_PLL_CFG_REG9       (BASE_ADDR_PAGE_ANA + 0x0B6)
+#define HI6403_MAIN2_PLL_LOCK_CFG_REG   (BASE_ADDR_PAGE_ANA + 0x0B7)
+#define HI6403_MAIN2_PLL_PHASE_CFG_REG  (BASE_ADDR_PAGE_ANA + 0x0B8)
+
+#define HI6403_MAD_PLL_CFG_REG9         (BASE_ADDR_PAGE_ANA + 0x0B9)
+#define HI6403_MAD_PLL_SEL_OSC_BIT      7
+#define HI6403_MAD_PLL_DCO_EN_BIT       6
+#define HI6403_MAD_PLL_DIG_EN_BIT       5
+#define HI6403_MAD_PLL_ANA_EN_BIT       4
+#define HI6403_MAD_PLL_PD_BIT           3
+#define HI6403_MAD_PLL_BYPASS_BIT       2
+#define HI6403_MAD_PLL_RST_BIT          1
+#define HI6403_MAD_PLL_RUN_START_BIT    0
+
+#define HI6403_MAD_PLL_CFG_REG10        (BASE_ADDR_PAGE_ANA + 0x0BA)
+#define HI6403_MAD_PLL_WORD_REG1        (BASE_ADDR_PAGE_ANA + 0x0BB)
+#define HI6403_MAD_PLL_WORF_REG2        (BASE_ADDR_PAGE_ANA + 0x0BC)
+#define HI6403_MAD_PLL_CFG_REG1         (BASE_ADDR_PAGE_ANA + 0x0BD)
+#define HI6403_MAD_PLL_CFG_REG2         (BASE_ADDR_PAGE_ANA + 0x0BE)
+#define HI6403_MAD_PLL_CFG_REG3         (BASE_ADDR_PAGE_ANA + 0x0BF)
+#define HI6403_MAD_PLL_CFG_REG4         (BASE_ADDR_PAGE_ANA + 0x0C0)
+#define HI6403_MAD_PLL_CFG_REG5         (BASE_ADDR_PAGE_ANA + 0x0C1)
+#define HI6403_MAD_PLL_LOCK_CFG_REG     (BASE_ADDR_PAGE_ANA + 0x0C2)
+#define HI6403_MAD_PLL_CFG_REG6         (BASE_ADDR_PAGE_ANA + 0x0C3)
+#define HI6403_MAD_PLL_ISO_18_BIT       2
+#define HI6403_MAD_PLL_TEST_RDY_BIT     1
+
+#define HI6403_ANALOG_REG195            (BASE_ADDR_PAGE_ANA + 0x0C3)
+#define HI6403_PLL_IBIAS_GEN_BIT        0
+#define HI6403_ANALOG_REG196            (BASE_ADDR_PAGE_ANA + 0x0C4)
+#define HI6403_ANALOG_REG197            (BASE_ADDR_PAGE_ANA + 0x0C5)
+#define HI6403_ANALOG_REG198            (BASE_ADDR_PAGE_ANA + 0x0C6)
+
+#define HI6403_ANALOG_REG199            (BASE_ADDR_PAGE_ANA + 0x0C7)
+#define HI6403_BUCK_CLK_SEL_BIT         5
+#define HI6403_CLK_96K_PD_BIT           4
+#define HI6403_BUCK1_CLK_PD_BIT         3
+#define HI6403_BUCK2_CLK_PD_BIT         2
+#define HI6403_CP1_CLK_PD_BIT           1
+#define HI6403_CP2_CLK_PD_BIT           0
+/* ana reg end */
+
+/* dig reg begin */
+/* DACL FLT MIXER GAIN CFG */
+#define HI6403_DACL_FLT_MIXER_GAIN_CFG_REG  (BASE_ADDR_PAGE_DIG + 0x217)
+#define HI6403_DACL_FLT_MIXER_GAIN_2_BIT    2
+#define HI6403_DACL_FLT_MIXER_GAIN_1_BIT    0
+
+/* DACR FLT MIXER GAIN CFG */
+#define HI6403_DACR_FLT_MIXER_GAIN_CFG_REG  (BASE_ADDR_PAGE_DIG + 0x21A)
+#define HI6403_DACR_FLT_MIXER_GAIN_2_BIT    2
+#define HI6403_DACR_FLT_MIXER_GAIN_1_BIT    0
+
+#define HI6403_DACSL_PGA_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x1FD)
+
+/* CLASS H */
+#define HI6403_CLASS_H_CFG_REG0            (BASE_ADDR_PAGE_DIG + 0x302)
+#define HI6403_CLASS_H_CFG_REG1            (BASE_ADDR_PAGE_DIG + 0x306)
+
+/* MAD SRC CFG */
+#define HI6403_MAD_SRC_CFG_REG             (BASE_ADDR_PAGE_DIG + 0x236)
+#define HI6403_MAD_SRC_MODE_BIT            0
+
+
+/* MUX REG */
+/* MUX OF DAC SRC IN */
+#define HI6403_DAC_SRC_MUX_SEL             (BASE_ADDR_PAGE_DIG + 0x015)
+#define HI6403_DACR_SRC_MUX_BIT            7
+#define HI6403_DACL_SRC_MUX_BIT            3
+
+/* MUX FOR DAC SDM45 */
+#define HI6403_DACL_SDM45_MUX_SEL          (BASE_ADDR_PAGE_DIG + 0x13C)
+#define HI6403_DACR_SDM45_MUX_SEL          (BASE_ADDR_PAGE_DIG + 0x140)
+#define HI6403_DAC_SDM45_MUX_BIT           0
+
+/* SDM CONFIG */
+#define HI6403_HPL_SDM45_CONFIG_REG0       (BASE_ADDR_PAGE_DIG + 0x139)
+#define HI6403_HPL_SDM45_CONFIG_REG1       (BASE_ADDR_PAGE_DIG + 0x13A)
+#define HI6403_HPL_SDM45_CONFIG_REG2       (BASE_ADDR_PAGE_DIG + 0x13B)
+#define HI6403_HPR_SDM45_CONFIG_REG0       (BASE_ADDR_PAGE_DIG + 0x13D)
+#define HI6403_HPR_SDM45_CONFIG_REG1       (BASE_ADDR_PAGE_DIG + 0x13E)
+#define HI6403_HPR_SDM45_CONFIG_REG2       (BASE_ADDR_PAGE_DIG + 0x13F)
+
+/* U3U4 SRC MODE CONFIG */
+#define HI6403_U3_SRC_MODE_CFG_REG         (BASE_ADDR_PAGE_DIG + 0x237)
+#define HI6403_U4_SRC_MODE_CFG_REG         (BASE_ADDR_PAGE_DIG + 0x238)
+
+/* MIC12 MUX SELETCT*/
+#define HI6403_MIC12_MUX_SEL               (BASE_ADDR_PAGE_DIG + 0x008)
+#define HI6403_MIC2_MUX_BIT                4
+#define HI6403_MIC1_MUX_BIT                0
+
+/* MIC12 MUX SELETCT*/
+#define HI6403_MIC34_MUX_SEL               (BASE_ADDR_PAGE_DIG + 0x009)
+#define HI6403_MIC4_MUX_BIT                4
+#define HI6403_MIC3_MUX_BIT                0
+
+/* BT MUX SELECT */
+#define HI6403_BT_MUX_SEL                  (BASE_ADDR_PAGE_DIG + 0x00A)
+#define HI6403_BTR_MUX_BIT                 4
+#define HI6403_BTL_MUX_BIT                 0
+
+/* M1 MUX SELECT */
+#define HI6403_M1_MUX_SEL                  (BASE_ADDR_PAGE_DIG + 0x00B)
+#define HI6403_M1R_MUX_BIT                 4
+#define HI6403_M1L_MUX_BIT                 0
+
+/* DSP IF BYPASS CONFIG */
+#define HI6403_S1_DSPIF_CONTROL_REG        (BASE_ADDR_PAGE_DIG + 0x037)
+#define HI6403_S1_DSPIF_OUT_BIT            7
+#define HI6403_S1_DSPIF_IN_BIT             6
+
+#define HI6403_S2_DSPIF_CONTROL_REG        (BASE_ADDR_PAGE_DIG + 0x049)
+#define HI6403_S2_DSPIF_OUT_BIT            7
+#define HI6403_S2_DSPIF_IN_BIT             6
+#define HI6403_S2OR_SRC_MODE_BIT           3
+#define HI6403_S2OL_SRC_MODE_BIT           0
+
+#define HI6403_S4_DSPIF_CONTROL_REG        (BASE_ADDR_PAGE_DIG + 0x067)
+#define HI6403_S4_DSPIF_OUT_BIT            7
+#define HI6403_S4_DSPIF_IN_BIT             6
+
+
+/* ANC MUX SELECT */
+#define HI6403_ANC_MUX_SEL                 (BASE_ADDR_PAGE_DIG + 0x284)
+#define HI6403_NEARMIC_MUX_BIT             6
+#define HI6403_ANC_DATA_MUX_BIT            4
+#define HI6403_ERROR_MIC_MUX_BIT           2
+#define HI6403_NOISE_MIC_MUX_BIT           0
+
+/* PDM MUX SELECT */
+#define HI6403_ADC_SOURCE_SEL              (BASE_ADDR_PAGE_DIG + 0x091)
+
+#define HI6403_MAD_CFG_REG                 (BASE_ADDR_PAGE_DIG + 0x121)
+#define HI6403_MAD_VAD_ON_BIT              6
+#define HI6403_MAD_INT_EN_BIT              5
+#define HI6403_MAD_EN_BIT                  0
+
+/* DACR SDM MUX SELECT */
+#define HI6403_DACR_SDM_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x142)
+#define HI6403_DACR_SDM_MUX_BIT            6
+
+/* DACSR SDM MUX SELECT */
+#define HI6403_DACSR_SDM_MUX_SEL           (BASE_ADDR_PAGE_DIG + 0x144)
+#define HI6403_DACSR_SDM_MUX_BIT           6
+
+/* DACL SDM MUX SELECT */
+#define HI6403_DACL_SDM_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x141)
+#define HI6403_DACL_SDM_MUX_BIT            6
+
+/* DACSL SDM MUX SELECT */
+#define HI6403_DACSL_SDM_MUX_SEL           (BASE_ADDR_PAGE_DIG + 0x143)
+#define HI6403_DACSL_SDM_MUX_BIT           6
+
+/* DAC HP MUX SELECT */
+#define HI6403_DAC_HP_MUX_SEL              (BASE_ADDR_PAGE_DIG + 0x149)
+#define HI6403_DAC_HPR_MUX_BIT             3
+#define HI6403_DAC_HPL_MUX_BIT             0
+
+/* DACS MUX SELECT */
+#define HI6403_DACS_MUX_SEL                (BASE_ADDR_PAGE_DIG + 0x14A)
+#define HI6403_DAC_LTL_MUX_BIT             3
+#define HI6403_DAC_EP_MUX_BIT              0
+
+/* DAC LINEOUT R MUX SELECT */
+#define HI6403_DAC_LTR_MUX_SEL             (BASE_ADDR_PAGE_DIG + 0x14B)
+#define HI6403_DAC_LTR_MUX_BIT             0
+
+/* DSP IF 8 TEST MUX SELECT */
+#define HI6403_IF8_TEST_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x011)
+#define HI6403_IF8_TEST_MUX_BIT            0
+
+/* DACSL MIXER SELECT */
+#define HI6403_DACSL_MIXER_SEL_0           (BASE_ADDR_PAGE_DIG + 0x070)
+#define HI6403_DACSL_MIXER_MDM_BIT         7
+#define HI6403_DACSL_MIXER_OL_BIT          6
+#define HI6403_DACSL_MIXER_DACL_BIT        5
+#define HI6403_DACSL_MIXER_SEL_1           (BASE_ADDR_PAGE_DIG + 0x071)
+#define HI6403_DACSL_MIXER_FS_BIT          7
+#define HI6403_DACSL_MIXER_SIDETONE_BIT    5
+
+/* DACSR MIXER SELECT */
+#define HI6403_DACSR_MIXER_SEL_0           (BASE_ADDR_PAGE_DIG + 0x073)
+#define HI6403_DACSR_MIXER_MDM_BIT         7
+#define HI6403_DACSR_MIXER_OR_BIT          6
+#define HI6403_DACSR_MIXER_DACR_BIT        5
+#define HI6403_DACSR_MIXER_SEL_1           (BASE_ADDR_PAGE_DIG + 0x074)
+#define HI6403_DACSR_MIXER_FS_BIT          7
+#define HI6403_DACSR_MIXER_SIDETONE_BIT    5
+
+/* DACL FLT MIXER SELECT */
+#define HI6403_DACL_FLT_MIXER_SEL          (BASE_ADDR_PAGE_DIG + 0x218)
+#define HI6403_DACL_FLT_MIXER_FS_CFG_BIT   7
+#define HI6403_DACL_FLT_MIXER_1_BIT        6
+#define HI6403_DACL_FLT_MIXER_0_BIT        5
+
+/* DACR FLT MIXER SELECT */
+#define HI6403_DACR_FLT_MIXER_SEL          (BASE_ADDR_PAGE_DIG + 0x21B)
+#define HI6403_DACR_FLT_MIXER_FS_CFG_BIT   7
+#define HI6403_DACR_FLT_MIXER_1_BIT        6
+#define HI6403_DACR_FLT_MIXER_0_BIT        5
+
+/* S1 PORT FS CONFIG */
+#define HI6403_S1_CLK_CFG_REG           (BASE_ADDR_PAGE_DIG + 0x0AE)
+#define HI6403_S1_SRCOR_CLK_BIT         7
+#define HI6403_S1_SRCOL_CLK_BIT         6
+#define HI6403_S1_SRCIR_CLK_BIT         5
+#define HI6403_S1_SRCIL_CLK_BIT         4
+
+/* SLIMBUS UP EN */
+#define HI6403_SLIM_UP_CLKEN_REG        (BASE_ADDR_PAGE_DIG + 0x1FE)
+#define HI6403_SLIM_UP_CLKEN_8_BIT      7
+#define HI6403_SLIM_UP_CLKEN_7_BIT      6
+#define HI6403_SLIM_UP_CLKEN_6_BIT      5
+#define HI6403_SLIM_UP_CLKEN_5_BIT      4
+#define HI6403_SLIM_UP_CLKEN_4_BIT      3
+#define HI6403_SLIM_UP_CLKEN_3_BIT      2
+#define HI6403_SLIM_UP_CLKEN_2_BIT      1
+#define HI6403_SLIM_UP_CLKEN_1_BIT      0
+
+
+#define HI6403_S2_CFG_REG               (BASE_ADDR_PAGE_DIG + 0x002)
+#define HI6403_S2_MODE_CFG_BIT          5
+#define HI6403_S2_DRIECT_CFG_BIT        3
+#define HI6403_S2_MST_SLV_SEL_BIT       2
+#define HI6403_S2_RX_EN_BIT             1
+#define HI6403_S2_TX_EN_BIT             0
+
+#define HI6403_S2_CFG_REG_H             (BASE_ADDR_PAGE_DIG + 0x003)
+#define HI6403_S2_RX_CLK_SEL_BIT        7
+#define HI6403_S2_TX_CLK_SEL_BIT        6
+#define HI6403_S2_WORD_LENG_BIT         4
+#define HI6403_S2_FORMA_BIT             3
+#define HI6403_S2_CHNNL_MODE_BIT        2
+#define HI6403_S2_LRCLK_MODE_BIT        1
+#define HI6403_S2_FRAME_MODE_BIT        0
+
+#define HI6403_S4_CFG_REG               (BASE_ADDR_PAGE_DIG + 0x006)
+#define HI6403_S4_MODE_CFG_BIT          5
+#define HI6403_S4_DRIECT_CFG_BIT        3
+#define HI6403_S4_MST_SLV_SEL_BIT       2
+#define HI6403_S4_RX_EN_BIT             1
+#define HI6403_S4_TX_EN_BIT             0
+
+#define HI6403_S4_CFG_REG_H             (BASE_ADDR_PAGE_DIG + 0x007)
+#define HI6403_S4_RX_CLK_SEL_BIT        7
+#define HI6403_S4_TX_CLK_SEL_BIT        6
+#define HI6403_S4_WORD_LENG_BIT         4
+#define HI6403_S4_FORMA_BIT             3
+#define HI6403_S4_CHNNL_MODE_BIT        2
+#define HI6403_S4_IRCLK_MODE_BIT        1
+#define HI6403_S4_FRAME_MODE_BIT        0
+
+/* S1 PGA CFG */
+#define HI6403_S1_PGA_IL_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x02A)
+#define HI6403_S1_PGA_IL_GAIN_BIT          0
+#define HI6403_S1_PGA_IR_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x02D)
+#define HI6403_S1_PGA_IR_GAIN_BIT          0
+
+/* S2 PGA CFG */
+#define HI6403_S2_PGA_IL_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x03C)
+#define HI6403_S2_PGA_IL_GAIN_BIT          0
+#define HI6403_S2_PGA_IR_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x03F)
+#define HI6403_S2_PGA_IR_GAIN_BIT          0
+
+/* S3 PGA CFG */
+#define HI6403_S3_PGA_IL_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x04B)
+#define HI6403_S3_PGA_IL_GAIN_BIT          0
+#define HI6403_S3_PGA_IR_GAIN_CFG_REG      (BASE_ADDR_PAGE_DIG + 0x04E)
+#define HI6403_S3_PGA_IR_GAIN_BIT          0
+
+/* DACL MIXER GAIN CFG */
+#define HI6403_DACL_MIXER_GAIN_CFG_REG     (BASE_ADDR_PAGE_DIG + 0x069)
+#define HI6403_DACL_MIXER_S1R_GAIN_BIT     6
+#define HI6403_DACL_MIXER_MDM_GAIN_BIT     4
+#define HI6403_DACL_MIXER_S2L_GAIN_BIT     2
+#define HI6403_DACL_MIXER_S1L_GAIN_BIT     0
+
+/* DACR MIXER GAIN CFG */
+#define HI6403_DACR_MIXER_GAIN_CFG_REG     (BASE_ADDR_PAGE_DIG + 0x06C)
+#define HI6403_DACR_MIXER_S1L_GAIN_BIT     6
+#define HI6403_DACR_MIXER_MDM_GAIN_BIT     4
+#define HI6403_DACR_MIXER_S2R_GAIN_BIT     2
+#define HI6403_DACR_MIXER_S1R_GAIN_BIT     0
+
+/* DACSL MIXER GAIN CFG */
+#define HI6403_DACSL_MIXER_GAIN_CFG_REG    (BASE_ADDR_PAGE_DIG + 0x06F)
+#define HI6403_DACSL_MIXER_MDM_GAIN_BIT    6
+#define HI6403_DACSL_MIXER_OL_GAIN_BIT     4
+#define HI6403_DACSL_MIXER_SIDE_GAIN_BIT   2
+#define HI6403_DACSL_MIXER_1L_GAIN_BIT     0
+
+/* DACSR MIXER GAIN CFG */
+#define HI6403_DACSR_MIXER_GAIN_CFG_REG    (BASE_ADDR_PAGE_DIG + 0x072)
+#define HI6403_DACSR_MIXER_MDM_GAIN_BIT    6
+#define HI6403_DACSR_MIXER_OR_GAIN_BIT     4
+#define HI6403_DACSR_MIXER_SIDE_GAIN_BIT   2
+#define HI6403_DACSR_MIXER_1R_GAIN_BIT     0
+
+/* SIDE PGA CFG */
+#define HI6403_SIDE_PGA_GAIN_CFG_REG       (BASE_ADDR_PAGE_DIG + 0x07D)
+#define HI6403_SIDE_PGA_GAIN_BIT           0
+
+/* DAC PGA CFG */
+#define HI6403_DACL_PGA_GAIN_CFG_REG       (BASE_ADDR_PAGE_DIG + 0x080)
+#define HI6403_DACL_PGA_GAIN_BIT           0
+#define HI6403_DACR_PGA_GAIN_CFG_REG       (BASE_ADDR_PAGE_DIG + 0x083)
+#define HI6403_DACR_PGA_GAIN_BIT           0
+
+/* MUX OF DAC PGA IN */
+#define HI6403_DACL_PGA_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x089)
+#define HI6403_DACR_PGA_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x08A)
+#define HI6403_DAC_PGA_MUX_BIT             6
+
+/* MUX FOR ADC0 */
+#define HI6403_ADC0_MUX_SEL                (BASE_ADDR_PAGE_DIG + 0x094)
+#define HI6403_ADCR0_MUX_BIT               4
+#define HI6403_ADCL0_MUX_BIT               0
+
+/* MUX FOR ADC1 */
+#define HI6403_ADC1_MUX_SEL                (BASE_ADDR_PAGE_DIG + 0x095)
+#define HI6403_ADCR1_MUX_BIT               4
+#define HI6403_ADCL1_MUX_BIT               0
+
+/* MDM MUX SELECT */
+#define HI6403_MDM_MUX_SEL                 (BASE_ADDR_PAGE_DIG + 0x012)
+#define HI6403_MDM_MUX_BIT                 0
+
+/* SIDETONE MUX SELECT */
+#define HI6403_SIDETONE_MUX_SEL            (BASE_ADDR_PAGE_DIG + 0x012)
+#define HI6403_SIDETONE_MUX_BIT            4
+
+/* I2S/SLIM SEL */
+#define HI6403_I2S_SLIM_SEL_REG            (BASE_ADDR_PAGE_DIG + 0x014)
+
+#define HI6403_S2_CONTROL_REG              (BASE_ADDR_PAGE_DIG + 0x048)
+#define HI6403_S2IR_SRC_MODE_BIT           5
+#define HI6403_S2IL_SRC_MODE_BIT           1
+
+#define HI6403_S3_CONTROL_REG              (BASE_ADDR_PAGE_DIG + 0x057)
+#define HI6403_S3IR_SRC_MODE_BIT           5
+#define HI6403_S3IL_SRC_MODE_BIT           1
+#define HI6403_S3_DSPIF_CONTROL_REG        (BASE_ADDR_PAGE_DIG + 0x058)
+#define HI6403_S3_DSPIF_OUT_BIT            7
+#define HI6403_S3_DSPIF_IN_BIT             6
+#define HI6403_S3OR_SRC_MODE_BIT           3
+#define HI6403_S3OL_SRC_MODE_BIT           0
+
+/* PDM MUX SELECT */
+#define HI6403_PDM_MUX_SEL                 (BASE_ADDR_PAGE_DIG + 0x097)
+#define HI6403_PDM_MUX_BIT                 1
+
+/* MIXER REG */
+/* DACL MIXER SELECT */
+#define HI6403_DACL_MIXER_SEL_0            (BASE_ADDR_PAGE_DIG + 0x06A)
+#define HI6403_DACL_MIXER_MDM_BIT          7
+#define HI6403_DACL_MIXER_S2L_BIT          6
+#define HI6403_DACL_MIXER_S1L_BIT          5
+#define HI6403_DACL_MIXER_SEL_1            (BASE_ADDR_PAGE_DIG + 0x06B)
+#define HI6403_DACL_MIXER_S1R_BIT          5
+
+/* DACR MIXER SELECT */
+#define HI6403_DACR_MIXER_SEL_0            (BASE_ADDR_PAGE_DIG + 0x06D)
+#define HI6403_DACR_MIXER_MDM_BIT          7
+#define HI6403_DACR_MIXER_S2R_BIT          6
+#define HI6403_DACR_MIXER_S1R_BIT          5
+
+#define HI6403_DACR_MIXER_SEL_1            (BASE_ADDR_PAGE_DIG + 0x06E)
+#define HI6403_DACR_MIXER_S1L_BIT          5
+
+/* DACSL SRC MIXER SELECT */
+#define HI6403_DACSL_SRC_MIXER_SEL         (BASE_ADDR_PAGE_DIG + 0x0B8)
+#define HI6403_DACSL_MIXER_1_BIT           6
+#define HI6403_DACSL_MIXER_0_BIT           5
+
+/* DACSR SRC MIXER SELECT */
+#define HI6403_DACSR_SRC_MIXER_SEL         (BASE_ADDR_PAGE_DIG + 0x0BB)
+#define HI6403_DACSR_MIXER_1_BIT           6
+#define HI6403_DACSR_MIXER_0_BIT           5
+
+/* MIXER CLK ENABLE */
+#define HI6403_DAC_MIXER_CLK_REG           (BASE_ADDR_PAGE_CFG + 0x047)
+#define HI6403_DACSR_MIXER_EN_BIT          3
+#define HI6403_DACSL_MIXER_EN_BIT          2
+#define HI6403_DACR_MIXER_EN_BIT           1
+#define HI6403_DACL_MIXER_EN_BIT           0
+
+#define HI6403_DAC_SRC_MIXER_CLK_REG       (BASE_ADDR_PAGE_CFG + 0x04C)
+#define HI6403_DACR_FLT_MIXER_EN_BIT       3
+#define HI6403_DACL_FLT_MIXER_EN_BIT       2
+#define HI6403_DACR_SRC_MIXER_EN_BIT       1
+#define HI6403_DACL_SRC_MIXER_EN_BIT       0
+
+/* S1 PORT CONFIG */
+#define HI6403_S1_CLK_CFG_REG0          (BASE_ADDR_PAGE_DIG + 0x0AE)
+#define HI6403_S1_CLK_CFG_REG1          (BASE_ADDR_PAGE_DIG + 0x0AF)
+
+/* S2 PORT FS CONFIG */
+#define HI6403_S2_CLK_CFG_REG           (BASE_ADDR_PAGE_DIG + 0x0B0)
+#define HI6403_S2_SRCOR_CLK_BIT         7
+#define HI6403_S2_SRCOL_CLK_BIT         6
+#define HI6403_S2_SRCIR_CLK_BIT         5
+#define HI6403_S2_SRCIL_CLK_BIT         4
+#define HI6403_S2_CLKEN_BIT             3
+#define HI6403_S2_CLK_SEL_BIT           0
+#define HI6403_S2_CLK_CFG_REG1          (BASE_ADDR_PAGE_DIG + 0x0B1)
+#define HI6403_DSP_IF_OUT_FS_CFG        4
+#define HI6403_DSP_IF_IN_FS_CFG         0
+
+#define HI6403_S3_CLK_CFG_REG           (BASE_ADDR_PAGE_DIG + 0x0B2)
+#define HI6403_S3_CLK_CFG_REG1          (BASE_ADDR_PAGE_DIG + 0x0B3)
+
+/* S4 PORT FS CONFIG */
+#define HI6403_S4_CLK_CFG_REG           (BASE_ADDR_PAGE_DIG + 0x0B4)
+#define HI6403_S4_SRCOR_CLK_BIT         7
+#define HI6403_S4_SRCOL_CLK_BIT         6
+#define HI6403_S4_SRCIR_CLK_BIT         5
+#define HI6403_S4_SRCIL_CLK_BIT         4
+#define HI6403_S4_CLKEN_BIT             3
+#define HI6403_S4_CLK_SEL_BIT           0
+
+#define HI6403_S4_CLK_CFG_REG1          (BASE_ADDR_PAGE_DIG + 0x0B5)
+
+#define HI6403_DACL_SRC_MIXER_GAIN_REG  (BASE_ADDR_PAGE_DIG + 0x0B7)
+#define HI6403_DACL_MIXER_GAIN_1_BIT    0
+#define HI6403_DACL_MIXER_GAIN_2_BIT    2
+
+#define HI6403_DACR_SRC_MIXER_GAIN_REG  (BASE_ADDR_PAGE_DIG + 0x0BA)
+#define HI6403_DACR_MIXER_GAIN_1_BIT    0
+#define HI6403_DACR_MIXER_GAIN_2_BIT    2
+
+/* slimbus port fs config */
+#define HI6403_SLIM0_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C3)
+#define HI6403_SLIM1_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C4)
+#define HI6403_SLIM2_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C5)
+#define HI6403_SLIM3_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C6)
+#define HI6403_SLIM4_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C7)
+#define HI6403_SLIM5_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C8)
+#define HI6403_SLIM6_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0C9)
+#define HI6403_SLIM7_CLK_CFG_REG        (BASE_ADDR_PAGE_DIG + 0x0CA)
+
+/* 0.5dB uplink step pga gain */
+#define HI6403_ADC0L_05PGA_GAIN_REG     (BASE_ADDR_PAGE_DIG + 0x22A)
+#define HI6403_ADC0R_05PGA_GAIN_REG     (BASE_ADDR_PAGE_DIG + 0x22D)
+#define HI6403_ADC1L_05PGA_GAIN_REG     (BASE_ADDR_PAGE_DIG + 0x230)
+#define HI6403_ADC1R_05PGA_GAIN_REG     (BASE_ADDR_PAGE_DIG + 0x233)
+
+#define HI6403_CODEC_DPCLK_REG          (BASE_ADDR_PAGE_DIG + 0x1D8)
+#define HI6403_CODEC_DPCLK_BIT          0
+/* dig reg end */
+#endif

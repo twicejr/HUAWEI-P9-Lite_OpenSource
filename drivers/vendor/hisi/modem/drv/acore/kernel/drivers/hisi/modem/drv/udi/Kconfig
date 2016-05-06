@@ -1,0 +1,11 @@
+#
+# udi adaption layer
+#
+
+comment "udi adaption layer"
+
+config UDI_SUPPORT
+	tristate "support udi"
+	default n
+	help
+	  udi driver

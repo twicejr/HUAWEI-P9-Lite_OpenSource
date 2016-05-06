@@ -1,0 +1,9 @@
+config HUAWEI_CPU_BUCK
+	bool "huawei cpu_buck"
+	default n
+config HUAWEI_LP8758
+	bool "huawei lp8758"
+	default n
+config HI6422V100
+	bool "hi6422v100"
+	default n

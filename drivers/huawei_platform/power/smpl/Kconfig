@@ -1,0 +1,3 @@
+config HUAWEI_SMPL
+	bool "huawei smpl"
+	default n

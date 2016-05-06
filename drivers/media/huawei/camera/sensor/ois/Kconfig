@@ -1,0 +1,14 @@
+if HISI_CAMERA_OIS
+
+menu "Hisilicon camera ois driver support"
+
+config HISI_CAMERA_LC8981
+    tristate "LC8981 camera OIS driver"
+    depends on HISI_CAMERA_OIS
+    default y
+    ---help---
+        LC8981 camera ois driver
+
+endmenu
+
+endif

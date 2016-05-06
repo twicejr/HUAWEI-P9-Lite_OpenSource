@@ -1,0 +1,49 @@
+
+
+/{
+	amba{
+		i2c4: i2c@FDF0D000 {
+			pericom30216_typec: typec@1d {
+				compatible = "huawei,pericom30216";
+				reg = <0x1d>;
+				pericom30216_typec,gpio_enb = <&gpio17 3 0>;
+				pericom30216_typec,gpio_intb = <&gpio26 6 0>;
+				pericom30216_gpio_enb = <1>;
+				typec_trigger_otg = <0>;
+				pericom30216_mdelay = <0>;
+				status = "disable";
+			};
+
+			tusb320_typec: typec@47 {
+				compatible = "huawei,tusb320";
+				reg = <0x47>;
+				tusb320_typec,gpio_enb = <&gpio17 3 0>;
+				tusb320_typec,gpio_intb = <&gpio26 6 0>;
+				tusb320_gpio_enb = <1>;
+				typec_trigger_otg = <0>;
+				tusb320_mdelay = <0>;
+				status = "disable";
+			};
+
+			fusb301_typec: typec@21 {
+				compatible = "huawei,fusb301";
+				reg = <0x21>;
+				fusb301_typec,gpio_enb = <&gpio17 3 0>;
+				fusb301_typec,gpio_intb = <&gpio26 6 0>;
+				fusb301_gpio_enb = <1>;
+				typec_trigger_otg = <0>;
+				status = "disable";
+			};
+
+			ptn5150h_typec: typec@1E {
+				compatible = "huawei,ptn5150h";
+				reg = <0x1E>;
+				ptn5150h_typec,gpio_enb = <&gpio17 3 0>;
+				ptn5150h_typec,gpio_intb = <&gpio26 6 0>;
+				ptn5150h_gpio_enb = <1>;
+				typec_trigger_otg = <0>;
+				status = "disable";
+			};
+		};
+	};
+};

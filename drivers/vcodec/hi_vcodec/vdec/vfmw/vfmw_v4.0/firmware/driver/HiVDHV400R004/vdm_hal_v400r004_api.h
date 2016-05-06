@@ -1,0 +1,45 @@
+#ifndef _VDM_HAL_V400R004_API_HEADER_
+#define _VDM_HAL_V400R004_API_HEADER_
+
+
+#include "basedef.h"
+#include "mem_manage.h"
+#include "vfmw.h"
+#include "vdm_hal_v400r004_local.h"
+#include "vfmw_ctrl.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+SINT32 VDMHAL_V400R004_GetHalMemSize(VOID);
+SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam);
+VOID   VDMHAL_V400R004_CloseHAL(SINT32 VdhId);
+SINT32 VDMHAL_V400R004_ArrangeMem( UADDR MemAddr, SINT32 MemSize, SINT32 Width, SINT32 Height, SINT32 PmvNum, SINT32 FrameNum, ARRANGE_FLAG_E eFlag, VDMHAL_MEM_ARRANGE_S *pVdmMemArrange );
+VOID   VDMHAL_V400R004_ResetVdm( SINT32 VdhId );
+VOID   VDMHAL_V400R004_GlbReset( VOID );
+VOID   VDMHAL_V400R004_ResetGlb( VOID );
+VOID   VDMHAL_V400R004_ClearIntState( SINT32 VdhId );
+VOID   VDMHAL_V400R004_MaskInt( SINT32 VdhId );
+VOID   VDMHAL_V400R004_EnableInt( SINT32 VdhId );
+SINT32 VDMHAL_V400R004_CheckReg(REG_ID_E reg_id, SINT32 VdhId);
+VOID   VDMHAL_V400R004_StartHwRepair(SINT32 VdhId);
+VOID   VDMHAL_V400R004_StartHwDecode(SINT32 VdhId);
+SINT32 VDMHAL_V400R004_PrepareDec( VID_STD_E VidStd, VOID *pDecParam, SINT32 VdhId );
+SINT32 VDMHAL_V400R004_IsVdmReady(SINT32 VdhId);
+SINT32 VDMHAL_V400R004_IsVdmRun(SINT32 VdhId);
+SINT32 VDMHAL_V400R004_PrepareRepair( VID_STD_E VidStd, VOID *pDecParam, SINT32 RepairTime, SINT32 VdhId );
+SINT32 VDMHAL_V400R004_MakeDecReport(MAKE_DEC_REPORT_S *pMakeDecReport);
+SINT32 VDMHAL_V400R004_CfgRpReg(VID_STD_E VidStd, VDMHAL_HWMEM_S *pHwMem, VOID *pDecParam, SINT32 VdhId);
+SINT32 VDMHAL_V400R004_CfgRpMsg(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_HWMEM_S *pHwMem, SINT32 VdhId);
+SINT32 VDMHAL_V400R004_WriteMsgSlot(SINT32 *pDst, SINT32 *pSrc, UINT32 dnmsg_size);
+SINT32 VDMHAL_V400R004_ReadMsgSlot(SINT32 *pDst, SINT32 *pSrc, UINT32 upmsg_size);
+SINT32 VDMHAL_V400R004_BackupInfo(BACKUP_INFO_S *pBackUpInfo);
+VOID   VDMHAL_V400R004_GetCharacter(VOID);
+VOID   VDMHAL_V400R004_WriteScdEMARID(VOID);
+#ifdef __cplusplus
+}
+#endif
+
+
+#endif
+

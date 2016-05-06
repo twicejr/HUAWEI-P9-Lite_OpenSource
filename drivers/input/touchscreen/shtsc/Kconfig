@@ -1,0 +1,18 @@
+config TOUCHSCREEN_SHTSC
+	tristate "SHARP touchscreen controllers"
+	help
+	  SHARP touchscreen controller driver.
+	  Do not forget to define either TOUCHSCREEN_SHTSC_I2C or TOUCHSCREEN_SHTSC_SPI
+	  (now supports LR388K5 i2c mode only)
+
+config TOUCHSCREEN_SHTSC_I2C
+	tristate "SHARP touchscreen driver for I2C"
+	depends on I2C
+	help
+	  SHARP I2C touchscreen driver
+
+config TOUCHSCREEN_SHTSC_SPI
+	tristate "SHARP touchscreen driver for SPI"
+	depends on SPI_MASTER
+	help
+	  SHARP SPI touchscreen driver

@@ -1,0 +1,23 @@
+config HISILICON_PLATFORM_DDRC
+	bool "Hisilicon platform ddr controller support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform ddr controller
+
+config HISI_DDRC_FLUX
+	bool "Hisi ddr bandwith statstic "
+       depends on ARCH_HI3650
+       default n
+
+config HI6250_DDRC_FLUX
+        bool "Hisi ddr bandwith statstic "
+       depends on ARCH_HI6250
+       default n
+
+config HI3660_DDRC_FLUX
+    bool "Hisi ddr bandwith statstic "
+        default n
+       
+config HISI_DDRC_SEC
+       bool "hisi ddr secprotect"
+       default n

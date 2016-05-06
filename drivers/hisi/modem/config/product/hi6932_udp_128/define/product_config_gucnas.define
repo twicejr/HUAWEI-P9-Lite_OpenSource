@@ -1,0 +1,103 @@
+#####################################################################
+# Copyright (C) 2015 Huawei Tech. Co., Ltd.
+# obuild product define file
+#
+#####################################################################
+
+# GSM 通信接入技术模式
+CFG_FEATURE_UE_MODE_G                           = FEATURE_ON
+
+#W模支持开关
+CFG_FEATURE_UE_MODE_W                           = FEATURE_ON
+
+#L模支持开关
+CFG_FEATURE_LTE                                 = FEATURE_ON
+
+#TD模支持开关
+CFG_FEATURE_UE_MODE_TDS                         = FEATURE_ON
+
+# PC Voice特性开关
+CFG_FEATURE_PC_VOICE                            = FEATURE_OFF
+
+# G小区广播
+CFG_FEATURE_GCBS                                = FEATURE_ON
+
+# W小区广播
+CFG_FEATURE_WCBS                                = FEATURE_ON
+
+# ETWS功能开关
+CFG_FEATURE_ETWS                                = FEATURE_ON
+
+#AGPS特性开关
+CFG_FEATURE_AGPS                                = FEATURE_OFF
+
+#XML解析特性开关
+CFG_FEATRUE_XML_PARSER                          = FEATURE_ON
+
+#NVIM中是否能保存短信开关
+CFG_NAS_FEATURE_SMS_NVIM_SMSEXIST               = FEATURE_ON
+
+#FLASH中是否能保存短信开关
+CFG_NAS_FEATURE_SMS_FLASH_SMSEXIST              = FEATURE_ON
+
+#IPV6特性开关
+CFG_FEATURE_IPV6                                = FEATURE_ON
+
+#网卡名定制开关
+CFG_FEATURE_RMNET_CUSTOM                        = FEATURE_ON
+
+#VCOM扩展开关
+CFG_FEATURE_VCOM_EXT                            = FEATURE_OFF
+
+#AT支持HSIC通道开关
+CFG_FEATURE_AT_HSIC                             = FEATURE_OFF
+
+#AT支持HSUART通道开关
+CFG_FEATURE_AT_HSUART                           = FEATURE_ON
+
+#CL互操作开关
+CFG_FEATURE_CL_INTERWORK                        = FEATURE_OFF
+
+#多MODEM特性开关
+CFG_FEATURE_MULTI_MODEM                         = FEATURE_OFF
+
+#支持MODEM个数
+CFG_MULTI_MODEM_NUMBER                          = 2
+
+#ECALL特性开关
+CFG_FEATURE_ECALL                               = FEATURE_ON
+
+
+#待确认是否属于NAS或者是否需要删除
+# 支持AP
+CFG_FEATURE_AP                                  = FEATURE_OFF
+
+# 支持E5
+CFG_FEATURE_E5                                  = FEATURE_OFF
+
+#POWER_ON_OFF特性开关
+CFG_FEATURE_POWER_ON_OFF                        = FEATURE_OFF
+
+#RNIC特性开关
+CFG_FEATURE_RNIC                                = FEATURE_OFF
+
+#SHELL LOCK特性
+CFG_FEATURE_SECURITY_SHELL          			= FEATURE_ON
+
+#WIFI支持开关
+CFG_FEATURE_WIFI                                = FEATURE_OFF
+
+#语音优先VP功能开关
+CFG_FEATURE_HUAWEI_VP                           = FEATURE_OFF
+
+CFG_PS_PTL_VER_PRE_R99                          = (-2)
+CFG_PS_PTL_VER_R99                              = (-1)
+CFG_PS_PTL_VER_R3                               = 0
+CFG_PS_PTL_VER_R4                               = 1
+CFG_PS_PTL_VER_R5                               = 2
+CFG_PS_PTL_VER_R6                               = 3
+CFG_PS_PTL_VER_R7                               = 4
+CFG_PS_PTL_VER_R8                               = 5
+CFG_PS_PTL_VER_R9                               = 6
+CFG_PS_UE_REL_VER                               = PS_PTL_VER_R9
+

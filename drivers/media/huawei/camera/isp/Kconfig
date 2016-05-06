@@ -1,0 +1,27 @@
+comment "Huawei ISP"
+
+choice
+	prompt "ISP Version"
+	default HUAWEI_CAMERA_USE_OVISP23
+	depends on HUAWEI_CAMERA
+	help
+        Select ISP version. 
+
+config HUAWEI_CAMERA_USE_FAKE_ISP
+	bool "fake isp for emulator"
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OVISP23
+	bool "OVISP2.3"
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OVISP22
+	bool "OVISP2.2"
+	depends on HUAWEI_CAMERA
+
+config HUAWEI_CAMERA_USE_OVISP20
+	bool "OVISP2.0"
+	depends on HUAWEI_CAMERA
+
+endchoice
+

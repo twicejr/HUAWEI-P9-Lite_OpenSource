@@ -1,0 +1,33 @@
+
+
+  /{
+		hisi_usb3phy:usb@fe100000 {
+                          compatible = "hisilicon,hisi-usb3phy";
+                          reg = <0x0 0xfe100000 0x0 0x100000>;
+                };//address is not right,the phy address would be given by chenliang
+
+		hisi_usb2phy:usb@fe000000 {
+                          compatible = "hisilicon,hisi-usb2phy";
+                          reg = <0x0 0xfe000000 0x0 0x100000>;
+                };//address is not right,the phy address would be given by chenliang
+
+		hisi_usb@ff200000 {
+			compatible = "hisilicon,hi3650-dwc3";
+			reg = <0x0 0xff200000 0x0 0x1000 0x0 0xff100000 0x0 0x100000>;
+			ranges;
+			otgdebugsubsys-supply = <&usbotg>;
+			bc_again_flag = <1>;
+
+			clocks = <&clk_gate_abb_192 &aclk_gate_usb3otg>;
+			clock-names = "clk_abb_192", "aclk_usb3otg";
+
+			dwc3@ff100000 {
+				compatible = "snps,dwc3";
+				reg = <0x0 0xff100000 0x0 0x100000>;
+				interrupts = <0 159 4>, <0 161 4>;
+				interrupt-names = "irq", "otg_irq";
+				usb-phy = <&hisi_usb2phy &hisi_usb3phy>;
+				otg;
+			};
+		};
+  };

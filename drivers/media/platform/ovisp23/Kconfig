@@ -1,0 +1,47 @@
+if VIDEO_HISI_CAMERA
+
+menu "Hisilicon Camera/V4L2 Features support"
+
+source "drivers/media/platform/ovisp23/sensor/Kconfig"
+source "drivers/media/platform/ovisp23/vcm/Kconfig"
+source "drivers/media/platform/ovisp23/isp/Kconfig"
+source "drivers/media/platform/ovisp23/flash/Kconfig"
+
+config HISI_CAMERA_SENSOR
+	tristate "Hisilicon Camera Sensor driver"
+	depends on VIDEO_HISI_CAMERA
+	default n
+	---help---
+		Hisilicon Camera Sensor driver.
+
+config HISI_CAMERA_OVISP23
+	tristate "Hisilicon Camera ISP driver"
+	depends on VIDEO_HISI_CAMERA
+	default n
+	---help---
+		Hisilicon Camera ISP driver.
+
+config HISI_CAMERA_VCM
+	tristate "Hisilicon Camera VCM driver"
+	depends on VIDEO_HISI_CAMERA
+	default n
+	---help---
+		Hisilicon Camera VCM driver.
+
+config HISI_CAMERA_VIDEO
+	tristate "Hisilicon Camera video device driver"
+	depends on VIDEO_HISI_CAMERA
+	default n
+	---help---
+		Hisilicon Camera video device driver.
+
+config HISI_CAMERA_FLASH
+	tristate "Hisilicon Camera Flash driver"
+	depends on VIDEO_HISI_CAMERA
+	default n
+	---help---
+		Hisilicon Camera Flash driver.
+
+endmenu
+
+endif

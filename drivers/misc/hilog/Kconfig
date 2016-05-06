@@ -1,0 +1,7 @@
+menu "Hisi log support"
+
+config HISI_LOG
+    tristate "Support for hisi log"
+    help
+		Support for Hisi log
+endmenu

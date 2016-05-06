@@ -1,0 +1,21 @@
+#
+# USB Dual Role (OTG-ready) Controller Drivers
+# for silicon based on Synopsys designs
+#
+
+comment "Enable Host or Gadget support to see Synopsys options"
+	depends on !USB && USB_GADGET=n
+
+# (S)HDRC = (Synopsys) DWC
+config USB_SUSB_HDRC
+	depends on (USB || USB_GADGET)
+	select USB_OTG_UTILS
+	tristate 'Synopsys Highspeed Dual Role Controller '
+	help
+	  Say Y here if your system has a dual role high speed USB
+	  controller based on the Synopsis USB2.0 OTG silicon IP.
+
+config HI6250_USB
+	depends on USB_SUSB_HDRC
+	bool 'USB for hi6250'
+	default n

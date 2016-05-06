@@ -1,0 +1,5 @@
+config VFMW
+    tristate "hisilicon video firmware support"
+    default n
+    ---help---
+        This is the vfmw driver

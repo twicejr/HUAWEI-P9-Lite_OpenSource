@@ -1,0 +1,150 @@
+config SECURE_EXTENSION
+        bool "security extension support"
+        default n
+        help
+          Include Security Extension.
+
+config ARCH_HISI
+	bool "Hisilicon family"
+	select ARCH_HAS_CPUFREQ
+	select ARCH_REQUIRE_GPIOLIB
+	select ARM_AMBA
+	select ARM_GIC
+	select CLKDEV_LOOKUP
+	select COMMON_CLK
+	select GENERIC_CLOCKEVENTS
+	select HAVE_CLK
+	select HAVE_SMP
+	select NO_IOPORT
+	select PINCTRL
+	select PINCTRL_SINGLE
+	select ARCH_HAS_OPP
+	select ARCH_HAS_PASR
+
+	help
+	  Support for Hislicon Hi36xx/Hi37xx/Hi6620 processor family
+
+	
+if ARCH_HISI
+
+config ARCH_HI3630FPGA
+	bool "Hisilicon Development Board"
+	default n
+
+	select ARM_CCI
+	select CPU_V7
+	select ARM_TIMER_SP804
+	help
+	  Say 'Y' here if you want to support the Hisilicon Development
+	  Board.
+
+config ARCH_HI3630EMULATOR
+	bool "Hisilicon Emulator Board"
+	default n
+
+	select ARM_CCI
+	select CPU_V7
+	select ARM_TIMER_SP804
+	help
+	  Say 'Y' here if you want to support the Hisilicon Development
+	  Board.
+
+config ARCH_HI3630
+	bool "Hisilicon UDP Board"
+	default n
+
+	select ARM_CCI
+	select CPU_V7
+	select ARM_TIMER_SP804
+	help
+	  Say 'Y' here if you want to support the Hisilicon Development
+	  Board.
+
+config ARCH_HI6620
+	bool "Hisilicon HI6620 OEM Development Board"
+	default n
+
+	select ARM_CCI
+	select CPU_V7
+	select ARM_TIMER_SP804
+	help
+	  Say 'Y' here if you want to support the Hisilicon HI6620 Development
+	  Board.
+
+config ARCH_HI6XXX
+	bool "Hisilicon HI6xxx Development Board"
+	default n
+
+	select ARM_CCI
+	select CPU_V7
+	select ARM_TIMER_SP804
+	help
+	  Say 'Y' here if you want to support the Hisilicon HI6210 Development
+	  Board.
+	
+menu "Hisilicon NoC Support"
+config HI6421_OCP
+	bool "Hisilicon chip over current protect"
+	default n
+	help
+	  Say 'Y' here if you want to support the Hisilicon OCP.
+endmenu
+
+config HI3630_LPM3_IPC
+	bool "InterProcessor Communication Support"
+	default n
+	help
+          support Acore communication with LPM3
+
+config HISI_LPM3
+	bool "Hisilicon LPM3"
+	default n
+	help
+	  Hi3630 lpm3 watchdog driver
+
+config HISI_LPM3_DEBUG
+	depends on HISI_LPM3
+	depends on HISI_MAILBOX
+	bool "Hisilicon LPM3 DEBUG"
+	default n
+	help
+	  Hi3630 lpm3 debug driver
+
+config HISI_REBOOT_TYPE
+	bool "Hisilicon reboot type"
+	default n
+	help
+	  Hi3630 reboot type
+endif
+
+config HISI_UDP_BOARDID
+	bool "Hisilicon udp board id driver"
+	default y
+	help
+	Hi3630 udp board id driver support
+
+config HISI_ALTER_HARDWARE_NAME
+	bool "Hardware name can be set a alternative one"
+	default y
+	help
+	Hardware name can be set a alternative one
+
+config HISI_SR_DEBUG
+	bool "hisi suspend-resume debug interface"
+	depends on PM
+	default n
+	help
+	suspend-resume debug for hisi platform
+
+config HISI_SR_DEBUG_SLEEP
+	bool "hisi suspend-resume debug sleep"
+	depends on PM
+	default n
+	help
+	suspend-resume debug sleep for hisi platform
+
+config HISI_BALONG_MODEM
+	bool "Hisilicon ap+modem config"
+	default n
+	help
+	Hisilicon ap+modem config support.

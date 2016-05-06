@@ -1,0 +1,23 @@
+#
+# acore image load
+#s
+
+comment "acore image load driver"
+
+config RFILE_SUPPORT
+	tristate "support rfile"
+	default n
+	help
+	  RFILE driver
+	  
+config RFILE_TEST
+	tristate "rfile test"
+	default n
+	help
+	  RFILE test
+	  
+config RFILE_MEM_OPTIMISE
+	bool "rfile mem optimise"
+	default n
+	help
+	  RFILE mem optimise

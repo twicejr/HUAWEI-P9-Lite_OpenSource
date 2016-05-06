@@ -1,0 +1,35 @@
+
+source "drivers/huawei_platform/camera_legacy/Kconfig"
+source "drivers/huawei_platform/connectivity/Kconfig"
+#source "drivers/huawei_platform/dsm/Kconfig"
+
+config SENSORHUB_FEATURE_SUPPORT
+    bool "Huawei sensorhub support, for onetrack"
+    default n
+    help
+      Say yes here to support the huawei platform
+
+
+menu "huawei linux device driver support"
+source "drivers/huawei_platform/sensor/Kconfig"
+source "drivers/huawei_platform/inputhub/iom7/Kconfig"
+source "drivers/huawei_platform/inputhub/iom3/Kconfig"
+source "drivers/huawei_platform/touthscreen/Kconfig"
+source "drivers/huawei_platform/irda/Kconfig"
+source "drivers/huawei_platform/log/Kconfig"
+source "drivers/huawei_platform/nfc/Kconfig"
+source "drivers/huawei_platform/usb/Kconfig"
+source "drivers/huawei_platform/ext_modem/Kconfig"
+source "drivers/huawei_platform/storage/Kconfig"
+source "drivers/huawei_platform/chipverification/Kconfig"
+source "drivers/huawei_platform/chr/Kconfig"
+source "drivers/huawei_platform/lcd/Kconfig"
+source "drivers/huawei_platform/devdetect/Kconfig"
+endmenu
+
+source "drivers/huawei_platform/audio/Kconfig"
+source "drivers/huawei_platform/antenna_fpga/Kconfig"
+
+source "drivers/huawei_platform/power/Kconfig"
+source "drivers/huawei_platform/uid_iostats/Kconfig"
+source "drivers/huawei_platform/antenna_board_match/Kconfig"

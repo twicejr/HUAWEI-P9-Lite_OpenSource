@@ -1,0 +1,1626 @@
+/*
+ * Hisilicon Ltd. Hi3620 SoC
+ *
+ * Copyright (C) 2012-2013 Linaro Ltd.
+ * Author: Haojian Zhuang <haojian.zhuang@linaro.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/include/ "skeleton.dtsi"
+
+/ {
+	aliases {
+		serial0 = &uart0;
+		serial1 = &uart1;
+		mshc0 = &dwmmc_0;
+		mshc1 = &dwmmc_1;
+		mshc2 = &dwmmc_2;
+		mshc3 = &dwmmc_3;
+	};
+
+	osc32k: osc@0 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <32768>;
+		clock-output-names = "osc32khz";
+	};
+	osc26m: osc@1 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <26000000>;
+		clock-output-names = "osc26mhz";
+	};
+	pclk: clk@0 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <26000000>;
+		clock-output-names = "apb_pclk";
+	};
+	pll_arm0: clk@1 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1600000000>;
+		clock-output-names = "armpll0";
+	};
+	pll_arm1: clk@2 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1600000000>;
+		clock-output-names = "armpll1";
+	};
+	pll_peri: clk@3 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1440000000>;
+		clock-output-names = "armpll2";
+	};
+	pll_usb: clk@4 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1440000000>;
+		clock-output-names = "armpll3";
+	};
+	pll_hdmi: clk@5 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1188000000>;
+		clock-output-names = "armpll4";
+	};
+	pll_gpu: clk@6 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <1300000000>;
+		clock-output-names = "armpll5";
+	};
+
+
+	amba {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		compatible = "arm,amba-bus";
+		interrupt-parent = <&intc>;
+		ranges;
+
+		pmctrl: pmctrl@fca08000 {
+			compatible = "hisilicon,pmctrl";
+			reg = <0xfca08000 0x1000>;
+		};
+
+		pctrl: pctrl@fca09000 {
+			compatible = "hisilicon,pctrl";
+			reg = <0xfca09000 0x1000>;
+		};
+
+		secram: secram@f8000000 {
+			compatible = "hisilicon,secram";
+			reg = <0xf8000000 0x14000>;
+		};
+
+		ddrcfg: ddrcfg@fcd00000 {
+			compatible = "hisilicon,ddrcfg";
+			reg = <0xfcd00000 0x2000>;
+		};
+
+		sysctrl@fc802000 {
+			compatible = "hisilicon,sysctrl";
+			reg = <0xfc802000 0x1000>;
+			smp_reg = <0x31c>;
+			reboot_reg = <0x4>;
+		};
+
+		sctrl: sctrl@fc802000 {
+			compatible = "hisilicon,sctrl";
+			reg = <0xfc802000 0x1000>;
+			smp_reg = <0x31c>;
+			resume_reg = <0x308>;
+			reboot_reg = <0x4>;
+
+			refclk_uart0: refclk@0 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &pclk>;
+				hiword;
+				clock-output-names = "rclk_uart0";
+				/* reg_offset, enable_bits */
+				hisilicon,clkmux-reg = <0x100 0x80>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_uart1: refclk@1 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &pclk>;
+				hiword;
+				clock-output-names = "rclk_uart1";
+				hisilicon,clkmux-reg = <0x100 0x100>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_uart2: refclk@2 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &pclk>;
+				hiword;
+				clock-output-names = "rclk_uart2";
+				hisilicon,clkmux-reg = <0x100 0x200>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_uart3: refclk@3 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &pclk>;
+				hiword;
+				clock-output-names = "rclk_uart3";
+				hisilicon,clkmux-reg = <0x100 0x400>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_uart4: refclk@4 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &pclk>;
+				hiword;
+				clock-output-names = "rclk_uart4";
+				hisilicon,clkmux-reg = <0x100 0x800>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+
+			refclk_hsic: hsic {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_usb &pll_peri>;
+				hiword;
+				clock-output-names = "rclk_hsic";
+				hisilicon,clkmux-reg = <0x130 0x4>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+
+			clk_osc480m: clk_osc480m {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_hsic>;
+				clock-output-names = "clk_osc480m";
+				hisilicon,clkdiv-table = <4 1>;
+				/* divider register offset, mask */
+				hisilicon,clkdiv = <0x130 0xf>;
+			};
+			refclk_cfgaxi: refclk@5 {
+				compatible = "hisilicon,clk-fixed-factor";
+				#clock-cells = <0>;
+				clocks = <&pll_peri>;
+				clock-output-names = "rclk_cfgaxi";
+				/*mult, div*/
+				hisilicon,fixed-factor = <1 30>;
+			};
+			refclk_spi0: refclk@6 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &refclk_cfgaxi>;
+				hiword;
+				clock-output-names = "rclk_spi0";
+				hisilicon,clkmux-reg = <0x100 0x1000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_spi1: refclk@7 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &refclk_cfgaxi>;
+				hiword;
+				clock-output-names = "rclk_spi1";
+				hisilicon,clkmux-reg = <0x100 0x2000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_spi2: refclk@8 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc26m &refclk_cfgaxi>;
+				hiword;
+				clock-output-names = "rclk_spi2";
+				hisilicon,clkmux-reg = <0x100 0x4000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_tcxo: refclk@11 {
+				compatible = "hisilicon,clk-fixed-factor";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "rclk_tcxo";
+				hisilicon,fixed-factor = <1 4>;
+			};
+			timer0_mux: timer0_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk01>;
+				clock-output-names = "timer0_mux";
+				hisilicon,clkmux-reg = <0 0x18000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer1_mux: timer1_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk01>;
+				clock-output-names = "timer1_mux";
+				hisilicon,clkmux-reg = <0 0x60000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer2_mux: timer2_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk23>;
+				clock-output-names = "timer2_mux";
+				hisilicon,clkmux-reg = <0 0x180000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer3_mux: timer3_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk23>;
+				clock-output-names = "timer3_mux";
+				hisilicon,clkmux-reg = <0 0x600000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer4_mux: timer4_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk45>;
+				clock-output-names = "timer4_mux";
+				hisilicon,clkmux-reg = <0x18 0x3>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer5_mux: timer5_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk45>;
+				clock-output-names = "timer5_mux";
+				hisilicon,clkmux-reg = <0x18 0xc>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer6_mux: timer6_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk67>;
+				clock-output-names = "timer6_mux";
+				hisilicon,clkmux-reg = <0x18 0x30>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			timer7_mux: timer7_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &timerclk67>;
+				clock-output-names = "timer7_mux";
+				hisilicon,clkmux-reg = <0x18 0xc0>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_shareAXI: refclk@22 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_usb &pll_peri>;
+				hiword;
+				clock-output-names = "rclk_shareAXI";
+				hisilicon,clkmux-reg = <0x24 0x8000>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_mmc1: refclk@23 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_peri &pll_usb>;
+				hiword;
+				clock-output-names = "rclk_mmc1";
+				hisilicon,clkmux-reg = <0x108 0x200>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_mmc2: refclk@24 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_peri &pll_usb>;
+				hiword;
+				clock-output-names = "rclk_mmc2";
+				hisilicon,clkmux-reg = <0x140 0x10>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_mmc3: refclk@25 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_peri &pll_usb>;
+				hiword;
+				clock-output-names = "rclk_mmc3";
+				hisilicon,clkmux-reg = <0x140 0x200>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_sd: refclk@26 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&pll_peri &pll_usb>;
+				hiword;
+				clock-output-names = "rclk_sd";
+				hisilicon,clkmux-reg = <0x108 0x10>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_mmc1_parent: refclk@27 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&osc26m &div_mmc1>;
+				clock-output-names = "rclk_mmc1_parent";
+				hisilicon,clkmux-reg = <0x108 0x400>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_venc: refclk@28 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_usb>;
+				clock-output-names = "rclk_venc";
+				hisilicon,clkmux-reg = <0x10c 0x800>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_g2d: refclk@29 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_usb>;
+				clock-output-names = "rclk_g2d";
+				hisilicon,clkmux-reg = <0x10c 0x20>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_vdec: refclk@30 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_usb>;
+				clock-output-names = "rclk_vdec";
+				hisilicon,clkmux-reg = <0x110 0x20>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_vpp: refclk@31 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_usb>;
+				clock-output-names = "rclk_vpp";
+				hisilicon,clkmux-reg = <0x110 0x800>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			refclk_ldi0: refclk@32 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_hdmi &pll_usb>;
+				clock-output-names = "rclk_ldi0";
+				hisilicon,clkmux-reg = <0x114 0x6000>;
+				hisilicon,clkmux-table = <0 1 2>;
+			};
+			refclk_ldi1: refclk@33 {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				hiword;
+				clocks = <&pll_peri &pll_hdmi &pll_usb>;
+				clock-output-names = "rclk_ldi1";
+				hisilicon,clkmux-reg = <0x118 0xc000>;
+				hisilicon,clkmux-table = <0 1 2>;
+			};
+			clk_osc480mdiv40: osc480mdiv40 {
+				compatible = "hisilicon,clk-fixed-factor";
+				#clock-cells = <0>;
+				clocks = <&clk_osc480m>;
+				/*mult, div*/
+				hisilicon,fixed-factor = <1 40>;
+				clock-output-names = "clk_osc480mdiv40";
+			};
+			clk_usbpicophy: usbpicophy {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&clk_osc480mdiv40>;
+				clock-output-names = "clk_usbpicophy";
+				hisilicon,hi3620-clkreset = <0x8c 0x1000000>;
+				hisilicon,hi3620-clkgate = <0x30 0x1000000>;
+			};
+			clk_usb2dvc: usb2dvc {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_cfgaxi>;
+				clock-output-names = "clk_usb2dvc";
+				hisilicon,hi3620-clkreset = <0xa4 0x20000>;
+				hisilicon,hi3620-clkgate = <0x50 0x20000>;
+			};
+			uartclk0: clkgate@0 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_uart0>;
+				clock-output-names = "uartclk0";
+				hisilicon,hi3620-clkreset = <0x98 0x10000>;
+				hisilicon,hi3620-clkgate = <0x40 0x10000>;
+			};
+			uartclk1: clkgate@1 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_uart1>;
+				clock-output-names = "uartclk1";
+				hisilicon,hi3620-clkreset = <0x98 0x20000>;
+				hisilicon,hi3620-clkgate = <0x40 0x20000>;
+			};
+			uartclk2: clkgate@2 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_uart2>;
+				clock-output-names = "uartclk2";
+				hisilicon,hi3620-clkreset = <0x98 0x40000>;
+				hisilicon,hi3620-clkgate = <0x40 0x40000>;
+			};
+			uartclk3: clkgate@3 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_uart3>;
+				clock-output-names = "uartclk3";
+				hisilicon,hi3620-clkreset = <0x98 0x80000>;
+				hisilicon,hi3620-clkgate = <0x40 0x80000>;
+			};
+			uartclk4: clkgate@4 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_uart4>;
+				clock-output-names = "uartclk4";
+				hisilicon,hi3620-clkreset = <0x98 0x100000>;
+				hisilicon,hi3620-clkgate = <0x40 0x100000>;
+			};
+			gpioclk0: clkgate@5 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk0";
+				hisilicon,hi3620-clkreset = <0x80 0x100>;
+				hisilicon,hi3620-clkgate = <0x20 0x100>;
+			};
+			gpioclk1: clkgate@6 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk1";
+				hisilicon,hi3620-clkreset = <0x80 0x200>;
+				hisilicon,hi3620-clkgate = <0x20 0x200>;
+			};
+			gpioclk2: clkgate@7 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk2";
+				hisilicon,hi3620-clkreset = <0x80 0x400>;
+				hisilicon,hi3620-clkgate = <0x20 0x400>;
+			};
+			gpioclk3: clkgate@8 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk3";
+				hisilicon,hi3620-clkreset = <0x80 0x800>;
+				hisilicon,hi3620-clkgate = <0x20 0x800>;
+			};
+			gpioclk4: clkgate@9 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk4";
+				hisilicon,hi3620-clkreset = <0x80 0x1000>;
+				hisilicon,hi3620-clkgate = <0x20 0x1000>;
+			};
+			gpioclk5: clkgate@10 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk5";
+				hisilicon,hi3620-clkreset = <0x80 0x2000>;
+				hisilicon,hi3620-clkgate = <0x20 0x2000>;
+			};
+			gpioclk6: clkgate@11 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk6";
+				hisilicon,hi3620-clkreset = <0x80 0x4000>;
+				hisilicon,hi3620-clkgate = <0x20 0x4000>;
+			};
+			gpioclk7: clkgate@12 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk7";
+				hisilicon,hi3620-clkreset = <0x80 0x8000>;
+				hisilicon,hi3620-clkgate = <0x20 0x8000>;
+			};
+			gpioclk8: clkgate@13 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk8";
+				hisilicon,hi3620-clkreset = <0x80 0x10000>;
+				hisilicon,hi3620-clkgate = <0x20 0x10000>;
+			};
+			gpioclk9: clkgate@14 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk9";
+				hisilicon,hi3620-clkreset = <0x80 0x20000>;
+				hisilicon,hi3620-clkgate = <0x20 0x20000>;
+			};
+			gpioclk10: clkgate@15 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk10";
+				hisilicon,hi3620-clkreset = <0x80 0x40000>;
+				hisilicon,hi3620-clkgate = <0x20 0x40000>;
+			};
+			gpioclk11: clkgate@16 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk11";
+				hisilicon,hi3620-clkreset = <0x80 0x80000>;
+				hisilicon,hi3620-clkgate = <0x20 0x80000>;
+			};
+			gpioclk12: clkgate@17 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk12";
+				hisilicon,hi3620-clkreset = <0x80 0x100000>;
+				hisilicon,hi3620-clkgate = <0x20 0x100000>;
+			};
+			gpioclk13: clkgate@18 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk13";
+				hisilicon,hi3620-clkreset = <0x80 0x200000>;
+				hisilicon,hi3620-clkgate = <0x20 0x200000>;
+			};
+			gpioclk14: clkgate@19 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk14";
+				hisilicon,hi3620-clkreset = <0x80 0x400000>;
+				hisilicon,hi3620-clkgate = <0x20 0x400000>;
+			};
+			gpioclk15: clkgate@20 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk15";
+				hisilicon,hi3620-clkreset = <0x80 0x800000>;
+				hisilicon,hi3620-clkgate = <0x20 0x800000>;
+			};
+			gpioclk16: clkgate@21 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk16";
+				hisilicon,hi3620-clkreset = <0x80 0x1000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x1000000>;
+			};
+			gpioclk17: clkgate@22 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk17";
+				hisilicon,hi3620-clkreset = <0x80 0x2000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x2000000>;
+			};
+			gpioclk18: clkgate@23 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk18";
+				hisilicon,hi3620-clkreset = <0x80 0x4000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x4000000>;
+			};
+			gpioclk19: clkgate@24 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk19";
+				hisilicon,hi3620-clkreset = <0x80 0x8000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x8000000>;
+			};
+			gpioclk20: clkgate@25 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk20";
+				hisilicon,hi3620-clkreset = <0x80 0x10000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x10000000>;
+			};
+			gpioclk21: clkgate@26 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "gpioclk21";
+				hisilicon,hi3620-clkreset = <0x80 0x20000000>;
+				hisilicon,hi3620-clkgate = <0x20 0x20000000>;
+			};
+			spiclk0: clkgate@27 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_spi0>;
+				clock-output-names = "spiclk0";
+				hisilicon,hi3620-clkreset = <0x98 0x200000>;
+				hisilicon,hi3620-clkgate = <0x40 0x200000>;
+			};
+			spiclk1: clkgate@28 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_spi1>;
+				clock-output-names = "spiclk1";
+				hisilicon,hi3620-clkreset = <0x98 0x400000>;
+				hisilicon,hi3620-clkgate = <0x40 0x400000>;
+			};
+			spiclk2: clkgate@29 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_spi2>;
+				clock-output-names = "spiclk2";
+				hisilicon,hi3620-clkreset = <0x98 0x800000>;
+				hisilicon,hi3620-clkgate = <0x40 0x800000>;
+			};
+			pwm0_mux: pwm0_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &pwm_divider>;
+				hiword;
+				clock-output-names = "pwm0_mux";
+				hisilicon,clkmux-reg = <0x104 0x400>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			pwm1_mux: pwm1_mux {
+				compatible = "hisilicon,hi3620-clk-mux";
+				#clock-cells = <0>;
+				clocks = <&osc32k &pwm_divider>;
+				hiword;
+				clock-output-names = "pwm1_mux";
+				hisilicon,clkmux-reg = <0x104 0x800>;
+				hisilicon,clkmux-table = <0 1>;
+			};
+			pwmclk0: clkgate@30 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pwm0_mux>;
+				clock-output-names = "pwmclk0";
+				hisilicon,hi3620-clkreset = <0x98 0x80>;
+				hisilicon,hi3620-clkgate = <0x40 0x80>;
+			};
+			pwmclk1: clkgate@31 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pwm1_mux>;
+				clock-output-names = "pwmclk1";
+				hisilicon,hi3620-clkreset = <0x98 0x100>;
+				hisilicon,hi3620-clkgate = <0x40 0x100>;
+			};
+			timerclk01: clkgate@32 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_tcxo>;
+				clock-output-names = "timerclk01";
+				hisilicon,hi3620-clkreset = <0x80 0x1>;
+				hisilicon,hi3620-clkgate = <0x20 0x3>;
+			};
+			timerclk23: clkgate@33 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_tcxo>;
+				clock-output-names = "timerclk23";
+				hisilicon,hi3620-clkreset = <0x80 0x2>;
+				hisilicon,hi3620-clkgate = <0x20 0xc>;
+			};
+			timerclk45: clkgate@34 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_tcxo>;
+				clock-output-names = "timerclk45";
+				hisilicon,hi3620-clkreset = <0x98 0x8>;
+				hisilicon,hi3620-clkgate = <0x40 0x8>;
+			};
+			timerclk67: clkgate@35 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_tcxo>;
+				clock-output-names = "timerclk67";
+				hisilicon,hi3620-clkreset = <0x98 0x10>;
+				hisilicon,hi3620-clkgate = <0x40 0x10>;
+			};
+			timerclk89: clkgate@36 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_tcxo>;
+				clock-output-names = "timerclk89";
+				hisilicon,hi3620-clkreset = <0x98 0x20>;
+				hisilicon,hi3620-clkgate = <0x40 0x20>;
+			};
+			rtcclk: clkgate@47 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_rtc";
+				hisilicon,hi3620-clkgate = <0x20 0x20>;
+			};
+			i2cclk0: clkgate@48 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_i2c0";
+				hisilicon,hi3620-clkgate = <0x40 0x1000000>;
+			};
+			i2cclk1: clkgate@49 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_i2c1";
+				hisilicon,hi3620-clkgate = <0x40 0x2000000>;
+			};
+			i2cclk2: clkgate@50 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_i2c2";
+				hisilicon,hi3620-clkgate = <0x40 0x10000000>;
+			};
+			i2cclk3: clkgate@51 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_i2c3";
+				hisilicon,hi3620-clkgate = <0x40 0x20000000>;
+			};
+			dmaclk: clkgate@52 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&acpclk>;
+				clock-output-names = "clk_dmac";
+				hisilicon,hi3620-clkgate = <0x50 0x400>;
+			};
+			mcuclk: clkgate@53 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_cfgaxi>;
+				clock-output-names = "clk_mcu";
+				hisilicon,hi3620-clkgate = <0x50 0x1000000>;
+			};
+			ddrcperclk: clkgate@54 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_cfgaxi>;
+				clock-output-names = "clk_ddrc_per";
+				hisilicon,hi3620-clkgate = <0x50 0x200>;
+			};
+			acpclk: clkgate@55 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_cfgaxi>;
+				clock-output-names = "clk_apc";
+				hisilicon,hi3620-clkgate = <0x30 0x10000000>;
+			};
+			mmcclk1: clkgate@56 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_mmc1_parent>;
+				clock-output-names = "clk_mmc1";
+				hisilicon,hi3620-clkgate = <0x50 0x200000>;
+			};
+			mmcclk2: clkgate@57 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&div_mmc2>;
+				clock-output-names = "clk_mmc2";
+				hisilicon,hi3620-clkgate = <0x50 0x400000>;
+			};
+			mmcclk3: clkgate@58 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&div_mmc3>;
+				clock-output-names = "clk_mmc3";
+				hisilicon,hi3620-clkgate = <0x50 0x800000>;
+			};
+			sdclk: clkgate@59 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&div_sd>;
+				clock-output-names = "clk_sd";
+				hisilicon,hi3620-clkgate = <0x50 0x100000>;
+			};
+			kpcclk: clkgate@60 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&osc32k>;
+				clock-output-names = "clk_kpc";
+				hisilicon,hi3620-clkgate = <0x20 0x40>;
+			};
+			sciclk: clkgate@61 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "clk_sci";
+				hisilicon,hi3620-clkgate = <0x40 0x4000000>;
+			};
+			dphyclk0: clkgate@62 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "clk_dphy0";
+				hisilicon,hi3620-clkgate = <0x30 0x8000>;
+			};
+			dphyclk1: clkgate@63 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "clk_dphy1";
+				hisilicon,hi3620-clkgate = <0x30 0x10000>;
+			};
+			dphyclk2: clkgate@64 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "clk_dphy2";
+				hisilicon,hi3620-clkgate = <0x30 0x20000>;
+			};
+			ldiclk0: clkgate@65 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_ldi0>;
+				clock-output-names = "clk_ldi0";
+				hisilicon,hi3620-clkgate = <0x30 0x200>;
+			};
+			ldiclk1: clkgate@66 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&refclk_ldi1>;
+				clock-output-names = "clk_ldi1";
+				hisilicon,hi3620-clkgate = <0x30 0x800>;
+			};
+			edcclk0: clkgate@67 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_edc0";
+				hisilicon,hi3620-clkgate = <0x30 0x100>;
+			};
+			edcclk1: clkgate@68 {
+				compatible = "hisilicon,hi3620-clk-gate";
+				#clock-cells = <0>;
+				clocks = <&pclk>;
+				clock-output-names = "clk_edc1";
+				hisilicon,hi3620-clkgate = <0x30 0x400>;
+			};
+
+			dtable: clkdiv@0 {
+				#hisilicon,clkdiv-table-cells = <2>;
+			};
+			
+			div_shareaxi: clkdiv@1 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_shareAXI>;
+				clock-output-names = "shareAXI_div";
+				hisilicon,clkdiv-table = <32 1>;
+				/* divider register offset, mask */
+				hisilicon,clkdiv = <0x100 0x1f>;
+			};
+			div_cfgaxi: clkdiv@2 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&div_shareaxi>;
+				clock-output-names = "cfgAXI_div";
+				hisilicon,clkdiv-table = <2 2>;
+				hisilicon,clkdiv = <0x100 0x60>;
+			};
+			div_mmc1: clkdiv@3 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_mmc1>;
+				clock-output-names = "div_mmc1";
+				hisilicon,clkdiv-table = <16 1>;
+				hisilicon,clkdiv = <0x108 0x1e0>;
+			};
+			div_mmc2: clkdiv@4 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_mmc2>;
+				clock-output-names = "div_mmc2";
+				hisilicon,clkdiv-table = <16 1>;
+				hisilicon,clkdiv = <0x140 0xf>;
+			};
+			div_mmc3: clkdiv@5 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_mmc3>;
+				clock-output-names = "div_mmc3";
+				hisilicon,clkdiv-table = <16 1>;
+				hisilicon,clkdiv = <0x140 0x1e0>;
+			};
+			div_sd: clkdiv@6 {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&refclk_sd>;
+				clock-output-names = "div_sd";
+				hisilicon,clkdiv-table = <16 1>;
+				hisilicon,clkdiv = <0x108 0xf>;
+			};
+			pwm_divider: pwm_divider {
+				compatible = "hisilicon,hi3620-clk-div";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "pwm_divider";
+				hisilicon,clkdiv-table = <31 1>;
+				hisilicon,clkdiv = <0x104 0x3e0>;
+			};
+		};
+
+		rtc0: rtc@fc804000 {
+			compatible = "arm,rtc-pl031", "arm,primecell";
+			reg = <0xfc804000 0x1000>;
+			interrupts = <0 9 0x4>;
+			clocks = <&rtcclk>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		l2: l2-cache {
+			compatible = "arm,pl310-cache";
+			reg = <0xfc100000 0x100000>;
+			interrupts = <0 15 4>;
+			cache-unified;
+			cache-level = <2>;
+		};
+
+		intc: interrupt-controller@fc001000 {
+			compatible = "arm,cortex-a9-gic";
+			#interrupt-cells = <3>;
+			#address-cells = <0>;
+			interrupt-controller;
+			/* gic dist base, gic cpu base */
+			reg = <0xfc001000 0x1000>, <0xfc000100 0x100>;
+		};
+
+		dual_timer0: dual_timer@fc800000 {
+			compatible = "arm,sp804", "arm,primecell";
+			reg = <0xfc800000 0x1000>;
+			/* timer00 & timer01 */
+			interrupts = <0 0 4>, <0 1 4>;
+			clocks = <&timer0_mux &timer1_mux>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		dual_timer1: dual_timer@fc801000 {
+			/*
+			 * Only used in NORMAL state, not available ins
+			 * SLOW or DOZE state.
+			 * The rate is fixed in 24MHz.
+			 */
+			compatible = "arm,sp804", "arm,primecell";
+			reg = <0xfc801000 0x1000>;
+			/* timer10 & timer11 */
+			interrupts = <0 2 4>, <0 3 4>;
+			clocks = <&timer2_mux &timer3_mux>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		dual_timer2: dual_timer@fca01000 {
+			compatible = "arm,sp804", "arm,primecell";
+			reg = <0xfca01000 0x1000>;
+			/* timer20 & timer21 */
+			interrupts = <0 4 4>, <0 5 4>;
+			clocks = <&timer4_mux &timer5_mux>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		dual_timer3: dual_timer@fca02000 {
+			compatible = "arm,sp804", "arm,primecell";
+			reg = <0xfca02000 0x1000>;
+			/* timer30 & timer31 */
+			interrupts = <0 6 4>, <0 7 4>;
+			clocks = <&timer6_mux &timer7_mux>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+
+		timer5: timer@fc000600 {
+			compatible = "arm,cortex-a9-twd-timer";
+			reg = <0xfc000600 0x20>;
+			interrupts = <1 13 0xf01>;
+		};
+
+		uart0: uart@fcb00000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xfcb00000 0x1000>;
+			interrupts = <0 20 4>;
+			clocks = <&uartclk0>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		uart1: uart@fcb01000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xfcb01000 0x1000>;
+			interrupts = <0 21 4>;
+			clocks = <&uartclk1>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		uart2: uart@fcb02000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xfcb02000 0x1000>;
+			interrupts = <0 22 4>;
+			clocks = <&uartclk2>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		uart3: uart@fcb03000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xfcb03000 0x1000>;
+			interrupts = <0 23 4>;
+			clocks = <&uartclk3>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		uart4: uart@fcb04000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0xfcb04000 0x1000>;
+			interrupts = <0 24 4>;
+			clocks = <&uartclk4>;
+			clock-names = "apb_pclk";
+			status = "disabled";
+		};
+
+		gpio0: gpio@fc806000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc806000 0x1000>;
+			interrupts = <0 64 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 2 0 1 &pmx0 3 0 1 &pmx0 4 0 1
+					&pmx0 5 0 1 &pmx0 6 1 1 &pmx0 7 2 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk0>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <0>;
+			status = "disable";
+		};
+
+		gpio1: gpio@fc807000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc807000 0x1000>;
+			interrupts = <0 65 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 3 1 &pmx0 1 3 1 &pmx0 2 3 1
+					&pmx0 3 3 1 &pmx0 4 3 1 &pmx0 5 4 1
+					&pmx0 6 5 1 &pmx0 7 6 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk1>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <8>;
+			status = "disable";
+		};
+
+		gpio2: gpio@fc808000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc808000 0x1000>;
+			interrupts = <0 66 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 7 1 &pmx0 1 8 1 &pmx0 2 9 1
+					&pmx0 3 10 1 &pmx0 4 3 1 &pmx0 5 3 1
+					&pmx0 6 3 1 &pmx0 7 3 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk2>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <16>;
+			status = "disable";
+		};
+
+		gpio3: gpio@fc809000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc809000 0x1000>;
+			interrupts = <0 67 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 3 1 &pmx0 1 3 1 &pmx0 2 3 1
+					&pmx0 3 3 1 &pmx0 4 11 1 &pmx0 5 11 1
+					&pmx0 6 11 1 &pmx0 7 11 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk3>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <24>;
+			status = "disable";
+		};
+
+		gpio4: gpio@fc80a000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80a000 0x1000>;
+			interrupts = <0 68 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 11 1 &pmx0 1 11 1 &pmx0 2 11 1
+					&pmx0 3 11 1 &pmx0 4 12 1 &pmx0 5 12 1
+					&pmx0 6 13 1 &pmx0 7 13 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk4>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <32>;
+			status = "disable";
+		};
+
+		gpio5: gpio@fc80b000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80b000 0x1000>;
+			interrupts = <0 69 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 14 1 &pmx0 1 15 1 &pmx0 2 16 1
+					&pmx0 3 16 1 &pmx0 4 16 1 &pmx0 5 16 1
+					&pmx0 6 16 1 &pmx0 7 16 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk5>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <40>;
+			status = "disable";
+		};
+
+		gpio6: gpio@fc80c000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80c000 0x1000>;
+			interrupts = <0 70 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 16 1 &pmx0 1 16 1 &pmx0 2 17 1
+					&pmx0 3 17 1 &pmx0 4 18 1 &pmx0 5 18 1
+					&pmx0 6 18 1 &pmx0 7 19 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk6>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <48>;
+			status = "disable";
+		};
+
+		gpio7: gpio@fc80d000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80d000 0x1000>;
+			interrupts = <0 71 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 19 1 &pmx0 1 20 1 &pmx0 2 21 1
+					&pmx0 3 22 1 &pmx0 4 23 1 &pmx0 5 24 1
+					&pmx0 6 25 1 &pmx0 7 26 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk7>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <56>;
+			status = "disable";
+		};
+
+		gpio8: gpio@fc80e000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80e000 0x1000>;
+			interrupts = <0 72 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 27 1 &pmx0 1 28 1 &pmx0 2 29 1
+					&pmx0 3 30 1 &pmx0 4 31 1 &pmx0 5 32 1
+					&pmx0 6 33 1 &pmx0 7 34 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk8>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <64>;
+			status = "disable";
+		};
+
+		gpio9: gpio@fc80f000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc80f000 0x1000>;
+			interrupts = <0 73 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 35 1 &pmx0 1 36 1 &pmx0 2 37 1
+					&pmx0 3 38 1 &pmx0 4 39 1 &pmx0 5 40 1
+					&pmx0 6 41 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk9>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <72>;
+			status = "disable";
+		};
+
+		gpio10: gpio@fc810000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc810000 0x1000>;
+			interrupts = <0 74 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 2 43 1 &pmx0 3 44 1 &pmx0 4 45 1
+					&pmx0 5 45 1 &pmx0 6 46 1 &pmx0 7 46 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk10>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <80>;
+			status = "disable";
+		};
+
+		gpio11: gpio@fc811000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc811000 0x1000>;
+			interrupts = <0 75 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 47 1 &pmx0 1 47 1 &pmx0 2 47 1
+					&pmx0 3 47 1 &pmx0 4 47 1 &pmx0 5 48 1
+					&pmx0 6 49 1 &pmx0 7 49 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk11>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <88>;
+			status = "disable";
+		};
+
+		gpio12: gpio@fc812000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc812000 0x1000>;
+			interrupts = <0 76 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 49 1 &pmx0 1 50 1 &pmx0 2 49 1
+					&pmx0 3 49 1 &pmx0 4 51 1 &pmx0 5 51 1
+					&pmx0 6 51 1 &pmx0 7 52 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk12>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <96>;
+			status = "disable";
+		};
+
+		gpio13: gpio@fc813000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc813000 0x1000>;
+			interrupts = <0 77 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 51 1 &pmx0 1 51 1 &pmx0 2 53 1
+					&pmx0 3 53 1 &pmx0 4 53 1 &pmx0 5 54 1
+					&pmx0 6 55 1 &pmx0 7 56 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk13>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <104>;
+			status = "disable";
+		};
+
+		gpio14: gpio@fc814000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc814000 0x1000>;
+			interrupts = <0 78 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 57 1 &pmx0 1 97 1 &pmx0 2 97 1
+					&pmx0 3 58 1 &pmx0 4 59 1 &pmx0 5 60 1
+					&pmx0 6 60 1 &pmx0 7 61 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk14>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <112>;
+			status = "disable";
+		};
+
+		gpio15: gpio@fc815000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc815000 0x1000>;
+			interrupts = <0 79 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 61 1 &pmx0 1 62 1 &pmx0 2 62 1
+					&pmx0 3 63 1 &pmx0 4 63 1 &pmx0 5 64 1
+					&pmx0 6 64 1 &pmx0 7 65 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk15>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <120>;
+			status = "disable";
+		};
+
+		gpio16: gpio@fc816000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc816000 0x1000>;
+			interrupts = <0 80 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 66 1 &pmx0 1 67 1 &pmx0 2 68 1
+					&pmx0 3 69 1 &pmx0 4 70 1 &pmx0 5 71 1
+					&pmx0 6 72 1 &pmx0 7 73 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk16>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <128>;
+			status = "disable";
+		};
+
+		gpio17: gpio@fc817000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc817000 0x1000>;
+			interrupts = <0 81 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 74 1 &pmx0 1 75 1 &pmx0 2 76 1
+					&pmx0 3 77 1 &pmx0 4 78 1 &pmx0 5 79 1
+					&pmx0 6 80 1 &pmx0 7 81 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk17>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <136>;
+			status = "disable";
+		};
+
+		gpio18: gpio@fc818000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc818000 0x1000>;
+			interrupts = <0 82 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 82 1 &pmx0 1 83 1 &pmx0 2 83 1
+					&pmx0 3 84 1 &pmx0 4 84 1 &pmx0 5 85 1
+					&pmx0 6 86 1 &pmx0 7 87 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk18>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <144>;
+			status = "disable";
+		};
+
+		gpio19: gpio@fc819000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc819000 0x1000>;
+			interrupts = <0 83 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 87 1 &pmx0 1 87 1 &pmx0 2 88 1
+					&pmx0 3 88 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk19>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <152>;
+			status = "disable";
+		};
+
+		gpio20: gpio@fc81a000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc81a000 0x1000>;
+			interrupts = <0 84 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 0 89 1 &pmx0 1 89 1 &pmx0 2 90 1
+					&pmx0 3 90 1 &pmx0 4 91 1 &pmx0 5 92 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk20>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <160>;
+			status = "disable";
+		};
+
+		gpio21: gpio@fc81b000 {
+			compatible = "arm,pl061", "arm,primecell";
+			reg = <0xfc81b000 0x1000>;
+			interrupts = <0 85 0x4>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			gpio-ranges = <	&pmx0 3 94 1 &pmx0 7 96 1>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			clocks = <&gpioclk21>;
+			clock-names = "apb_pclk";
+			linux,gpio-base = <168>;
+			status = "disable";
+		};
+
+		pmx0: pinmux@fc803000 {
+			compatible = "pinctrl-single";
+			reg = <0xfc803000 0x188>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			#gpio-range-cells = <3>;
+			ranges;
+
+			pinctrl-single,register-width = <32>;
+			pinctrl-single,function-mask = <7>;
+			/* pin base, nr pins & gpio function */
+			pinctrl-single,gpio-range = <&range 0 3 0 &range 3 9 1
+						&range 12 1 0 &range 13 29 1
+						&range 43 1 0 &range 44 49 1
+						&range 94 1 1 &range 96 2 1>;
+
+			range: gpio-range {
+				#pinctrl-single,gpio-range-cells = <3>;
+			};
+		};
+
+		pmx1: pinmux@fc803800 {
+			compatible = "pinconf-single";
+			reg = <0xfc803800 0x2dc>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+
+			pinctrl-single,register-width = <32>;
+		};
+
+		i2c0: i2c@fcb08000 {
+			compatible = "snps,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xfcb08000 0x1000>;
+			interrupts = <0 28 4>;
+			clocks = <&i2cclk0>;
+			status = "disabled";
+		};
+
+		i2c1: i2c@fcb09000 {
+			compatible = "snps,designware-i2c";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0xfcb09000 0x1000>;
+			interrupts = <0 29 4>;
+			clocks = <&i2cclk1>;
+			status = "disabled";
+		};
+
+		i2c2: i2c@fcb0c000 {
+			compatible = "snps,designware-i2c";
+			reg = <0xfcb0c000 0x1000>;
+			interrupts = <0 62 4>;
+			clocks = <&i2cclk2>;
+			status = "disabled";
+		};
+
+		i2c3: i2c@fcb0d000 {
+			compatible = "snps,designware-i2c";
+			reg = <0xfcb0d000 0x1000>;
+			interrupts = <0 63 4>;
+			clocks = <&i2cclk3>;
+			status = "disabled";
+		};
+
+		/* unremovable emmc as mmcblk0 */
+		dwmmc_1: dwmmc1@fcd04000 {
+			compatible = "hisilicon,hi4511-dw-mshc";
+			reg = <0xfcd04000 0x1000>;
+			interrupts = <0 17 4>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&mmcclk1>, <&ddrcperclk>;
+			clock-names = "ciu", "biu";
+		};
+
+		/* sd as mmcblk1 */
+		dwmmc_0: dwmmc0@fcd03000 {
+			compatible = "hisilicon,hi4511-dw-mshc";
+			reg = <0xfcd03000 0x1000>;
+			interrupts = <0 16 4>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&sdclk>, <&ddrcperclk>;
+			clock-names = "ciu", "biu";
+		};
+
+		dwmmc_2: dwmmc2@fcd05000 {
+			compatible = "hisilicon,hi4511-dw-mshc";
+			reg = <0xfcd05000 0x1000>;
+			interrupts = <0 18 4>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&mmcclk2>;
+		};
+
+		dwmmc_3: dwmmc3@fcd06000 {
+			compatible = "hisilicon,hi4511-dw-mshc";
+			reg = <0xfcd06000 0x1000>;
+			interrupts = <0 19 4>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&mmcclk3>;
+		};
+
+		dma0: dma@fcd02000 {
+			compatible = "hisilicon,k3-dma-1.0";
+			reg = <0xfcd02000 0x1000>;
+			#dma-cells = <1>;
+			dma-channels = <16>;
+			dma-requests = <27>;
+			interrupts = <0 12 4>;
+			clocks = <&dmaclk>;
+			status = "disable";
+		};
+
+		edc0: edc@fa202000 {
+			compatible = "hisilicon,hi3620-fb";
+			reg = <0xfa202000 0x1000>;
+			clocks = <&ldiclk0 &edcclk0 &dsiclk0 &lanebyteclk0>;
+			clock-names = "ldi", "edc", "dsi", "lane";
+			interrupts = <0 38 0x4>, <0 39 0x4>, <0 40 0x4>;
+			interrupt-names = "edc", "ldi", "dsi";
+			status = "disabled";
+
+			dsi2xclk0: clkdsi@0 {
+				compatible = "hisilicon,hi3620-phy";
+				#clock-cells = <0>;
+				clocks = <&osc26m>;
+				clock-output-names = "clk_dsi2x0";
+			};
+			dsiclk0: clkdsi@1 {
+				compatible = "hisilicon,clk-fixed-factor";
+				#clock-cells = <0>;
+				clocks = <&dsi2xclk0>;
+				clock-output-names = "clk_dsi0";
+				/*mult, div*/
+				hisilicon,fixed-factor = <1 2>;
+			};
+			lanebyteclk0: clkdsi@2 {
+				compatible = "hisilicon,clk-fixed-factor";
+				#clock-cells = <0>;
+				clocks = <&dsi2xclk0>;
+				clock-output-names = "clk_lanebyte0";
+				/*mult, div*/
+				hisilicon,fixed-factor = <1 8>;
+			};
+			escclk0: clkdsi@3 {
+				compatible = "hisilicon,hi3620-phy-esc";
+				#clock-cells = <0>;
+				clocks = <&lanebyteclk0>;
+				clock-output-names = "clk_dsi_phy_esc0";
+			};
+		};
+		edc1: edc@fa206900 {
+			compatible = "hisilicon,hi3620-fb";
+			clocks = <&ldiclk1 &edcclk1>;
+			clock-names = "ldi", "edc";
+			status = "disabled";
+		};
+
+		mcu: mcu@fd000000 {
+			compatible = "hisilicon,hi3620-mcu";
+			reg = <0xfd000000 0x00010000>;
+			interrupts = <0 89 4>;
+			clocks = <&mcuclk>;
+			status = "disabled";
+		};
+
+		k3v2_otg@fd240000 {
+			compatible = "hisilicon,k3v2_otg";
+			reg = <0xfd240000 0x40000>;
+			interrupts = <0 52 0x4>;
+			clocks = <&clk_usbpicophy &clk_usb2dvc>;
+		};
+	};
+};

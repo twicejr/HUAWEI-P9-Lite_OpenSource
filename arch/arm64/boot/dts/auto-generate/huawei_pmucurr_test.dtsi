@@ -1,0 +1,7 @@
+/ {
+    hw,pmucurr_test{
+        //power_numbers = <val_1 val_2 val_n>; //the numbers of power to turn on/off
+                                      //add this item to each config.dts if needed
+        power_ops_delay_time_us = <100000>;
+    };
+};
