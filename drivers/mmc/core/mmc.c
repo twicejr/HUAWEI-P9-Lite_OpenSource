@@ -1,4 +1,4 @@
-
+	
 
 #include <linux/err.h>
 #include <linux/slab.h>
@@ -376,6 +376,9 @@ static void mmc_manage_gp_partitions(struct mmc_card *card, u8 *ext_csd)
         }
     }
 }
+
+/* Minimum partition switch timeout in milliseconds */
+#define MMC_MIN_PART_SWITCH_TIME	300
 
 /*
  * Decode extended CSD.

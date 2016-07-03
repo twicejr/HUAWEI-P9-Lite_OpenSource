@@ -376,10 +376,11 @@ static void option_instat_callback(struct urb *urb);
 #define HAIER_PRODUCT_CE100			0x2009
 
 /* Cinterion (formerly Siemens) products */
-#define SIEMENS_VENDOR_ID				0x0681
-#define CINTERION_VENDOR_ID				0x1e2d
+/* Gemalto's Cinterion products (formerly Siemens) */
+#define SIEMENS_VENDOR_ID			0x0681
+#define CINTERION_VENDOR_ID			0x1e2d
+#define CINTERION_PRODUCT_HC25_MDMNET		0x0040
 #define CINTERION_PRODUCT_HC25_MDM		0x0047
-#define CINTERION_PRODUCT_HC25_MDMNET	0x0040
 #define CINTERION_PRODUCT_HC28_MDM		0x004C
 #define CINTERION_PRODUCT_HC28_MDMNET	0x004A /* same for HC28J */
 #define CINTERION_PRODUCT_EU3_E			0x0051
