@@ -477,10 +477,13 @@ static void ext4_handle_error(struct super_block *sb)
 
 	dump_ext4_sb_info(sb);
 
-	if (test_opt(sb, ERRORS_PANIC))
+	if (test_opt(sb, ERRORS_PANIC)) {
+		if (EXT4_SB(sb)->s_journal &&
+		  !(EXT4_SB(sb)->s_journal->j_flags & JBD2_REC_ERR))
+			return;
 		panic("EXT4-fs (device %s): panic forced after error\n",
 			sb->s_id);
-
+        }
 #ifdef CONFIG_FEATURE_HUAWEI_EMERGENCY_DATA
 	trigger_double_data(sb);
 #endif
@@ -683,9 +686,12 @@ void __ext4_abort(struct super_block *sb, const char *function,
 
 	dump_ext4_sb_info(sb);
 
-	if (test_opt(sb, ERRORS_PANIC))
+	if (test_opt(sb, ERRORS_PANIC)) {
+		if (EXT4_SB(sb)->s_journal &&
+		  !(EXT4_SB(sb)->s_journal->j_flags & JBD2_REC_ERR))
+			return;
 		panic("EXT4-fs panic from previous error\n");
-
+        }
 #ifdef CONFIG_FEATURE_HUAWEI_EMERGENCY_DATA
 	trigger_double_data(sb);
 #endif
