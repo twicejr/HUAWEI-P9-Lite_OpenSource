@@ -19,8 +19,8 @@
 #include <linux/slab.h>
 #include <linux/dma-mapping.h>
 
-#include "../../../../../../../kernel/drivers/devfreq/governor.h"
-#include "../../../../../../../kernel/drivers/atfdriver/atfdriver.h"
+#include "../../../../../../drivers/devfreq/governor.h"
+#include "../../../../../../drivers/atfdriver/atfdriver.h"
 
 #define DFPQ_BDUTILIZATION		(60)
 #define DFPQ_MAX_BDUTILIZATION		(100)
