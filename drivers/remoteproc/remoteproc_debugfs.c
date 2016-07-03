@@ -174,7 +174,7 @@ rproc_recovery_write(struct file *filp, const char __user *user_buf,
     if (user_buf == NULL)
         return -EINVAL;
 
-	if (count > sizeof(buf))
+	if (count < 1 || count > sizeof(buf))
 		return count;
 
 	ret = copy_from_user(buf, user_buf, count);
